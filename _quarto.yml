@@ -1,0 +1,47 @@
+project:
+  type: book
+
+book:
+  title: "openMSE Technical Guide"
+  author: "Adrian Hordyk, Quang Huynh, and Tom Carruthers"
+  description: |
+    Management Strategy Evaluation with openMSE
+  cover-image: images/OpenMSE2_color.png
+  favicon: images/favicon.png
+
+  reader-mode: true
+  site-url: https://docs.openMSE.com/
+  repo-url: https://github.com/blue-matter/openMSETechGuide/
+  repo-actions: [edit, issue]
+
+  date: today
+
+  chapters:
+  - index.qmd
+  - intro.qmd
+  - quicktour.Rmd
+
+  - part: Operating Models
+    chapters:
+    - operatingmodels.Rmd
+    - stockobject.Rmd
+    - fleetobject.Rmd
+
+  - part: Case Studies
+    chapters:
+    - indonesia_octopus.Rmd
+
+  - references.qmd
+
+  appendices:
+    - Acknowledgements.Rmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    code-link: true
+  asciidoc: default
+
+

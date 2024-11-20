@@ -1,0 +1,9 @@
+# Operating Models
+
+Operating Models (OMs) are the main component ...
+
+They are comprised of ...
+
+-   [Stock Object](/stockobject.html)
+
+-   [Fleet Object](/fleetobject.html)

@@ -1,0 +1,9 @@
+# Stock Object
+
+The Stock object
+
+## Ages
+
+## Length
+
+## Weight
