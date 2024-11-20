@@ -99,5 +99,6 @@ format:
     code-link: true
   asciidoc: default
 
-
+execute:
+  freeze: auto
 
