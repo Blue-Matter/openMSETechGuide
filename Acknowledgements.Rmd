@@ -1,1 +1,3 @@
-# Appendix A
+# Acknowledgements
+
+`openMSE` would not be possible without the support of ...

@@ -1,4 +1,4 @@
-# Stock Object
+# The Stock Object
 
 The Stock object
 
@@ -7,3 +7,16 @@ The Stock object
 ## Length
 
 ## Weight
+
+## Natural Mortality
+
+## Maturity
+
+## Fecundity
+
+## Stock-Recruit Relationship
+
+## Spatial 
+
+## Depletion
+

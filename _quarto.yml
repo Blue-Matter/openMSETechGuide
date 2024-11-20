@@ -2,11 +2,10 @@ project:
   type: book
 
 book:
-  title: "openMSE Technical Guide"
+  title: "openMSE Technical Manual"
   author: "Adrian Hordyk, Quang Huynh, and Tom Carruthers"
   description: |
     Management Strategy Evaluation with openMSE
-  cover-image: images/OpenMSE2_color.png
   favicon: images/favicon.png
 
   reader-mode: true
@@ -18,23 +17,79 @@ book:
 
   chapters:
   - index.qmd
-  - intro.qmd
+  - intro.Rmd
   - quicktour.Rmd
+  - developments.Rmd
+
+  - part: Management Strategy Evaluation
+    chapters:
+    - aboutMSE.Rmd
+    - MSEroadmap.Rmd
+    - MSEoverview.Rmd
+
+  - part: Fishery Data
+    chapters:
+    - fisherydata.Rmd
+    - dataobject.Rmd
 
   - part: Operating Models
     chapters:
     - operatingmodels.Rmd
     - stockobject.Rmd
     - fleetobject.Rmd
+    - obsobject.Rmd
+    - impobject.Rmd
+    - importingOMs.Rmd
+    - RCM.Rmd
 
-  - part: Case Studies
+  - part: OM Case Studies
     chapters:
-    - indonesia_octopus.Rmd
+    - reeffish.Rmd
+    - octopus.Rmd
+
+  - part: Management Procedures
+    chapters:
+    - aboutMPs.Rmd
+    - buildingMPs.Rmd
+    - recobject.Rmd
+    - builtinMPs.Rmd
+
+  - part: Other Objects
+    chapters:
+    - histobject.Rmd
+    - MSEobject.Rmd
+
+  - part: Calculating Performance
+    chapters:
+    - performancemetric.Rmd
+    - PMMethods.Rmd
+    - slick.Rmd
+    - plotstables.Rmd
+
+  - part: Under the Hood
+    chapters:
+    - processoverview.Rmd
+    - populate.Rmd
+
 
   - references.qmd
 
   appendices:
-    - Acknowledgements.Rmd
+    - acknowledgements.Rmd
+    - authors.Rmd
+
+  sidebar:
+    title: 'Technical Manual'
+    logo: "images/OpenMSE2_color.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: globe
+        href: https://openMSE.com
+        text: "openMSE"
+    style: "docked"
+    search: true
+    collapse-level: 1
 
 bibliography: references.bib
 
@@ -43,5 +98,6 @@ format:
     theme: [cosmo, custom.scss]
     code-link: true
   asciidoc: default
+
 
 

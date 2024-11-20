@@ -1,0 +1,6 @@
+# Fishery Data
+
+Fishery data can be used to:
+
+1. Condition an [Operating Model](/operatingmodels.html)
+1. Calculate management advice from a [Management Procedure](/managementprocudures.html)

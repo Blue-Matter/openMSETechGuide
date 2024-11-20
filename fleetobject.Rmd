@@ -1,1 +1,21 @@
-## Fleet Object
+# The Fleet Object
+
+The `Fleet` Object is used for ...
+
+
+## Fishing Mortality
+
+## Discard Mortality
+
+## Effort
+
+## Selectivity
+
+## Retention
+
+## Distribution
+
+## Empirical Weight
+
+## Bio-Economics
+

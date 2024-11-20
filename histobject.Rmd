@@ -1,0 +1,3 @@
+# The Hist object
+
+The `Hist` object contains ...

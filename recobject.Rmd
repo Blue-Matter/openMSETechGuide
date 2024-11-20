@@ -1,0 +1,3 @@
+# The Advice Object 
+
+The `Advice` object contains the management advice produced by an MP ...
