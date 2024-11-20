@@ -75,7 +75,7 @@ book:
   - references.qmd
 
   appendices:
-    - acknowledgements.Rmd
+    - Acknowledgements.Rmd
     - authors.Rmd
 
   sidebar:
