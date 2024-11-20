@@ -1,0 +1,558 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "openMSE Technical Manual",
+    "section": "",
+    "text": "Welcome\nWelcome to the “openMSE Technical Guide” developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThe intended audience for this book are fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE, see the openMSE website.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "About openMSE\nopenMSE is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.\nopenMSE uses an age-structured spatial population dynamics model to simulate fishery dynamics. Full details of the population dynamics model are available in a paper published in Methods in Ecology and Evolution.\nThe openMSE package is available on CRAN can be installed with install.packages(\"openMSE\"). Installing the openMSE package and loading with library(\"openMSE\") will load the following core packages:\nYou can learn more about the specifics of the openMSE packages here.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "intro.html#about-openmse",
+    "href": "intro.html#about-openmse",
+    "title": "Introduction",
+    "section": "",
+    "text": "MSEtool - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.\nDLMtool - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. DLMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when DLMtool is loaded into an R session.\nSAMtool - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. This package includes the Rapid Conditioning Model for conditioning operating models in data-moderate and data-rich fisheries. SAMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when SAMtool is loaded into an R session.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "intro.html#about-this-site",
+    "href": "intro.html#about-this-site",
+    "title": "Introduction",
+    "section": "About this Site",
+    "text": "About this Site\nThis site contains help documentation for the key features of the openMSE packages, and tutorials for the key concepts for fisheries simulation modeling and management strategy evaluation.\nThe site is under continual development. Please contact us if you have any questions or suggestions for improvement.\nFor help documentation for specific R functions, see the individual component package documentation sites.\nPlease see the Frequently Asked Questions for a list of the most commonly asked questions.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "intro.html#getting-started",
+    "href": "intro.html#getting-started",
+    "title": "Introduction",
+    "section": "Getting Started",
+    "text": "Getting Started\nFor first time users of openMSE, we recommend reading through the following sub-sections, and then taking the Quick Tour of openMSE.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html",
+    "href": "MSEoverview.html",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "",
+    "text": "3.1 Management Question",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html#fishery-data",
+    "href": "MSEoverview.html#fishery-data",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "\n3.2 Fishery Data",
+    "text": "3.2 Fishery Data",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html#operating-models",
+    "href": "MSEoverview.html#operating-models",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "\n3.3 Operating Models",
+    "text": "3.3 Operating Models",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html#management-procedures",
+    "href": "MSEoverview.html#management-procedures",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "\n3.4 Management Procedures",
+    "text": "3.4 Management Procedures",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html#performance-metrics",
+    "href": "MSEoverview.html#performance-metrics",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "\n3.5 Performance Metrics",
+    "text": "3.5 Performance Metrics",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html#running-closed-loop-simulations",
+    "href": "MSEoverview.html#running-closed-loop-simulations",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "\n3.6 Running Closed-Loop Simulations",
+    "text": "3.6 Running Closed-Loop Simulations",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "MSEoverview.html#summarizing-results",
+    "href": "MSEoverview.html#summarizing-results",
+    "title": "\n3  MSE with openMSE\n",
+    "section": "\n3.7 Summarizing Results",
+    "text": "3.7 Summarizing Results",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+    ]
+  },
+  {
+    "objectID": "fisherydata.html",
+    "href": "fisherydata.html",
+    "title": "\n4  Fishery Data\n",
+    "section": "",
+    "text": "Fishery data can be used to:\n\nCondition an Operating Model\n\nCalculate management advice from a Management Procedure",
+    "crumbs": [
+      "Fishery Data",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Fishery Data</span>"
+    ]
+  },
+  {
+    "objectID": "dataobject.html",
+    "href": "dataobject.html",
+    "title": "\n5  The Data Object\n",
+    "section": "",
+    "text": "The Data object is used to store fishery data …",
+    "crumbs": [
+      "Fishery Data",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The Data Object</span>"
+    ]
+  },
+  {
+    "objectID": "operatingmodels.html",
+    "href": "operatingmodels.html",
+    "title": "\n6  Operating Models\n",
+    "section": "",
+    "text": "Operating Models (OMs) are the main component …\nThey are comprised of …\n\nStock Object\nFleet Object",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html",
+    "href": "stockobject.html",
+    "title": "\n7  The Stock Object\n",
+    "section": "",
+    "text": "7.1 Ages",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#length",
+    "href": "stockobject.html#length",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.2 Length",
+    "text": "7.2 Length",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#weight",
+    "href": "stockobject.html#weight",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.3 Weight",
+    "text": "7.3 Weight",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#natural-mortality",
+    "href": "stockobject.html#natural-mortality",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.4 Natural Mortality",
+    "text": "7.4 Natural Mortality",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#maturity",
+    "href": "stockobject.html#maturity",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.5 Maturity",
+    "text": "7.5 Maturity",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#fecundity",
+    "href": "stockobject.html#fecundity",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.6 Fecundity",
+    "text": "7.6 Fecundity",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#stock-recruit-relationship",
+    "href": "stockobject.html#stock-recruit-relationship",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.7 Stock-Recruit Relationship",
+    "text": "7.7 Stock-Recruit Relationship",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#spatial",
+    "href": "stockobject.html#spatial",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.8 Spatial",
+    "text": "7.8 Spatial",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#depletion",
+    "href": "stockobject.html#depletion",
+    "title": "\n7  The Stock Object\n",
+    "section": "\n7.9 Depletion",
+    "text": "7.9 Depletion",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html",
+    "href": "fleetobject.html",
+    "title": "\n8  The Fleet Object\n",
+    "section": "",
+    "text": "8.1 Fishing Mortality",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#discard-mortality",
+    "href": "fleetobject.html#discard-mortality",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.2 Discard Mortality",
+    "text": "8.2 Discard Mortality",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#effort",
+    "href": "fleetobject.html#effort",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.3 Effort",
+    "text": "8.3 Effort",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#selectivity",
+    "href": "fleetobject.html#selectivity",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.4 Selectivity",
+    "text": "8.4 Selectivity",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#retention",
+    "href": "fleetobject.html#retention",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.5 Retention",
+    "text": "8.5 Retention",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#distribution",
+    "href": "fleetobject.html#distribution",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.6 Distribution",
+    "text": "8.6 Distribution",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#empirical-weight",
+    "href": "fleetobject.html#empirical-weight",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.7 Empirical Weight",
+    "text": "8.7 Empirical Weight",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#bio-economics",
+    "href": "fleetobject.html#bio-economics",
+    "title": "\n8  The Fleet Object\n",
+    "section": "\n8.8 Bio-Economics",
+    "text": "8.8 Bio-Economics",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "obsobject.html",
+    "href": "obsobject.html",
+    "title": "\n9  The Obs Object\n",
+    "section": "",
+    "text": "The Obs object is used for …",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The Obs Object</span>"
+    ]
+  },
+  {
+    "objectID": "impobject.html",
+    "href": "impobject.html",
+    "title": "\n10  The Imp Object\n",
+    "section": "",
+    "text": "The Imp object is used for …",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Imp Object</span>"
+    ]
+  },
+  {
+    "objectID": "importingOMs.html",
+    "href": "importingOMs.html",
+    "title": "\n11  Importing OMs\n",
+    "section": "",
+    "text": "11.1 Stock Synthesis",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Importing OMs</span>"
+    ]
+  },
+  {
+    "objectID": "RCM.html",
+    "href": "RCM.html",
+    "title": "\n12  Rapid Conditioning Model\n",
+    "section": "",
+    "text": "The Rapid Conditioning Model (RCM) is …",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Rapid Conditioning Model</span>"
+    ]
+  },
+  {
+    "objectID": "octopus.html",
+    "href": "octopus.html",
+    "title": "\n14  Octopus\n",
+    "section": "",
+    "text": "A short-lived semelparous species …",
+    "crumbs": [
+      "OM Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Octopus</span>"
+    ]
+  },
+  {
+    "objectID": "aboutMPs.html",
+    "href": "aboutMPs.html",
+    "title": "\n15  About Management Procedure\n",
+    "section": "",
+    "text": "Management procedures (MPs) are …",
+    "crumbs": [
+      "Management Procedures",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>About Management Procedure</span>"
+    ]
+  },
+  {
+    "objectID": "recobject.html",
+    "href": "recobject.html",
+    "title": "\n17  The Advice Object\n",
+    "section": "",
+    "text": "The Advice object contains the management advice produced by an MP …",
+    "crumbs": [
+      "Management Procedures",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>The Advice Object</span>"
+    ]
+  },
+  {
+    "objectID": "builtinMPs.html",
+    "href": "builtinMPs.html",
+    "title": "\n18  openMSE MPs\n",
+    "section": "",
+    "text": "18.1 Data-Limited MPs",
+    "crumbs": [
+      "Management Procedures",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>openMSE MPs</span>"
+    ]
+  },
+  {
+    "objectID": "builtinMPs.html#assessment-models-and-harvest-control-rules",
+    "href": "builtinMPs.html#assessment-models-and-harvest-control-rules",
+    "title": "\n18  openMSE MPs\n",
+    "section": "\n18.2 Assessment Models and Harvest Control Rules",
+    "text": "18.2 Assessment Models and Harvest Control Rules",
+    "crumbs": [
+      "Management Procedures",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>openMSE MPs</span>"
+    ]
+  },
+  {
+    "objectID": "histobject.html",
+    "href": "histobject.html",
+    "title": "\n19  The Hist object\n",
+    "section": "",
+    "text": "The Hist object contains …",
+    "crumbs": [
+      "Other Objects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>The Hist object</span>"
+    ]
+  },
+  {
+    "objectID": "MSEobject.html",
+    "href": "MSEobject.html",
+    "title": "\n20  The MSE Object\n",
+    "section": "",
+    "text": "20.1 Structure of the MSE object",
+    "crumbs": [
+      "Other Objects",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>The MSE Object</span>"
+    ]
+  },
+  {
+    "objectID": "MSEobject.html#accessing-the-contents",
+    "href": "MSEobject.html#accessing-the-contents",
+    "title": "\n20  The MSE Object\n",
+    "section": "\n20.2 Accessing the contents",
+    "text": "20.2 Accessing the contents",
+    "crumbs": [
+      "Other Objects",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>The MSE Object</span>"
+    ]
+  },
+  {
+    "objectID": "PMMethods.html",
+    "href": "PMMethods.html",
+    "title": "\n22  PM Methods\n",
+    "section": "",
+    "text": "22.1 The PM Object",
+    "crumbs": [
+      "Calculating Performance",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>PM Methods</span>"
+    ]
+  },
+  {
+    "objectID": "PMMethods.html#example-pm-methods",
+    "href": "PMMethods.html#example-pm-methods",
+    "title": "\n22  PM Methods\n",
+    "section": "\n22.2 Example PM Methods",
+    "text": "22.2 Example PM Methods",
+    "crumbs": [
+      "Calculating Performance",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>PM Methods</span>"
+    ]
+  },
+  {
+    "objectID": "PMMethods.html#custom-pm-methods",
+    "href": "PMMethods.html#custom-pm-methods",
+    "title": "\n22  PM Methods\n",
+    "section": "\n22.3 Custom PM Methods",
+    "text": "22.3 Custom PM Methods",
+    "crumbs": [
+      "Calculating Performance",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>PM Methods</span>"
+    ]
+  },
+  {
+    "objectID": "slick.html",
+    "href": "slick.html",
+    "title": "\n23  Introducing Slick\n",
+    "section": "",
+    "text": "23.1 Creating Slick Objects",
+    "crumbs": [
+      "Calculating Performance",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Introducing Slick</span>"
+    ]
+  },
+  {
+    "objectID": "populate.html",
+    "href": "populate.html",
+    "title": "\n26  Populate the OM\n",
+    "section": "",
+    "text": "The first step is …",
+    "crumbs": [
+      "Under the Hood",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Populate the OM</span>"
+    ]
+  },
+  {
+    "objectID": "Acknowledgements.html",
+    "href": "Acknowledgements.html",
+    "title": "Appendix A — Acknowledgements",
+    "section": "",
+    "text": "openMSE would not be possible without the support of …",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Acknowledgements</span>"
+    ]
+  },
+  {
+    "objectID": "authors.html",
+    "href": "authors.html",
+    "title": "Appendix B — About the Authors",
+    "section": "",
+    "text": "…",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>About the Authors</span>"
+    ]
+  }
+]
