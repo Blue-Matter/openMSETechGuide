@@ -18,7 +18,6 @@ book:
   chapters:
   - index.qmd
   - intro.Rmd
-  - quicktour.Rmd
   - openMSE2.Rmd
 
   - part: Management Strategy Evaluation
