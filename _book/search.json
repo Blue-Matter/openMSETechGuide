@@ -1,12 +1,32 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "openMSE Technical Manual",
+    "objectID": "openMSE2.html",
+    "href": "openMSE2.html",
+    "title": "About openMSE 2.0",
     "section": "",
-    "text": "Welcome\nWelcome to the “openMSE Technical Guide” developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThe intended audience for this book are fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE, see the openMSE website.",
+    "text": "Motivation",
     "crumbs": [
-      "Welcome"
+      "About openMSE 2.0"
+    ]
+  },
+  {
+    "objectID": "openMSE2.html#philosophy",
+    "href": "openMSE2.html#philosophy",
+    "title": "About openMSE 2.0",
+    "section": "Philosophy",
+    "text": "Philosophy",
+    "crumbs": [
+      "About openMSE 2.0"
+    ]
+  },
+  {
+    "objectID": "openMSE2.html#main-changes",
+    "href": "openMSE2.html#main-changes",
+    "title": "About openMSE 2.0",
+    "section": "Main Changes",
+    "text": "Main Changes\nCompleted\nIn Development",
+    "crumbs": [
+      "About openMSE 2.0"
     ]
   },
   {
@@ -47,36 +67,6 @@
     "text": "Getting Started\nFor first time users of openMSE, we recommend reading through the following sub-sections, and then taking the Quick Tour of openMSE.",
     "crumbs": [
       "Introduction"
-    ]
-  },
-  {
-    "objectID": "openMSE2.html",
-    "href": "openMSE2.html",
-    "title": "About openMSE 2.0",
-    "section": "",
-    "text": "Motivation",
-    "crumbs": [
-      "About openMSE 2.0"
-    ]
-  },
-  {
-    "objectID": "openMSE2.html#philosophy",
-    "href": "openMSE2.html#philosophy",
-    "title": "About openMSE 2.0",
-    "section": "Philosophy",
-    "text": "Philosophy",
-    "crumbs": [
-      "About openMSE 2.0"
-    ]
-  },
-  {
-    "objectID": "openMSE2.html#main-changes",
-    "href": "openMSE2.html#main-changes",
-    "title": "About openMSE 2.0",
-    "section": "Main Changes",
-    "text": "Main Changes\nCompleted\nIn Development",
-    "crumbs": [
-      "About openMSE 2.0"
     ]
   },
   {
@@ -583,6 +573,16 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>B</span>  <span class='chapter-title'>About the Authors</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "openMSE Technical Manual",
+    "section": "",
+    "text": "Welcome\nWelcome to the “openMSE Technical Guide” developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThe intended audience for this book are fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE, see the openMSE website.",
+    "crumbs": [
+      "Welcome"
     ]
   }
 ]
