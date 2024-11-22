@@ -1,0 +1,11 @@
+# About openMSE 2.0 { .unnumbered}
+
+## Motivation
+
+## Philosophy
+
+## Main Changes
+
+### Completed
+
+### In Development

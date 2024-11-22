@@ -2,134 +2,134 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://docs.openMSE.com/index.html</loc>
-    <lastmod>2024-11-20T17:19:10.576Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.656Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/intro.html</loc>
-    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.667Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/quicktour.html</loc>
-    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
+    <lastmod>2024-11-19T19:11:46.110Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/developments.html</loc>
-    <lastmod>2024-11-20T18:16:14.526Z</lastmod>
+    <loc>https://docs.openMSE.com/openMSE2.html</loc>
+    <lastmod>2024-11-22T22:49:05.691Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/aboutMSE.html</loc>
-    <lastmod>2024-11-20T17:48:19.744Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.597Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/MSEroadmap.html</loc>
-    <lastmod>2024-11-20T17:48:47.108Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.286Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/MSEoverview.html</loc>
-    <lastmod>2024-11-20T18:19:21.206Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.282Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/fisherydata.html</loc>
-    <lastmod>2024-11-20T18:14:17.687Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.630Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/dataobject.html</loc>
-    <lastmod>2024-11-20T18:14:33.641Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.618Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/operatingmodels.html</loc>
-    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
+    <lastmod>2024-11-19T19:13:51.389Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/stockobject.html</loc>
-    <lastmod>2024-11-20T17:36:55.680Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.716Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/fleetobject.html</loc>
-    <lastmod>2024-11-20T17:37:51.643Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.635Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/obsobject.html</loc>
-    <lastmod>2024-11-20T17:38:17.329Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.672Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/impobject.html</loc>
-    <lastmod>2024-11-20T17:38:39.284Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.646Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/importingOMs.html</loc>
-    <lastmod>2024-11-20T17:44:14.615Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.650Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/RCM.html</loc>
-    <lastmod>2024-11-20T17:44:52.548Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.295Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/reeffish.html</loc>
-    <lastmod>2024-11-20T17:39:52.507Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.707Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/octopus.html</loc>
-    <lastmod>2024-11-20T17:39:24.770Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.676Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/aboutMPs.html</loc>
-    <lastmod>2024-11-20T18:16:35.504Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.593Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/buildingMPs.html</loc>
-    <lastmod>2024-11-20T17:50:26.615Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.604Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/recobject.html</loc>
-    <lastmod>2024-11-20T17:51:12.788Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.703Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/builtinMPs.html</loc>
-    <lastmod>2024-11-20T17:52:05.884Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.608Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/histobject.html</loc>
-    <lastmod>2024-11-20T17:52:31.593Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.640Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/MSEobject.html</loc>
-    <lastmod>2024-11-20T17:53:11.312Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.278Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/performancemetric.html</loc>
-    <lastmod>2024-11-20T17:55:13.125Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.685Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/PMMethods.html</loc>
-    <lastmod>2024-11-20T17:56:08.826Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.290Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/slick.html</loc>
-    <lastmod>2024-11-20T17:56:58.952Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.711Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/plotstables.html</loc>
-    <lastmod>2024-11-20T17:57:20.170Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.690Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/processoverview.html</loc>
-    <lastmod>2024-11-20T17:53:51.900Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.700Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/populate.html</loc>
-    <lastmod>2024-11-20T17:54:18.076Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.695Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/references.html</loc>
-    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
+    <lastmod>2024-11-19T18:37:14.532Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/Acknowledgements.html</loc>
-    <lastmod>2024-11-20T18:39:56.935Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.274Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/authors.html</loc>
-    <lastmod>2024-11-20T17:41:55.569Z</lastmod>
+    <lastmod>2024-11-21T17:11:46.600Z</lastmod>
   </url>
 </urlset>
