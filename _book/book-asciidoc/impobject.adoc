@@ -1,0 +1,4 @@
+= The Imp Object
+:description: Management Strategy Evaluation with openMSE
+
+The `+Imp+` object is used for …

@@ -1,15 +1,14 @@
 # Welcome {.unnumbered}
 
-Welcome to the **"openMSE Technical Guide"** developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from [Blue Matter Science](http://bluematterscience.com).
+Welcome to the **openMSE Technical Manual** developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from [Blue Matter Science](http://bluematterscience.com).
 
-The intended audience for this book are fisheries scientists and other analysts
-who wish to learn how to use `openMSE` for all aspects of Management Strategy Evaluation (MSE): 
+This book is intended for fisheries scientists and other analysts who wish to learn how to use `openMSE` for all aspects of Management Strategy Evaluation (MSE):
 
-- building operating models;
-- developing management procedures;
-- conducting closed-loop simulation testing;
-- summarizing and presenting results.
+-   building operating models;
+-   developing management procedures;
+-   conducting closed-loop simulation testing;
+-   summarizing and presenting results.
 
-For more general information about `openMSE`, see the [openMSE website](http://openMSE.com). 
+For more general information about `openMSE` see the [openMSE website](http://openMSE.com).
 
-
+> This Technical Manual has been developed for `openMSE 2.0`, which is currently under development and will be released in 2025. The code in this manual is only compatible with the development branches of `MSEtool`, `SAMtool`, `DLMtool`, and `openMSE`. Unless you are feeling particulary adventurous, you should not use the development code for your analyses!

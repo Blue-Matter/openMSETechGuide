@@ -1,0 +1,10 @@
+= PM Methods
+:description: Management Strategy Evaluation with openMSE
+
+`+openMSE+` includes several
+
+== The `+PM+` Object
+
+== Example PM Methods
+
+== Custom PM Methods

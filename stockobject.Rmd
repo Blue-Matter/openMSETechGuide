@@ -1,6 +1,6 @@
-# The Stock Object
+# The Stock Object {#sec-stock}
 
-The Stock object
+The `Stock` object
 
 ## Ages
 

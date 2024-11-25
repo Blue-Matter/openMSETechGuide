@@ -1,0 +1,23 @@
+[[sec-stock]]
+= The Stock Object
+:description: Management Strategy Evaluation with openMSE
+
+The `+Stock+` object
+
+== Ages
+
+== Length
+
+== Weight
+
+== Natural Mortality
+
+== Maturity
+
+== Fecundity
+
+== Stock-Recruit Relationship
+
+== Spatial
+
+== Depletion

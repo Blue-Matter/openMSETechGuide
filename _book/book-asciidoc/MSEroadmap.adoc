@@ -1,0 +1,17 @@
+= MSE Road Map
+:description: Management Strategy Evaluation with openMSE
+
+.MSE Development Roadmap
+image::images/MSE%20roadmap%20updated.drawio.png[MSE Development Roadmap]
+
+== Prerequisite Phase
+
+____
+Identifies the background to the problem, introduces MSE concepts and established membership to various working groups.
+____
+
+== Foundation Phase
+
+____
+Establishes the context for the MSE including the broad management objectives, key system uncertainties for OMs and investigation of available data and information sources to support operating model specification.
+____

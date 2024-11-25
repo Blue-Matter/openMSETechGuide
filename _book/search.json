@@ -1,556 +1,693 @@
 [
   {
-    "objectID": "openMSE2.html",
-    "href": "openMSE2.html",
-    "title": "About openMSE 2.0",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "openMSE Technical Manual",
     "section": "",
-    "text": "Motivation",
+    "text": "Welcome\nWelcome to the openMSE Technical Manual developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE see the openMSE website.\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and will be released in 2025. The code in this manual is only compatible with the development branches of MSEtool, SAMtool, DLMtool, and openMSE. Unless you are feeling particulary adventurous, you should not use the development code for your analyses!",
     "crumbs": [
-      "About openMSE 2.0"
+      "Welcome"
     ]
   },
   {
-    "objectID": "openMSE2.html#philosophy",
-    "href": "openMSE2.html#philosophy",
-    "title": "About openMSE 2.0",
-    "section": "Philosophy",
-    "text": "Philosophy",
+    "objectID": "aboutMSE.html",
+    "href": "aboutMSE.html",
+    "title": "\n1  What is Management Strategy Evaluation?\n",
+    "section": "",
+    "text": "1.1 Management Strategy Evaluation\nManagement Strategy Evaluation (MSE) is a computer simulation approach for testing prospective management options over a wide range of possible realities for the fishery and the population. Ideally, management options can be identified that are robust and perform well over all credible scenarios for the fishery.\nIt is extremely difficult, perhaps impossible, to conduct large-scale experiments to evaluate directly the trade-offs associated with fisheries management. Even among well-studied fisheries, considerable uncertainty often exists regarding stock status and the dynamics of the fishery, and it can be difficult to attribute particular outcomes to distinct management actions. The mathematical description of fish population dynamics and the interaction with different exploitation patterns, first developed by Beverton and Holt (1957), together with the advent of powerful and affordable computers, has allowed the development of the MSE approach (Butterworth, 2007; Nils Bunnefeld et al., 2011; Punt et al., 2016).\nManagement strategy evaluation was originally developed by the International Whaling Commission as a tool to evaluate the various trade-offs involved the management of marine mammals, and to guide the decision-making process for selecting an appropriate management strategy. Since its development in the mid-1970s, MSE has become widely used in fisheries science and is routinely applied to evaluate the trade-offs in alternative management strategies of many of the world’s fisheries.\nAn MSE is usually comprised of four key components:\nThe management recommendations by each management procedure are then fed-back into the operating model and projected forward one-time step. The process of simulating the population dynamics of the fishery along with the management process that feeds back and impacts the simulated fish population is known as closed-loop simulation.\nA benefit of closed-loop simulation is that it allows the direct comparison and evaluation of alternative management strategies against perfect knowledge of the simulated system; something that is impossible in the real world (Walters and Martell, 2004). With the aid of computer simulation, it is possible to run many hundreds of simulation runs for each management procedure being evaluated - each representing a different possible simulated future of what could happen to the fishery under various management strategies - and to take into account the uncertainty in knowledge of the stock and fishery (i.e., errors in observation), as well as the uncertainty in future environmental and ecological conditions that are likely to affect the stock dynamics.\nThrough these simulations, MSE reveals the relative impacts of specified management approaches to their fishery decades into the future and enables managers to choose the approach that best achieves their management objectives, as articulated through a set of well-defined performance metrics.",
     "crumbs": [
-      "About openMSE 2.0"
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Management Strategy Evaluation?</span>"
     ]
   },
   {
-    "objectID": "openMSE2.html#main-changes",
-    "href": "openMSE2.html#main-changes",
-    "title": "About openMSE 2.0",
-    "section": "Main Changes",
-    "text": "Main Changes\nCompleted\nIn Development",
+    "objectID": "aboutMSE.html#management-strategy-evaluation",
+    "href": "aboutMSE.html#management-strategy-evaluation",
+    "title": "\n1  What is Management Strategy Evaluation?\n",
+    "section": "",
+    "text": "an operating model that describes the stock and fleet dynamics in the historical period, and the assumptions for the projection period;\nan observation model that is used to generate the simulated fishery data in the projection period;\na set of alternative management procedures (interchangeably referred to as harvest strategies, or management strategies) that use the simulated fishery data to generate a management recommendation (e.g., a total allowable catch (TAC) or effort control). In some cases this can be a stock assessment model that estimates the status of the (simulated) stock and linked to a harvest control rule to generate management advice from the output of the assessment. In other cases, the management procedure can be simple empirical rules that produce management advice directly from the observed fishery data (e.g., an index targeting method). The key feature of a management procedure is that it is reproducible and objective: that is, the same data will always result in the same management recommendation;\nan implementation model that describes how the management advice generated by the management procedures is implemented back into the simulated fishery.",
     "crumbs": [
-      "About openMSE 2.0"
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Management Strategy Evaluation?</span>"
+    ]
+  },
+  {
+    "objectID": "aboutMSE.html#how-does-management-strategy-evaluation-differ-from-stock-assessment",
+    "href": "aboutMSE.html#how-does-management-strategy-evaluation-differ-from-stock-assessment",
+    "title": "\n1  What is Management Strategy Evaluation?\n",
+    "section": "\n1.2 How does Management Strategy Evaluation Differ from Stock Assessment?",
+    "text": "1.2 How does Management Strategy Evaluation Differ from Stock Assessment?\nStock assessments are intended to provide one-off management advice, such as a catch limit (e.g. 20,000 tonnes), based on historical data. However, a stock assessment on its own provides no knowledge of the expected performance of the assessment, harvest control rule, or management system in general.\nIn an assessment setting there is no way to know whether a simpler assessment using other data might provide more robust performance (e.g. less overfishing, more yield) over a time horizon that managers are considering (e.g. the next 30 years). Management strategy evaluation tests a range of management approaches (of which an assessment linked to a harvest control rule is one such approach) and offers a scientific basis for selecting a management approach. MSE does not provide a catch-limit in tonnes, it identifies a modus operandi that will provide the desired management performance (it is analogous to selecting a suitable airplane via flight simulation testing rather than actually flying a plane to a specific destination).\nThe advantage of MSE over stock assessment is that it is possible to consider a much wider range of uncertainty in stock dynamics, fleet dynamics, and data collection, which often better represents the state of knowledge (particularly for data-limited stocks). No matter how much uncertainty is factored into the MSE, a single management approach may be selected that can provide management advice.\nMSE was specifically introduced in controversial fishery settings where it was not possible to decide the ‘best’ representation of the state of nature. In the end, MSE was used to circumvent this problem by including all possible states of nature, often revealing that the disputes were in fact inconsequential all along.\n\n\n\n\nBeverton, R.J.H., Holt, S.J., 1957. On the Dynamics of Exploited Fish Populations. Springer Science.\n\n\nButterworth, D.S., 2007. Why a management procedure approach? Some positives and negatives. ICES Journal of Marine Science 64, 613–617. https://doi.org/10.1093/icesjms/fsm003\n\n\nNils Bunnefeld, Eriko Hoshino, E. J. Milner-Gulland, 2011. Management strategy evaluation: A powerful tool for conservation? Trends in Ecology and Evolution 26, 441–447. https://doi.org/10.1016/j.tree.2011.05.003\n\n\nPunt, A.E., Butterworth, D.S., Moor, C.L. de, De Oliveira, J.A.A., Haddon, M., 2016. Management strategy evaluation: Best practices. Fish and Fisheries 17, 303–334. https://doi.org/10.1111/faf.12104\n\n\nWalters, C.J., Martell, S.J.D., 2004. Fisheries ecology and management, Fisheries ecology and management. Princeton University Press.",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Management Strategy Evaluation?</span>"
+    ]
+  },
+  {
+    "objectID": "MSEroadmap.html",
+    "href": "MSEroadmap.html",
+    "title": "\n2  MSE Road Map\n",
+    "section": "",
+    "text": "2.1 Prerequisite Phase",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MSE Road Map</span>"
+    ]
+  },
+  {
+    "objectID": "MSEroadmap.html#prerequisite-phase",
+    "href": "MSEroadmap.html#prerequisite-phase",
+    "title": "\n2  MSE Road Map\n",
+    "section": "",
+    "text": "Identifies the background to the problem, introduces MSE concepts and established membership to various working groups.",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MSE Road Map</span>"
+    ]
+  },
+  {
+    "objectID": "MSEroadmap.html#foundation-phase",
+    "href": "MSEroadmap.html#foundation-phase",
+    "title": "\n2  MSE Road Map\n",
+    "section": "\n2.2 Foundation Phase",
+    "text": "2.2 Foundation Phase\n\nEstablishes the context for the MSE including the broad management objectives, key system uncertainties for OMs and investigation of available data and information sources to support operating model specification.",
+    "crumbs": [
+      "Management Strategy Evaluation",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MSE Road Map</span>"
     ]
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "Introduction",
+    "title": "\n3  About openMSE\n",
     "section": "",
-    "text": "About openMSE\nopenMSE is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.\nopenMSE uses an age-structured spatial population dynamics model to simulate fishery dynamics. Full details of the population dynamics model are available in a paper published in Methods in Ecology and Evolution.\nThe openMSE package is available on CRAN can be installed with install.packages(\"openMSE\"). Installing the openMSE package and loading with library(\"openMSE\") will load the following core packages:\nYou can learn more about the specifics of the openMSE packages here.",
+    "text": "openMSE is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.\nopenMSE uses an age-structured spatial population dynamics model to simulate fishery dynamics. Full details of the population dynamics model are available in a paper published in Methods in Ecology and Evolution.\nThe openMSE package is available on CRAN can be installed with install.packages(\"openMSE\"). Installing the openMSE package and loading with library(\"openMSE\") will load the following core packages:\n\nMSEtool - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.\nDLMtool - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. DLMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when DLMtool is loaded into an R session.\nSAMtool - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. This package includes the Rapid Conditioning Model for conditioning operating models in data-moderate and data-rich fisheries. SAMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when SAMtool is loaded into an R session.\n\nTo learn more about the specifics of the openMSE packages see Chapter 5.",
     "crumbs": [
-      "Introduction"
+      "About openMSE",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>About openMSE</span>"
     ]
   },
   {
-    "objectID": "intro.html#about-openmse",
-    "href": "intro.html#about-openmse",
-    "title": "Introduction",
+    "objectID": "prerequisites.html",
+    "href": "prerequisites.html",
+    "title": "4  Prerequisites",
     "section": "",
-    "text": "MSEtool - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.\nDLMtool - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. DLMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when DLMtool is loaded into an R session.\nSAMtool - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. This package includes the Rapid Conditioning Model for conditioning operating models in data-moderate and data-rich fisheries. SAMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when SAMtool is loaded into an R session.",
+    "text": "4.1 Installing R\nThe R statistical language and environment can be freely downloaded from the CRAN website and is available for all operating systems. Updated versions of R are released frequently, and it is recommended that you have the latest version installed.\nHead to the CRAN website to download the latest version of R.\nYou can check your version of R by typing version into the R console.",
     "crumbs": [
-      "Introduction"
+      "About openMSE",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Prerequisites</span>"
     ]
   },
   {
-    "objectID": "intro.html#about-this-site",
-    "href": "intro.html#about-this-site",
-    "title": "Introduction",
-    "section": "About this Site",
-    "text": "About this Site\nThis site contains help documentation for the key features of the openMSE packages, and tutorials for the key concepts for fisheries simulation modeling and management strategy evaluation.\nThe site is under continual development. Please contact us if you have any questions or suggestions for improvement.\nFor help documentation for specific R functions, see the individual component package documentation sites.\nPlease see the Frequently Asked Questions for a list of the most commonly asked questions.",
+    "objectID": "prerequisites.html#rstudio",
+    "href": "prerequisites.html#rstudio",
+    "title": "4  Prerequisites",
+    "section": "\n4.2 RStudio",
+    "text": "4.2 RStudio\nRStudio is a freely available integrated development environment (IDE) for R. It is not essential that you use RStudio, but it can make things a lot easier, especially if you are new to R.\nIt is important to be aware that RStudio and R are two different pieces of software that must be installed separately. We recommend installing the R software before downloading and installing RStudio.",
     "crumbs": [
-      "Introduction"
+      "About openMSE",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Prerequisites</span>"
     ]
   },
   {
-    "objectID": "intro.html#getting-started",
-    "href": "intro.html#getting-started",
-    "title": "Introduction",
-    "section": "Getting Started",
-    "text": "Getting Started\nFor first time users of openMSE, we recommend reading through the following sub-sections, and then taking the Quick Tour of openMSE.",
+    "objectID": "prerequisites.html#installing-the-packages",
+    "href": "prerequisites.html#installing-the-packages",
+    "title": "4  Prerequisites",
+    "section": "\n4.3 Installing the Packages",
+    "text": "4.3 Installing the Packages\n\n4.3.1 Installing openMSE\n\nAll component packages in the openMSE collection can be installed with:\n\ninstall.packages('openMSE')\n\nand loaded into the R session with:\n\nlibrary('openMSE')\n\nThis will load the openMSE package, and make all functions in MSEtool, DLMtool, and SAMtool available.\n\n4.3.2 Installing the component packages\nTo install only the core MSE functions, install and load the Management Strategy Evaluation toolkit with: install.packages('MSEtool') and library('MSEtool').\nTo install and load the Data-Limited Methods toolkit use: install.packages('DLMtool') and library('DLMtool'). Note that this will also install and load the dependency MSEtool.\nTo install and load the Stock Assessment Methods toolkit use: install.packages('SAMtool') and library('SAMtool'). Note that this will also install and load the dependency MSEtool.",
     "crumbs": [
-      "Introduction"
+      "About openMSE",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Prerequisites</span>"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html#assumed-knowledge",
+    "href": "prerequisites.html#assumed-knowledge",
+    "title": "4  Prerequisites",
+    "section": "\n4.4 Assumed Knowledge",
+    "text": "4.4 Assumed Knowledge\nThe openMSE packages have been designed to be accessible for all users and do not assume a high level of knowledge of R. The functions and help documentation material have been constructed in such a way that a user with little experience with R should be able to run the MSE and apply the methods to their data.\nLittle programming experience is required to use the package. However, users of the openMSE packages should have some familiarity with R, and be comfortable with using the command line. The help documentation attempts to explain the use of the openMSE functions and features in easy to follow steps, but familiarity with the most common R functions is assumed.",
+    "crumbs": [
+      "About openMSE",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Prerequisites</span>"
+    ]
+  },
+  {
+    "objectID": "rPackages.html",
+    "href": "rPackages.html",
+    "title": "5  The R Packages",
+    "section": "",
+    "text": "5.1 The openMSE Package\nInstalling and loading the openMSE package will all functions in the openMSE universe available in the R session.",
+    "crumbs": [
+      "About openMSE",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The R Packages</span>"
+    ]
+  },
+  {
+    "objectID": "rPackages.html#the-openmse-package",
+    "href": "rPackages.html#the-openmse-package",
+    "title": "5  The R Packages",
+    "section": "",
+    "text": "openMSE is an umbrella package that contains the three core packages for constructing operating models and simulating fishery dynamics (MSEtool), applying data-limited management procedures (DLMtool), and conditioning operating models with data and applying more data-intensive assessment methods (SAMtool).",
+    "crumbs": [
+      "About openMSE",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The R Packages</span>"
+    ]
+  },
+  {
+    "objectID": "rPackages.html#component-packages",
+    "href": "rPackages.html#component-packages",
+    "title": "5  The R Packages",
+    "section": "\n5.2 Component Packages",
+    "text": "5.2 Component Packages\n\n\n\nThe Management Strategy Evaluation toolkit (MSEtool) is the core package in the openMSE collection. It contains all the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies. You can learn more about the specific functions in the MSEtool package at the MSEtool documentation site.\n\n\n\nThe Data-Limited Methods toolkit (DLMtool) is a collection of data-limited management procedures that have been developed for applications where it is not possible (or not desirable) to apply more conventional data-intensive assessment methods. You can learn more about the specific functions in the DLMtool package at the DLMtool documentation site. DLMtool uses the MSEtool package as a dependency, and loading DLMtool will make all MSEtool functions available.\n\n\n\nThe Stock Assessment Methods toolkit (SAMtool) is a collection of more data-intensive stock assessment methods and models for conditioning operating models with fishery data. You can learn more about the specific functions in the SAMtool package at the SAMtool documentation site. SAMtool uses the MSEtool package as a dependency, and loading SAMtool will make all MSEtool functions available.",
+    "crumbs": [
+      "About openMSE",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The R Packages</span>"
+    ]
+  },
+  {
+    "objectID": "openMSE2.html",
+    "href": "openMSE2.html",
+    "title": "\n6  openMSE 2.0\n",
+    "section": "",
+    "text": "6.1 Primary Changes",
+    "crumbs": [
+      "About openMSE",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>openMSE 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "openMSE2.html#primary-changes",
+    "href": "openMSE2.html#primary-changes",
+    "title": "\n6  openMSE 2.0\n",
+    "section": "",
+    "text": "6.1.1 Completed\n\nDevelopment of new Stock and Fleet objects\n\n6.1.2 In Development",
+    "crumbs": [
+      "About openMSE",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>openMSE 2.0</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html",
     "href": "MSEoverview.html",
-    "title": "\n3  MSE with openMSE\n",
+    "title": "\n7  MSE with openMSE\n",
     "section": "",
-    "text": "3.1 Management Question",
+    "text": "7.1 Management Question",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html#fishery-data",
     "href": "MSEoverview.html#fishery-data",
-    "title": "\n3  MSE with openMSE\n",
-    "section": "\n3.2 Fishery Data",
-    "text": "3.2 Fishery Data",
+    "title": "\n7  MSE with openMSE\n",
+    "section": "\n7.2 Fishery Data",
+    "text": "7.2 Fishery Data",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html#operating-models",
     "href": "MSEoverview.html#operating-models",
-    "title": "\n3  MSE with openMSE\n",
-    "section": "\n3.3 Operating Models",
-    "text": "3.3 Operating Models",
+    "title": "\n7  MSE with openMSE\n",
+    "section": "\n7.3 Operating Models",
+    "text": "7.3 Operating Models",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html#management-procedures",
     "href": "MSEoverview.html#management-procedures",
-    "title": "\n3  MSE with openMSE\n",
-    "section": "\n3.4 Management Procedures",
-    "text": "3.4 Management Procedures",
+    "title": "\n7  MSE with openMSE\n",
+    "section": "\n7.4 Management Procedures",
+    "text": "7.4 Management Procedures",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html#performance-metrics",
     "href": "MSEoverview.html#performance-metrics",
-    "title": "\n3  MSE with openMSE\n",
-    "section": "\n3.5 Performance Metrics",
-    "text": "3.5 Performance Metrics",
+    "title": "\n7  MSE with openMSE\n",
+    "section": "\n7.5 Performance Metrics",
+    "text": "7.5 Performance Metrics",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html#running-closed-loop-simulations",
     "href": "MSEoverview.html#running-closed-loop-simulations",
-    "title": "\n3  MSE with openMSE\n",
-    "section": "\n3.6 Running Closed-Loop Simulations",
-    "text": "3.6 Running Closed-Loop Simulations",
+    "title": "\n7  MSE with openMSE\n",
+    "section": "\n7.6 Running Closed-Loop Simulations",
+    "text": "7.6 Running Closed-Loop Simulations",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "MSEoverview.html#summarizing-results",
     "href": "MSEoverview.html#summarizing-results",
-    "title": "\n3  MSE with openMSE\n",
-    "section": "\n3.7 Summarizing Results",
-    "text": "3.7 Summarizing Results",
+    "title": "\n7  MSE with openMSE\n",
+    "section": "\n7.7 Summarizing Results",
+    "text": "7.7 Summarizing Results",
     "crumbs": [
-      "Management Strategy Evaluation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MSE with openMSE</span>"
-    ]
-  },
-  {
-    "objectID": "fisherydata.html",
-    "href": "fisherydata.html",
-    "title": "\n4  Fishery Data\n",
-    "section": "",
-    "text": "Fishery data can be used to:\n\nCondition an Operating Model\n\nCalculate management advice from a Management Procedure",
-    "crumbs": [
-      "Fishery Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Fishery Data</span>"
-    ]
-  },
-  {
-    "objectID": "dataobject.html",
-    "href": "dataobject.html",
-    "title": "\n5  The Data Object\n",
-    "section": "",
-    "text": "The Data object is used to store fishery data …",
-    "crumbs": [
-      "Fishery Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The Data Object</span>"
+      "About openMSE",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
   },
   {
     "objectID": "operatingmodels.html",
     "href": "operatingmodels.html",
-    "title": "\n6  Operating Models\n",
+    "title": "\n8  Operating Models\n",
     "section": "",
     "text": "Operating Models (OMs) are the main component …\nThey are comprised of …\n\nStock Object\nFleet Object",
     "crumbs": [
       "Operating Models",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Operating Models</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html",
-    "href": "stockobject.html",
-    "title": "\n7  The Stock Object\n",
-    "section": "",
-    "text": "7.1 Ages",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#length",
-    "href": "stockobject.html#length",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.2 Length",
-    "text": "7.2 Length",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#weight",
-    "href": "stockobject.html#weight",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.3 Weight",
-    "text": "7.3 Weight",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#natural-mortality",
-    "href": "stockobject.html#natural-mortality",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.4 Natural Mortality",
-    "text": "7.4 Natural Mortality",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#maturity",
-    "href": "stockobject.html#maturity",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.5 Maturity",
-    "text": "7.5 Maturity",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#fecundity",
-    "href": "stockobject.html#fecundity",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.6 Fecundity",
-    "text": "7.6 Fecundity",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#stock-recruit-relationship",
-    "href": "stockobject.html#stock-recruit-relationship",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.7 Stock-Recruit Relationship",
-    "text": "7.7 Stock-Recruit Relationship",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#spatial",
-    "href": "stockobject.html#spatial",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.8 Spatial",
-    "text": "7.8 Spatial",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#depletion",
-    "href": "stockobject.html#depletion",
-    "title": "\n7  The Stock Object\n",
-    "section": "\n7.9 Depletion",
-    "text": "7.9 Depletion",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html",
-    "href": "fleetobject.html",
-    "title": "\n8  The Fleet Object\n",
-    "section": "",
-    "text": "8.1 Fishing Mortality",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#discard-mortality",
-    "href": "fleetobject.html#discard-mortality",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.2 Discard Mortality",
-    "text": "8.2 Discard Mortality",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#effort",
-    "href": "fleetobject.html#effort",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.3 Effort",
-    "text": "8.3 Effort",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#selectivity",
-    "href": "fleetobject.html#selectivity",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.4 Selectivity",
-    "text": "8.4 Selectivity",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#retention",
-    "href": "fleetobject.html#retention",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.5 Retention",
-    "text": "8.5 Retention",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#distribution",
-    "href": "fleetobject.html#distribution",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.6 Distribution",
-    "text": "8.6 Distribution",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#empirical-weight",
-    "href": "fleetobject.html#empirical-weight",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.7 Empirical Weight",
-    "text": "8.7 Empirical Weight",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "fleetobject.html#bio-economics",
-    "href": "fleetobject.html#bio-economics",
-    "title": "\n8  The Fleet Object\n",
-    "section": "\n8.8 Bio-Economics",
-    "text": "8.8 Bio-Economics",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Fleet Object</span>"
-    ]
-  },
-  {
-    "objectID": "obsobject.html",
-    "href": "obsobject.html",
-    "title": "\n9  The Obs Object\n",
-    "section": "",
-    "text": "The Obs object is used for …",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The Obs Object</span>"
-    ]
-  },
-  {
-    "objectID": "impobject.html",
-    "href": "impobject.html",
-    "title": "\n10  The Imp Object\n",
-    "section": "",
-    "text": "The Imp object is used for …",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Imp Object</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Operating Models</span>"
     ]
   },
   {
     "objectID": "importingOMs.html",
     "href": "importingOMs.html",
-    "title": "\n11  Importing OMs\n",
+    "title": "\n9  Generating OMs\n",
     "section": "",
-    "text": "11.1 Stock Synthesis",
+    "text": "9.1 Conditioning Operating Models\nRCM",
     "crumbs": [
       "Operating Models",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Importing OMs</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Generating OMs</span>"
+    ]
+  },
+  {
+    "objectID": "importingOMs.html#importing-stock-assessments",
+    "href": "importingOMs.html#importing-stock-assessments",
+    "title": "\n9  Generating OMs\n",
+    "section": "\n9.2 Importing Stock Assessments",
+    "text": "9.2 Importing Stock Assessments\nopenMSE supports importing operating models from the output of several common stock assessment platforms:\n\nStock Synthesis",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Generating OMs</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html",
+    "href": "stockobject.html",
+    "title": "10  The Stock Object",
+    "section": "",
+    "text": "10.1 Ages",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#length",
+    "href": "stockobject.html#length",
+    "title": "10  The Stock Object",
+    "section": "\n10.2 Length",
+    "text": "10.2 Length",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#weight",
+    "href": "stockobject.html#weight",
+    "title": "10  The Stock Object",
+    "section": "\n10.3 Weight",
+    "text": "10.3 Weight",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#natural-mortality",
+    "href": "stockobject.html#natural-mortality",
+    "title": "10  The Stock Object",
+    "section": "\n10.4 Natural Mortality",
+    "text": "10.4 Natural Mortality",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#maturity",
+    "href": "stockobject.html#maturity",
+    "title": "10  The Stock Object",
+    "section": "\n10.5 Maturity",
+    "text": "10.5 Maturity",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#fecundity",
+    "href": "stockobject.html#fecundity",
+    "title": "10  The Stock Object",
+    "section": "\n10.6 Fecundity",
+    "text": "10.6 Fecundity",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#stock-recruit-relationship",
+    "href": "stockobject.html#stock-recruit-relationship",
+    "title": "10  The Stock Object",
+    "section": "\n10.7 Stock-Recruit Relationship",
+    "text": "10.7 Stock-Recruit Relationship",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#spatial",
+    "href": "stockobject.html#spatial",
+    "title": "10  The Stock Object",
+    "section": "\n10.8 Spatial",
+    "text": "10.8 Spatial",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#depletion",
+    "href": "stockobject.html#depletion",
+    "title": "10  The Stock Object",
+    "section": "\n10.9 Depletion",
+    "text": "10.9 Depletion",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html",
+    "href": "fleetobject.html",
+    "title": "13  The Fleet Object",
+    "section": "",
+    "text": "13.1 Fishing Mortality",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#discard-mortality",
+    "href": "fleetobject.html#discard-mortality",
+    "title": "13  The Fleet Object",
+    "section": "\n13.2 Discard Mortality",
+    "text": "13.2 Discard Mortality",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#effort",
+    "href": "fleetobject.html#effort",
+    "title": "13  The Fleet Object",
+    "section": "\n13.3 Effort",
+    "text": "13.3 Effort",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#selectivity",
+    "href": "fleetobject.html#selectivity",
+    "title": "13  The Fleet Object",
+    "section": "\n13.4 Selectivity",
+    "text": "13.4 Selectivity",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#retention",
+    "href": "fleetobject.html#retention",
+    "title": "13  The Fleet Object",
+    "section": "\n13.5 Retention",
+    "text": "13.5 Retention",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#distribution",
+    "href": "fleetobject.html#distribution",
+    "title": "13  The Fleet Object",
+    "section": "\n13.6 Distribution",
+    "text": "13.6 Distribution",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#empirical-weight",
+    "href": "fleetobject.html#empirical-weight",
+    "title": "13  The Fleet Object",
+    "section": "\n13.7 Empirical Weight",
+    "text": "13.7 Empirical Weight",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "fleetobject.html#bio-economics",
+    "href": "fleetobject.html#bio-economics",
+    "title": "13  The Fleet Object",
+    "section": "\n13.8 Bio-Economics",
+    "text": "13.8 Bio-Economics",
+    "crumbs": [
+      "Fleet Object",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Fleet Object</span>"
+    ]
+  },
+  {
+    "objectID": "obsobject.html",
+    "href": "obsobject.html",
+    "title": "\n14  The Obs Object\n",
+    "section": "",
+    "text": "The Obs object is used for …",
+    "crumbs": [
+      "Observation Object",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>The Obs Object</span>"
+    ]
+  },
+  {
+    "objectID": "impobject.html",
+    "href": "impobject.html",
+    "title": "\n15  The Imp Object\n",
+    "section": "",
+    "text": "The Imp object is used for …",
+    "crumbs": [
+      "Implementation Object",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>The Imp Object</span>"
+    ]
+  },
+  {
+    "objectID": "fisherydata.html",
+    "href": "fisherydata.html",
+    "title": "\n16  Fishery Data\n",
+    "section": "",
+    "text": "Fishery data can be used to:\n\nCondition an Operating Model\n\nCalculate management advice from a Management Procedure",
+    "crumbs": [
+      "Fishery Data",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Fishery Data</span>"
+    ]
+  },
+  {
+    "objectID": "dataobject.html",
+    "href": "dataobject.html",
+    "title": "\n17  The Data Object\n",
+    "section": "",
+    "text": "The Data object is used to store fishery data …",
+    "crumbs": [
+      "Fishery Data",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>The Data Object</span>"
     ]
   },
   {
     "objectID": "RCM.html",
     "href": "RCM.html",
-    "title": "\n12  Rapid Conditioning Model\n",
+    "title": "\n18  Rapid Conditioning Model\n",
     "section": "",
     "text": "The Rapid Conditioning Model (RCM) is …",
     "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Rapid Conditioning Model</span>"
+      "Rapid Conditioning Model",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Rapid Conditioning Model</span>"
     ]
   },
   {
     "objectID": "octopus.html",
     "href": "octopus.html",
-    "title": "\n14  Octopus\n",
+    "title": "\n20  Octopus\n",
     "section": "",
     "text": "A short-lived semelparous species …",
     "crumbs": [
       "OM Case Studies",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Octopus</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Octopus</span>"
     ]
   },
   {
     "objectID": "aboutMPs.html",
     "href": "aboutMPs.html",
-    "title": "\n15  About Management Procedure\n",
+    "title": "\n21  About Management Procedure\n",
     "section": "",
     "text": "Management procedures (MPs) are …",
     "crumbs": [
       "Management Procedures",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>About Management Procedure</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>About Management Procedure</span>"
     ]
   },
   {
     "objectID": "recobject.html",
     "href": "recobject.html",
-    "title": "\n17  The Advice Object\n",
+    "title": "\n23  The Advice Object\n",
     "section": "",
     "text": "The Advice object contains the management advice produced by an MP …",
     "crumbs": [
       "Management Procedures",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>The Advice Object</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>The Advice Object</span>"
     ]
   },
   {
     "objectID": "builtinMPs.html",
     "href": "builtinMPs.html",
-    "title": "\n18  openMSE MPs\n",
+    "title": "\n24  openMSE MPs\n",
     "section": "",
-    "text": "18.1 Data-Limited MPs",
+    "text": "24.1 Data-Limited MPs",
     "crumbs": [
       "Management Procedures",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>openMSE MPs</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>openMSE MPs</span>"
     ]
   },
   {
     "objectID": "builtinMPs.html#assessment-models-and-harvest-control-rules",
     "href": "builtinMPs.html#assessment-models-and-harvest-control-rules",
-    "title": "\n18  openMSE MPs\n",
-    "section": "\n18.2 Assessment Models and Harvest Control Rules",
-    "text": "18.2 Assessment Models and Harvest Control Rules",
+    "title": "\n24  openMSE MPs\n",
+    "section": "\n24.2 Assessment Models and Harvest Control Rules",
+    "text": "24.2 Assessment Models and Harvest Control Rules",
     "crumbs": [
       "Management Procedures",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>openMSE MPs</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>openMSE MPs</span>"
     ]
   },
   {
     "objectID": "histobject.html",
     "href": "histobject.html",
-    "title": "\n19  The Hist object\n",
+    "title": "\n25  The Hist object\n",
     "section": "",
     "text": "The Hist object contains …",
     "crumbs": [
       "Other Objects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>The Hist object</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>The Hist object</span>"
     ]
   },
   {
     "objectID": "MSEobject.html",
     "href": "MSEobject.html",
-    "title": "\n20  The MSE Object\n",
+    "title": "\n26  The MSE Object\n",
     "section": "",
-    "text": "20.1 Structure of the MSE object",
+    "text": "26.1 Structure of the MSE object",
     "crumbs": [
       "Other Objects",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>The MSE Object</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>The MSE Object</span>"
     ]
   },
   {
     "objectID": "MSEobject.html#accessing-the-contents",
     "href": "MSEobject.html#accessing-the-contents",
-    "title": "\n20  The MSE Object\n",
-    "section": "\n20.2 Accessing the contents",
-    "text": "20.2 Accessing the contents",
+    "title": "\n26  The MSE Object\n",
+    "section": "\n26.2 Accessing the contents",
+    "text": "26.2 Accessing the contents",
     "crumbs": [
       "Other Objects",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>The MSE Object</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>The MSE Object</span>"
     ]
   },
   {
     "objectID": "PMMethods.html",
     "href": "PMMethods.html",
-    "title": "\n22  PM Methods\n",
+    "title": "\n28  PM Methods\n",
     "section": "",
-    "text": "22.1 The PM Object",
+    "text": "28.1 The PM Object",
     "crumbs": [
       "Calculating Performance",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>PM Methods</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>PM Methods</span>"
     ]
   },
   {
     "objectID": "PMMethods.html#example-pm-methods",
     "href": "PMMethods.html#example-pm-methods",
-    "title": "\n22  PM Methods\n",
-    "section": "\n22.2 Example PM Methods",
-    "text": "22.2 Example PM Methods",
+    "title": "\n28  PM Methods\n",
+    "section": "\n28.2 Example PM Methods",
+    "text": "28.2 Example PM Methods",
     "crumbs": [
       "Calculating Performance",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>PM Methods</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>PM Methods</span>"
     ]
   },
   {
     "objectID": "PMMethods.html#custom-pm-methods",
     "href": "PMMethods.html#custom-pm-methods",
-    "title": "\n22  PM Methods\n",
-    "section": "\n22.3 Custom PM Methods",
-    "text": "22.3 Custom PM Methods",
+    "title": "\n28  PM Methods\n",
+    "section": "\n28.3 Custom PM Methods",
+    "text": "28.3 Custom PM Methods",
     "crumbs": [
       "Calculating Performance",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>PM Methods</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>PM Methods</span>"
     ]
   },
   {
     "objectID": "slick.html",
     "href": "slick.html",
-    "title": "\n23  Introducing Slick\n",
+    "title": "\n29  Introducing Slick\n",
     "section": "",
-    "text": "23.1 Creating Slick Objects",
+    "text": "29.1 Creating Slick Objects",
     "crumbs": [
       "Calculating Performance",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Introducing Slick</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Introducing Slick</span>"
     ]
   },
   {
     "objectID": "populate.html",
     "href": "populate.html",
-    "title": "\n26  Populate the OM\n",
+    "title": "\n32  Populate the OM\n",
     "section": "",
     "text": "The first step is …",
     "crumbs": [
       "Under the Hood",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Populate the OM</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Populate the OM</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Beverton, R.J.H., Holt, S.J., 1957. On the Dynamics of Exploited Fish\nPopulations. Springer Science.\n\n\nButterworth, D.S., 2007. Why a management procedure approach? Some\npositives and negatives. ICES Journal of Marine Science 64, 613–617. https://doi.org/10.1093/icesjms/fsm003\n\n\nNils Bunnefeld, Eriko Hoshino, E. J. Milner-Gulland, 2011. Management\nstrategy evaluation: A powerful tool for conservation? Trends in Ecology\nand Evolution 26, 441–447. https://doi.org/10.1016/j.tree.2011.05.003\n\n\nPunt, A.E., Butterworth, D.S., Moor, C.L. de, De Oliveira, J.A.A.,\nHaddon, M., 2016. Management strategy evaluation: Best practices. Fish\nand Fisheries 17, 303–334. https://doi.org/10.1111/faf.12104\n\n\nWalters, C.J., Martell, S.J.D., 2004. Fisheries ecology\nand management, Fisheries ecology and management. Princeton\nUniversity Press.",
+    "crumbs": [
+      "References"
     ]
   },
   {
@@ -558,7 +695,7 @@
     "href": "Acknowledgements.html",
     "title": "Appendix A — Acknowledgements",
     "section": "",
-    "text": "openMSE would not be possible without the support of …",
+    "text": "The development of the openMSE packages MSEtool, DLMtool, and SAMtool has been made possible through the generous support of the following funders:\n\nDavid & Lucille Packard Foundation\nFisheries & Oceans Canada\nGordon & Betty Moore Foundation\nKingfisher Foundation\nMarine Stewardship Council\nNatural Resources Defense Council\nOcean Protection Council\nResources Legacy Fund\nUnited Nations Food & Agriculture Organization\n\nAdditional support for the development of openMSE help documentation is gratefully acknowledged from:\n\nOcean Protection Council\nNatural Resources Defense Council\nResources Legacy Fund\n\nWe thank The Ocean Foundation for their support of the code refactoring and release of openMSE 2.0 and the development of this openMSE Technical Manual.\nFinally, openMSE is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the openMSE R packages.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Acknowledgements</span>"
@@ -576,13 +713,14 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "openMSE Technical Manual",
+    "objectID": "bug-reports.html",
+    "href": "bug-reports.html",
+    "title": "Appendix C — Feedback and Bug Reports",
     "section": "",
-    "text": "Welcome\nWelcome to the “openMSE Technical Guide” developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThe intended audience for this book are fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE, see the openMSE website.",
+    "text": "This openMSE Technical Guide is open-source. The code is available in a GitHub repository.\nIf you notice mistakes, links that don’t work, or have suggestions for improvement for the documentation, please feel free to create an issue or a pull request.\nPlease file bug reports or issues for functions in the individual component packages using the relevant GitHub repository: MSEtool, DLMtool, and SAMtool.\nPlease ensure to the bug reports or issues include a reproducible example so that we can reproduce the problem and fix it!",
     "crumbs": [
-      "Welcome"
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Feedback and Bug Reports</span>"
     ]
   }
 ]

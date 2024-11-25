@@ -1,0 +1,9 @@
+# Feedback and Bug Reports 
+
+This `openMSE` Technical Guide is open-source. The code is available in a [GitHub repository](https://github.com/blue-matter/openMSETechGuide/). 
+
+If you notice mistakes, links that don't work, or have suggestions for improvement for the documentation, please feel free to create an [issue](https://github.com/Blue-Matter/openMSETechGuide/issues) or a [pull request](https://github.com/Blue-Matter/openMSETechGuide/pulls).
+
+Please file bug reports or issues for functions in the individual component packages using the relevant GitHub repository: [MSEtool](https://github.com/Blue-Matter/MSEtool/issues), [DLMtool](https://github.com/Blue-Matter/DLMtool/issues), and [SAMtool](https://github.com/Blue-Matter/SAMtool/issues). 
+
+Please ensure to the bug reports or issues include a [reproducible example](https://gist.github.com/hadley/270442) so that we can reproduce the problem and fix it!

@@ -1,8 +1,12 @@
-# Importing OMs
+# Generating OMs
+
+## Conditioning Operating Models
+
+RCM
+
+
+## Importing Stock Assessments
 
 `openMSE` supports importing operating models from the output of several common stock assessment platforms:
 
 - [Stock Synthesis](#stock-synthesis)
-
-
-## Stock Synthesis 

@@ -1,0 +1,4 @@
+= The Advice Object
+:description: Management Strategy Evaluation with openMSE
+
+The `+Advice+` object contains the management advice produced by an MP …

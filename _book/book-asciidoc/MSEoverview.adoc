@@ -1,0 +1,18 @@
+= MSE with openMSE
+:description: Management Strategy Evaluation with openMSE
+
+Overview of the MSE process using `+openMSE+`
+
+== Management Question
+
+== Fishery Data
+
+== Operating Models
+
+== Management Procedures
+
+== Performance Metrics
+
+== Running Closed-Loop Simulations
+
+== Summarizing Results

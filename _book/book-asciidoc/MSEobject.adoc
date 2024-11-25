@@ -1,0 +1,8 @@
+= The MSE Object
+:description: Management Strategy Evaluation with openMSE
+
+The `+MSE+` object contains …
+
+== Structure of the `+MSE+` object
+
+== Accessing the contents

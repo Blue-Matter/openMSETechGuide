@@ -1,0 +1,9 @@
+= Operating Models
+:description: Management Strategy Evaluation with openMSE
+
+Operating Models (OMs) are the main component …
+
+They are comprised of …
+
+* link:.\stockobject.html[Stock Object]
+* link:.\fleetobject.html[Fleet Object]

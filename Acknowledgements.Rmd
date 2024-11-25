@@ -1,5 +1,39 @@
 # Acknowledgements
 
-`openMSE` would not be possible without the support of ... 
+The development of the `openMSE` [packages](rPackages.html) `MSEtool`, `DLMtool`, and `SAMtool` has been made possible through the generous support of the following funders:
+
+* [David & Lucille Packard Foundation](https://www.packard.org/)
+
+* [Fisheries & Oceans Canada](https://www.dfo-mpo.gc.ca/index-eng.htm)
+
+* [Gordon & Betty Moore Foundation](https://www.moore.org/)
+
+* [Kingfisher Foundation](http://www.kingfisherfoundation.org/)
+
+* [Marine Stewardship Council](https://www.msc.org/home)
+
+* [Natural Resources Defense Council](https://www.nrdc.org/)
+
+* [Ocean Protection Council](https://www.opc.ca.gov/)
+
+* [Resources Legacy Fund](https://resourceslegacyfund.org/)
+
+* [United Nations Food & Agriculture Organization](http://www.fao.org/home/en/)
+
+Additional support for the development of `openMSE` help documentation is gratefully 
+acknowledged from:
+
+* [Ocean Protection Council](https://www.opc.ca.gov/) 
+* [Natural Resources Defense Council](https://www.nrdc.org/)
+* [Resources Legacy Fund](https://resourceslegacyfund.org/)
+
+We thank [The Ocean Foundation](https://oceanfdn.org/) for their support of the
+code refactoring and release of `openMSE 2.0` and the development of this `openMSE` Technical Manual. 
+
+Finally, `openMSE` is a collaborative effort and we thank all collaborators who have notified us of bugs, 
+provided suggestions for improvement, and helped in countless other ways in continuing the 
+development of the `openMSE` R packages.
+
+
 
 

@@ -1,7 +1,6 @@
-# The Fleet Object
+# The Fleet Object  {#sec-fleet}
 
 The `Fleet` Object is used for ...
-
 
 ## Fishing Mortality
 
@@ -18,4 +17,3 @@ The `Fleet` Object is used for ...
 ## Empirical Weight
 
 ## Bio-Economics
-

@@ -1,2 +1,13 @@
 # MSE Road Map
 
+![MSE Development Roadmap](images/MSE roadmap updated.drawio.png)
+
+## Prerequisite Phase
+
+> Identifies the background to the problem, introduces MSE concepts and established membership to various working groups.
+
+## Foundation Phase
+
+> Establishes the context for the MSE including the broad management
+> objectives, key system uncertainties for OMs and investigation of available
+> data and information sources to support operating model specification.

@@ -1,0 +1,21 @@
+[[sec-rpackages]]
+= The R Packages
+:description: Management Strategy Evaluation with openMSE
+
+== The `+openMSE+` Package
+
+[width="100%",cols="34%,66%",]
+|===
+|link:#openMSE[image:.\images/OpenMSE.png[.\images/OpenMSE]] |`+openMSE+` is an umbrella package that contains the three core packages for constructing operating models and simulating fishery dynamics (`+MSEtool+`), applying data-limited management procedures (`+DLMtool+`), and conditioning operating models with data and applying more data-intensive assessment methods (`+SAMtool+`).
+|===
+
+link:.\prerequisites.html[Installing and loading] the `+openMSE+` package will all functions in the `+openMSE+` universe available in the R session.
+
+== Component Packages
+
+[width="100%",cols="34%,66%",]
+|===
+|https://msetool.openMSE.com[image:.\images/MSEtool.png[.\images/MSEtool]] |The Management Strategy Evaluation toolkit https://msetool.openMSE.com[(MSEtool)] is the core package in the `+openMSE+` collection. It contains all the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies. You can learn more about the specific functions in the `+MSEtool+` package at the https://msetool.openMSE.com[MSEtool documentation site].
+|https://dlmtool.openMSE.com/[image:.\images/DLMtool.png[.\images/DLMtool]] |The Data-Limited Methods toolkit https://dlmtool.openMSE.com[(DLMtool)] is a collection of data-limited management procedures that have been developed for applications where it is not possible (or not desirable) to apply more conventional data-intensive assessment methods. You can learn more about the specific functions in the `+DLMtool+` package at the https://dlmtool.openMSE.com/[DLMtool documentation site]. `+DLMtool+` uses the `+MSEtool+` package as a dependency, and loading DLMtool will make all `+MSEtool+` functions available.
+|https://samtool.openMSE.com[image:.\images/SAMtool.png[.\images/SAMtool]] |The Stock Assessment Methods toolkit https://samtool.openMSE.com[(SAMtool)] is a collection of more data-intensive stock assessment methods and models for conditioning operating models with fishery data. You can learn more about the specific functions in the SAMtool package at the https://samtool.openMSE.com[SAMtool documentation site]. `+SAMtool+` uses the `+MSEtool+` package as a dependency, and loading `+SAMtool+` will make all `+MSEtool+` functions available.
+|===
