@@ -1,6 +1,6 @@
 # Acknowledgements
 
-The development of the `openMSE` [packages](rPackages.html) `MSEtool`, `DLMtool`, and `SAMtool` has been made possible through the generous support of the following funders:
+The development of the `openMSE` [packages](rPackages.html) has been made possible through the generous support of the following funders:
 
 * [David & Lucille Packard Foundation](https://www.packard.org/)
 
@@ -28,7 +28,7 @@ acknowledged from:
 * [Resources Legacy Fund](https://resourceslegacyfund.org/)
 
 We thank [The Ocean Foundation](https://oceanfdn.org/) for their support of the
-code refactoring and release of `openMSE 2.0` and the development of this `openMSE` Technical Manual. 
+code refactoring and the development of `openMSE 2.0` and this `openMSE` Technical Manual. 
 
 Finally, `openMSE` is a collaborative effort and we thank all collaborators who have notified us of bugs, 
 provided suggestions for improvement, and helped in countless other ways in continuing the 
