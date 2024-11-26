@@ -1,4 +1,0 @@
-= The Obs Object
-:description: Management Strategy Evaluation with openMSE
-
-The `+Obs+` object is used for …

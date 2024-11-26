@@ -1,8 +1,0 @@
-= Fishery Data
-:description: Management Strategy Evaluation with openMSE
-
-Fishery data can be used to:
-
-[arabic]
-. Condition an link:.\operatingmodels.html[Operating Model]
-. Calculate management advice from a link:.\managementprocudures.html[Management Procedure]

@@ -1,299 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/openMSE-Technical-Manual.adoc</loc>
-    <lastmod>2024-11-25T01:43:39.952Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/index.html</loc>
-    <lastmod>2024-11-25T00:12:25.477Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/aboutMSE.adoc</loc>
-    <lastmod>2024-11-25T01:43:44.630Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/aboutMSE.html</loc>
-    <lastmod>2024-11-24T23:05:46.815Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/MSEroadmap.adoc</loc>
-    <lastmod>2024-11-25T01:43:50.334Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/MSEroadmap.html</loc>
-    <lastmod>2024-11-24T23:11:09.957Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/intro.adoc</loc>
-    <lastmod>2024-11-25T01:43:55.907Z</lastmod>
-  </url>
-  <url>
     <loc>https://docs.openMSE.com/intro.html</loc>
-    <lastmod>2024-11-24T23:36:31.684Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/prerequisites.adoc</loc>
-    <lastmod>2024-11-25T01:44:02.285Z</lastmod>
+    <lastmod>2024-11-26T03:45:31.610Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/prerequisites.html</loc>
-    <lastmod>2024-11-24T23:40:34.406Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/rPackages.adoc</loc>
-    <lastmod>2024-11-25T01:44:09.219Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.622Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/rPackages.html</loc>
-    <lastmod>2024-11-24T23:47:28.061Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/openMSE2.adoc</loc>
-    <lastmod>2024-11-25T01:44:14.724Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.622Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/openMSE2.html</loc>
-    <lastmod>2024-11-25T00:19:37.405Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/MSEoverview.adoc</loc>
-    <lastmod>2024-11-25T01:44:20.237Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.615Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/MSEoverview.html</loc>
-    <lastmod>2024-11-21T17:11:46.282Z</lastmod>
+    <lastmod>2024-11-20T18:19:21.206Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/operatingmodels.adoc</loc>
-    <lastmod>2024-11-25T01:44:25.755Z</lastmod>
+    <loc>https://docs.openMSE.com/aboutMSE.html</loc>
+    <lastmod>2024-11-26T03:00:26.604Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/MSEroadmap.html</loc>
+    <lastmod>2024-11-26T03:00:26.562Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/operatingmodels.html</loc>
-    <lastmod>2024-11-24T23:59:24.012Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/importingOMs.adoc</loc>
-    <lastmod>2024-11-25T01:44:31.203Z</lastmod>
+    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/importingOMs.html</loc>
-    <lastmod>2024-11-24T23:59:16.630Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/stockobject.adoc</loc>
-    <lastmod>2024-11-25T01:44:36.679Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/stockobject.html</loc>
-    <lastmod>2024-11-25T01:11:21.997Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/populatingstock.adoc</loc>
-    <lastmod>2024-11-25T01:44:42.126Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.615Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/populatingstock.html</loc>
-    <lastmod>2024-11-25T00:04:11.317Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/plottingstock.adoc</loc>
-    <lastmod>2024-11-25T01:44:45.382Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/plottingstock.html</loc>
-    <lastmod>2024-11-25T00:04:27.653Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/fleetobject.adoc</loc>
-    <lastmod>2024-11-25T01:44:49.684Z</lastmod>
+    <lastmod>2024-11-26T06:30:28.069Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/fleetobject.html</loc>
-    <lastmod>2024-11-25T00:09:52.844Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/obsobject.adoc</loc>
-    <lastmod>2024-11-25T01:44:55.098Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.604Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/obsobject.html</loc>
-    <lastmod>2024-11-21T17:11:46.672Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/impobject.adoc</loc>
-    <lastmod>2024-11-25T01:45:00.593Z</lastmod>
+    <lastmod>2024-11-20T17:38:17.329Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/impobject.html</loc>
-    <lastmod>2024-11-21T17:11:46.646Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/fisherydata.adoc</loc>
-    <lastmod>2024-11-25T01:45:06.141Z</lastmod>
+    <lastmod>2024-11-20T17:38:39.284Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/fisherydata.html</loc>
-    <lastmod>2024-11-21T17:11:46.630Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/dataobject.adoc</loc>
-    <lastmod>2024-11-25T01:45:11.677Z</lastmod>
+    <lastmod>2024-11-20T18:14:17.687Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/dataobject.html</loc>
-    <lastmod>2024-11-21T17:11:46.618Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/RCM.adoc</loc>
-    <lastmod>2024-11-25T01:45:17.227Z</lastmod>
+    <lastmod>2024-11-20T18:14:33.641Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/RCM.html</loc>
-    <lastmod>2024-11-21T17:11:46.295Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/reeffish.adoc</loc>
-    <lastmod>2024-11-25T01:45:22.772Z</lastmod>
+    <lastmod>2024-11-20T17:44:52.548Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/reeffish.html</loc>
-    <lastmod>2024-11-21T17:11:46.707Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/octopus.adoc</loc>
-    <lastmod>2024-11-25T01:45:28.676Z</lastmod>
+    <lastmod>2024-11-20T17:39:52.507Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/octopus.html</loc>
-    <lastmod>2024-11-21T17:11:46.676Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/aboutMPs.adoc</loc>
-    <lastmod>2024-11-25T01:45:34.572Z</lastmod>
+    <lastmod>2024-11-20T17:39:24.770Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/aboutMPs.html</loc>
-    <lastmod>2024-11-21T17:11:46.593Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/buildingMPs.adoc</loc>
-    <lastmod>2024-11-25T01:45:40.311Z</lastmod>
+    <lastmod>2024-11-20T18:16:35.504Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/buildingMPs.html</loc>
-    <lastmod>2024-11-21T17:11:46.604Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/recobject.adoc</loc>
-    <lastmod>2024-11-25T01:45:45.870Z</lastmod>
+    <lastmod>2024-11-20T17:50:26.615Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/recobject.html</loc>
-    <lastmod>2024-11-21T17:11:46.703Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/builtinMPs.adoc</loc>
-    <lastmod>2024-11-25T01:45:51.372Z</lastmod>
+    <lastmod>2024-11-20T17:51:12.788Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/builtinMPs.html</loc>
-    <lastmod>2024-11-21T17:11:46.608Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/histobject.adoc</loc>
-    <lastmod>2024-11-25T01:45:56.902Z</lastmod>
+    <lastmod>2024-11-20T17:52:05.884Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/histobject.html</loc>
-    <lastmod>2024-11-21T17:11:46.640Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/MSEobject.adoc</loc>
-    <lastmod>2024-11-25T01:46:02.389Z</lastmod>
+    <lastmod>2024-11-20T17:52:31.593Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/MSEobject.html</loc>
-    <lastmod>2024-11-21T17:11:46.278Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/performancemetric.adoc</loc>
-    <lastmod>2024-11-25T01:46:07.962Z</lastmod>
+    <lastmod>2024-11-20T17:53:11.312Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/performancemetric.html</loc>
-    <lastmod>2024-11-21T17:11:46.685Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/PMMethods.adoc</loc>
-    <lastmod>2024-11-25T01:46:13.594Z</lastmod>
+    <lastmod>2024-11-20T17:55:13.125Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/PMMethods.html</loc>
-    <lastmod>2024-11-21T17:11:46.290Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/slick.adoc</loc>
-    <lastmod>2024-11-25T01:46:19.155Z</lastmod>
+    <lastmod>2024-11-20T17:56:08.826Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/slick.html</loc>
-    <lastmod>2024-11-21T17:11:46.711Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/plotstables.adoc</loc>
-    <lastmod>2024-11-25T01:46:24.829Z</lastmod>
+    <lastmod>2024-11-20T17:56:58.952Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/plotstables.html</loc>
-    <lastmod>2024-11-21T17:11:46.690Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/processoverview.adoc</loc>
-    <lastmod>2024-11-25T01:46:30.342Z</lastmod>
+    <lastmod>2024-11-20T17:57:20.170Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/processoverview.html</loc>
-    <lastmod>2024-11-21T17:11:46.700Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/populate.adoc</loc>
-    <lastmod>2024-11-25T01:46:35.867Z</lastmod>
+    <lastmod>2024-11-20T17:53:51.900Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/populate.html</loc>
-    <lastmod>2024-11-21T17:11:46.695Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/references.adoc</loc>
-    <lastmod>2024-11-25T01:46:39.113Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/references.html</loc>
-    <lastmod>2024-11-19T18:37:14.532Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/Acknowledgements.adoc</loc>
-    <lastmod>2024-11-25T01:46:43.529Z</lastmod>
+    <lastmod>2024-11-20T17:54:18.076Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/Acknowledgements.html</loc>
-    <lastmod>2024-11-25T01:42:29.635Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/authors.adoc</loc>
-    <lastmod>2024-11-25T01:46:49.143Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.562Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/authors.html</loc>
-    <lastmod>2024-11-21T17:11:46.600Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/book-asciidoc/bug-reports.adoc</loc>
-    <lastmod>2024-11-25T01:46:54.699Z</lastmod>
+    <lastmod>2024-11-20T17:41:55.569Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/bug-reports.html</loc>
-    <lastmod>2024-11-25T00:17:32.549Z</lastmod>
+    <lastmod>2024-11-26T03:00:26.604Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/index.html</loc>
+    <lastmod>2024-11-26T04:04:52.270Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/OMobject.html</loc>
+    <lastmod>2024-11-26T04:12:34.523Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/stockobject.html</loc>
+    <lastmod>2024-11-26T07:15:17.457Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/plottingstock.html</loc>
+    <lastmod>2024-11-26T03:00:26.622Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/references.html</loc>
+    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
   </url>
 </urlset>

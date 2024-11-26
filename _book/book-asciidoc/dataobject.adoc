@@ -1,4 +1,0 @@
-= The Data Object
-:description: Management Strategy Evaluation with openMSE
-
-The `+Data+` object is used to store fishery data …

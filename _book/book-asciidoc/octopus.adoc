@@ -1,4 +1,0 @@
-= Octopus
-:description: Management Strategy Evaluation with openMSE
-
-A short-lived semelparous species …

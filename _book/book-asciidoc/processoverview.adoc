@@ -1,3 +1,0 @@
-= Overview of the Process
-:description: Management Strategy Evaluation with openMSE
-

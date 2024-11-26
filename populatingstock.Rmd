@@ -1,2 +1,3 @@
-# Populating the Stock Object
+# Populate the Stock Object 
 
+The `Populate` function is used to ...

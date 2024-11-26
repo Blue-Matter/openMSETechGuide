@@ -1,4 +1,0 @@
-= About Management Procedure
-:description: Management Strategy Evaluation with openMSE
-
-Management procedures (MPs) are …

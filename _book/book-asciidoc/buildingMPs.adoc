@@ -1,3 +1,0 @@
-= Developing MPs
-:description: Management Strategy Evaluation with openMSE
-

@@ -1,4 +1,0 @@
-= About the Authors
-:description: Management Strategy Evaluation with openMSE
-
-…

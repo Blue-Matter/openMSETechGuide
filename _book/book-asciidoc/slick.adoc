@@ -1,6 +1,0 @@
-= Introducing Slick
-:description: Management Strategy Evaluation with openMSE
-
-`+Slick+` is …
-
-== Creating Slick Objects

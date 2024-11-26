@@ -1,3 +1,0 @@
-= Plotting the Stock Object
-:description: Management Strategy Evaluation with openMSE
-

@@ -1,4 +1,0 @@
-= The Hist object
-:description: Management Strategy Evaluation with openMSE
-
-The `+Hist+` object contains …

@@ -19,28 +19,26 @@ book:
 
   chapters:
   - index.qmd
+  - intro.Rmd
+  - prerequisites.Rmd
+  - rPackages.Rmd
+  - openMSE2.Rmd
+  - MSEoverview.Rmd
 
   - part: Management Strategy Evaluation
     chapters:
     - aboutMSE.Rmd
     - MSEroadmap.Rmd
 
-  - part: About openMSE
-    chapters:
-    - intro.Rmd
-    - prerequisites.Rmd
-    - rPackages.Rmd
-    - openMSE2.Rmd
-    - MSEoverview.Rmd
-
   - part: Operating Models
     chapters:
     - operatingmodels.Rmd
+    - OMobject.qmd
     - importingOMs.Rmd
 
   - part: Stock Object
     chapters:
-    - stockobject.Rmd
+    - stockobject.qmd
     - populatingstock.Rmd
     - plottingstock.qmd
 

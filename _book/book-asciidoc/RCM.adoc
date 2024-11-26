@@ -1,4 +1,0 @@
-= Rapid Conditioning Model
-:description: Management Strategy Evaluation with openMSE
-
-The Rapid Conditioning Model (RCM) is …

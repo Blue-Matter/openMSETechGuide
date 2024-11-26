@@ -13,5 +13,3 @@ The `openMSE` package is available on [CRAN](#cran-openMSE) can be installed wit
 3.  [SAMtool](https://SAMtool.openMSE.com) - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. This package includes the [Rapid Conditioning Model](/RCM.html) for conditioning operating models in data-moderate and data-rich fisheries. `SAMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `SAMtool` is loaded into an R session.
 
 To learn more about the specifics of the `openMSE` packages see @sec-rpackages.
-
-
