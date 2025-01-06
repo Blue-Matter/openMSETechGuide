@@ -582,9 +582,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">11.1</span> Ages</h2>
 <p>The <code>Ages</code> object contains information relating to the age classes for the stock, specifically:</p>
 <ul>
-<li><p><code>MaxAge</code>: Integer. Length 1. The maximum age to include in the model. If <code>PlusGroup==TRUE</code>, <code>MaxAge</code> will be a plusgroup. <strong>Required</strong>.</p></li>
-<li><p><code>Units</code>: Character. Length 1. The units corresponding to <code>MaxAge</code>. Valid values are found in <code>ValidUnits(Ages())</code>. Defaults to <code>year</code> if not specified.</p></li>
-<li><p><code>PlusGroup</code>: Logical. Include a plus-group? Defaults to TRUE if not specified.</p></li>
+<li><p><code>MaxAge</code>: An integer value (length 1) specifying the maximum age to include in the model. If <code>PlusGroup==TRUE</code>, <code>MaxAge</code> will be a plusgroup. <strong>Required</strong>. Note that the age classes always start at 0, so there will be <code>MaxAge+1</code> age classes.</p></li>
+<li><p><code>Units</code>: A character string describing the units corresponding to <code>MaxAge</code>. Valid values are found in <code>ValidUnits(Ages())</code>. Defaults to <code>year</code> if not specified.</p></li>
+<li><p><code>PlusGroup</code>: Include a plus-group? Defaults to TRUE.</p></li>
 </ul>
 <p><code>Ages</code> objects are created and populated in the usual way, and added to the <code>Stock</code> object:</p>
 <div class="cell">

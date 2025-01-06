@@ -114,9 +114,10 @@ book:
     search: true
     collapse-level: 1
 
-bibliography: references.bib
-csl: fisheries-research.csl
+# bibliography: references.bib
+# csl: fisheries-research.csl
 
+collapse-level: 1
 
 format:
   html:
