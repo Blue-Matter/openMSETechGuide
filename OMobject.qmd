@@ -1,3 +1,0 @@
-# The OM Object
-
-The `OM` object ...

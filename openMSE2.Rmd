@@ -1,5 +1,5 @@
 # openMSE 2.0 
-> TODO
+
 
 During 2024 and 2025, `openMSE` and the [component packages](\rPackages.html) 
 underwent fairly significant developments, including a major code refactor. 
@@ -9,11 +9,8 @@ compatible, to benefit from the recent developments you should make sure you hav
 installed the most recent versions of the component 
 packages: `MSEtool v4.0+`, `DLMtool v7.0+` and `SAMtool v2.0+`.
 
-## Primary Changes
-
-### Completed
-
-- Development of new `Stock` and `Fleet` objects
+## Summary of Major Changes
 
 
-### In Development
+
+

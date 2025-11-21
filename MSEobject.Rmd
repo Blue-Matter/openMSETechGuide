@@ -1,7 +1,0 @@
-# The MSE Object
-
-The `MSE` object contains ...
-
-## Structure of the `MSE` object
-
-## Accessing the contents

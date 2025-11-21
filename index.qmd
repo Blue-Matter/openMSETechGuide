@@ -1,6 +1,6 @@
 # Welcome {.unnumbered}
 
-Welcome to the **openMSE Technical Manual** developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from [Blue Matter Science](http://bluematterscience.com).
+Welcome to the **openMSE Technical Manual**.
 
 This book is intended for fisheries scientists and other analysts who wish to learn how to use `openMSE` for all aspects of Management Strategy Evaluation (MSE):
 
