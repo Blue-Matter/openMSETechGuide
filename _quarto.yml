@@ -1,7 +1,6 @@
 project:
   type: book
 
-
 book:
   title: "openMSE Technical Manual"
   author: "Adrian Hordyk, Quang Huynh, and Tom Carruthers"
@@ -13,7 +12,6 @@ book:
   site-url: https://docs.openMSE.com/
   repo-url: https://github.com/blue-matter/openMSETechGuide/
   repo-actions: [edit, issue]
-
 
   date: today
 

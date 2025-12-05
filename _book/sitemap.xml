@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://docs.openMSE.com/index.html</loc>
+    <lastmod>2024-11-26T04:04:52.270Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/intro.html</loc>
     <lastmod>2024-11-26T03:45:31.610Z</lastmod>
   </url>
@@ -33,12 +37,24 @@
     <lastmod>2024-11-20T16:22:45.437Z</lastmod>
   </url>
   <url>
+    <loc>https://docs.openMSE.com/OMobject.html</loc>
+    <lastmod>2024-11-26T04:12:34.523Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/importingOMs.html</loc>
     <lastmod>2024-11-26T03:00:26.615Z</lastmod>
   </url>
   <url>
+    <loc>https://docs.openMSE.com/stockobject.html</loc>
+    <lastmod>2024-11-26T07:15:17.457Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/populatingstock.html</loc>
     <lastmod>2024-11-26T06:31:40.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/plottingstock.html</loc>
+    <lastmod>2024-11-26T03:00:26.622Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/fleetobject.html</loc>
@@ -121,6 +137,10 @@
     <lastmod>2024-11-20T17:54:18.076Z</lastmod>
   </url>
   <url>
+    <loc>https://docs.openMSE.com/references.html</loc>
+    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/Acknowledgements.html</loc>
     <lastmod>2024-11-26T03:00:26.562Z</lastmod>
   </url>
@@ -131,25 +151,5 @@
   <url>
     <loc>https://docs.openMSE.com/bug-reports.html</loc>
     <lastmod>2024-11-26T03:00:26.604Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/index.html</loc>
-    <lastmod>2024-11-26T04:04:52.270Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/OMobject.html</loc>
-    <lastmod>2024-11-26T04:12:34.523Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/stockobject.html</loc>
-    <lastmod>2024-11-26T07:15:17.457Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/plottingstock.html</loc>
-    <lastmod>2024-11-26T03:00:26.622Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/references.html</loc>
-    <lastmod>2024-11-20T16:22:45.437Z</lastmod>
   </url>
 </urlset>

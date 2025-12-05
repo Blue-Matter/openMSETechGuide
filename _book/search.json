@@ -1,5 +1,15 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "openMSE Technical Manual",
+    "section": "",
+    "text": "Welcome\nWelcome to the openMSE Technical Manual developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE see the openMSE website.\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and will be released in 2025. The code in this manual is only compatible with the development branches of MSEtool, SAMtool, DLMtool, and openMSE. Unless you are feeling particulary adventurous, you should not use the development code for your analyses!",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
     "objectID": "intro.html",
     "href": "intro.html",
     "title": "\n1  About openMSE\n",
@@ -14,7 +24,7 @@
     "href": "prerequisites.html",
     "title": "2  Prerequisites",
     "section": "",
-    "text": "2.1 Installing R\nThe R statistical language and environment can be freely downloaded from the CRAN website and is available for all operating systems. Updated versions of R are released frequently, and it is recommended that you have the latest version installed.\nHead to the CRAN website to download the latest version of R.\nYou can check your version of R by typing version into the R console.",
+    "text": "2.1 Installing R\nTo use openMSE or any of its component packages you must have:\nThe R statistical language and environment can be freely downloaded from the CRAN website and is available for all operating systems. Updated versions of R are released frequently, and it is recommended that you have the latest version installed.\nHead to the CRAN website to download the latest version of R.\nYou can check your version of R by typing version into the R console.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Prerequisites</span>"
     ]
@@ -84,7 +94,7 @@
     "href": "openMSE2.html",
     "title": "\n4  openMSE 2.0\n",
     "section": "",
-    "text": "4.1 Primary Changes",
+    "text": "4.1 Primary Changes\nDuring 2024 and 2025, openMSE and the component packages underwent fairly significant developments, including a major code refactor.\nopenMSE v2.0 was released in 202X. Although all updates to the code are backwards compatible, to benefit from the recent developments you should make sure you have installed the most recent versions of the component packages: MSEtool v4.0+, DLMtool v7.0+ and SAMtool v2.0+.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>openMSE 2.0</span>"
     ]
@@ -104,7 +114,7 @@
     "href": "MSEoverview.html",
     "title": "\n5  MSE with openMSE\n",
     "section": "",
-    "text": "5.1 Management Question",
+    "text": "5.1 Management Question\nOverview of the MSE process using openMSE",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MSE with openMSE</span>"
     ]
@@ -247,6 +257,17 @@
     ]
   },
   {
+    "objectID": "OMobject.html",
+    "href": "OMobject.html",
+    "title": "9  The OM Object",
+    "section": "",
+    "text": "The OM object …",
+    "crumbs": [
+      "Operating Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The OM Object</span>"
+    ]
+  },
+  {
     "objectID": "importingOMs.html",
     "href": "importingOMs.html",
     "title": "\n10  Generating OMs\n",
@@ -269,6 +290,127 @@
     ]
   },
   {
+    "objectID": "stockobject.html",
+    "href": "stockobject.html",
+    "title": "11  The Stock Object",
+    "section": "",
+    "text": "11.1 Ages\nStock objects are a sub-component of the Operating Model Object.\nThe Stock object contains the biological parameters for a modeled population.\nStock objects are created with the Stock() function. The first three arguments to the Stock function are used to set a Name for the Stock object, and a CommonName and Species name (genus and species) for the stock being modeled in the operating model.\nFor example:\nThe various biological characteristics of the stock, including growth, maturation, natural mortality, stock-recruitment relationship, and spatial distribution and movement rates, are stored in sub-objects within the Stock object.\nThe sections below include some examples for populating these sub-objects for the example Albacore stock created above. Note that these examples are very demonstrations purposes and are not intended to reflect real values for an Albacore stock (i.e., the values are made up!).\nFor more information on the Stock object, see the help documentation with ?Stock.\nThe Ages object contains information relating to the age classes for the stock, specifically:\nAges objects are created and populated in the usual way, and added to the Stock object:\nAges(Albacore) &lt;- Ages(MaxAge=20)\nAlternatively, the Ages object (and all other sub-objects in the Stock object) can be added directly in the call to the Stock() function:\nAlbacoreStock &lt;- Stock('Albacore Stock',\n                       'Albacore',\n                       'Thunnus alalunga',\n                       Ages=Ages(20))",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#ages",
+    "href": "stockobject.html#ages",
+    "title": "11  The Stock Object",
+    "section": "",
+    "text": "MaxAge: An integer value (length 1) specifying the maximum age to include in the model. If PlusGroup==TRUE, MaxAge will be a plusgroup. Required. Note that the age classes always start at 0, so there will be MaxAge+1 age classes.\nUnits: A character string describing the units corresponding to MaxAge. Valid values are found in ValidUnits(Ages()). Defaults to year if not specified.\nPlusGroup: Include a plus-group? Defaults to TRUE.",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#length",
+    "href": "stockobject.html#length",
+    "title": "11  The Stock Object",
+    "section": "\n11.2 Length",
+    "text": "11.2 Length\nThe Length object contains information relating to mean length-at-age and the distribution around the mean length-at-age.\nAlthough most Stock objects will require a Length object, technically the Length object is optional and can be left blank if it is not needed.\nThe information in the Length object is used within the operating model for two purposes:\n\nGenerate the required maturity- or selectivity-at-age schedules from maturity- or selectivity-at-length models;\nSimulate catch-at-length data to be used within Management Procedures.\n\nIf catch-at-length data is not required and the maturity- and selectivity-at-age schedules are provided directly (i.e., not via a length-based model or schedule), then the Length object is not required in the operating model.\nThe mean length-at-age information can be entered in two ways:\n\nWith a growth model and associated parameters;\nPassed directly as a 3-dimensional array;.\n\n\n11.2.1 Specifying Length-at-Age Model with Pars and Model\n\nThe Pars slot in the Length object is used to store the parameters of a model that generates the mean length-at-age schedule.\nCurrently there is 1 length models built into MSEtool. The LengthModels() function can be used to display the built-in growth models in the R console.\nTo use a built-in model, Pars must be a named list, with the names matching those listed under the Pars displayed by LengthModels() for the relevant model.\nFor example, to use the von Bertalanffy growth model (vonBert):\n\nlength &lt;- Length(Pars=list(Linf=100, \n                           K=0.2,\n                           t0=-0.1))\n\nModel will be automatically populated with the matching model name:\n\nModel(length)\n\n[1] \"vonBert\"\n\n\nAn error will occur if the named elements of Pars does not exactly match the parameters in one of the models listed in LengthModels(), e.g.,\n\nlength &lt;- Length(Pars=list(Linf=100, \n                           K=0.2))\n\nError in `CheckModel()` at MSEtool/R/Find.R:56:5:\n! No model found for this object class \"length\" with parameters named:\n  \"Linf\" and \"K\".\nℹ See `LengthModels()` or set `Pars` to NULL or `Model` to a R function with\n  arguments corresponding with those in `Pars`.\n\n\n\n11.2.1.1 Structure of Pars\n\nThe elements in the Pars list can be structured in several different ways to deal with\n\nLengthModels()\n\nModel: `?MSEtool::vonBert()`\n\n\nPars: `Linf`, `K`, and `t0`\n\n\nOther argument(s): `Ages`\n\n\nClass: `Length-at-Age-Model`\n\n\n\n\n\n\n11.2.2 Entering Length-at-Age Directly with MeanAtAge\n\nAlternatively, the mean length-at-age schedule can be passed as a 3-dimensional array directly into the MeanAtAge slot:\n\nlength &lt;- Length(MeanAtAge = )\n\n\n11.2.3 Distribution of Length-at-Age\n\n11.2.4 Units\nUnits\n\n11.2.5 Timing\n\n11.2.6 Classes",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#weight",
+    "href": "stockobject.html#weight",
+    "title": "11  The Stock Object",
+    "section": "\n11.3 Weight",
+    "text": "11.3 Weight",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#natural-mortality",
+    "href": "stockobject.html#natural-mortality",
+    "title": "11  The Stock Object",
+    "section": "\n11.4 Natural Mortality",
+    "text": "11.4 Natural Mortality",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#maturity",
+    "href": "stockobject.html#maturity",
+    "title": "11  The Stock Object",
+    "section": "\n11.5 Maturity",
+    "text": "11.5 Maturity",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#fecundity",
+    "href": "stockobject.html#fecundity",
+    "title": "11  The Stock Object",
+    "section": "\n11.6 Fecundity",
+    "text": "11.6 Fecundity",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#stock-recruit-relationship",
+    "href": "stockobject.html#stock-recruit-relationship",
+    "title": "11  The Stock Object",
+    "section": "\n11.7 Stock-Recruit Relationship",
+    "text": "11.7 Stock-Recruit Relationship",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#spatial",
+    "href": "stockobject.html#spatial",
+    "title": "11  The Stock Object",
+    "section": "\n11.8 Spatial",
+    "text": "11.8 Spatial",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#depletion",
+    "href": "stockobject.html#depletion",
+    "title": "11  The Stock Object",
+    "section": "\n11.9 Depletion",
+    "text": "11.9 Depletion",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
+    "objectID": "stockobject.html#misc",
+    "href": "stockobject.html#misc",
+    "title": "11  The Stock Object",
+    "section": "\n11.10 Misc",
+    "text": "11.10 Misc",
+    "crumbs": [
+      "Stock Object",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
+    ]
+  },
+  {
     "objectID": "populatingstock.html",
     "href": "populatingstock.html",
     "title": "\n12  Populate the Stock Object\n",
@@ -284,7 +426,7 @@
     "href": "fleetobject.html",
     "title": "14  The Fleet Object",
     "section": "",
-    "text": "14.1 Fishing Mortality",
+    "text": "14.1 Fishing Mortality\nThe Fleet Object is used for …",
     "crumbs": [
       "Fleet Object",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>The Fleet Object</span>"
@@ -460,7 +602,7 @@
     "href": "builtinMPs.html",
     "title": "\n25  openMSE MPs\n",
     "section": "",
-    "text": "25.1 Data-Limited MPs",
+    "text": "25.1 Data-Limited MPs\nopenMSE includes",
     "crumbs": [
       "Management Procedures",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>openMSE MPs</span>"
@@ -493,7 +635,7 @@
     "href": "MSEobject.html",
     "title": "\n27  The MSE Object\n",
     "section": "",
-    "text": "27.1 Structure of the MSE object",
+    "text": "27.1 Structure of the MSE object\nThe MSE object contains …",
     "crumbs": [
       "Other Objects",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>The MSE Object</span>"
@@ -515,7 +657,7 @@
     "href": "PMMethods.html",
     "title": "\n29  PM Methods\n",
     "section": "",
-    "text": "29.1 The PM Object",
+    "text": "29.1 The PM Object\nopenMSE includes several",
     "crumbs": [
       "Calculating Performance",
       "<span class='chapter-number'>29</span>  <span class='chapter-title'>PM Methods</span>"
@@ -548,7 +690,7 @@
     "href": "slick.html",
     "title": "\n30  Introducing Slick\n",
     "section": "",
-    "text": "30.1 Creating Slick Objects",
+    "text": "30.1 Creating Slick Objects\nSlick is …",
     "crumbs": [
       "Calculating Performance",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>Introducing Slick</span>"
@@ -596,148 +738,6 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Feedback and Bug Reports</span>"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "openMSE Technical Manual",
-    "section": "",
-    "text": "Welcome\nWelcome to the openMSE Technical Manual developed and written by Adrian Hordyk, Quang Huynh, and Tom Carruthers from Blue Matter Science.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE see the openMSE website.\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and will be released in 2025. The code in this manual is only compatible with the development branches of MSEtool, SAMtool, DLMtool, and openMSE. Unless you are feeling particulary adventurous, you should not use the development code for your analyses!",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "OMobject.html",
-    "href": "OMobject.html",
-    "title": "9  The OM Object",
-    "section": "",
-    "text": "The OM object …",
-    "crumbs": [
-      "Operating Models",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The OM Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html",
-    "href": "stockobject.html",
-    "title": "11  The Stock Object",
-    "section": "",
-    "text": "11.1 Ages\nThe Ages object contains information relating to the age classes for the stock, specifically:\nAges objects are created and populated in the usual way, and added to the Stock object:\nAges(Albacore) &lt;- Ages(MaxAge=20)\nAlternatively, the Ages object (and all other sub-objects in the Stock object) can be added directly in the call to the Stock() function:\nAlbacoreStock &lt;- Stock('Albacore Stock',\n                       'Albacore',\n                       'Thunnus alalunga',\n                       Ages=Ages(20))",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#ages",
-    "href": "stockobject.html#ages",
-    "title": "11  The Stock Object",
-    "section": "",
-    "text": "MaxAge: An integer value (length 1) specifying the maximum age to include in the model. If PlusGroup==TRUE, MaxAge will be a plusgroup. Required. Note that the age classes always start at 0, so there will be MaxAge+1 age classes.\nUnits: A character string describing the units corresponding to MaxAge. Valid values are found in ValidUnits(Ages()). Defaults to year if not specified.\nPlusGroup: Include a plus-group? Defaults to TRUE.",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#length",
-    "href": "stockobject.html#length",
-    "title": "11  The Stock Object",
-    "section": "\n11.2 Length",
-    "text": "11.2 Length\nThe Length object contains information relating to mean length-at-age and the distribution around the mean length-at-age.\nAlthough most Stock objects will require a Length object, technically the Length object is optional and can be left blank if it is not needed.\nThe information in the Length object is used within the operating model for two purposes:\n\nGenerate the required maturity- or selectivity-at-age schedules from maturity- or selectivity-at-length models;\nSimulate catch-at-length data to be used within Management Procedures.\n\nIf catch-at-length data is not required and the maturity- and selectivity-at-age schedules are provided directly (i.e., not via a length-based model or schedule), then the Length object is not required in the operating model.\nThe mean length-at-age information can be entered in two ways:\n\nWith a growth model and associated parameters;\nPassed directly as a 3-dimensional array;.\n\n\n11.2.1 Specifying Length-at-Age Model with Pars and Model\n\nThe Pars slot in the Length object is used to store the parameters of a model that generates the mean length-at-age schedule.\nCurrently there is 1 length models built into MSEtool. The LengthModels() function can be used to display the built-in growth models in the R console.\nTo use a built-in model, Pars must be a named list, with the names matching those listed under the Pars displayed by LengthModels() for the relevant model.\nFor example, to use the von Bertalanffy growth model (vonBert):\n\nlength &lt;- Length(Pars=list(Linf=100, \n                           K=0.2,\n                           t0=-0.1))\n\nModel will be automatically populated with the matching model name:\n\nModel(length)\n\n[1] \"vonBert\"\n\n\nAn error will occur if the named elements of Pars does not exactly match the parameters in one of the models listed in LengthModels(), e.g.,\n\nlength &lt;- Length(Pars=list(Linf=100, \n                           K=0.2))\n\nError in `CheckModel()` at MSEtool/R/Find.R:55:5:\n! No model found for this object class \"length\" with parameters named:\n  \"Linf\" and \"K\".\nℹ See `LengthModels()` or set `Pars` to NULL or `Model` to a R function with\n  arguments corresponding with those in `Pars`.\n\n\n\n11.2.1.1 Structure of Pars\n\nThe elements in the Pars list can be structured in several different ways to deal with\n\nLengthModels()\n\nModel: `?MSEtool2::vonBert()`\n\n\nPars: `Linf`, `K`, and `t0`\n\n\nOther argument(s): `Ages`\n\n\nClass: `Length-at-Age-Model`\n\n\n\n\n\n\n11.2.2 Entering Length-at-Age Directly with MeanAtAge\n\nAlternatively, the mean length-at-age schedule can be passed as a 3-dimensional array directly into the MeanAtAge slot:\n\nlength &lt;- Length(MeanAtAge = )\n\n\n11.2.3 Distribution of Length-at-Age\n\n11.2.4 Units\nUnits\n\n11.2.5 Timing\n\n11.2.6 Classes",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#weight",
-    "href": "stockobject.html#weight",
-    "title": "11  The Stock Object",
-    "section": "\n11.3 Weight",
-    "text": "11.3 Weight",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#natural-mortality",
-    "href": "stockobject.html#natural-mortality",
-    "title": "11  The Stock Object",
-    "section": "\n11.4 Natural Mortality",
-    "text": "11.4 Natural Mortality",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#maturity",
-    "href": "stockobject.html#maturity",
-    "title": "11  The Stock Object",
-    "section": "\n11.5 Maturity",
-    "text": "11.5 Maturity",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#fecundity",
-    "href": "stockobject.html#fecundity",
-    "title": "11  The Stock Object",
-    "section": "\n11.6 Fecundity",
-    "text": "11.6 Fecundity",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#stock-recruit-relationship",
-    "href": "stockobject.html#stock-recruit-relationship",
-    "title": "11  The Stock Object",
-    "section": "\n11.7 Stock-Recruit Relationship",
-    "text": "11.7 Stock-Recruit Relationship",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#spatial",
-    "href": "stockobject.html#spatial",
-    "title": "11  The Stock Object",
-    "section": "\n11.8 Spatial",
-    "text": "11.8 Spatial",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#depletion",
-    "href": "stockobject.html#depletion",
-    "title": "11  The Stock Object",
-    "section": "\n11.9 Depletion",
-    "text": "11.9 Depletion",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
-    ]
-  },
-  {
-    "objectID": "stockobject.html#misc",
-    "href": "stockobject.html#misc",
-    "title": "11  The Stock Object",
-    "section": "\n11.10 Misc",
-    "text": "11.10 Misc",
-    "crumbs": [
-      "Stock Object",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>The Stock Object</span>"
     ]
   }
 ]
