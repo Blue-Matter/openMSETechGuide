@@ -1,0 +1,43 @@
+# Octopus Operating Model
+
+```{r, include=FALSE}
+library(MSEtool)
+```
+
+An example of an operating model for a short-lived (monthly time steps) semelparous species.
+
+This OM is for a data-limited fishery, where the OM is conditioned with expert judgement and values from the literature ...
+
+This is an example ...
+
+## Create the OM Object
+
+```{r}
+OctopusOM <- OM('Octopus',
+                Author='Adrian Hordyk',
+                Email='adrian@bluematterscience.com',
+                nYear=10, # 10 historical years
+                pYear=10, # 10 projection years
+                TSperYear = 12, # monthly time steps
+                nSim=20)
+
+Years(OctopusOM, 'Historical') |> head()
+Years(OctopusOM, 'Projection') |> tail()
+
+```
+
+
+## Construct the Stock Object
+
+```{r}
+stock <- Stock('Octopus',
+               Species='Octopus sp')
+
+```
+
+```{r}
+Ages(stock) <- Ages(MaxAge=14,
+                    Units='month',
+                    PlusGroup = FALSE)
+```
+

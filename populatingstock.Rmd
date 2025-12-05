@@ -1,3 +1,0 @@
-# Populate the Stock Object 
-
-The `Populate` function is used to ...

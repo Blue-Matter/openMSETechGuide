@@ -21,76 +21,21 @@ book:
   - prerequisites.Rmd
   - rPackages.Rmd
   - openMSE2.Rmd
-  - MSEoverview.Rmd
 
-  - part: Management Strategy Evaluation
-    chapters:
-    - aboutMSE.Rmd
-    - MSEroadmap.Rmd
 
   - part: Operating Models
     chapters:
     - operatingmodels.Rmd
-    - OMobject.qmd
-    - importingOMs.Rmd
-
-  - part: Stock Object
-    chapters:
-    - stockobject.qmd
-    - populatingstock.Rmd
-    - plottingstock.qmd
-
-  - part: Fleet Object
-    chapters:
-    - fleetobject.Rmd
-
-
-  - part: Observation Object
-    chapters:
-    - obsobject.Rmd
-
-  - part: Implementation Object
-    chapters:
-    - impobject.Rmd
-
-  - part: Fishery Data
-    chapters:
-    - fisherydata.Rmd
-    - dataobject.Rmd
-
-  - part: Rapid Conditioning Model
-    chapters:
-    - RCM.Rmd
 
   - part: OM Case Studies
     chapters:
-    - reeffish.Rmd
-    - octopus.Rmd
+    - OMCaseStudies.Rmd
+    - OctopusOM.Rmd
 
   - part: Management Procedures
     chapters:
-    - aboutMPs.Rmd
-    - buildingMPs.Rmd
-    - recobject.Rmd
-    - builtinMPs.Rmd
-
-  - part: Other Objects
-    chapters:
-    - histobject.Rmd
-    - MSEobject.Rmd
-
-  - part: Calculating Performance
-    chapters:
-    - performancemetric.Rmd
-    - PMMethods.Rmd
-    - slick.Rmd
-    - plotstables.Rmd
-
-  - part: Under the Hood
-    chapters:
-    - processoverview.Rmd
-    - populate.Rmd
-
+    - MPs.Rmd
+    - MPCaseStudies.Rmd
 
   - references.qmd
 

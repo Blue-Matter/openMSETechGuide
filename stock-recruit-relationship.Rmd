@@ -1,3 +1,0 @@
-# Stock-Recruit Relationship
-
-The `SRR` object 

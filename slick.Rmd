@@ -1,6 +1,0 @@
-# Introducing Slick
-
-`Slick` is ...
-
-## Creating Slick Objects
-

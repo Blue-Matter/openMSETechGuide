@@ -1,9 +1,5 @@
-# Operating Models
+# The Operating Model Object
 
-Operating Models (OMs) are the main component ...
+Operating Models (OMs) are the main component of the MSE ...
 
-They are comprised of ...
 
--   [Stock Object](/stockobject.html)
-
--   [Fleet Object](/fleetobject.html)
