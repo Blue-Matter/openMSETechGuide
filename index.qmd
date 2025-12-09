@@ -11,4 +11,11 @@ This book is intended for fisheries scientists and other analysts who wish to le
 
 For more general information about `openMSE` see the [openMSE website](http://openMSE.com).
 
-> This Technical Manual has been developed for `openMSE 2.0`, which is currently under development and will be released in 2025. The code in this manual is only compatible with the development branches of `MSEtool`, `SAMtool`, `DLMtool`, and `openMSE`. Unless you are feeling particulary adventurous, you should not use the development code for your analyses!
+::: {.callout-warning}
+This Technical Manual has been developed for `openMSE 2.0`, which is currently under development and has not yet been released on CRAN. 
+
+The code in this manual is only compatible with the development branches of `MSEtool`, `SAMtool`, `DLMtool`, and `openMSE`. 
+
+Unless you are feeling particulary adventurous, you should not use the development code for your analyses!
+:::
+

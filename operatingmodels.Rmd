@@ -1,5 +1,0 @@
-# The Operating Model Object
-
-Operating Models (OMs) are the main component of the MSE ...
-
-

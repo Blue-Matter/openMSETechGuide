@@ -1,0 +1,14 @@
+# Operating Models 
+
+The Operating Model (OM) is the main component of the MSE framework. 
+
+The OM is used to describe the characteristics of a fishery system and contains all the parameters required to simulate the population and fleet dynamics, the collection of data, and the application of a management procedure (e.g., implement a size regulation, effort control, spatial closure, or catch limit).
+
+An OM is built from four separate objects, each containing a set of parameter values for different aspects of the simulation:
+
+
+
+
+## Primary Functions 
+
+...

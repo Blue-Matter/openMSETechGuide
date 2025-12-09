@@ -4,68 +4,37 @@ project:
 book:
   title: "openMSE Technical Manual"
   author: "Adrian Hordyk, Quang Huynh, and Tom Carruthers"
+  # cover-image: images/openMSE_logo.png
   description: |
     Management Strategy Evaluation with openMSE
-  favicon: images/favicon.png
-
-  reader-mode: true
   site-url: https://docs.openMSE.com/
   repo-url: https://github.com/blue-matter/openMSETechGuide/
-  repo-actions: [edit, issue]
-
+  repo-actions: [edit]
+  favicon: images/favicon.png
   date: today
 
   chapters:
-  - index.qmd
-  - intro.Rmd
-  - prerequisites.Rmd
-  - rPackages.Rmd
-  - openMSE2.Rmd
-
-
-  - part: Operating Models
-    chapters:
-    - operatingmodels.Rmd
-
-  - part: OM Case Studies
-    chapters:
-    - OMCaseStudies.Rmd
-    - OctopusOM.Rmd
-
-  - part: Management Procedures
-    chapters:
-    - MPs.Rmd
-    - MPCaseStudies.Rmd
-
-  - references.qmd
-
-  appendices:
-    - Acknowledgements.Rmd
-    - authors.Rmd
-    - bug-reports.Rmd
-
+    - index.qmd
+    - part: OM_overview.qmd
+      chapters:
+        - OM_build.qmd
+        # - importOM.qmd
+        # - conditionOM.qmd
+    - part: Eq_overview.qmd
+      chapters:
+        - Eq_popdynamics.qmd
   sidebar:
     title: 'Technical Manual'
-    logo: "images/OpenMSE2_color.png"
-    pinned: true
-    align: center
+    logo: "images/openMSE_logo.png"
     tools:
       - icon: globe
         href: https://openMSE.com
         text: "openMSE"
-    style: "docked"
     search: true
     collapse-level: 1
-
-# bibliography: references.bib
-# csl: fisheries-research.csl
-
-collapse-level: 1
-
 format:
   html:
-    theme: [cosmo, custom.scss]
+    theme: cosmo
     code-link: true
-  asciidoc: default
 
 

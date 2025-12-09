@@ -1,0 +1,23 @@
+# Population Dynamics 
+
+## Number at Age
+
+### Initial
+
+- annual 
+- seasonal  - initialized to account for seasonal recruitment
+
+Notes:
+
+- age of recruitment is `MinAge(Stock)`
+- `MinAge(Stock) == 0` means that recruitment occurs in same time step as `SProduction`
+- otherwise lagged by appropriate number of time steps (year, quarters, months)
+
+
+
+
+$$
+N_{t+1} = N_t ...
+$$
+
+
