@@ -1,0 +1,13 @@
+# Constructing Operating Models {#om-construct}
+
+Case studies .... 
+
+- Build
+- Import
+- Condition
+- Convert 
+
+
+::: {.callout-note}
+This section is incomplete and will be updated later.
+:::

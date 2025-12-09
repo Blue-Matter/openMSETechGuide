@@ -1,0 +1,6 @@
+# Conditioning OMs {#sec-om_condition}
+
+
+The `Condition` function takes information related to the biological properties of the stock(s) (see `?Stock`) together with the available fishery data (see `?Data`), and fits an age-structured population dynamics model to estimate the range of fishery dynamics that are most compatible with the observed data and assumed life-history parameters.
+
+`Condition` function 

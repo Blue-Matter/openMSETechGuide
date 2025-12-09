@@ -8,13 +8,17 @@ library(MSEtool)
 knitr::read_chunk('../MSEtool/CaseStudies/SimpleOM/SimpleOM.R')
 ```
 
-# Build a Simple OM
+# Build a Simple OM {#sec-om_build}
 
-This chapter provides an overview of the
+This chapter describes the contents of `OM` objects by going through the process of manually constructing an operating model (`OM`).
 
-In most cases users will probably use other methods ...
+It uses an expert judgement-based approach, where the `OM` parameters are entered manually, with parameter uncertainties specified as distributions which are sampled when the `OM` is used to simulate and project a fishery.
 
-It uses the expert judgment approach ... all parameters entered manually uncertainties & distributions for parameters
+::: callout-note
+In most cases, users will likely use other methods to construct OMs, such as `Import` (@sec-om_import) and `Condition` (@sec-om_condition).
+
+However, new users are recommended to read through this chapter to understand the overall structure and contents of `OM` objects.
+:::
 
 ## Initialize OM
 
@@ -24,30 +28,22 @@ The `OM()` function is used to create a new Operating Model object (see `?OM`). 
 
 ```
 
+or by using functions matching the names of the slots in the object.
 
-### Accessing and Assigning Values
-
-The contents of all objects can be accessed and assigned new values using functions matching the names of the slots in the object. 
-
-For example, here we'll change the number of simulations in our OM from the default `nSim=48` to a small number so that the code runs very quickly:
+For example, here we'll change the number of independent stochastic simulations in our OM from the default `nSim=48` to a small number so that the code runs very quickly:
 
 ```{r access-assign-1}
 ```
 
-Change the number of historical years:
+Similarly, the number of historical years and projection years can be changed:
 
 ```{r access-assign-2}
 
 ```
 
-Change the number of projection years:
+## Years and Seasons
 
-```{r access-assign-3}
-```
-
-### Years and Seasons 
-
-`CurrentYear` is the last historical year before the projections begin, and is  automatically set to the current calendar year:
+`CurrentYear` is the last historical year before the projections begin, and is automatically set to the current calendar year:
 
 ```{r}
 CurrentYear(SimpleOM)
@@ -62,8 +58,8 @@ This can be over-written using either the `CurrentYear` argument in `OM()` or by
 The `Years` function can be used to return the values of the historical or projection years:
 
 ```{r}
-Years(SimpleOM, 'H') # or Years(SimpleOM, 'Historical') 
-Years(SimpleOM, 'P') # or Years(SimpleOM, 'Projection') 
+Years(SimpleOM, 'H') 
+Years(SimpleOM, 'P') 
 ```
 
 Unless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the `Seasons` slot of the `OM` object:
@@ -73,43 +69,102 @@ Unless specified otherwise, operating models are constructed using annual time s
 
 As shown above, `Seasons` changes the values of the historical and projection years into decimal years corresponding with the specified number of seasons within a year.
 
-If required, the `lubridate` package can be used to convert decimal years into dates (and back again): 
+::: callout-tip
+## Avoid using assigning values with \@
+
+Almost all of the `openMSE` objects have been developed using the [R S4 system](https://adv-r.hadley.nz/s4.html).
+
+S4 objects contain **slots**, named components of the object that can be accessed using the \@ operator (this is analogous to using the \$ symbol to access contents of S3 objects), for example:
+
+```{r}
+slotNames(SimpleOM)
+SimpleOM@nSim
+```
+
+The \@ symbol *can* be used to assign new values to slots, for example:
+
+```{r}
+#| eval: false
+SimpleOM@nSim <- 5
+```
+
+While earlier versions of `openMSE` advocated using the \@ symbol to access slots and assign new values, this practice is not recommended for `openMSE 2.0`. Instead, users are encouraged to use the **accessor** and **assignment** functions that have been developed for each object class.
+
+This is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the \@ symbol is used.
+
+For example, consider the `Seasons` assignment function:
+
+```{r}
+`Seasons<-`
+```
+
+Note that in addition to assigning the new value to the `Seasons` slot, the `Seasons` assignment function also recalculates the values for the `Years` slot, a step that would have been missed if the new value was assigned directly using the \@ symbol and would likely lead to unexpected errors.
+:::
+
+If required, the `lubridate` package can be used to convert decimal years into dates (and back again):
 
 ```{r date-convert}
 
 ```
 
-::: {.callout-important}
-The `Seasons` value in the `OM` defines the number of historical and projection years, as well as the structure of the age classes for all stocks in the OM.
+::: callout-important
+The `Seasons` value in the `OM` defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.
 
-The accounting in `openMSE` always starts at the beginning of the first historical year (i.e., `Years(SimpleOM)[1]`) and moves sequentially through the annual or seasonal time steps in `Years(SimpleOM)`. 
+The accounting in `openMSE` always starts at the beginning of the first historical year (i.e., `Years(SimpleOM)[1]`) and moves sequentially through the annual or seasonal time steps in `Years(SimpleOM)`.
 
-All stocks must have the same time units as the `OM`. See the `Ages` section below for more details. 
+All stocks must have the same time units as the `OM`. See the `Ages` section below for more details.
+
+Additionally, because it is used to set up the time and age structure of the model, the `Seasons` value should not be changed once an operating model is constructed.
 :::
 
-## Specify a Stock
+## Specify a `Stock` Object
 
-Next, we need to add a stock to the operating model. 
+`OM` objects can contain one or more `Stock` objects.
 
-Here we create an example `?Stock()` object based on an *Albacore* stock using the expert judgment approach described above.
+A `Stock` object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see `?Stock` for more details).
+
+Here we create an example `Stock` object using the expert judgment approach described above. The stock is loosely based on albacore *Thunnus alalunga* and should only be considered an example for demonstration purposes. 
 
 ```{r initialize-stock}
 ```
 
-In addition to `Name`, `CommonName`, and `Species` that were specified in the call to the `Stock()` function, `Stock` objects contain several other sub-objects that need to be populated: 
+In addition to `Name`, `CommonName`, and `Species` that were specified in the call to the `Stock()` function, `Stock` objects contain several other sub-objects that need to be populated:
 
- 1. `Ages`
- 2. `Length`
- 3. `Weight`
- 4. `NaturalMortality`
- 5. `Maturity`
- 6. *`Fecundity`*
- 6. `SRR`
- 8. *`Spatial`*
- 9. *`Depletion`*
- 
- The sub-objects in italics are optional, see the sections below for details. The other sub-objects must be populated to complete the `Stock` object (strictly speaking, the `Length` object is also optional if no other objects are a function of length (e.g., `Weight`, `Maturity`, `Fecundity` and `Selectivity` etc in the `Fleet` object).
- 
+1.  `Ages`
+2.  `Length`
+3.  `Weight`
+4.  `NaturalMortality`
+5.  `Maturity`
+6.  *`Fecundity`*
+7.  `SRR`
+8.  *`Spatial`*
+9.  *`Depletion`*
+
+The sub-objects in italics are optional, see the sections below for details. The other sub-objects must be populated to complete the `Stock` object.
+
+::: {.callout-tip}
+## Help Documentation
+
+Help documentation can be accessed for all `openMSE` objects and functions, e.g.,
+
+```{r}
+#| eval: false
+?OM
+?Stock
+?Ages
+?Length
+# etc
+```
+
+:::
+
+::: {.callout-note}
+Strictly speaking, the `Length` object is also optional if no other objects are a function of length (e.g., `Weight`, `Maturity`, `Fecundity` and `Selectivity` etc in the `Fleet` object.
+
+See @sec-om_octopus for an example of an `OM` that does not use `Length`.
+
+:::
+
 ### Ages
 
 An `Ages` object contains information relating to the age structure of the stock.
@@ -117,54 +172,65 @@ An `Ages` object contains information relating to the age structure of the stock
 ```{r create-ages_1}
 ```
 
-::: {.callout-important}
-Note that `MaxAge` is set in time units of `quarter`. It is important that the time units in the `Ages` object matches the number of seasons in the `OM`. 
+Note that `MaxAge` is set in time units of `quarter`. It is important that the time units in the `Ages` object matches the number of seasons in the `OM`.
 
 Also note that, following the convention in `Years(OM)` the age classes are *always* in units of year:
+
 ```{r}
 AgeClasses(SimpleStock)
 ```
-:::
 
 To keep things simple, we'll change our `OM` back to annual time-steps and re-recreate the `Ages` object accordingly:
 
 ```{r create-ages_2}
 ```
 
+### Length
 
-### Length 
+::: callout-note
+Most sub-objects in `Stock` and `Fleet` objects are structured and populated in a similar manner to `Length` objects.
 
-::: {.callout-note}
-Most sub-objects in `Stock` and `Fleet` objects that have a time and/or age dimension are structured and populated in a similar manner to `Length` objects.
-
-This section describes populating `Length` objects in detail. Other sub-objects are described in less detail. Refer back to this section for the specific details.
+This section describes populating `Length` objects in detail. Other sub-objects are described in less detail, and readers should refer back to this section for the specific details.
 :::
 
 The `Length` object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.
 
-As noted above, unless there are no references to the length structure of a stock (e.g., weight-at-length, maturity-at-length or selectivity-at-length), a `Length` object is required for all `Stock` objects.
+The main pieces of information in the `Length` object are stored in slots named:
 
-The main pieces of information used in the `OM` are stored in slots named:
-
-1. `MeanAtAge`: the mean length-at-age schedule
-2. `ASK`: the age-size key used to convert at-length schedules to at-age (and vice versa)
-
+1.  `MeanAtAge`: the mean length-at-age schedule
+2.  `ASK`: the age-size key used to convert at-length schedules to at-age (and vice versa)
 
 `MeanAtAge` can be specified in two ways:
 
-1. A growth model and a list of the respective parameter values
-2. Directly as an array specifying the mean length-at-age for each simulation and year.
+1.  A growth model and a list of the respective parameter values
+2.  Directly as an array specifying the mean length-at-age for each simulation and year.
 
 #### Model and Parameters
+
 
 
 #### Assign Array Directly
 
 
+### Weight
 
-The primary contents of a `Length` are:
+### NaturalMortality
 
-There are several different ways to populate the growth curve in a `Length` object. Many other sub-objects in `Stock` and `Fleet` objects 
+
+### Maturity
+
+
+### Fecundity
+
+
+### SRR
+
+### Spatial
+
+### Depletion
+
+
+
 
 ## Specify a Fleet
 

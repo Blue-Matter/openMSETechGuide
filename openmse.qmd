@@ -1,0 +1,39 @@
+
+# About openMSE 2.0 {#sec-openmse} 
+
+`openMSE v2.0` represents a major update from earlier versions of `openMSE` and its component packages.
+
+These updates include a complete code refactoring, where all existing source code was restructured to improve efficiency, readability, and ease of maintenance, and a redesign of the core object classes in the `openMSE` framework and the related functions .
+
+The majority of these revisions have been done in the `MSEtool` package. The following package versions are required to use `openMSE v2.0`:
+
+-   `openMSE >=2.0`
+-   `MSEtool >=4.0`
+-   `DLMtool >= 7.0`
+-   `SAMtool >= 2.0`
+
+::: {.callout-important}
+
+
+Currently only `MSEtool v4.0` has been developed and needs to be installed from Github:
+
+```{r}
+#| eval: false
+pak::pkg_install('blue-matter/MSEtool@prerelease')
+```
+
+Despite what it says above, all code in this Technical Manual will work with existing CRAN versions of 
+`openMSE`, `DLMtool`, and `SAMtool`. 
+
+These packages will be updated to the latest versions specified above once `MSEtool v4.0` is stable and released on CRAN.
+
+:::
+
+
+## Backwards Compability
+
+The `openMSE v2.0` packages are completely backwards compatible with earlier versions, so all code developed using earlier versions of `openMSE` should still work without any changes. Please file [an issue](https://github.com/Blue-Matter/openMSE/issues) if you experience issues where `openMSE 2.0` has caused issues with existing code.
+
+Other than fixes to maintain backwards compatibility, the legacy code base will not be updated. For new applications, users are recommended to update to `openMSE v2.0` and follow the structure outlined in this manual. 
+
+

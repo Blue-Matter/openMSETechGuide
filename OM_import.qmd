@@ -1,0 +1,5 @@
+## Importing OMs {#sec-om_import}
+
+
+
+The `Import` function takes the stock assessment output and imports it into the `openMSE` framework, ensuring that the fishery dynamics described in the OM match those predicted by the stock assessment model.

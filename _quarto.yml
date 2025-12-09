@@ -1,6 +1,10 @@
 project:
+  preview:
+    port: 4200
+    browser: true
   type: book
   output-dir: docs
+
 
 book:
   title: "openMSE Technical Manual"
@@ -16,11 +20,17 @@ book:
 
   chapters:
     - index.qmd
-    - part: OM_overview.qmd
+    - openmse.qmd
+    - getting_started.qmd
+    - part: operatingmodels.qmd
       chapters:
         - OM_build.qmd
-        # - importOM.qmd
-        # - conditionOM.qmd
+        - OM_condition.qmd
+        - OM_import.qmd
+        - OM_convert.qmd
+    - part: OM_casestudies.qmd
+      chapters:
+        - OM_octopus.qmd
     - part: Eq_overview.qmd
       chapters:
         - Eq_popdynamics.qmd
@@ -32,7 +42,7 @@ book:
         href: https://openMSE.com
         text: "openMSE"
     search: true
-    collapse-level: 1
+
 format:
   html:
     theme: cosmo

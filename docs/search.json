@@ -4,9 +4,457 @@
     "href": "index.html",
     "title": "openMSE Technical Manual",
     "section": "",
-    "text": "Welcome\nWelcome to the openMSE Technical Manual.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE see the openMSE website.\n\n\n\n\n\n\nWarning\n\n\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and has not yet been released on CRAN.\nThe code in this manual is only compatible with the development branches of MSEtool, SAMtool, DLMtool, and openMSE.\nUnless you are feeling particulary adventurous, you should not use the development code for your analyses!",
+    "text": "Introduction\nWelcome to the openMSE Technical Manual.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):",
     "crumbs": [
-      "Welcome"
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "OM_overview.html",
+    "href": "OM_overview.html",
+    "title": "Operating Models",
+    "section": "",
+    "text": "Primary Functions\nThe Operating Model (OM) is the main component of the MSE framework.\nThe OM is used to describe the characteristics of a fishery system and contains all the parameters required to simulate the population and fleet dynamics, the collection of data, and the application of a management procedure (e.g., implement a size regulation, effort control, spatial closure, or catch limit).\nAn OM is built from four separate objects, each containing a set of parameter values for different aspects of the simulation:\n…",
+    "crumbs": [
+      "Operating Models"
+    ]
+  },
+  {
+    "objectID": "OM_build.html",
+    "href": "OM_build.html",
+    "title": "3  Build a Simple OM",
+    "section": "",
+    "text": "3.1 Initialize OM\nThis chapter describes the contents of OM objects by going through the process of manually constructing an operating model (OM).\nIt uses an expert judgement-based approach, where the OM parameters are entered manually, with parameter uncertainties specified as distributions which are sampled when the OM is used to simulate and project a fishery.\nThe OM() function is used to create a new Operating Model object (see ?OM). The contents of the OM can be specified with arguments to the OM function:\nSimpleOM &lt;- OM('Example OM',\n               nYear=30,\n               pYear=20,\n               nSim=48)\nor by using functions matching the names of the slots in the object.\nFor example, here we’ll change the number of independent stochastic simulations in our OM from the default nSim=48 to a small number so that the code runs very quickly:\nnSim(SimpleOM)\n\n[1] 48\n\nnSim(SimpleOM) &lt;- 5\nnSim(SimpleOM)\n\n[1] 5\nSimilarly, the number of historical years and projection years can be changed:\nnYear(SimpleOM) &lt;- 20\npYear(SimpleOM) &lt;- 10",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#initialize-om",
+    "href": "OM_build.html#initialize-om",
+    "title": "3  Build a Simple OM",
+    "section": "",
+    "text": "3.1.1 Years and Seasons\nCurrentYear is the last historical year before the projections begin, and is automatically set to the current calendar year:\n\nCurrentYear(SimpleOM)\n\n[1] 2025\n\n\nThis can be over-written using either the CurrentYear argument in OM() or by assigning a new value to the SimpleOM object with CurrentYear():\n\nCurrentYear(SimpleOM) &lt;- 2020\n\nThe Years function can be used to return the values of the historical or projection years:\n\nYears(SimpleOM, 'H') # or Years(SimpleOM, 'Historical') \n\n [1] 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015\n[16] 2016 2017 2018 2019 2020\n\nYears(SimpleOM, 'P') # or Years(SimpleOM, 'Projection') \n\n [1] 2021 2022 2023 2024 2025 2026 2027 2028 2029 2030\n\n\nUnless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the Seasons slot of the OM object:\n\nSeasons(SimpleOM) &lt;- 4 # 4-quarters\nYears(SimpleOM, 'H') |&gt; head(8)\n\n[1] 2001.000 2001.247 2001.496 2001.748 2002.000 2002.247 2002.496 2002.748\n\n\nAs shown above, Seasons changes the values of the historical and projection years into decimal years corresponding with the specified number of seasons within a year.\nIf required, the lubridate package can be used to convert decimal years into dates (and back again):\n\nSimpleOM |&gt; \n  Years() |&gt; \n  lubridate::date_decimal() |&gt;\n  lubridate::as_date() |&gt;\n  head()\n\n[1] \"2001-01-01\" \"2001-04-01\" \"2001-07-01\" \"2001-09-30\" \"2002-01-01\"\n[6] \"2002-04-01\"\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThe Seasons value in the OM defines the number of historical and projection years, as well as the structure of the age classes for all stocks in the OM.\nThe accounting in openMSE always starts at the beginning of the first historical year (i.e., Years(SimpleOM)[1]) and moves sequentially through the annual or seasonal time steps in Years(SimpleOM).\nAll stocks must have the same time units as the OM. See the Ages section below for more details.",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#specify-a-stock",
+    "href": "OM_build.html#specify-a-stock",
+    "title": "3  Build a Simple OM",
+    "section": "\n3.3 Specify a Stock",
+    "text": "3.3 Specify a Stock\nOM objects can contain one or more Stock objects.\nA Stock object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see ?Stock for more details).\nHere we create an example Stock object using the expert judgment approach described above. The stock is loosely based on albacore Thunnus alalunga and should only be considered an example for demonstration purposes.\n\nSimpleStock &lt;- Stock('Example Stock',\n                     CommonName = 'Albacore',\n                     Species = \"Thunnus alalunga\")\n\nIn addition to Name, CommonName, and Species that were specified in the call to the Stock() function, Stock objects contain several other sub-objects that need to be populated:\n\nAges\nLength\nWeight\nNaturalMortality\nMaturity\nFecundity\nSRR\nSpatial\nDepletion\n\nThe sub-objects in italics are optional, see the sections below for details. The other sub-objects must be populated to complete the Stock object (strictly speaking, the Length object is also optional if no other objects are a function of length (e.g., Weight, Maturity, Fecundity and Selectivity etc in the Fleet object).\n\n3.3.1 Ages\nAn Ages object contains information relating to the age structure of the stock.\n\nAges(SimpleStock) &lt;- Ages(MaxAge=4*20, Units='quarter')\nAges(SimpleStock)\n\n\n\n\n── An `?MSEtool::Ages()` Object ──\n\n\n\n\n\n── `MinAge` \n\n\n0\n\n\n\n\n\n── `MaxAge` \n\n\n80\n\n\n\n\n\n── `Units` \n\n\n\"quarter\"\n\n\n\n\n\n── `Classes` (Year) \n\n\n0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75,\n4, 4.25, …, 19.75, and 20\n\n\n\n\n\n── `PlusGroup` \n\n\nTRUE\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nNote that MaxAge is set in time units of quarter. It is important that the time units in the Ages object matches the number of seasons in the OM.\nAlso note that, following the convention in Years(OM) the age classes are always in units of year:\n\nAgeClasses(SimpleStock)\n\n [1]  0.00  0.25  0.50  0.75  1.00  1.25  1.50  1.75  2.00  2.25  2.50  2.75\n[13]  3.00  3.25  3.50  3.75  4.00  4.25  4.50  4.75  5.00  5.25  5.50  5.75\n[25]  6.00  6.25  6.50  6.75  7.00  7.25  7.50  7.75  8.00  8.25  8.50  8.75\n[37]  9.00  9.25  9.50  9.75 10.00 10.25 10.50 10.75 11.00 11.25 11.50 11.75\n[49] 12.00 12.25 12.50 12.75 13.00 13.25 13.50 13.75 14.00 14.25 14.50 14.75\n[61] 15.00 15.25 15.50 15.75 16.00 16.25 16.50 16.75 17.00 17.25 17.50 17.75\n[73] 18.00 18.25 18.50 18.75 19.00 19.25 19.50 19.75 20.00\n\n\n\n\nTo keep things simple, we’ll change our OM back to annual time-steps and re-recreate the Ages object accordingly:\n\nSeasons(SimpleOM) &lt;- 1 # annual\nAges(SimpleStock) &lt;- Ages(MaxAge=20)\n\n\n3.3.2 Length\n\n\n\n\n\n\nNote\n\n\n\nMost sub-objects in Stock and Fleet objects that have a time and/or age dimension are structured and populated in a similar manner to Length objects.\nThis section describes populating Length objects in detail. Other sub-objects are described in less detail. Refer back to this section for the specific details.\n\n\nThe Length object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.\nAs noted above, unless there are no references to the length structure of a stock (e.g., weight-at-length, maturity-at-length or selectivity-at-length), a Length object is required for all Stock objects.\nThe main pieces of information used in the OM are stored in slots named:\n\n\nMeanAtAge: the mean length-at-age schedule\n\nASK: the age-size key used to convert at-length schedules to at-age (and vice versa)\n\nMeanAtAge can be specified in two ways:\n\nA growth model and a list of the respective parameter values\nDirectly as an array specifying the mean length-at-age for each simulation and year.\n\n\n3.3.2.1 Model and Parameters\n\n3.3.2.2 Assign Array Directly\nThe primary contents of a Length are:\nThere are several different ways to populate the growth curve in a Length object. Many other sub-objects in Stock and Fleet objects",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#specify-a-fleet",
+    "href": "OM_build.html#specify-a-fleet",
+    "title": "3  Build a Simple OM",
+    "section": "\n3.4 Specify a Fleet",
+    "text": "3.4 Specify a Fleet",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#populate-om",
+    "href": "OM_build.html#populate-om",
+    "title": "3  Build a Simple OM",
+    "section": "\n3.5 Populate OM",
+    "text": "3.5 Populate OM",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#explore-the-om",
+    "href": "OM_build.html#explore-the-om",
+    "title": "3  Build a Simple OM",
+    "section": "\n3.6 Explore the OM",
+    "text": "3.6 Explore the OM",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "Eq_overview.html",
+    "href": "Eq_overview.html",
+    "title": "Equations",
+    "section": "",
+    "text": "The following sections ….",
+    "crumbs": [
+      "Equations"
+    ]
+  },
+  {
+    "objectID": "Eq_popdynamics.html",
+    "href": "Eq_popdynamics.html",
+    "title": "2  Population Dynamics",
+    "section": "",
+    "text": "2.1 Number at Age",
+    "crumbs": [
+      "Equations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Population Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "Eq_popdynamics.html#number-at-age",
+    "href": "Eq_popdynamics.html#number-at-age",
+    "title": "2  Population Dynamics",
+    "section": "",
+    "text": "2.1.1 Initial\n\nannual\nseasonal - initialized to account for seasonal recruitment\n\nNotes:\n\nage of recruitment is MinAge(Stock)\nMinAge(Stock) == 0 means that recruitment occurs in same time step as SProduction\notherwise lagged by appropriate number of time steps (year, quarters, months)\n\n\\[\nN_{t+1} = N_t ...\n\\]",
+    "crumbs": [
+      "Equations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Population Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About openMSE",
+    "section": "",
+    "text": "openMSE is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.\nThe openMSE package is available on CRAN can be installed with install.packages(\"openMSE\").\nInstalling the openMSE package and loading with library(\"openMSE\") will load the following core packages:\n\nMSEtool - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.\nDLMtool - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. DLMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when DLMtool is loaded into an R session.\nSAMtool - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. SAMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when SAMtool is loaded into an R session.",
+    "crumbs": [
+      "About openMSE"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html",
+    "href": "prerequisites.html",
+    "title": "Prerequisites",
+    "section": "",
+    "text": "Installing R\nTo use openMSE or any of its component packages you must have:\nThe R statistical language and environment can be freely downloaded from the CRAN website and is available for all operating systems. Updated versions of R are released frequently, and it is recommended that you have the latest version installed.\nHead to the CRAN website to download the latest version of R.\nYou can check your version of R by typing version into the R console.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html#rstudio",
+    "href": "prerequisites.html#rstudio",
+    "title": "Prerequisites",
+    "section": "RStudio",
+    "text": "RStudio\nRStudio is a freely available integrated development environment (IDE) for R. It is not essential that you use RStudio, but it can make things a lot easier, especially if you are new to R.\nWe assume throughout the openMSE documentation that you are using RStudio.\nIt is important to be aware that RStudio and R are two different pieces of software that must be installed separately. We recommend installing the R software before downloading and installing RStudio.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html#installing-the-packages",
+    "href": "prerequisites.html#installing-the-packages",
+    "title": "Prerequisites",
+    "section": "Installing the Packages",
+    "text": "Installing the Packages\nInstalling openMSE\n\nAll component packages in the openMSE collection can be installed with:\n\ninstall.packages('openMSE')\n\nand loaded into the R session with:\n\nlibrary('openMSE')\n\nThis will load the openMSE package, and make all functions in MSEtool, DLMtool, and SAMtool available.",
+    "crumbs": [
+      "About openMSE",
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html#installing-the-component-packages",
+    "href": "prerequisites.html#installing-the-component-packages",
+    "title": "Prerequisites",
+    "section": "Installing the component packages",
+    "text": "Installing the component packages\nTo install only the core MSE functions, install and load the Management Strategy Evaluation toolkit with: install.packages('MSEtool') and library('MSEtool').\nTo install and load the Data-Limited Methods toolkit use: install.packages('DLMtool') and library('DLMtool'). Note that this will also install and load the dependency MSEtool.\nTo install and load the Stock Assessment Methods toolkit use: install.packages('SAMtool') and library('SAMtool'). Note that this will also install and load the dependency MSEtool.\nAssumed Knowledge\nThe openMSE packages have been designed to be accessible for all users and do not assume a high level of knowledge of R. The functions and help documentation material have been constructed in such a way that a user with little experience with R should be able to run the MSE and apply the methods to their data.\nLittle programming experience is required to use the package. However, users of the openMSE packages should have some familiarity with R, and be comfortable with using the command line. The help documentation attempts to explain the use of the openMSE functions and features in easy to follow steps, but familiarity with the most common R functions is assumed.\nThe package is fully extensible, and more experienced R users are able to design their own management procedures, develop new plotting functions, and other customizations.",
+    "crumbs": [
+      "About openMSE",
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html#assumed-knowledge",
+    "href": "prerequisites.html#assumed-knowledge",
+    "title": "Prerequisites",
+    "section": "Assumed Knowledge",
+    "text": "Assumed Knowledge\nThe openMSE packages have been designed to be accessible for all users and do not assume a high level of knowledge of R. The functions and help documentation material have been constructed in such a way that a user with little experience with R should be able to run the MSE and apply the methods to their data.\nLittle programming experience is required to use the package. However, users of the openMSE packages should have some familiarity with R, and be comfortable with using the command line. The help documentation attempts to explain the use of the openMSE functions and features in easy to follow steps, but familiarity with the most common R functions is assumed.",
+    "crumbs": [
+      "About openMSE",
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "index.html#assumed-knowledge",
+    "href": "index.html#assumed-knowledge",
+    "title": "openMSE Technical Manual",
+    "section": "Assumed Knowledge",
+    "text": "Assumed Knowledge\nLittle programming experience is required to use the openMSE. However, users of the openMSE packages should have some familiarity with R, and be comfortable with using the command line. The technical documentation attempts to explain the use of the openMSE functions and features in easy to follow steps, but familiarity with the most common R functions is assumed.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#about-openmse",
+    "href": "index.html#about-openmse",
+    "title": "openMSE Technical Manual",
+    "section": "About openMSE",
+    "text": "About openMSE\nopenMSE is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.\nopenMSE was developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at Blue Matter Science.\nFor more general information about openMSE see the openMSE website.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#installing-openmse",
+    "href": "index.html#installing-openmse",
+    "title": "openMSE Technical Manual",
+    "section": "Installing openMSE\n",
+    "text": "Installing openMSE\n\n\n\n\n\n\n\nWarning\n\n\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and has not yet been released on CRAN.\nThe code in this manual is only compatible with the latest development branches of MSEtool, SAMtool, DLMtool, and openMSE.\nThis warning will be removed once the openMSE 2.0 packages have been released on CRAN.\n\n\nThe openMSE package is available on CRAN can be installed with:\n\ninstall.packages('openMSE')\n\nand loaded into the R session with:\n\nlibrary('openMSE')\n\nInstalling and loading the openMSE package will install and load the following core packages:\n\nMSEtool - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.\nDLMtool - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. DLMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when DLMtool is loaded into an R session.\nSAMtool - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. SAMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when SAMtool is loaded into an R session.\n\n\n\n\n\n\n\nImportant\n\n\n\nCurrently the latest development version of MSEtool needs to be installed from Github:\n\npak::pkg_install('blue-matter/MSEtool@prerelease')",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "getting_started.html",
+    "href": "getting_started.html",
+    "title": "2  Getting Started",
+    "section": "",
+    "text": "2.1 Overview of the MSE Process\nopenMSE has many features and can model a wide range of fishery dynamics, ranging from relatively simple single-stock single-fleet models to considerably more complex scenarios including multiple-stocks/fleets with an option for stock/fleet-specific management, age-dependent spatial structure, hermaphroditism, and between-stock biological interactions such as MICE (Models of Intermediate Complexity for Ecosystems).\nProbably the easiest way to learn to use openMSE is to start with a walkthrough of the MSE process with a relatively simple example. But first, users should become familiar with a conceptual overview of the MSE process and the primary objects and functions.\nopenMSE is designed around an object-oriented programming (OOP) paradigm, where the code is organized around objects, which contain relevant data, and functions (methods) that operate on those data.\nFigure 2.1 shows a conceptual overview of the MSE process in openMSE, with colors indicating the primary objects and functions.\nThe following sub-sections describe these primary objects and the functions that either operate on them, or are used to create them.\nflowchart TD\n  build([Build])\n  condition[[Condition]]\n  import[[Import]]\n  convert[[Convert]]\n  om[OM]\n  build:::process --&gt; om\n  condition:::function --&gt; om\n  import:::function --&gt; om\n  convert:::function --&gt; om\n  sim[[Simulate]]\n  om:::object --&gt; sim:::function\n  hist[Hist]\n  sim --&gt; hist:::object\n  mp[[MP]]\n  project[[Project]]\n  hist:::object --&gt; project:::function\n  mp:::function --&gt; project\n  mse[MSE]\n  project --&gt; mse:::object\n\nclassDef process fill:#fe218b, stroke:#111,stroke-width:1px, color:#000\nclassDef function fill:#fed700, stroke:#111,stroke-width:1px, color:#000\nclassDef object fill:#21b0fe, stroke:#111,stroke-width:1px, color:#000\n\n\n\n\n\nFigure 2.1: An overview of the primary objects and functions used in the MSE process.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "acknowledgements.html",
+    "href": "acknowledgements.html",
+    "title": "Acknowledgements",
+    "section": "",
+    "text": "openMSE development has been made possible through the generous support of the following funders:\n\nDavid & Lucille Packard Foundation\nFisheries & Oceans Canada\nGordon & Betty Moore Foundation\nKingfisher Foundation\nMarine Stewardship Council\nNatural Resources Defense Council\nOcean Protection Council\nResources Legacy Fund\nUnited Nations Food & Agriculture Organization\n\nWe thank The Ocean Foundation for their support of the code refactoring and the development of openMSE 2.0 and this openMSE Technical Manual.\nFinally, openMSE is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the openMSE R packages.",
+    "crumbs": [
+      "acknowledgements.html"
+    ]
+  },
+  {
+    "objectID": "prerequisites.html#installing-rstudio",
+    "href": "prerequisites.html#installing-rstudio",
+    "title": "Prerequisites",
+    "section": "Installing RStudio",
+    "text": "Installing RStudio\nRStudio is a freely available integrated development environment (IDE) for R. It is not essential that you use RStudio, but it can make things a lot easier, especially if you are new to R.\nWe assume throughout the openMSE documentation that you are using RStudio.\nIt is important to be aware that RStudio and R are two different pieces of software that must be installed separately. We recommend installing the R software before downloading and installing RStudio.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#overview-of-the-mse-process",
+    "href": "getting_started.html#overview-of-the-mse-process",
+    "title": "2  Getting Started",
+    "section": "",
+    "text": "2.1.1 The OM Object\nThe Operating Model (OM) is the main component of the MSE framework. An OM describes the characteristics of a fishery system and contains all the parameters required to simulate the population and fleet dynamics, the collection of data, and the application of a management procedure.\nOperating models are stored in OM objects (see ?OM for help documentation).\nThere are several ways to construct an operating model.\nSee the Constructing Operating Models for more details.\n\n2.1.1.1 Build an OM\nThe first method, indicated by Build in Figure 2.1 is a process rather than\n\n\n2.1.1.2 Import an OM\n\n\n2.1.1.3 Condition an OM\n\n\n2.1.1.4 Convert an OM\n\n\n\n2.1.2 Hist\n\n\n2.1.3 MSE",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#s4-system",
+    "href": "getting_started.html#s4-system",
+    "title": "2  Getting Started",
+    "section": "2.5 S4 System",
+    "text": "2.5 S4 System",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#overview-of-main",
+    "href": "getting_started.html#overview-of-main",
+    "title": "2  Getting Started",
+    "section": "2.6 Overview of Main",
+    "text": "2.6 Overview of Main\n…",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "openMSE Technical Manual",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nopenMSE development has been made possible through the generous support of the following funders:\n\nDavid & Lucille Packard Foundation\nFisheries & Oceans Canada\nGordon & Betty Moore Foundation\nKingfisher Foundation\nMarine Stewardship Council\nNatural Resources Defense Council\nOcean Protection Council\nResources Legacy Fund\nUnited Nations Food & Agriculture Organization\n\nWe thank The Ocean Foundation for their support of the code refactoring and the development of openMSE 2.0 and this openMSE Technical Manual.\nFinally, openMSE is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the openMSE R packages.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#objects-and-functions",
+    "href": "getting_started.html#objects-and-functions",
+    "title": "Getting Started",
+    "section": "Objects and Functions",
+    "text": "Objects and Functions\n\nOperating Models\nSome stuff more stuff and hmmm",
+    "crumbs": [
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "openmse.html",
+    "href": "openmse.html",
+    "title": "1  About openMSE 2.0",
+    "section": "",
+    "text": "1.1 Backwards Compability\nopenMSE v2.0 represents a major update from earlier versions of openMSE and its component packages.\nThese updates include a complete code refactoring, where all existing source code was restructured to improve efficiency, readability, and ease of maintenance, and a redesign of the core object classes in the openMSE framework and the related functions .\nThe majority of these revisions have been done in the MSEtool package. The following package versions are required to use openMSE v2.0:\nThe openMSE v2.0 packages are completely backwards compatible with earlier versions, so all code developed using earlier versions of openMSE should still work without any changes. Please file an issue if you experience issues where openMSE 2.0 has caused issues with existing code.\nOther than fixes to maintain backwards compatibility, the legacy code base will not be updated. For new applications, users are recommended to update to openMSE v2.0 and follow the structure outlined in this manual.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About openMSE 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "openmse.html#section",
+    "href": "openmse.html#section",
+    "title": "openMSE 2.0",
+    "section": "",
+    "text": "Carruthers, Thomas, and Adrian R. Hordyk. 2018. “The Data-Limited Methods Toolkit (DLMtool): An R Package for Informing Management of Data-Limited Populations.” Methods in Ecology and Evolution 9 (12): 2388–95. https://doi.org/10.1111/2041-210X.13081.",
+    "crumbs": [
+      "openMSE 2.0"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#sec-mse-overview",
+    "href": "getting_started.html#sec-mse-overview",
+    "title": "Getting Started",
+    "section": "",
+    "text": "Operating Models (OM)\nThe Operating Model (OM) is the main component of the MSE framework.\nThe OM is used to describe the characteristics of a fishery system and contains all the parameters required to simulate the population and fleet dynamics, the collection of data, and the application of a management procedure (e.g., implement a size regulation, effort control, spatial closure, or catch limit).\nAn OM is built from four separate objects, each containing a set of parameter values for different aspects of the simulation:\n\n\nHist\n\n\nMSE",
+    "crumbs": [
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#sec-overview",
+    "href": "getting_started.html#sec-overview",
+    "title": "Getting Started",
+    "section": "",
+    "text": "Operating Models (OM)\nThe Operating Model (OM) is the main component of the MSE framework.\nThe OM is used to describe the characteristics of a fishery system and contains all the parameters required to simulate the population and fleet dynamics, the collection of data, and the application of a management procedure (e.g., implement a size regulation, effort control, spatial closure, or catch limit).\nAn OM is built from four separate objects, each containing a set of parameter values for different aspects of the simulation:\n\n\nHist\n\n\nMSE",
+    "crumbs": [
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "operatingmodels.html",
+    "href": "operatingmodels.html",
+    "title": "Constructing Operating Models",
+    "section": "",
+    "text": "Case studies ….\n\nBuild\nImport\nCondition\nConvert\n\n\n\n\n\n\n\nNote\n\n\n\nThis section is incomplete and will be updated later.",
+    "crumbs": [
+      "Constructing Operating Models"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-om-object",
+    "href": "getting_started.html#the-om-object",
+    "title": "2  Getting Started",
+    "section": "2.2 The OM Object",
+    "text": "2.2 The OM Object\nThe Operating Model (OM) object is the main component of the MSE framework. An OM describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.\nThere are several ways to construct an OM (Figure 2.1). These methods are briefly described in the sections below.\n\n2.2.1 Build an OM\nThe first method, indicated by Build in Figure 2.1, is a process rather than applying a single function.\nThe build process involves creating a new OM object, and manually populating the various elements of the object using a combination of expert judgement and available fishery data.\nThis process is most often used in data-limited situations, where there is insufficient data or information to use one of the other approaches.\nChapter 3 provides an example of using the Build process to construct an OM.\nAlthough this method may not be commonly used in practice, users are recommended to read start with Chapter 3 to familiarize themselves to the structure and contents of OM objects.\n\n\n2.2.2 Condition an OM\nOperating models are often generated by fitting a fishery population dynamics model to time-series fishery data (e.g., historical catches, indices of abundance, age and/or length compositions).\nThis process is known as OM conditioning, and is analogous to a conventional stock assessment. However, unlike a stock assessment where the aim is to provide a scientific estimate of the status of the stock (e.g., current biomass relative to a biological reference point), OMs are designed to incorporate the key uncertainties in the knowledge of the fishery system. In other words, while a stock assessment produces a single estimate of the historical fishery dynamics (aka the ‘best model’ approach), an operating model accounts for uncertainties and contains many different hypotheses of plausible fishery dynamics.\nopenMSE's Rapid Conditioning Model (RCM) is designed to condition operating models for a wide range of life-history types and data availability scenarios.\nChapter 4 provides an example of using the Condition function to condition an OM from fishery data.\n\n\n2.2.3 Import an OM\nopenMSE supports importing operating models from several commonly used stock assessment frameworks, including Stock Synthesis 3 (SS3) and the Beaufort Assessment Model (BAM).\nChapter 5 provides an example of using the Import function to import an OM from stock assessment output.\n\n\n2.2.4 Convert an OM\nThe Convert function is used to convert OM objects (as well as other objects) that were created in earlier versions of openMSE (see Chapter 1) to the new object structure developed in openMSE 2.0.\nChapter 6 provides an example of using the Convert function to convert OM objects developed with earlier versions of openMSE to be compatible with openMSE 2.0.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-hist-object",
+    "href": "getting_started.html#the-hist-object",
+    "title": "2  Getting Started",
+    "section": "2.3 The Hist Object",
+    "text": "2.3 The Hist Object\nHist objects are created by applying the Simulate function to OM objects (Figure 2.1).\nHist objects contain the simulated historical fishery dynamics and are used to project the model forward in time under a range of different management policies (i.e., management procedures).\n\n\n\n\n\n\nNote\n\n\n\nThis section is incomplete and will be updated later.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-mse-mse",
+    "href": "getting_started.html#the-mse-mse",
+    "title": "2  Getting Started",
+    "section": "2.4 The MSE MSE",
+    "text": "2.4 The MSE MSE",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "OM_condition.html",
+    "href": "OM_condition.html",
+    "title": "4  Conditioning OMs",
+    "section": "",
+    "text": "The Condition function takes information related to the biological properties of the stock(s) (see ?Stock) together with the available fishery data (see ?Data), and fits an age-structured population dynamics model to estimate the range of fishery dynamics that are most compatible with the observed data and assumed life-history parameters.\nCondition function",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conditioning OMs</span>"
+    ]
+  },
+  {
+    "objectID": "OM_convert.html",
+    "href": "OM_convert.html",
+    "title": "6  Converting OMs",
+    "section": "",
+    "text": "Convert ff",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Converting OMs</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-mse-object",
+    "href": "getting_started.html#the-mse-object",
+    "title": "2  Getting Started",
+    "section": "2.4 The MSE Object",
+    "text": "2.4 The MSE Object\nMSE objects are created by applying the Project function to Hist objects, together with the management procedure (MP) functions that will be used to provide the management advice that was implemented in the simulated fishery (Figure 2.1).\nMSE objects contain the fishery dynamics from both the historical period (Hist) and the projection period where the MPs were applied.\n\n\n\n\n\n\nNote\n\n\n\nThis section is incomplete and will be updated later.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "OM_import.html",
+    "href": "OM_import.html",
+    "title": "5  Importing OMs",
+    "section": "",
+    "text": "The Import function takes the stock assessment output and imports it into the openMSE framework, ensuring that the fishery dynamics described in the OM match those predicted by the stock assessment model.",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importing OMs</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#years-and-seasons",
+    "href": "OM_build.html#years-and-seasons",
+    "title": "3  Build a Simple OM",
+    "section": "\n3.2 Years and Seasons",
+    "text": "3.2 Years and Seasons\nCurrentYear is the last historical year before the projections begin, and is automatically set to the current calendar year:\n\nCurrentYear(SimpleOM)\n\n[1] 2025\n\n\nThis can be over-written using either the CurrentYear argument in OM() or by assigning a new value to the SimpleOM object with CurrentYear():\n\nCurrentYear(SimpleOM) &lt;- 2020\n\nThe Years function can be used to return the values of the historical or projection years:\n\nYears(SimpleOM, 'H') \n\n [1] 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015\n[16] 2016 2017 2018 2019 2020\n\nYears(SimpleOM, 'P') \n\n [1] 2021 2022 2023 2024 2025 2026 2027 2028 2029 2030\n\n\nUnless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the Seasons slot of the OM object:\n\nSeasons(SimpleOM) &lt;- 4 # 4-quarters\nYears(SimpleOM, 'H') |&gt; head(8)\n\n[1] 2001.000 2001.247 2001.496 2001.748 2002.000 2002.247 2002.496 2002.748\n\n\nAs shown above, Seasons changes the values of the historical and projection years into decimal years corresponding with the specified number of seasons within a year.\n\n\n\n\n\n\nAvoid using assigning values with @\n\n\n\nAlmost all of the openMSE objects have been developed using the R S4 system.\nS4 objects contain slots, named components of the object that can be accessed using the @ operator (this is analogous to using the $ symbol to access contents of S3 objects), for example:\n\nslotNames(SimpleOM)\n\n [1] \"Name\"        \"Agency\"      \"Author\"      \"Email\"       \"Region\"     \n [6] \"Latitude\"    \"Longitude\"   \"Sponsor\"     \"nSim\"        \"nYear\"      \n[11] \"pYear\"       \"CurrentYear\" \"Stock\"       \"Fleet\"       \"Obs\"        \n[16] \"Imp\"         \"Data\"        \"DataLag\"     \"CatchFrac\"   \"Allocation\" \n[21] \"EFactor\"     \"Complexes\"   \"SexPars\"     \"Relations\"   \"Interval\"   \n[26] \"nReps\"       \"pStar\"       \"maxF\"        \"Seed\"        \"Seasons\"    \n[31] \"Years\"       \"Control\"     \"Misc\"        \"Log\"         \"Source\"     \n\nSimpleOM@nSim\n\n[1] 5\n\n\nThe @ symbol can be used to assign new values to slots, for example:\n\nSimpleOM@nSim &lt;- 5\n\nWhile earlier versions of openMSE advocated using the @ symbol to access slots and assign new values, this practice is not recommended for openMSE 2.0. Instead, users are encouraged to use the accessor and assignment functions that have been developed for each object class.\nThis is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the @ symbol is used.\nFor example, consider the Seasons assignment function:\n\n`Seasons&lt;-`\n\nfunction(x, value) {\n  CheckClass(x)\n  x@Seasons &lt;- value\n  x@Years &lt;- CalcYears(x@nYear, x@pYear, x@CurrentYear, x@Seasons)\n  x\n}\n&lt;bytecode: 0x000001b612378a80&gt;\n&lt;environment: namespace:MSEtool&gt;\n\n\nNote that in addition to assigning the new value to the Seasons slot, the Seasons assignment function also recalculates the values for the Years slot, a step that would have been missed if the new value was assigned directly using the @ symbol and would likely lead to unexpected errors.\n\n\nIf required, the lubridate package can be used to convert decimal years into dates (and back again):\n\nSimpleOM |&gt; \n  Years() |&gt; \n  lubridate::date_decimal() |&gt;\n  lubridate::as_date() |&gt;\n  head()\n\n[1] \"2001-01-01\" \"2001-04-01\" \"2001-07-01\" \"2001-09-30\" \"2002-01-01\"\n[6] \"2002-04-01\"\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThe Seasons value in the OM defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.\nThe accounting in openMSE always starts at the beginning of the first historical year (i.e., Years(SimpleOM)[1]) and moves sequentially through the annual or seasonal time steps in Years(SimpleOM).\nAll stocks must have the same time units as the OM. See the Ages section below for more details.\nAdditionally, because it is used to set up the time and age structure of the model, the Seasons value should not be changed once an operating model is constructed.",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_build.html#specify-a-stock-object",
+    "href": "OM_build.html#specify-a-stock-object",
+    "title": "3  Build a Simple OM",
+    "section": "\n3.3 Specify a Stock Object",
+    "text": "3.3 Specify a Stock Object\nOM objects can contain one or more Stock objects.\nA Stock object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see ?Stock for more details).\nHere we create an example Stock object using the expert judgment approach described above. The stock is loosely based on albacore Thunnus alalunga and should only be considered an example for demonstration purposes.\n\nSimpleStock &lt;- Stock('Example Stock',\n                     CommonName = 'Albacore',\n                     Species = \"Thunnus alalunga\")\n\nIn addition to Name, CommonName, and Species that were specified in the call to the Stock() function, Stock objects contain several other sub-objects that need to be populated:\n\nAges\nLength\nWeight\nNaturalMortality\nMaturity\nFecundity\nSRR\nSpatial\nDepletion\n\nThe sub-objects in italics are optional, see the sections below for details. The other sub-objects must be populated to complete the Stock object.\n\n\n\n\n\n\nHelp Documentation\n\n\n\nHelp documentation can be accessed for all openMSE objects and functions, e.g.,\n\n?OM\n?Stock\n?Ages\n?Length\n# etc\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nStrictly speaking, the Length object is also optional if no other objects are a function of length (e.g., Weight, Maturity, Fecundity and Selectivity etc in the Fleet object.\nSee Chapter 7 for an example of an OM that does not use Length.\n\n\n\n3.3.1 Ages\nAn Ages object contains information relating to the age structure of the stock.\n\nAges(SimpleStock) &lt;- Ages(MaxAge=4*20, Units='quarter')\nAges(SimpleStock)\n\n\n\n\n── An `?MSEtool::Ages()` Object ──\n\n\n\n\n\n── `MinAge` \n\n\n0\n\n\n\n\n\n── `MaxAge` \n\n\n80\n\n\n\n\n\n── `Units` \n\n\n\"quarter\"\n\n\n\n\n\n── `Classes` (Year) \n\n\n0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75,\n4, 4.25, …, 19.75, and 20\n\n\n\n\n\n── `PlusGroup` \n\n\nTRUE\n\n\n\n\n\nNote that MaxAge is set in time units of quarter. It is important that the time units in the Ages object matches the number of seasons in the OM.\nAlso note that, following the convention in Years(OM) the age classes are always in units of year:\n\nAgeClasses(SimpleStock)\n\n [1]  0.00  0.25  0.50  0.75  1.00  1.25  1.50  1.75  2.00  2.25  2.50  2.75\n[13]  3.00  3.25  3.50  3.75  4.00  4.25  4.50  4.75  5.00  5.25  5.50  5.75\n[25]  6.00  6.25  6.50  6.75  7.00  7.25  7.50  7.75  8.00  8.25  8.50  8.75\n[37]  9.00  9.25  9.50  9.75 10.00 10.25 10.50 10.75 11.00 11.25 11.50 11.75\n[49] 12.00 12.25 12.50 12.75 13.00 13.25 13.50 13.75 14.00 14.25 14.50 14.75\n[61] 15.00 15.25 15.50 15.75 16.00 16.25 16.50 16.75 17.00 17.25 17.50 17.75\n[73] 18.00 18.25 18.50 18.75 19.00 19.25 19.50 19.75 20.00\n\n\nTo keep things simple, we’ll change our OM back to annual time-steps and re-recreate the Ages object accordingly:\n\nSeasons(SimpleOM) &lt;- 1 # annual\nAges(SimpleStock) &lt;- Ages(MaxAge=20)\n\n\n3.3.2 Length\n\n\n\n\n\n\nNote\n\n\n\nMost sub-objects in Stock and Fleet objects are structured and populated in a similar manner to Length objects.\nThis section describes populating Length objects in detail. Other sub-objects are described in less detail, and readers should refer back to this section for the specific details.\n\n\nThe Length object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.\nThe main pieces of information in the Length object are stored in slots named:\n\n\nMeanAtAge: the mean length-at-age schedule\n\nASK: the age-size key used to convert at-length schedules to at-age (and vice versa)\n\nMeanAtAge can be specified in two ways:\n\nA growth model and a list of the respective parameter values\nDirectly as an array specifying the mean length-at-age for each simulation and year.\n\n\n3.3.2.1 Model and Parameters\n\n3.3.2.2 Assign Array Directly\n\n3.3.3 Weight\n\n3.3.4 NaturalMortality\n\n3.3.5 Maturity\n\n3.3.6 Fecundity\n\n3.3.7 SRR\n\n3.3.8 Spatial\n\n3.3.9 Depletion",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build a Simple OM</span>"
+    ]
+  },
+  {
+    "objectID": "OM_octopus.html",
+    "href": "OM_octopus.html",
+    "title": "7  Octopus",
+    "section": "",
+    "text": "7.1 Create the OM Object\nAn example of an operating model for a short-lived (monthly time steps) semelparous species.\nThis OM is for a data-limited fishery, where the OM is conditioned with expert judgement and values from the literature …\nThis is an example …\nOctopusOM &lt;- OM('Octopus',\n                Author='Adrian Hordyk',\n                Email='adrian@bluematterscience.com',\n                nYear=10, # 10 historical years\n                pYear=10, # 10 projection years\n                Seasons = 12, # monthly time steps\n                nSim=20)\n\nYears(OctopusOM, 'Historical') |&gt; head()\n\n[1] 2016.000 2016.085 2016.164 2016.249 2016.331 2016.415\n\nYears(OctopusOM, 'Projection') |&gt; tail()\n\n[1] 2035.496 2035.581 2035.666 2035.748 2035.833 2035.915",
+    "crumbs": [
+      "OM Case Studies",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Octopus</span>"
+    ]
+  },
+  {
+    "objectID": "OM_octopus.html#construct-the-stock-object",
+    "href": "OM_octopus.html#construct-the-stock-object",
+    "title": "7  Octopus",
+    "section": "\n7.2 Construct the Stock Object",
+    "text": "7.2 Construct the Stock Object\n\nstock &lt;- Stock('Octopus',\n               Species='Octopus sp')\n\n\nAges(stock) &lt;- Ages(MaxAge=14,\n                    Units='month',\n                    PlusGroup = FALSE)",
+    "crumbs": [
+      "OM Case Studies",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Octopus</span>"
     ]
   }
 ]

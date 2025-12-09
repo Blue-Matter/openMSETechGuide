@@ -1,4 +1,4 @@
-# Welcome {.unnumbered}
+# Introduction {.unnumbered} 
 
 Welcome to the **openMSE Technical Manual**.
 
@@ -9,15 +9,82 @@ This book is intended for fisheries scientists and other analysts who wish to le
 -   conducting closed-loop simulation testing;
 -   summarizing and presenting results.
 
+## About openMSE
+
+`openMSE` is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries. 
+
+`openMSE` was developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at [Blue Matter Science](https://www.bluematterscience.com/). 
+
 For more general information about `openMSE` see the [openMSE website](http://openMSE.com).
+
+## Assumed Knowledge
+
+Little programming experience is required to use the `openMSE`. However, users of the `openMSE` packages should have some familiarity with R, and be comfortable with using the command line. The technical documentation attempts to explain the use of the `openMSE` functions and features in easy to follow steps, but familiarity with the most common R functions is assumed. 
+
+
+## Installing `openMSE`
 
 ::: {.callout-warning}
 This Technical Manual has been developed for `openMSE 2.0`, which is currently under development and has not yet been released on CRAN. 
 
-The code in this manual is only compatible with the development branches of `MSEtool`, `SAMtool`, `DLMtool`, and `openMSE`. 
+The code in this manual is only compatible with the latest development branches of `MSEtool`, `SAMtool`, `DLMtool`, and `openMSE`.
 
-Unless you are feeling particulary adventurous, you should not use the development code for your analyses!
+This warning will be removed once the `openMSE 2.0` packages have been released on CRAN.
+
 :::
+
+The `openMSE` package is available on [CRAN](#cran-openMSE) can be installed with:
+
+```{r}
+#| eval: false
+install.packages('openMSE')
+```
+
+and loaded into the R session with:
+
+```{r}
+#| eval: false
+library('openMSE')
+```
+
+
+Installing and loading the `openMSE` package will install and load the following core packages:
+
+1. [MSEtool](https://MSEtool.openMSE.com) - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing. 
+2.  [DLMtool](https://DLMtool.openMSE.com) - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. `DLMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `DLMtool` is loaded into an R session. 
+
+3.  [SAMtool](https://SAMtool.openMSE.com) - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. `SAMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `SAMtool` is loaded into an R session.
+
+::: {.callout-important}
+Currently the latest development version of `MSEtool` needs to be installed from Github:
+
+```{r}
+#| eval: false
+pak::pkg_install('blue-matter/MSEtool@prerelease')
+```
+
+:::
+
+
+## Acknowledgements 
+
+`openMSE` development has been made possible through the generous support of the following funders:
+
+* [David & Lucille Packard Foundation](https://www.packard.org/)
+* [Fisheries & Oceans Canada](https://www.dfo-mpo.gc.ca/index-eng.htm)
+* [Gordon & Betty Moore Foundation](https://www.moore.org/)
+* [Kingfisher Foundation](http://www.kingfisherfoundation.org/)
+* [Marine Stewardship Council](https://www.msc.org/home)
+* [Natural Resources Defense Council](https://www.nrdc.org/)
+* [Ocean Protection Council](https://www.opc.ca.gov/)
+* [Resources Legacy Fund](https://resourceslegacyfund.org/)
+* [United Nations Food & Agriculture Organization](http://www.fao.org/home/en/)
+
+We thank [The Ocean Foundation](https://oceanfdn.org/) for their support of the
+code refactoring and the development of `openMSE 2.0` and this `openMSE` Technical Manual. 
+
+Finally, `openMSE` is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the `openMSE` R packages.
+
 
 
 

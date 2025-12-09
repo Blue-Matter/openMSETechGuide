@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Adrian Hordyk, Quang Huynh, and Tom Carruthers">
-<meta name="dcterms.date" content="2025-12-09">
+
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>openMSE Technical Manual</title>
+
+<title>2&nbsp; Getting Started – openMSE Technical Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,42 +21,8 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
+
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -64,7 +31,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./openmse.html" rel="next">
+<link href="./operatingmodels.html" rel="next">
+<link href="./openmse.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -75,7 +43,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,26 +71,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
 </head>
+
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting_started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
         <div class="sidebar-tools-main">
@@ -137,9 +119,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -151,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting_started.html" class="sidebar-item-text sidebar-link">
+  <a href="./getting_started.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
@@ -163,8 +145,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./OM_build.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build a Simple OM</span></span></a>
@@ -189,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./Eq_overview.html" class="sidebar-item-text sidebar-link">
@@ -198,147 +180,180 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Eq_popdynamics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#overview-of-the-mse-process" id="toc-overview-of-the-mse-process" class="nav-link active" data-scroll-target="#overview-of-the-mse-process"><span class="header-section-number">2.1</span> Overview of the MSE Process</a></li>
+  <li><a href="#the-om-object" id="toc-the-om-object" class="nav-link" data-scroll-target="#the-om-object"><span class="header-section-number">2.2</span> The OM Object</a>
   <ul class="collapse">
-<li><a href="#about-openmse" id="toc-about-openmse" class="nav-link" data-scroll-target="#about-openmse">About openMSE</a></li>
-  <li><a href="#assumed-knowledge" id="toc-assumed-knowledge" class="nav-link" data-scroll-target="#assumed-knowledge">Assumed Knowledge</a></li>
-  <li><a href="#installing-openmse" id="toc-installing-openmse" class="nav-link" data-scroll-target="#installing-openmse">Installing <code>openMSE</code></a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#build-an-om" id="toc-build-an-om" class="nav-link" data-scroll-target="#build-an-om"><span class="header-section-number">2.2.1</span> Build an OM</a></li>
+  <li><a href="#condition-an-om" id="toc-condition-an-om" class="nav-link" data-scroll-target="#condition-an-om"><span class="header-section-number">2.2.2</span> Condition an OM</a></li>
+  <li><a href="#import-an-om" id="toc-import-an-om" class="nav-link" data-scroll-target="#import-an-om"><span class="header-section-number">2.2.3</span> Import an OM</a></li>
+  <li><a href="#convert-an-om" id="toc-convert-an-om" class="nav-link" data-scroll-target="#convert-an-om"><span class="header-section-number">2.2.4</span> Convert an OM</a></li>
+  </ul></li>
+  <li><a href="#the-hist-object" id="toc-the-hist-object" class="nav-link" data-scroll-target="#the-hist-object"><span class="header-section-number">2.3</span> The Hist Object</a></li>
+  <li><a href="#the-mse-object" id="toc-the-mse-object" class="nav-link" data-scroll-target="#the-mse-object"><span class="header-section-number">2.4</span> The MSE Object</a></li>
   </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/getting_started.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">openMSE Technical Manual</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></h1>
 </div>
 
-<div>
-  <div class="description">
-    <p>Management Strategy Evaluation with openMSE</p>
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Adrian Hordyk, Quang Huynh, and Tom Carruthers </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 9, 2025</p>
-    </div>
-  </div>
   
     
   </div>
   
 
 
-</header><section id="introduction" class="level1 unnumbered"><h1 class="unnumbered">Introduction</h1>
-<p>Welcome to the <strong>openMSE Technical Manual</strong>.</p>
-<p>This book is intended for fisheries scientists and other analysts who wish to learn how to use <code>openMSE</code> for all aspects of Management Strategy Evaluation (MSE):</p>
-<ul>
-<li>building operating models;</li>
-<li>developing management procedures;</li>
-<li>conducting closed-loop simulation testing;</li>
-<li>summarizing and presenting results.</li>
-</ul>
-<section id="about-openmse" class="level2"><h2 class="anchored" data-anchor-id="about-openmse">About openMSE</h2>
-<p><code>openMSE</code> is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.</p>
-<p><code>openMSE</code> was developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at <a href="https://www.bluematterscience.com/">Blue Matter Science</a>.</p>
-<p>For more general information about <code>openMSE</code> see the <a href="http://openMSE.com">openMSE website</a>.</p>
-</section><section id="assumed-knowledge" class="level2"><h2 class="anchored" data-anchor-id="assumed-knowledge">Assumed Knowledge</h2>
-<p>Little programming experience is required to use the <code>openMSE</code>. However, users of the <code>openMSE</code> packages should have some familiarity with R, and be comfortable with using the command line. The technical documentation attempts to explain the use of the <code>openMSE</code> functions and features in easy to follow steps, but familiarity with the most common R functions is assumed.</p>
-</section><section id="installing-openmse" class="level2"><h2 class="anchored" data-anchor-id="installing-openmse">Installing <code>openMSE</code>
-</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
+</header>
+
+
+<p><code>openMSE</code> has many features and can model a wide range of fishery dynamics, ranging from relatively simple single-stock single-fleet models to considerably more complex scenarios including multiple-stocks/fleets with an option for stock/fleet-specific management, age-dependent spatial structure, hermaphroditism, and between-stock biological interactions such as MICE (Models of Intermediate Complexity for Ecosystems).</p>
+<p>Probably the easiest way to learn to use <code>openMSE</code> is to start with a walkthrough of the MSE process with a relatively simple example. But first, users should become familiar with a conceptual overview of the MSE process and the primary objects and functions.</p>
+<section id="overview-of-the-mse-process" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="overview-of-the-mse-process"><span class="header-section-number">2.1</span> Overview of the MSE Process</h2>
+<p><code>openMSE</code> is designed around an object-oriented programming (OOP) paradigm, where the code is organized around <strong>objects</strong>, which contain relevant data, and <strong>functions</strong> (methods) that operate on those data.</p>
+<p><a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows a conceptual overview of the MSE process in <code>openMSE</code>, with colors indicating the primary <span style="background:#21b0fe;"><strong>objects</strong></span> and <span style="background:#fed700;"><strong>functions</strong></span>.</p>
+<p>The following sub-sections describe these primary objects and the functions that either operate on them, or are used to create them.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-flowchart">flowchart TD
+  build([Build])
+  condition[[Condition]]
+  import[[Import]]
+  convert[[Convert]]
+  om[OM]
+  build:::process --&gt; om
+  condition:::function --&gt; om
+  import:::function --&gt; om
+  convert:::function --&gt; om
+  sim[[Simulate]]
+  om:::object --&gt; sim:::function
+  hist[Hist]
+  sim --&gt; hist:::object
+  mp[[MP]]
+  project[[Project]]
+  hist:::object --&gt; project:::function
+  mp:::function --&gt; project
+  mse[MSE]
+  project --&gt; mse:::object
+
+classDef process fill:#fe218b, stroke:#111,stroke-width:1px, color:#000
+classDef function fill:#fed700, stroke:#111,stroke-width:1px, color:#000
+classDef object fill:#21b0fe, stroke:#111,stroke-width:1px, color:#000
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: An overview of the primary objects and functions used in the MSE process.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-om-object" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-om-object"><span class="header-section-number">2.2</span> The OM Object</h2>
+<p>The Operating Model (<code>OM</code>) object is the main component of the MSE framework. An <code>OM</code> describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.</p>
+<p>There are several ways to construct an <code>OM</code> (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>). These methods are briefly described in the sections below.</p>
+<section id="build-an-om" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="build-an-om"><span class="header-section-number">2.2.1</span> Build an OM</h3>
+<p>The first method, indicated by <span style="background:#fe218b;"><code>Build</code></span> in <a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>, is a process rather than applying a single function.</p>
+<p>The build process involves creating a new <code>OM</code> object, and manually populating the various elements of the object using a combination of expert judgement and available fishery data.</p>
+<p>This process is most often used in data-limited situations, where there is insufficient data or information to use one of the other approaches.</p>
+<p><a href="OM_build.html" class="quarto-xref"><span>Chapter 3</span></a> provides an example of using the <code>Build</code> process to construct an <code>OM</code>.</p>
+<p>Although this method may not be commonly used in practice, users are recommended to read start with <a href="OM_build.html" class="quarto-xref"><span>Chapter 3</span></a> to familiarize themselves to the structure and contents of <code>OM</code> objects.</p>
+</section>
+<section id="condition-an-om" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="condition-an-om"><span class="header-section-number">2.2.2</span> Condition an OM</h3>
+<p>Operating models are often generated by fitting a fishery population dynamics model to time-series fishery data (e.g., historical catches, indices of abundance, age and/or length compositions).</p>
+<p>This process is known as OM conditioning, and is analogous to a conventional stock assessment. However, unlike a stock assessment where the aim is to provide a scientific estimate of the status of the stock (e.g., current biomass relative to a biological reference point), OMs are designed to incorporate the key uncertainties in the knowledge of the fishery system. In other words, while a stock assessment produces a single estimate of the historical fishery dynamics (aka the ‘best model’ approach), an operating model accounts for uncertainties and contains many different hypotheses of plausible fishery dynamics.</p>
+<p><code>openMSE's</code> <a href="https://samtool.openmse.com/reference/RCM.html">Rapid Conditioning Model (RCM)</a> is designed to condition operating models for a wide range of life-history types and data availability scenarios.</p>
+<p><a href="OM_condition.html" class="quarto-xref"><span>Chapter 4</span></a> provides an example of using the <code>Condition</code> function to condition an <code>OM</code> from fishery data.</p>
+</section>
+<section id="import-an-om" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="import-an-om"><span class="header-section-number">2.2.3</span> Import an OM</h3>
+<p><code>openMSE</code> supports importing operating models from several commonly used stock assessment frameworks, including <a href="https://nmfs-ost.github.io/ss3-website/">Stock Synthesis 3 (SS3)</a> and the <a href="https://repository.library.noaa.gov/view/noaa/4847">Beaufort Assessment Model (BAM)</a>.</p>
+<p><a href="OM_import.html" class="quarto-xref"><span>Chapter 5</span></a> provides an example of using the <code>Import</code> function to import an <code>OM</code> from stock assessment output.</p>
+</section>
+<section id="convert-an-om" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="convert-an-om"><span class="header-section-number">2.2.4</span> Convert an OM</h3>
+<p>The <code>Convert</code> function is used to convert <code>OM</code> objects (as well as other objects) that were created in earlier versions of <code>openMSE</code> (see <a href="openmse.html" class="quarto-xref"><span>Chapter 1</span></a>) to the new object structure developed in <code>openMSE 2.0</code>.</p>
+<p><a href="OM_convert.html" class="quarto-xref"><span>Chapter 6</span></a> provides an example of using the <code>Convert</code> function to convert <code>OM</code> objects developed with earlier versions of <code>openMSE</code> to be compatible with <code>openMSE 2.0</code>.</p>
+</section>
+</section>
+<section id="the-hist-object" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="the-hist-object"><span class="header-section-number">2.3</span> The Hist Object</h2>
+<p><code>Hist</code> objects are created by applying the <code>Simulate</code> function to <code>OM</code> objects (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
+<p><code>Hist</code> objects contain the simulated historical fishery dynamics and are used to project the model forward in time under a range of different management policies (i.e., management procedures).</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This Technical Manual has been developed for <code>openMSE 2.0</code>, which is currently under development and has not yet been released on CRAN.</p>
-<p>The code in this manual is only compatible with the latest development branches of <code>MSEtool</code>, <code>SAMtool</code>, <code>DLMtool</code>, and <code>openMSE</code>.</p>
-<p>This warning will be removed once the <code>openMSE 2.0</code> packages have been released on CRAN.</p>
+<p>This section is incomplete and will be updated later.</p>
 </div>
 </div>
-<p>The <code>openMSE</code> package is available on <a href="#cran-openMSE">CRAN</a> can be installed with:</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'openMSE'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and loaded into the R session with:</p>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://openmse.com/">'openMSE'</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Installing and loading the <code>openMSE</code> package will install and load the following core packages:</p>
-<ol type="1">
-<li><p><a href="https://MSEtool.openMSE.com">MSEtool</a> - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.</p></li>
-<li><p><a href="https://DLMtool.openMSE.com">DLMtool</a> - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. <code>DLMtool</code> requires the <code>MSEtool</code> package as a dependency, and all <code>MSEtool</code> functions will be available when <code>DLMtool</code> is loaded into an R session.</p></li>
-<li><p><a href="https://SAMtool.openMSE.com">SAMtool</a> - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. <code>SAMtool</code> requires the <code>MSEtool</code> package as a dependency, and all <code>MSEtool</code> functions will be available when <code>SAMtool</code> is loaded into an R session.</p></li>
-</ol>
-<div class="callout callout-style-default callout-important callout-titled">
+</section>
+<section id="the-mse-object" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="the-mse-object"><span class="header-section-number">2.4</span> The MSE Object</h2>
+<p><code>MSE</code> objects are created by applying the <code>Project</code> function to <code>Hist</code> objects, together with the management procedure (<code>MP</code>) functions that will be used to provide the management advice that was implemented in the simulated fishery (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
+<p><code>MSE</code> objects contain the fishery dynamics from both the historical period (<code>Hist</code>) and the projection period where the <code>MPs</code> were applied.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Currently the latest development version of <code>MSEtool</code> needs to be installed from Github:</p>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html">pkg_install</a></span><span class="op">(</span><span class="st">'blue-matter/MSEtool@prerelease'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This section is incomplete and will be updated later.</p>
 </div>
 </div>
-</div>
-</section><section id="acknowledgements" class="level2"><h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p><code>openMSE</code> development has been made possible through the generous support of the following funders:</p>
-<ul>
-<li><a href="https://www.packard.org/">David &amp; Lucille Packard Foundation</a></li>
-<li><a href="https://www.dfo-mpo.gc.ca/index-eng.htm">Fisheries &amp; Oceans Canada</a></li>
-<li><a href="https://www.moore.org/">Gordon &amp; Betty Moore Foundation</a></li>
-<li><a href="http://www.kingfisherfoundation.org/">Kingfisher Foundation</a></li>
-<li><a href="https://www.msc.org/home">Marine Stewardship Council</a></li>
-<li><a href="https://www.nrdc.org/">Natural Resources Defense Council</a></li>
-<li><a href="https://www.opc.ca.gov/">Ocean Protection Council</a></li>
-<li><a href="https://resourceslegacyfund.org/">Resources Legacy Fund</a></li>
-<li><a href="http://www.fao.org/home/en/">United Nations Food &amp; Agriculture Organization</a></li>
-</ul>
-<p>We thank <a href="https://oceanfdn.org/">The Ocean Foundation</a> for their support of the code refactoring and the development of <code>openMSE 2.0</code> and this <code>openMSE</code> Technical Manual.</p>
-<p>Finally, <code>openMSE</code> is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the <code>openMSE</code> R packages.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -736,11 +751,16 @@ Important
       }
     }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./openmse.html" class="pagination-link" aria-label="About openMSE 2.0">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./openmse.html" class="pagination-link" aria-label="About openMSE 2.0">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./operatingmodels.html" class="pagination-link" aria-label="Constructing Operating Models">
+        <span class="nav-page-text">Constructing Operating Models</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -748,4 +768,5 @@ Important
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/getting_started.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
