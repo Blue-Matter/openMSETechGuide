@@ -1,0 +1,12 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "openMSE Technical Manual",
+    "section": "",
+    "text": "Welcome\nWelcome to the openMSE Technical Manual.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):\n\nbuilding operating models;\ndeveloping management procedures;\nconducting closed-loop simulation testing;\nsummarizing and presenting results.\n\nFor more general information about openMSE see the openMSE website.\n\n\n\n\n\n\nWarning\n\n\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and has not yet been released on CRAN.\nThe code in this manual is only compatible with the development branches of MSEtool, SAMtool, DLMtool, and openMSE.\nUnless you are feeling particulary adventurous, you should not use the development code for your analyses!",
+    "crumbs": [
+      "Welcome"
+    ]
+  }
+]
