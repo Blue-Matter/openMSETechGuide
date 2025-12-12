@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>3&nbsp; Build a Simple OM – openMSE Technical Manual</title>
+<title>3&nbsp; Build an OM – openMSE Technical Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -62,8 +62,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./OM_condition.html" rel="next">
-<link href="./operatingmodels.html" rel="prev">
+<link href="./operatingmodels.html" rel="next">
+<link href="./walkthrough.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -100,7 +100,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -109,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./operatingmodels.html">Constructing Operating Models</a></li><li class="breadcrumb-item"><a href="./OM_build.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build a Simple OM</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./walkthrough.html">Example of the MSE Process</a></li><li class="breadcrumb-item"><a href="./OM_build.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an OM</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -156,8 +181,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./operatingmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Constructing Operating Models</span></a>
+            <a href="./walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Example of the MSE Process</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,10 +191,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./OM_build.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build a Simple OM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an OM</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./operatingmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Constructing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./OM_condition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditioning OMs</span></span></a>
@@ -193,11 +229,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./OM_casestudies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OM Case Studies</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./OM_octopus.html" class="sidebar-item-text sidebar-link">
@@ -210,11 +246,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./Eq_overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Equations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Eq_popdynamics.html" class="sidebar-item-text sidebar-link">
@@ -238,13 +274,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">3.3.1</span> Ages</a></li>
   <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">3.3.2</span> Length</a></li>
-  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">3.3.3</span> Weight</a></li>
-  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">3.3.4</span> NaturalMortality</a></li>
-  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">3.3.5</span> Maturity</a></li>
-  <li><a href="#fecundity" id="toc-fecundity" class="nav-link" data-scroll-target="#fecundity"><span class="header-section-number">3.3.6</span> Fecundity</a></li>
-  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">3.3.7</span> SRR</a></li>
-  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">3.3.8</span> Spatial</a></li>
-  <li><a href="#depletion" id="toc-depletion" class="nav-link" data-scroll-target="#depletion"><span class="header-section-number">3.3.9</span> Depletion</a></li>
+  <li><a href="#methods-for-populating-age--and-time-dynamic-values" id="toc-methods-for-populating-age--and-time-dynamic-values" class="nav-link" data-scroll-target="#methods-for-populating-age--and-time-dynamic-values"><span class="header-section-number">3.3.3</span> Methods for Populating Age- and Time-Dynamic Values</a></li>
+  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">3.3.4</span> Weight</a></li>
+  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">3.3.5</span> NaturalMortality</a></li>
+  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">3.3.6</span> Maturity</a></li>
+  <li><a href="#fecundity" id="toc-fecundity" class="nav-link" data-scroll-target="#fecundity"><span class="header-section-number">3.3.7</span> Fecundity</a></li>
+  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">3.3.8</span> SRR</a></li>
+  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">3.3.9</span> Spatial</a></li>
+  <li><a href="#depletion" id="toc-depletion" class="nav-link" data-scroll-target="#depletion"><span class="header-section-number">3.3.10</span> Depletion</a></li>
   </ul>
 </li>
   <li><a href="#specify-a-fleet" id="toc-specify-a-fleet" class="nav-link" data-scroll-target="#specify-a-fleet"><span class="header-section-number">3.4</span> Specify a Fleet</a></li>
@@ -253,8 +290,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/OM_build.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./operatingmodels.html">Constructing Operating Models</a></li><li class="breadcrumb-item"><a href="./OM_build.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build a Simple OM</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-om_build" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build a Simple OM</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./walkthrough.html">Example of the MSE Process</a></li><li class="breadcrumb-item"><a href="./OM_build.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an OM</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-om_build" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an OM</span></span></h1>
 </div>
 
 
@@ -269,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>This chapter describes the contents of <code>OM</code> objects by going through the process of manually constructing an operating model (<code>OM</code>).</p>
-<p>It uses an expert judgement-based approach, where the <code>OM</code> parameters are entered manually, with parameter uncertainties specified as distributions which are sampled when the <code>OM</code> is used to simulate and project a fishery.</p>
+<p>It creates a simple <code>OM</code> based on a completely hypothetical albacore fishery.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -280,18 +317,19 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In most cases, users will likely use other methods to construct OMs, such as <code>Import</code> (<a href="OM_import.html" class="quarto-xref"><span>Chapter 5</span></a>) and <code>Condition</code> (<a href="OM_condition.html" class="quarto-xref"><span>Chapter 4</span></a>).</p>
-<p>However, new users are recommended to read through this chapter to understand the overall structure and contents of <code>OM</code> objects.</p>
+<p>This chapter is quite long because it provides a lot of detail about the <code>OM</code> object and its various component sub-objects (<code>Stock</code>, <code>Fleet</code> , etc).</p>
+<p>While manually building an <code>OM</code> in this manner is likely to be relatively rare in practice, this is the only place in this Technical Manual where these objects are discussed in such detail, so it is worth reviewing this chapter to understand the main object classes, and the methods used to populate these objects.</p>
 </div>
 </div>
 <section id="initialize-om" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="initialize-om">
 <span class="header-section-number">3.1</span> Initialize OM</h2>
 <p>The <code>OM()</code> function is used to create a new Operating Model object (see <code>?OM</code>). The contents of the <code>OM</code> can be specified with arguments to the <code>OM</code> function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span><span class="st">'Example OM'</span>,</span>
-<span>               nYear<span class="op">=</span><span class="fl">30</span>,</span>
-<span>               pYear<span class="op">=</span><span class="fl">20</span>,</span>
-<span>               nSim<span class="op">=</span><span class="fl">48</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span><span class="st">"Example OM"</span>,</span>
+<span>  nYear <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  pYear <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  nSim <span class="op">=</span> <span class="fl">48</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or by using functions matching the names of the slots in the object.</p>
 <p>For example, here we’ll change the number of independent stochastic simulations in our OM from the default <code>nSim=48</code> to a small number so that the code runs very quickly:</p>
@@ -339,7 +377,7 @@ Note
 <p>Unless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the <code>Seasons</code> slot of the <code>OM</code> object:</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="co"># 4-quarters</span></span>
-<span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleOM</span>, <span class="st">'H'</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleOM</span>, <span class="st">"H"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2001.000 2001.247 2001.496 2001.748 2002.000 2002.247 2002.496 2002.748</code></pre>
 </div>
@@ -355,7 +393,7 @@ Avoid using assigning values with @
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Almost all of the <code>openMSE</code> objects have been developed using the <a href="https://adv-r.hadley.nz/s4.html">R S4 system</a>.</p>
+<p>Almost all <code>openMSE</code> objects have been developed using the <a href="https://adv-r.hadley.nz/s4.html">R S4 system</a>.</p>
 <p>S4 objects contain <strong>slots</strong>, named components of the object that can be accessed using the @ operator (this is analogous to using the $ symbol to access contents of S3 objects), for example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">slotNames</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -373,12 +411,13 @@ Avoid using assigning values with @
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
-<p>The @ symbol <em>can</em> be used to assign new values to slots, for example:</p>
+<p>The @ symbol <strong><em>can</em></strong> be used to assign new values to slots, for example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleOM</span><span class="op">@</span><span class="va">nSim</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>While earlier versions of <code>openMSE</code> advocated using the @ symbol to access slots and assign new values, this practice is not recommended for <code>openMSE 2.0</code>. Instead, users are encouraged to use the <strong>accessor</strong> and <strong>assignment</strong> functions that have been developed for each object class.</p>
-<p>This is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the @ symbol is used.</p>
+<p>However, while earlier versions of <code>openMSE</code> advocated using the @ symbol to access slots and assign new values, this practice is not recommended for <code>openMSE 2.0</code>.</p>
+<p>Instead, users are encouraged to use the <strong>accessor</strong> and <strong>assignment</strong> functions that have been developed for each object class.</p>
+<p>This is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the @ symbol is used for assigning new values to an object.</p>
 <p>For example, consider the <code>Seasons</code> assignment function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">`Seasons&lt;-`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -389,17 +428,17 @@ Avoid using assigning values with @
   x@Years &lt;- CalcYears(x@nYear, x@pYear, x@CurrentYear, x@Seasons)
   x
 }
-&lt;bytecode: 0x000001a2f9335a80&gt;
+&lt;bytecode: 0x0000020473d96b30&gt;
 &lt;environment: namespace:MSEtool&gt;</code></pre>
 </div>
 </div>
-<p>Note that in addition to assigning the new value to the <code>Seasons</code> slot, the <code>Seasons</code> assignment function also recalculates the values for the <code>Years</code> slot, a step that would have been missed if the new value was assigned directly using the @ symbol and would likely lead to unexpected errors.</p>
+<p>Note that in addition to assigning the new value to the <code>Seasons</code> slot, the <code>Seasons</code> assignment function also recalculates the values for the <code>Years</code> slot, a step that would have been missed if the new value was assigned directly using the @ symbol and would lead to unexpected errors.</p>
 </div>
 </div>
 <p>If required, the <code>lubridate</code> package can be used to convert decimal years into dates (and back again):</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleOM</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">Years</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleOM</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Years</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/date_decimal.html">date_decimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -420,7 +459,7 @@ Important
 <div class="callout-body-container callout-body">
 <p>The <code>Seasons</code> value in the <code>OM</code> defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.</p>
 <p>The accounting in <code>openMSE</code> always starts at the beginning of the first historical year (i.e., <code>Years(SimpleOM)[1]</code>) and moves sequentially through the annual or seasonal time steps in <code>Years(SimpleOM)</code>.</p>
-<p>All stocks must have the same time units as the <code>OM</code>. See the <code>Ages</code> section below for more details.</p>
+<p>All stocks must have the same time units as the <code>OM</code>. See the <code>Ages</code> section below for an example.</p>
 <p>Additionally, because it is used to set up the time and age structure of the model, the <code>Seasons</code> value should not be changed once an operating model is constructed.</p>
 </div>
 </div>
@@ -430,9 +469,10 @@ Important
 <p>A <code>Stock</code> object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see <code>?Stock</code> for more details).</p>
 <p>Here we create an example <code>Stock</code> object using the expert judgment approach described above. The stock is loosely based on albacore <em>Thunnus alalunga</em> and should only be considered an example for demonstration purposes.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">'Example Stock'</span>,</span>
-<span>                     CommonName <span class="op">=</span> <span class="st">'Albacore'</span>,</span>
-<span>                     Species <span class="op">=</span> <span class="st">"Thunnus alalunga"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
+<span>  CommonName <span class="op">=</span> <span class="st">"Albacore"</span>,</span>
+<span>  Species <span class="op">=</span> <span class="st">"Thunnus alalunga"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In addition to <code>Name</code>, <code>CommonName</code>, and <code>Species</code> that were specified in the call to the <code>Stock()</code> function, <code>Stock</code> objects contain several other sub-objects that need to be populated:</p>
 <ol type="1">
@@ -467,86 +507,16 @@ Help Documentation
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Strictly speaking, the <code>Length</code> object is also optional if no other objects are a function of length (e.g., <code>Weight</code>, <code>Maturity</code>, <code>Fecundity</code> and <code>Selectivity</code> etc in the <code>Fleet</code> object.</p>
-<p>See <a href="OM_octopus.html" class="quarto-xref"><span>Chapter 7</span></a> for an example of an <code>OM</code> that does not use <code>Length</code>.</p>
-</div>
-</div>
 <section id="ages" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="ages">
 <span class="header-section-number">3.3.1</span> Ages</h3>
 <p>An <code>Ages</code> object contains information relating to the age structure of the stock.</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge<span class="op">=</span><span class="fl">4</span><span class="op">*</span><span class="fl">20</span>, Units<span class="op">=</span><span class="st">'quarter'</span><span class="op">)</span></span>
-<span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── An `?MSEtool::Ages()` Object ──</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── `MinAge` </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── `MaxAge` </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>80</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── `Units` </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>"quarter"</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── `Classes` (Year) </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75,
-4, 4.25, …, 19.75, and 20</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── `PlusGroup` </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> <span class="fl">20</span>, Units <span class="op">=</span> <span class="st">"quarter"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that <code>MaxAge</code> is set in time units of <code>quarter</code>. It is important that the time units in the <code>Ages</code> object matches the number of seasons in the <code>OM</code>.</p>
 <p>Also note that, following the convention in <code>Years(OM)</code> the age classes are <em>always</em> in units of year:</p>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">AgeClasses</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Classes</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  0.00  0.25  0.50  0.75  1.00  1.25  1.50  1.75  2.00  2.25  2.50  2.75
 [13]  3.00  3.25  3.50  3.75  4.00  4.25  4.50  4.75  5.00  5.25  5.50  5.75
@@ -559,11 +529,34 @@ Note
 </div>
 <p>To keep things simple, we’ll change our <code>OM</code> back to annual time-steps and re-recreate the <code>Ages</code> object accordingly:</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># annual</span></span>
-<span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># annual</span></span>
+<span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu">Classes</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+</div>
 </div>
 </section><section id="length" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="length">
 <span class="header-section-number">3.3.2</span> Length</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many sub-objects in <code>Stock</code> and <code>Fleet</code> objects are structured and populated in a similar manner to <code>Length</code> objects.</p>
+<p>This section describes populating <code>Length</code> objects in detail. the other sub-objects with a similar structure are described in less detail, and readers should refer back to this section for the specific details for the different ways to populate those objects.</p>
+</div>
+</div>
+<p>The <code>Length</code> object describes the mean length-at-age schedule and how length-at-age is distributed around the mean. This information is primarily used for two purposes:</p>
+<ol type="1">
+<li>Calculating mean weight-at-age from a length-weight relationship a the mean length-at-age</li>
+<li>Calculating the age-length key for converting at-age values (such as maturity-at-age) to at-length (i.e., maturity-at-length) and vice versa, and for generating catch-at-length data.</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -574,41 +567,343 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Most sub-objects in <code>Stock</code> and <code>Fleet</code> objects are structured and populated in a similar manner to <code>Length</code> objects.</p>
-<p>This section describes populating <code>Length</code> objects in detail. Other sub-objects are described in less detail, and readers should refer back to this section for the specific details.</p>
+<p>The <code>Length</code> object is optional if no other objects are a function of length (e.g., <code>Weight</code>, <code>Maturity</code>, <code>Fecundity</code> and <code>Selectivity</code> etc in the <code>Fleet</code> object, and there is no requirement to generate catch-at-length data.</p>
 </div>
 </div>
-<p>The <code>Length</code> object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.</p>
-<p>The main pieces of information in the <code>Length</code> object are stored in slots named:</p>
-<ol type="1">
-<li>
-<code>MeanAtAge</code>: the mean length-at-age schedule</li>
-<li>
-<code>ASK</code>: the age-size key used to convert at-length schedules to at-age (and vice versa)</li>
-</ol>
-<p><code>MeanAtAge</code> can be specified in two ways:</p>
+<p>The <code>Length()</code> function is used to create <code>Length</code> objects.</p>
+<p>The help documentation for this function (<code>?Length</code>) provides details on the contents of the <code>Length</code> object and a description of the arguments for the <code>Length()</code> function (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
+<p>Users must provide information to populate <code>MeanAtAge</code> and <code>CVatAge</code> in a <code>Length</code> object.</p>
+<p><code>MeanAtAge</code> is common to all objects that contain at-age information, and, as the name suggests, contains information describing the mean at-age schedule (in this case the mean length-at-age).</p>
+<p><code>CVatAge</code> contains the coefficient of variability for the distribution of length-at-age, which can be either normally (<code>Dist='normal'</code>) or log-normally (<code>Dist='lognormal'</code>) distributed around <code>MeanAtAge</code>.</p>
+<p>Ultimately both <code>MeanAtAge</code> and <code>CVatAge</code> will be internally 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years but as noted above, for seasonal models the time steps will actually be decimal years). However, the <code>openMSE</code> objects have been designed such that users only need to enter the minimal information to populate the model.</p>
+<div id="fig-length_help" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Length_help.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Screenshot of the help documentation for the <code>Length</code> function
+</figcaption></figure>
+</div>
+</section><section id="methods-for-populating-age--and-time-dynamic-values" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="methods-for-populating-age--and-time-dynamic-values">
+<span class="header-section-number">3.3.3</span> Methods for Populating Age- and Time-Dynamic Values</h3>
+<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
+<p>There are several ways to include uncertainty in the values for <code>CVatAge</code> , and have it vary by simulation, age, and/or time step. These approaches are described in the sub-sections below. In general, all age- and time-dynamic values can be populated in the same manner.</p>
+<section id="stochastic-samples-from-a-uniform-distribution" class="level4" data-number="3.3.3.1"><h4 data-number="3.3.3.1" class="anchored" data-anchor-id="stochastic-samples-from-a-uniform-distribution">
+<span class="header-section-number">3.3.3.1</span> Stochastic Samples from a Uniform Distribution</h4>
+<p>The easiest way to include uncertainty is to sample from a uniform distribution. To do this, enter to numeric values representing the lower and upper bounds of a uniform distribution:</p>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The above code creates a new <code>Length</code> class object with only the <code>CVatAge</code> slot populated.</p>
+<p>This object is processed internally to sample from a uniform distribution with these bounds and produce an array with the correct dimensions.</p>
+<p>This is done internally by the <code>Populate</code> function, which is run here on the <code>Length_CV_uniform</code> object to demonstrate:</p>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">Length_CV_uniform</span>,</span>
+<span>  Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>  Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>  nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">101</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In practice, users will rarely need to call the <code>Populate</code> function as this processing is done internally in the <code>Simulate</code> function.</p>
+<p><code>CVatAge</code> in <code>Length_CV_uniform</code> is now a 3-dimensional array:</p>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 1 1</code></pre>
+</div>
+</div>
+<p>with the value for each simulation drawn from a uniform distribution with the specified bounds:</p>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2006
+
+   Age
+Sim         0
+  1 0.1372198
+  2 0.1043825
+  3 0.1709684
+  4 0.1657690
+  5 0.1249856</code></pre>
+</div>
+</div>
+<p>Once an object has been populated by <code>Populate</code> , all dimensions will be named:</p>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Sim
+[1] "1" "2" "3" "4" "5"
+
+$Age
+[1] "0"
+
+$Year
+[1] "2006"</code></pre>
+</div>
+</div>
+<p>Notice that while <code>CVatAge</code> is a 3-dimensional array, the dimensions <code>Age</code> and <code>Year</code> are only length 1 and named as the first age-class and year respectively. This is because <code>CVatAge</code> in this example only varies by simulation and is constant for all ages-classes and years. Internally, the array will be expanded out for all age-classes and years.</p>
+<p>The values for <code>CVatAge</code> can also be entered as a vector of length <code>nSim</code> (provided <code>nSim &gt; 1</code> ). The following are will result in the same output:</p>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># numeric length nSim</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_1</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2006
+
+   Age
+Sim         0
+  1 0.1372198
+  2 0.1043825
+  3 0.1709684
+  4 0.1657690
+  5 0.1249856</code></pre>
+</div>
+</div>
+<p>This approach can be also used to sample values from different distributions, for example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sample from log-normal distribution</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu">trlnorm</span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_lognorm</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_lognorm</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2006
+
+   Age
+Sim         0
+  1 0.1378900
+  2 0.1640934
+  3 0.1286837
+  4 0.1534657
+  5 0.1564240</code></pre>
+</div>
+</div>
+</section><section id="age-specific-values" class="level4" data-number="3.3.3.2"><h4 data-number="3.3.3.2" class="anchored" data-anchor-id="age-specific-values">
+<span class="header-section-number">3.3.3.2</span> Age-Specific Values</h4>
+<p>Age-specific values can be generated by specifying <code>CVatAge</code> as an array with dimensions <code>nSim</code> and <code>nAge</code> :</p>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">*</span> </span>
+<span>                         <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>, </span>
+<span>                       <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
+<span>    <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_Age</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_Age</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Sim
+[1] "1" "2" "3" "4" "5"
+
+$Age
+ [1] "0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
+[16] "15" "16" "17" "18" "19" "20"
+
+$Year
+[1] "2006"</code></pre>
+</div>
+</div>
+</section><section id="time--and-age-specific-values" class="level4" data-number="3.3.3.3"><h4 data-number="3.3.3.3" class="anchored" data-anchor-id="time--and-age-specific-values">
+<span class="header-section-number">3.3.3.3</span> Time- and Age-Specific Values</h4>
+<p>The same approach can be used to generate values that vary of both age and time:</p>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">*</span> </span>
+<span>                         <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">*</span> </span>
+<span>                         <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>                       <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
+<span>    <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_Age_Time</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_Age_Time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Sim
+[1] "1" "2" "3" "4" "5"
+
+$Age
+ [1] "0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
+[16] "15" "16" "17" "18" "19" "20"
+
+$Year
+ [1] "2006" "2007" "2008" "2009" "2010" "2011" "2012" "2013" "2014" "2015"
+[11] "2016" "2017" "2018" "2019" "2020" "2021" "2022" "2023" "2024" "2025"
+[21] "2026" "2027" "2028" "2029" "2030" "2031" "2032" "2033" "2034" "2035"</code></pre>
+</div>
+</div>
+</section><section id="populating-meanatage" class="level4" data-number="3.3.3.4"><h4 data-number="3.3.3.4" class="anchored" data-anchor-id="populating-meanatage">
+<span class="header-section-number">3.3.3.4</span> Populating <code>MeanAtAge</code>
+</h4>
+<p>The section above</p>
+<p>Here the process to create and populate a <code>Length</code> object is broken into several steps. In practice this can be done in one or two lines of code.</p>
+<p>Create a new <code>Length</code> object:</p>
+<p>The mean length-at-age schedule is stored in a slot named <code>MeanAtAge</code>, which can be specified in two ways:</p>
 <ol type="1">
 <li>A growth model and a list of the respective parameter values</li>
 <li>Directly as an array specifying the mean length-at-age for each simulation and year.</li>
-</ol>
-<section id="model-and-parameters" class="level4" data-number="3.3.2.1"><h4 data-number="3.3.2.1" class="anchored" data-anchor-id="model-and-parameters">
-<span class="header-section-number">3.3.2.1</span> Model and Parameters</h4>
-</section><section id="assign-array-directly" class="level4" data-number="3.3.2.2"><h4 data-number="3.3.2.2" class="anchored" data-anchor-id="assign-array-directly">
-<span class="header-section-number">3.3.2.2</span> Assign Array Directly</h4>
-</section></section><section id="weight" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="weight">
-<span class="header-section-number">3.3.3</span> Weight</h3>
-</section><section id="naturalmortality" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="naturalmortality">
-<span class="header-section-number">3.3.4</span> NaturalMortality</h3>
-</section><section id="maturity" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="maturity">
-<span class="header-section-number">3.3.5</span> Maturity</h3>
-</section><section id="fecundity" class="level3" data-number="3.3.6"><h3 data-number="3.3.6" class="anchored" data-anchor-id="fecundity">
-<span class="header-section-number">3.3.6</span> Fecundity</h3>
-</section><section id="srr" class="level3" data-number="3.3.7"><h3 data-number="3.3.7" class="anchored" data-anchor-id="srr">
-<span class="header-section-number">3.3.7</span> SRR</h3>
-</section><section id="spatial" class="level3" data-number="3.3.8"><h3 data-number="3.3.8" class="anchored" data-anchor-id="spatial">
-<span class="header-section-number">3.3.8</span> Spatial</h3>
-</section><section id="depletion" class="level3" data-number="3.3.9"><h3 data-number="3.3.9" class="anchored" data-anchor-id="depletion">
-<span class="header-section-number">3.3.9</span> Depletion</h3>
+</ol></section><section id="model-and-parameters" class="level4" data-number="3.3.3.5"><h4 data-number="3.3.3.5" class="anchored" data-anchor-id="model-and-parameters">
+<span class="header-section-number">3.3.3.5</span> Model and Parameters</h4>
+<p>The <code>Model</code> and <code>Pars</code> slots are used to generate the mean length-at-age.</p>
+<p><code>Model</code> specifies the growth function, and <code>Pars</code> is a named list with the parameter values.</p>
+<p>If the names in <code>Pars</code> corresponds with a built-in growth model, <code>Model</code> will be set automatically and does not need to be defined. Alternatively, <code>Model</code> can be a R function that takes an <code>Ages</code> object as the first argument followed by the additional parameters that describe the mean length-at-age relationship.</p>
+<p>Currently <code>openMSE</code> includes one built-in growth model: the von Bertalanffy growth function:</p>
+<p><span class="math display">\[
+L_a = L_\infty(1-\exp(-K(a-t_0))
+\]</span> In general, a list of built-in models for a specific object class can be printed to the console with <code>[CLASS]Models()</code>, for example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">LengthModels</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Model: `?MSEtool::vonBert()`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Pars: `Linf`, `K`, and `t0`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Other argument(s): `Ages`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Class: `Length-at-Age-Model`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># DefaultLength &lt;- Length()</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Populate(DefaultLength)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># ?Populate</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Length(SimpleStock) &lt;- Length()</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Populate(Length(SimpleStock))</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Pars=list(Linf=c(121, 135),</span></span>
+<span><span class="co">#           K=c(0.16, 0.22),</span></span>
+<span><span class="co">#           t0=c(-1.86, -1.41))</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Redundant - 1D array with dimension nSim</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Redundant - 2D array with dimensions, nSim</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_2</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu">CVatAge</span><span class="op">(</span><span class="va">Length_CV_uniform_2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2006
+
+   Age
+Sim         0
+  1 0.1372198
+  2 0.1043825
+  3 0.1709684
+  4 0.1657690
+  5 0.1249856</code></pre>
+</div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Redundant - 3D array with dimensions, nSim, 1, 1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Length_CV_uniform_3</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu">CVatAge</span><span class="op">(</span><span class="va">Length_CV_uniform_3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2006
+
+   Age
+Sim         0
+  1 0.1372198
+  2 0.1043825
+  3 0.1709684
+  4 0.1657690
+  5 0.1249856</code></pre>
+</div>
+</div>
+<p><code>Model</code> can either be a character string specifying the name of the growth model corresponding with the named parameters in <code>Pars</code>, or</p>
+</section><section id="assign-array-directly" class="level4" data-number="3.3.3.6"><h4 data-number="3.3.3.6" class="anchored" data-anchor-id="assign-array-directly">
+<span class="header-section-number">3.3.3.6</span> Assign Array Directly</h4>
+</section><section id="other-information" class="level4" data-number="3.3.3.7"><h4 data-number="3.3.3.7" class="anchored" data-anchor-id="other-information">
+<span class="header-section-number">3.3.3.7</span> Other Information</h4>
+</section></section><section id="weight" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="weight">
+<span class="header-section-number">3.3.4</span> Weight</h3>
+</section><section id="naturalmortality" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="naturalmortality">
+<span class="header-section-number">3.3.5</span> NaturalMortality</h3>
+</section><section id="maturity" class="level3" data-number="3.3.6"><h3 data-number="3.3.6" class="anchored" data-anchor-id="maturity">
+<span class="header-section-number">3.3.6</span> Maturity</h3>
+</section><section id="fecundity" class="level3" data-number="3.3.7"><h3 data-number="3.3.7" class="anchored" data-anchor-id="fecundity">
+<span class="header-section-number">3.3.7</span> Fecundity</h3>
+</section><section id="srr" class="level3" data-number="3.3.8"><h3 data-number="3.3.8" class="anchored" data-anchor-id="srr">
+<span class="header-section-number">3.3.8</span> SRR</h3>
+</section><section id="spatial" class="level3" data-number="3.3.9"><h3 data-number="3.3.9" class="anchored" data-anchor-id="spatial">
+<span class="header-section-number">3.3.9</span> Spatial</h3>
+</section><section id="depletion" class="level3" data-number="3.3.10"><h3 data-number="3.3.10" class="anchored" data-anchor-id="depletion">
+<span class="header-section-number">3.3.10</span> Depletion</h3>
 </section></section><section id="specify-a-fleet" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="specify-a-fleet">
 <span class="header-section-number">3.4</span> Specify a Fleet</h2>
 </section><section id="populate-om" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="populate-om">
@@ -1016,13 +1311,13 @@ Note
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./operatingmodels.html" class="pagination-link" aria-label="Constructing Operating Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Constructing Operating Models</span>
+      <a href="./walkthrough.html" class="pagination-link" aria-label="Example of the MSE Process">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Example of the MSE Process</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./OM_condition.html" class="pagination-link" aria-label="Conditioning OMs">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditioning OMs</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./operatingmodels.html" class="pagination-link" aria-label="Constructing Operating Models">
+        <span class="nav-page-text">Constructing Operating Models</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

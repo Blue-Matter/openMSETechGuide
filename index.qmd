@@ -1,4 +1,4 @@
-# Introduction {.unnumbered} 
+# Introduction {.unnumbered}   
 
 Welcome to the **openMSE Technical Manual**.
 
@@ -9,7 +9,7 @@ This book is intended for fisheries scientists and other analysts who wish to le
 -   conducting closed-loop simulation testing;
 -   summarizing and presenting results.
 
-## About openMSE
+## About openMSE  
 
 `openMSE` is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries. 
 
@@ -46,6 +46,7 @@ and loaded into the R session with:
 #| eval: false
 library('openMSE')
 ```
+
 
 
 Installing and loading the `openMSE` package will install and load the following core packages:

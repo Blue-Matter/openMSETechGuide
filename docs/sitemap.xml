@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://docs.openMSE.com/index.html</loc>
-    <lastmod>2025-12-09T20:44:25.088Z</lastmod>
+    <lastmod>2025-12-11T22:46:10.526Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/OM_overview.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://docs.openMSE.com/OM_build.html</loc>
-    <lastmod>2025-12-09T23:19:07.045Z</lastmod>
+    <lastmod>2025-12-11T22:08:56.535Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/Eq_overview.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://docs.openMSE.com/getting_started.html</loc>
-    <lastmod>2025-12-09T22:03:36.923Z</lastmod>
+    <lastmod>2025-12-11T22:38:59.578Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/acknowledgements.html</loc>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://docs.openMSE.com/openmse.html</loc>
-    <lastmod>2025-12-09T22:12:04.583Z</lastmod>
+    <lastmod>2025-12-11T22:42:42.310Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/references.html</loc>
@@ -67,5 +67,41 @@
   <url>
     <loc>https://docs.openMSE.com/OM_casestudies.html</loc>
     <lastmod>2025-12-09T23:28:34.457Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthrough.html</loc>
+    <lastmod>2025-12-11T22:48:05.236Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthrough_om_initialize.html</loc>
+    <lastmod>2025-12-11T22:54:53.486Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_build_stock.html</loc>
+    <lastmod>2025-12-12T00:19:07.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_build_mps.html</loc>
+    <lastmod>2025-12-11T22:29:43.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_build_fleet.html</loc>
+    <lastmod>2025-12-11T22:46:54.903Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_build_obs.html</loc>
+    <lastmod>2025-12-11T22:28:22.521Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_hist.html</loc>
+    <lastmod>2025-12-11T22:29:04.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_mse.html</loc>
+    <lastmod>2025-12-11T22:32:16.156Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/walkthough_add_objects.html</loc>
+    <lastmod>2025-12-11T22:35:27.203Z</lastmod>
   </url>
 </urlset>

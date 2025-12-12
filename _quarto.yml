@@ -5,7 +5,6 @@ project:
   type: book
   output-dir: docs
 
-
 book:
   title: "openMSE Technical Manual"
   author: "Adrian Hordyk, Quang Huynh, and Tom Carruthers"
@@ -22,9 +21,18 @@ book:
     - index.qmd
     - openmse.qmd
     - getting_started.qmd
+    - part: walkthrough.qmd
+      chapters:
+        - walkthrough_om_initialize.qmd
+        - walkthough_build_stock.qmd
+        - walkthough_build_fleet.qmd
+        - walkthough_build_obs.qmd
+        - walkthough_add_objects.qmd
+        - walkthough_hist.qmd
+        - walkthough_build_mps.qmd
+        - walkthough_mse.qmd
     - part: operatingmodels.qmd
       chapters:
-        - OM_build.qmd
         - OM_condition.qmd
         - OM_import.qmd
         - OM_convert.qmd
@@ -47,6 +55,4 @@ format:
   html:
     theme: cosmo
     code-link: true
-
-
 

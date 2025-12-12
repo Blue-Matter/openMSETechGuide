@@ -1,0 +1,9 @@
+# Example of the MSE Process 
+
+The chapters in this section follows the **Build** process indicated in @fig-flowchart to construct and populate an `OM` object, and then go through the process of simulating the historical fishery, developing some example management procedures, conducting the forward projections, and examining the MSE results.
+
+::: callout-note
+In most cases, users will likely use other methods to construct OMs, such as `Condition` (@sec-om_condition) or `Import` (@sec-om_import), where most of the steps described in the first few chapters are done automatically.
+
+However, new users are recommended to read through these chapters to understand the overall structure and contents of `OM` objects.
+:::
