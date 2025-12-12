@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
 <title>4&nbsp; Build a Stock Object – openMSE Technical Manual</title>
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -111,7 +112,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -145,7 +146,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
         <div class="sidebar-tools-main">
@@ -353,10 +354,9 @@ window.Quarto = {
 <span class="header-section-number">4.1</span> Create a New <code>Stock</code> Object</h2>
 <p>The <code>Stock()</code> function is used to create new <code>Stock</code> objects:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
-<span>  CommonName <span class="op">=</span> <span class="st">"Albacore"</span>,</span>
-<span>  Species <span class="op">=</span> <span class="st">"Thunnus alalunga"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SimpleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">'Example Stock'</span>,</span>
+<span>                     CommonName <span class="op">=</span> <span class="st">'Albacore'</span>,</span>
+<span>                     Species <span class="op">=</span> <span class="st">"Thunnus alalunga"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In addition to <code>Name</code>, <code>CommonName</code>, and <code>Species</code> that were specified in the call to the <code>Stock()</code> function, <code>Stock</code> objects contain several other sub-objects that need to be populated:</p>
 <ol type="1">
@@ -377,17 +377,17 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Help Documentation
+<span class="screen-reader-only">Tip</span>Help Documentation
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Help documentation can be accessed for all <code>openMSE</code> objects and functions, e.g.,</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">OM</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">OM</span></span>
 <span><span class="op">?</span><span class="va">Stock</span></span>
 <span><span class="op">?</span><span class="va">Ages</span></span>
 <span><span class="op">?</span><span class="va">Length</span></span>
-<span><span class="co"># etc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co"># etc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -395,30 +395,70 @@ Help Documentation
 <span class="header-section-number">4.2</span> Ages</h2>
 <p>An <code>Ages</code> object contains information relating to the age structure of the stock.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> <span class="fl">20</span>, Units <span class="op">=</span> <span class="st">"quarter"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge<span class="op">=</span><span class="fl">4</span><span class="op">*</span><span class="fl">20</span>, Units<span class="op">=</span><span class="st">'quarter'</span><span class="op">)</span></span>
+<span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── An `?MSEtool::Ages()` Object ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── `MinAge` </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── `MaxAge` </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>80</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── `Units` </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>"quarter"</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── `Classes` (Year) </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75,
+4, 4.25, …, 19.75, and 20</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── `PlusGroup` </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
 </div>
 <p>Note that <code>MaxAge</code> is set in time units of <code>quarter</code>. It is important that the time units in the <code>Ages</code> object matches the number of seasons in the <code>OM</code>.</p>
 <p>Also note that, following the convention in <code>Years(OM)</code> the age classes are <em>always</em> in units of year:</p>
-<div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Classes</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.00  0.25  0.50  0.75  1.00  1.25  1.50  1.75  2.00  2.25  2.50  2.75
-[13]  3.00  3.25  3.50  3.75  4.00  4.25  4.50  4.75  5.00  5.25  5.50  5.75
-[25]  6.00  6.25  6.50  6.75  7.00  7.25  7.50  7.75  8.00  8.25  8.50  8.75
-[37]  9.00  9.25  9.50  9.75 10.00 10.25 10.50 10.75 11.00 11.25 11.50 11.75
-[49] 12.00 12.25 12.50 12.75 13.00 13.25 13.50 13.75 14.00 14.25 14.50 14.75
-[61] 15.00 15.25 15.50 15.75 16.00 16.25 16.50 16.75 17.00 17.25 17.50 17.75
-[73] 18.00 18.25 18.50 18.75 19.00 19.25 19.50 19.75 20.00</code></pre>
-</div>
-</div>
 <p>To keep things simple, we’ll change our <code>OM</code> back to annual time-steps and re-recreate the <code>Ages</code> object accordingly:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># annual</span></span>
-<span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="fu">Classes</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># annual</span></span>
+<span><span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="length" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="length">
 <span class="header-section-number">4.3</span> Length</h2>
@@ -480,151 +520,22 @@ Figure&nbsp;4.1: Screenshot of the help documentation for the <code>Length</code
 <section id="stochastic-samples-from-distributions" class="level4" data-number="4.4.1.1"><h4 data-number="4.4.1.1" class="anchored" data-anchor-id="stochastic-samples-from-distributions">
 <span class="header-section-number">4.4.1.1</span> Stochastic Samples from Distributions</h4>
 <p>The easiest way to include uncertainty is to sample from a uniform distribution. To do this, enter to numeric values representing the lower and upper bounds of a uniform distribution:</p>
-<div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>The above code creates a new <code>Length</code> class object with only the <code>CVatAge</code> slot populated.</p>
 <p>This object is processed internally to sample from a uniform distribution with these bounds and produce an array with the correct dimensions.</p>
 <p>This is done internally by the <code>Populate</code> function, which is run here on the <code>Length_CV_uniform</code> object to demonstrate:</p>
-<div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">Length_CV_uniform</span>,</span>
-<span>  Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>  Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>  nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
-<span>  seed <span class="op">=</span> <span class="fl">101</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>In practice, users will rarely need to call the <code>Populate</code> function as this processing is done internally in the <code>Simulate</code> function.</p>
 <p><code>CVatAge</code> in <code>Length_CV_uniform</code> is now a 3-dimensional array:</p>
-<div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5 1 1</code></pre>
-</div>
-</div>
 <p>with the value for each simulation drawn from a uniform distribution with the specified bounds:</p>
-<div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>, , 1
-
-          [,1]
-[1,] 0.1372198
-[2,] 0.1043825
-[3,] 0.1709684
-[4,] 0.1657690
-[5,] 0.1249856</code></pre>
-</div>
-</div>
 <p>Once an object has been populated by <code>Populate</code> , all dimensions will be named:</p>
-<div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_CV_uniform</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
-</div>
-</div>
 <p>Notice that while <code>CVatAge</code> is a 3-dimensional array, the dimensions <code>Age</code> and <code>Year</code> are only length 1 and named as the first age-class and year respectively. This is because <code>CVatAge</code> in this example only varies by simulation and is constant for all ages-classes and years. Internally, the array will be expanded out for all age-classes and years.</p>
 <p>The values for <code>CVatAge</code> can also be entered as a vector of length <code>nSim</code> (provided <code>nSim &gt; 2</code> ). The following are will result in the same output as the code above:</p>
-<div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># numeric length nSim</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
-<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_uniform_1</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_uniform_1</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>This approach can be also used to sample values from different distributions, for example:</p>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sample from log-normal distribution</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
-<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu">trlnorm</span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_lognorm</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_lognorm</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="age-specific-values" class="level4" data-number="4.4.1.2"><h4 data-number="4.4.1.2" class="anchored" data-anchor-id="age-specific-values">
 <span class="header-section-number">4.4.1.2</span> Age-Specific Values</h4>
 <p>Age-specific values can be generated by specifying <code>CVatAge</code> as an array with dimensions <code>nSim</code> and <code>nAge</code> :</p>
-<div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
-<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span></span>
-<span>    <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">*</span></span>
-<span>      <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    <span class="fl">0.1</span>, <span class="fl">0.2</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
-<span>    <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_uniform_Age</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_uniform_Age</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
-</div>
-</div>
 </section><section id="time--and-age-specific-values" class="level4" data-number="4.4.1.3"><h4 data-number="4.4.1.3" class="anchored" data-anchor-id="time--and-age-specific-values">
 <span class="header-section-number">4.4.1.3</span> Time- and Age-Specific Values</h4>
 <p>The same approach can be used to generate values that vary of both age and time:</p>
-<div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
-<span><span class="va">CVatAge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span></span>
-<span>    <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span> <span class="op">*</span></span>
-<span>      <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">*</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    <span class="fl">0.1</span>, <span class="fl">0.2</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
-<span>    <span class="fu">nAge</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_uniform_Age_Time</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>CVatAge <span class="op">=</span> <span class="va">CVatAge</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_CV_uniform_Age_Time</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">CVatAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
-</div>
-</div>
 </section></section><section id="populating-meanatage" class="level3" data-number="4.4.2"><h3 data-number="4.4.2" class="anchored" data-anchor-id="populating-meanatage">
 <span class="header-section-number">4.4.2</span> Populating <code>MeanAtAge</code>
 </h3>
@@ -656,150 +567,12 @@ Figure&nbsp;4.2: Output printed in the console by <code>LengthModels()</code>
 <p>The structure for the values contained in <code>Pars</code> is similar to that described for <code>CVatLength</code> above, where the values can be constant over all simulations and years, or vary by simulation and/or year.</p>
 <section id="constant-values-over-simulations-and-years" class="level5" data-number="4.4.2.1.1"><h5 data-number="4.4.2.1.1" class="anchored" data-anchor-id="constant-values-over-simulations-and-years">
 <span class="header-section-number">4.4.2.1.1</span> Constant Values over Simulations and Years</h5>
-<div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_Constant</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>  Linf <span class="op">=</span> <span class="fl">121</span>,</span>
-<span>  K <span class="op">=</span> <span class="fl">0.16</span>,</span>
-<span>  t0 <span class="op">=</span> <span class="op">-</span><span class="fl">1.86</span></span>
-<span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_Constant</span> <span class="op">|&gt;</span> <span class="fu">Pars</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">Length_Constant</span> <span class="op">|&gt;</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="linf-varies-over-simulations-all-pars-constant-over-years" class="level5" data-number="4.4.2.1.2"><h5 data-number="4.4.2.1.2" class="anchored" data-anchor-id="linf-varies-over-simulations-all-pars-constant-over-years">
 <span class="header-section-number">4.4.2.1.2</span> <code>Linf</code> varies over Simulations, all <code>Pars</code> Constant over Years</h5>
-<div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Uniform distribution for Linf, constant for others</span></span>
-<span><span class="va">Length_Sim</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>  Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span>,</span>
-<span>  K <span class="op">=</span> <span class="fl">0.16</span>,</span>
-<span>  t0 <span class="op">=</span> <span class="op">-</span><span class="fl">1.86</span></span>
-<span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_Sim</span> <span class="op">|&gt;</span> <span class="fu">Pars</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">Length_Sim</span> <span class="op">|&gt;</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="time-varying-parameters" class="level5" data-number="4.4.2.1.3"><h5 data-number="4.4.2.1.3" class="anchored" data-anchor-id="time-varying-parameters">
 <span class="header-section-number">4.4.2.1.3</span> Time-Varying Parameters</h5>
 <p>Specifying time-varying parameters is a little more involved.</p>
 <p>UPTO HERE - break the code out into sections</p>
-<div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
-<span><span class="co"># Historical Years</span></span>
-<span><span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span>, <span class="st">'H'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020
-[16] 2021 2022 2023 2024 2025</code></pre>
-</div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Stochastic Linf values for all simulations for 2006 - 2018</span></span>
-<span><span class="va">Linf_06_18</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Linf doubles from 2019 on </span></span>
-<span><span class="va">Linf_19_on</span> <span class="op">&lt;-</span> <span class="va">Linf_06_18</span> <span class="op">*</span> <span class="fl">2</span></span>
-<span></span>
-<span><span class="co"># Create an array with named dimensions:</span></span>
-<span><span class="co"># Dimensions must be named `Sim` and `Year`</span></span>
-<span><span class="va">Linf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Linf_06_18</span>, <span class="va">Linf_19_on</span><span class="op">)</span>,</span>
-<span>  dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span>  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    Sim <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span>,</span>
-<span>    Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2006</span>, <span class="fl">2019</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_Sim_Year</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>  Linf <span class="op">=</span> <span class="va">Linf</span>,</span>
-<span>  K <span class="op">=</span> <span class="fl">0.16</span>,</span>
-<span>  t0 <span class="op">=</span> <span class="op">-</span><span class="fl">1.86</span></span>
-<span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">SimpleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">Length_Sim_Year</span> <span class="op">|&gt;</span> <span class="fu">Pars</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$Linf
-   Year
-Sim     2006     2019
-  1 126.2108 252.4216
-  2 121.6135 243.2271
-  3 130.9356 261.8712
-  4 130.2077 260.4153
-  5 124.4980 248.9960
-
-$K
-   Year
-Sim 2006
-  1 0.16
-
-$t0
-   Year
-Sim  2006
-  1 -1.86</code></pre>
-</div>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Length_Sim_Year</span> <span class="op">|&gt;</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>, , Year = 2006
-
-   Age
-Sim        0        1        2        3        4        5        6        7
-  1 32.48687 46.34453 58.15325 68.21598 76.79087 84.09791 90.32456 95.63056
-  2 31.30353 44.65643 56.03502 65.73121 73.99376 81.03464 87.03448 92.14721
-  3 33.70304 48.07947 60.33026 70.76970 79.66560 87.24618 93.70593 99.21056
-  4 33.51567 47.81218 59.99487 70.37627 79.22271 86.76115 93.18499 98.65902
-  5 32.04599 45.71559 57.36406 67.29022 75.74875 82.95662 89.09877 94.33276
-   Age
-Sim         8        9       10       11       12       13       14       15
-  1 100.15203 104.0050 107.2882 110.0861 112.4702 114.5018 116.2331 117.7083
-  2  96.50399 100.2166 103.3803 106.0762 108.3735 110.3311 111.9993 113.4208
-  3 103.90130 107.8985 111.3047 114.2072 116.6806 118.7883 120.5843 122.1148
-  4 103.32368 107.2986 110.6859 113.5723 116.0319 118.1279 119.9140 121.4360
-  5  98.79288 102.5935 105.8322 108.5921 110.9439 112.9479 114.6557 116.1109
-   Age
-Sim       16       17       18       19       20
-  1 118.9655 120.0367 120.9496 121.7275 122.3904
-  2 114.6322 115.6644 116.5440 117.2936 117.9323
-  3 123.4190 124.5304 125.4775 126.2845 126.9722
-  4 122.7329 123.8381 124.7799 125.5824 126.2663
-  5 117.3510 118.4077 119.3082 120.0755 120.7294
-
-, , Year = 2019
-
-   Age
-Sim        0        1        2        3        4        5        6        7
-  1 64.97373 92.68906 116.3065 136.4320 153.5817 168.1958 180.6491 191.2611
-  2 62.60706 89.31286 112.0700 131.4624 147.9875 162.0693 174.0690 184.2944
-  3 67.40607 96.15894 120.6605 141.5394 159.3312 174.4924 187.4119 198.4211
-  4 67.03134 95.62437 119.9897 140.7525 158.4454 173.5223 186.3700 197.3180
-  5 64.09198 91.43118 114.7281 134.5804 151.4975 165.9132 178.1975 188.6655
-   Age
-Sim        8        9       10       11       12       13       14       15
-  1 200.3041 208.0100 214.5765 220.1721 224.9404 229.0037 232.4661 235.4167
-  2 193.0080 200.4332 206.7605 212.1523 216.7469 220.6622 223.9986 226.8416
-  3 207.8026 215.7970 222.6093 228.4144 233.3612 237.5766 241.1687 244.2297
-  4 206.6474 214.5973 221.3718 227.1446 232.0639 236.2558 239.8280 242.8719
-  5 197.5858 205.1871 211.6645 217.1842 221.8877 225.8959 229.3114 232.2218
-   Age
-Sim       16       17       18       19       20
-  1 237.9309 240.0735 241.8992 243.4550 244.7808
-  2 229.2643 231.3288 233.0880 234.5872 235.8646
-  3 246.8381 249.0608 250.9549 252.5689 253.9443
-  4 245.4658 247.6762 249.5598 251.1648 252.5326
-  5 234.7020 236.8155 238.6164 240.1511 241.4589</code></pre>
-</div>
-</div>
 </section></section><section id="populating-meanatage-directly" class="level4" data-number="4.4.2.2"><h4 data-number="4.4.2.2" class="anchored" data-anchor-id="populating-meanatage-directly">
 <span class="header-section-number">4.4.2.2</span> Populating <code>MeanAtAge</code> Directly</h4>
 <p>Here the process to create and populate a <code>Length</code> object is broken into several steps. In practice this can be done in one or two lines of code.</p>
@@ -813,19 +586,7 @@ Sim       16       17       18       19       20
 <p>The <code>Model</code> and <code>Pars</code> slots are used to generate the mean length-at-age.</p>
 <p><code>Model</code> specifies the growth function, and <code>Pars</code> is a named list with the parameter values.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># DefaultLength &lt;- Length()</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># Populate(DefaultLength)</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># ?Populate</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># Length(SimpleStock) &lt;- Length()</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># Populate(Length(SimpleStock))</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># Pars=list(Linf=c(121, 135),</span></span>
-<span><span class="co">#           K=c(0.16, 0.22),</span></span>
-<span><span class="co">#           t0=c(-1.86, -1.41))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span>Pars<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>Model</code> can either be a character string specifying the name of the growth model corresponding with the named parameters in <code>Pars</code>, or</p>
 </section></section></section><section id="create-length-object-to-simplestock" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="create-length-object-to-simplestock">
@@ -833,16 +594,6 @@ Sim       16       17       18       19       20
 </h2>
 <p>The above sections described various ways to populate a <code>Length</code> object.</p>
 <p>Here a <code>Length</code> object is created with stochastic values for the growth parameters (<code>Pars</code>) and <code>CVatLength</code> that vary over simulations, and the object is added to the <code>SimpleStock</code> object:</p>
-<div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">SimpleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
-<span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span>,</span>
-<span>    K <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.22</span><span class="op">)</span>,</span>
-<span>    t0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.86</span>, <span class="op">-</span><span class="fl">1.41</span><span class="op">)</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="weight" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="weight">
 <span class="header-section-number">4.6</span> Weight</h2>
 </section><section id="naturalmortality" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="naturalmortality">
@@ -910,13 +661,14 @@ Sim       16       17       18       19       20
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
