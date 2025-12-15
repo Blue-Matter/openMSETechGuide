@@ -3,9 +3,9 @@
 #| include: false
 #| message: false
 #| warning: false
-#| cache: true
+#| cache: false
 library(MSEtool)
-knitr::read_chunk('../MSEtool/CaseStudies/SimpleOM/SimpleOM.R')
+knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 ```
 
 # Build an `OM` Object {#sec-om_build}
@@ -37,11 +37,10 @@ Similarly, the number of historical years and projection years can be changed:
 
 `CurrentYear` is the last historical year before the projections begin, and is automatically set to the current calendar year:
 
-```{r}
-CurrentYear(SimpleOM)
+```{r current-year-read}
 ```
 
-This can be over-written using either the `CurrentYear` argument in `OM()` or by assigning a new value to the `SimpleOM` object with `CurrentYear()`:
+This can be over-written using either the `CurrentYear` argument in `OM()` or by assigning a new value to the `OM` object with `CurrentYear()`:
 
 ```{r current-year-assign}
 
@@ -49,9 +48,8 @@ This can be over-written using either the `CurrentYear` argument in `OM()` or by
 
 The `Years` function can be used to return the values of the historical or projection years:
 
-```{r}
-Years(SimpleOM, 'H') 
-Years(SimpleOM, 'P') 
+```{r, years-read}
+
 ```
 
 Unless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the `Seasons` slot of the `OM` object:
@@ -68,16 +66,14 @@ Almost all `openMSE` objects have been developed using the [R S4 system](https:/
 
 S4 objects contain **slots**, named components of the object that can be accessed using the \@ operator (this is analogous to using the \$ symbol to access contents of S3 objects), for example:
 
-```{r}
-slotNames(SimpleOM)
-SimpleOM@nSim
+```{r om-slotnames}
 ```
 
 The \@ symbol ***can*** be used to assign new values to slots, for example:
 
 ```{r}
 #| eval: false
-SimpleOM@nSim <- 5
+ExampleOM@nSim <- 5
 ```
 
 However, while earlier versions of `openMSE` advocated using the \@ symbol to access slots and assign new values, this practice is not recommended for `openMSE 2.0`.
@@ -88,8 +84,8 @@ This is especially important when assigning new values, where the assignment fun
 
 For example, consider the `Seasons` assignment function:
 
-```{r}
-`Seasons<-`
+```{r print-season}
+
 ```
 
 Note that in addition to assigning the new value to the `Seasons` slot, the `Seasons` assignment function also recalculates the values for the `Years` slot, a step that would have been missed if the new value was assigned directly using the \@ symbol and would lead to unexpected errors.
@@ -104,7 +100,7 @@ If required, the `lubridate` package can be used to convert decimal years into d
 ::: callout-important
 The `Seasons` value in the `OM` defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.
 
-The accounting in `openMSE` always starts at the beginning of the first historical year (i.e., `Years(SimpleOM)[1]`) and moves sequentially through the annual or seasonal time steps in `Years(SimpleOM)`.
+The accounting in `openMSE` always starts at the beginning of the first historical year (i.e., `Years(ExampleOM)[1]`) and moves sequentially through the annual or seasonal time steps in `Years(ExampleOM)`.
 
 All stocks must have the same time units as the `OM`. See the `Ages` section below for an example.
 

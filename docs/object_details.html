@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>3&nbsp; Build an OM Object – openMSE Technical Manual</title>
+<title>More Details on Object Classes – openMSE Technical Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,41 +18,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -62,8 +27,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./walkthough_build_stock.html" rel="next">
-<link href="./walkthrough.html" rel="prev">
+<link href="./length_object.html" rel="next">
+<link href="./OM_octopus.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -110,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./walkthrough.html">Example of the MSE Process</a></li><li class="breadcrumb-item"><a href="./walkthrough_om_initialize.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./object_details.html">More Details on Object Classes</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./walkthrough_om_initialize.html" class="sidebar-item-text sidebar-link active">
+  <a href="./walkthrough_om_initialize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></a>
   </div>
 </li>
@@ -262,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./object_details.html" class="sidebar-item-text sidebar-link">
+            <a href="./object_details.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">More Details on Object Classes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -298,19 +263,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-<li><a href="#initialize-om" id="toc-initialize-om" class="nav-link active" data-scroll-target="#initialize-om"><span class="header-section-number">3.1</span> Initialize OM</a></li>
-  <li><a href="#years-and-seasons" id="toc-years-and-seasons" class="nav-link" data-scroll-target="#years-and-seasons"><span class="header-section-number">3.2</span> Years and Seasons</a></li>
-  <li><a href="#om-metadata" id="toc-om-metadata" class="nav-link" data-scroll-target="#om-metadata"><span class="header-section-number">3.3</span> <code>OM</code> Metadata</a></li>
-  <li><a href="#other-contents-of-the-om-object" id="toc-other-contents-of-the-om-object" class="nav-link" data-scroll-target="#other-contents-of-the-om-object"><span class="header-section-number">3.4</span> Other Contents of the <code>OM</code> Object</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/walkthrough_om_initialize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./walkthrough.html">Example of the MSE Process</a></li><li class="breadcrumb-item"><a href="./walkthrough_om_initialize.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-om_build" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">More Details on Object Classes</h1>
 </div>
 
 
@@ -324,128 +282,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>This chapter describes the process to create an <code>OM</code> object and explore some of its properties.</p>
-<section id="initialize-om" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="initialize-om">
-<span class="header-section-number">3.1</span> Initialize OM</h2>
-<p>The <code>OM()</code> function is used to create a new Operating Model object (see <code>?OM</code>). The contents of the <code>OM</code> can be specified with arguments to the <code>OM</code> function:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span><span class="st">"Example OM"</span>,</span>
-<span>                nYear <span class="op">=</span> <span class="fl">30</span>,</span>
-<span>                pYear <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>                nSim <span class="op">=</span> <span class="fl">48</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>or by using functions matching the names of the slots in the object.</p>
-<p>For example, here we’ll change the number of independent stochastic simulations in our OM from the default <code>nSim=48</code> to a small number so that the code runs very quickly:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">nSim</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 48</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">nSim</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span><span class="fu">nSim</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-</div>
-<p>Similarly, the number of historical years and projection years can be changed:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">nYear</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
-<span><span class="fu">pYear</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section><section id="years-and-seasons" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="years-and-seasons">
-<span class="header-section-number">3.2</span> Years and Seasons</h2>
-<p><code>CurrentYear</code> is the last historical year before the projections begin, and is automatically set to the current calendar year:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CurrentYear</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2025</code></pre>
-</div>
-</div>
-<p>This can be over-written using either the <code>CurrentYear</code> argument in <code>OM()</code> or by assigning a new value to the <code>OM</code> object with <code>CurrentYear()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CurrentYear</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2020</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The <code>Years</code> function can be used to return the values of the historical or projection years:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span>, <span class="st">'H'</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
-[16] 2016 2017 2018 2019 2020</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span>, <span class="st">'P'</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 2021 2022 2023 2024 2025 2026 2027 2028 2029 2030</code></pre>
-</div>
-</div>
-<p>Unless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the <code>Seasons</code> slot of the <code>OM</code> object:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="co"># 4-quarters</span></span>
-<span><span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span>, <span class="st">"H"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2001.000 2001.247 2001.496 2001.748 2002.000 2002.247 2002.496 2002.748</code></pre>
-</div>
-</div>
-<p>As shown above, <code>Seasons</code> changes the values of the historical and projection years into decimal years corresponding with the specified number of seasons within a year.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Avoid using assigning values with @
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Almost all <code>openMSE</code> objects have been developed using the <a href="https://adv-r.hadley.nz/s4.html">R S4 system</a>.</p>
-<p>S4 objects contain <strong>slots</strong>, named components of the object that can be accessed using the @ operator (this is analogous to using the $ symbol to access contents of S3 objects), for example:</p>
-<p>The @ symbol <strong><em>can</em></strong> be used to assign new values to slots, for example:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleOM</span><span class="op">@</span><span class="va">nSim</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>However, while earlier versions of <code>openMSE</code> advocated using the @ symbol to access slots and assign new values, this practice is not recommended for <code>openMSE 2.0</code>.</p>
-<p>Instead, users are encouraged to use the <strong>accessor</strong> and <strong>assignment</strong> functions that have been developed for each object class.</p>
-<p>This is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the @ symbol is used for assigning new values to an object.</p>
-<p>For example, consider the <code>Seasons</code> assignment function:</p>
-<p>Note that in addition to assigning the new value to the <code>Seasons</code> slot, the <code>Seasons</code> assignment function also recalculates the values for the <code>Years</code> slot, a step that would have been missed if the new value was assigned directly using the @ symbol and would lead to unexpected errors.</p>
-</div>
-</div>
-<p>If required, the <code>lubridate</code> package can be used to convert decimal years into dates (and back again):</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleOM</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Years</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/date_decimal.html">date_decimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2001-01-01" "2001-04-01" "2001-07-01" "2001-09-30" "2002-01-01"
-[6] "2002-04-01"</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>Seasons</code> value in the <code>OM</code> defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.</p>
-<p>The accounting in <code>openMSE</code> always starts at the beginning of the first historical year (i.e., <code>Years(ExampleOM)[1]</code>) and moves sequentially through the annual or seasonal time steps in <code>Years(ExampleOM)</code>.</p>
-<p>All stocks must have the same time units as the <code>OM</code>. See the <code>Ages</code> section below for an example.</p>
-<p>Additionally, because it is used to set up the time and age structure of the model, the <code>Seasons</code> value should not be changed once an operating model is constructed.</p>
-</div>
-</div>
-</section><section id="om-metadata" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="om-metadata">
-<span class="header-section-number">3.3</span> <code>OM</code> Metadata</h2>
-</section><section id="other-contents-of-the-om-object" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="other-contents-of-the-om-object">
-<span class="header-section-number">3.4</span> Other Contents of the <code>OM</code> Object</h2>
-<p><code>OM</code> objects can contain one or more <code>Stock</code> objects.</p>
+</header>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -845,13 +685,13 @@ Important
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./walkthrough.html" class="pagination-link" aria-label="Example of the MSE Process">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Example of the MSE Process</span>
+      <a href="./OM_octopus.html" class="pagination-link" aria-label="Octopus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Octopus</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./walkthough_build_stock.html" class="pagination-link" aria-label="Build a `Stock` Object">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./length_object.html" class="pagination-link" aria-label="The `Length` Object">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">The <code>Length</code> Object</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -859,4 +699,4 @@ Important
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/walkthrough_om_initialize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/object_details.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

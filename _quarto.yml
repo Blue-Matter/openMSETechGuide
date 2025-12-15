@@ -39,6 +39,9 @@ book:
     - part: OM_casestudies.qmd
       chapters:
         - OM_octopus.qmd
+    - part: object_details.qmd
+      chapters:
+        - length_object.qmd
     - part: Eq_overview.qmd
       chapters:
         - Eq_popdynamics.qmd
