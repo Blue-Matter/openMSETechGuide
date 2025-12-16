@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,14 +36,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,7 +103,8 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
@@ -428,7 +430,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="overview-of-the-mse-process" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="overview-of-the-mse-process"><span class="header-section-number">2.1</span> Overview of the MSE Process</h2>
 <p><code>openMSE</code> is designed with an object-oriented programming (OOP) paradigm, where the code is organized around <strong>objects</strong>, which contain relevant data, and <strong>functions</strong> (methods) that operate on those data.</p>
-<p><a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-flowchart</span></a> shows a conceptual overview of the MSE process in <code>openMSE</code>, with colors indicating the primary <span style="background:#21b0fe;"><strong>objects</strong></span> and the <span style="background:#fed700;"><strong>functions</strong></span>.</p>
+<p><a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows a conceptual overview of the MSE process in <code>openMSE</code>, with colors indicating the primary <span style="background:#21b0fe;"><strong>objects</strong></span> and the <span style="background:#fed700;"><strong>functions</strong></span>.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -477,10 +479,10 @@ Figure&nbsp;2.1: An overview of the primary objects and functions used in the MS
 <section id="the-om-object" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="the-om-object"><span class="header-section-number">2.2</span> The OM Object</h2>
 <p>The Operating Model (<code>OM</code>) object is the main component of the MSE framework. An <code>OM</code> describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.</p>
-<p>The sections below briefly describe the various ways to construct an <code>OM</code> (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-flowchart</span></a>). <a href="#sec-object_om" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_om</span></a> provides more details on the <code>OM</code> object.</p>
+<p>The sections below briefly describe the various ways to construct an <code>OM</code> (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>). <a href="object_om.html" class="quarto-xref"><span>Chapter 15</span></a> provides more details on the <code>OM</code> object.</p>
 <section id="build-an-om" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="build-an-om"><span class="header-section-number">2.2.1</span> Build an OM</h3>
-<p>The first method, indicated by <span style="background:#fe218b;"><code>Build</code></span> in <a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-flowchart</span></a>, is a process rather than applying a single function.</p>
+<p>The first method, indicated by <span style="background:#fe218b;"><code>Build</code></span> in <a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>, is a process rather than applying a single function.</p>
 <p>The build process involves creating a new <code>OM</code> object, and manually populating the various elements of the object using a combination of expert judgement and available fishery data.</p>
 <p>This process is most often used in data-limited situations, where there is insufficient data or information to use one of the other approaches.</p>
 <p>The next part in this manual, <a href="walkthrough.html">Example of the MSE Process</a>, provides an example of constructing an <code>OM</code> using the <code>Build</code> process. Although this method may not be commonly used in practice, users are recommended to read through the examples in <a href="walkthrough.html">Example of the MSE Process</a> to familiarize themselves with the general structure and contents of <code>OM</code> objects.</p>
@@ -490,35 +492,35 @@ Figure&nbsp;2.1: An overview of the primary objects and functions used in the MS
 <p>Operating models are often generated by fitting a fishery population dynamics model to time-series fishery data (e.g., historical catches, indices of abundance, age and/or length compositions).</p>
 <p>This process is known as <strong>OM conditioning</strong>, and is analogous to a conventional stock assessment. However, unlike a stock assessment where the aim is to provide a scientific estimate of the status of the stock (e.g., current biomass relative to a biological reference point), OMs are designed to incorporate the key uncertainties in the knowledge of the fishery system. In other words, while a stock assessment produces a single estimate of the historical fishery dynamics (aka the ‘best model’ approach), an operating model accounts for uncertainties and contains many different hypotheses of plausible fishery dynamics.</p>
 <p><code>openMSE's</code> <a href="https://samtool.openmse.com/reference/RCM.html">Rapid Conditioning Model (RCM)</a> is designed to condition operating models for a wide range of life-history types and data availability scenarios.</p>
-<p><a href="#sec-om_condition" class="quarto-xref"><span class="quarto-unresolved-ref">sec-om_condition</span></a> provides an example of using the <code>Condition</code> function to condition an <code>OM</code> from fishery data.</p>
+<p><a href="OM_condition.html" class="quarto-xref"><span>Chapter 11</span></a> provides an example of using the <code>Condition</code> function to condition an <code>OM</code> from fishery data.</p>
 </section>
 <section id="import-an-om" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="import-an-om"><span class="header-section-number">2.2.3</span> Import an OM</h3>
 <p><code>openMSE</code> supports importing operating models from several commonly used stock assessment frameworks, including <a href="https://nmfs-ost.github.io/ss3-website/">Stock Synthesis 3 (SS3)</a> and the <a href="https://repository.library.noaa.gov/view/noaa/4847">Beaufort Assessment Model (BAM)</a>.</p>
-<p><a href="#sec-om_import" class="quarto-xref"><span class="quarto-unresolved-ref">sec-om_import</span></a> provides an example of using the <code>Import</code> functions to import an <code>OM</code> from stock assessment output.</p>
+<p><a href="OM_import.html" class="quarto-xref"><span>Chapter 12</span></a> provides an example of using the <code>Import</code> functions to import an <code>OM</code> from stock assessment output.</p>
 </section>
 <section id="convert-an-om" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="convert-an-om"><span class="header-section-number">2.2.4</span> Convert an OM</h3>
-<p>The <code>Convert</code> function is used to convert <code>OM</code> objects (as well as other objects) that were created in earlier versions of <code>openMSE</code> (see <a href="#sec-openmse" class="quarto-xref"><span class="quarto-unresolved-ref">sec-openmse</span></a>) to the new object structure developed in <code>openMSE 2.0</code>.</p>
-<p><a href="#sec-om_convert" class="quarto-xref"><span class="quarto-unresolved-ref">sec-om_convert</span></a> provides an example of using the <code>Convert</code> function to convert <code>OM</code> objects developed with earlier versions of <code>openMSE</code> to be compatible with <code>openMSE 2.0</code>.</p>
+<p>The <code>Convert</code> function is used to convert <code>OM</code> objects (as well as other objects) that were created in earlier versions of <code>openMSE</code> (see <a href="about_openmse.html" class="quarto-xref"><span>Chapter 1</span></a>) to the new object structure developed in <code>openMSE 2.0</code>.</p>
+<p><a href="OM_convert.html" class="quarto-xref"><span>Chapter 13</span></a> provides an example of using the <code>Convert</code> function to convert <code>OM</code> objects developed with earlier versions of <code>openMSE</code> to be compatible with <code>openMSE 2.0</code>.</p>
 </section>
 </section>
 <section id="the-hist-object" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="the-hist-object"><span class="header-section-number">2.3</span> The Hist Object</h2>
-<p><code>Hist</code> objects are created by applying the <code>Simulate</code> function to <code>OM</code> objects (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-flowchart</span></a>).</p>
+<p><code>Hist</code> objects are created by applying the <code>Simulate</code> function to <code>OM</code> objects (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
 <p><code>Hist</code> objects contain the simulated historical fishery dynamics and are used to project the model forward in time under a range of different management policies (i.e., management procedures).</p>
-<p><a href="#sec-object_hist" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_hist</span></a> describes the <code>Hist</code> object in more detail.</p>
+<p><a href="object_hist.html" class="quarto-xref"><span>Chapter 27</span></a> describes the <code>Hist</code> object in more detail.</p>
 </section>
 <section id="the-mse-object" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="the-mse-object"><span class="header-section-number">2.4</span> The MSE Object</h2>
-<p><code>MSE</code> objects are created by applying the <code>Project</code> function to <code>Hist</code> objects, together with the management procedure (<code>MP</code>) functions that will be used to provide the management advice that was implemented in the simulated fishery (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-flowchart</span></a>).</p>
+<p><code>MSE</code> objects are created by applying the <code>Project</code> function to <code>Hist</code> objects, together with the management procedure (<code>MP</code>) functions that will be used to provide the management advice that was implemented in the simulated fishery (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
 <p><code>MSE</code> objects contain the fishery dynamics from both the historical period (<code>Hist</code>) and the projection period where the <code>MPs</code> were applied.</p>
-<p><a href="#sec-object_mse" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_mse</span></a> describes the <code>MSE</code> object in more detail.</p>
+<p><a href="object_mse.html" class="quarto-xref"><span>Chapter 28</span></a> describes the <code>MSE</code> object in more detail.</p>
 </section>
 <section id="the-data-object" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="the-data-object"><span class="header-section-number">2.5</span> The <code>Data</code> Object</h2>
 <p><code>Data</code> objects contain the fishery data that can be used by the <a href="management_procedures.html">Management Procedures</a>. This fishery data can either be real observed data or simulated data generated by the model.</p>
-<p><a href="#sec-object_data" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_data</span></a> describes the <code>Data</code> object in more detail.</p>
+<p><a href="object_data.html" class="quarto-xref"><span>Chapter 29</span></a> describes the <code>Data</code> object in more detail.</p>
 
 
 </section>
@@ -575,13 +577,14 @@ Figure&nbsp;2.1: An overview of the primary objects and functions used in the MS
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

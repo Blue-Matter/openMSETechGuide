@@ -42,7 +42,7 @@ Notice that, because in this object mean length-at-age is constant over time, wh
 There are several other ways to specify values for `Pars`, `MeanAtAge`, and `CVatAge`, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in @sec-object_length.
 
 
-## Methods for Populating Age- and Time-Dynamic Values {#sec-object_length}
+## Methods for Populating Age- and Time-Dynamic Values
 
 Examples ...
 

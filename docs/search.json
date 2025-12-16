@@ -1,5 +1,55 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "openMSE Technical Manual",
+    "section": "",
+    "text": "Introduction\nWelcome to the openMSE Technical Manual.\nThis book is intended for fisheries scientists and other analysts who wish to learn how to use openMSE for all aspects of Management Strategy Evaluation (MSE):",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#about-openmse",
+    "href": "index.html#about-openmse",
+    "title": "openMSE Technical Manual",
+    "section": "About openMSE",
+    "text": "About openMSE\nopenMSE is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.\nopenMSE was developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at Blue Matter Science.\nFor more general information about openMSE see the openMSE website.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#assumed-knowledge",
+    "href": "index.html#assumed-knowledge",
+    "title": "openMSE Technical Manual",
+    "section": "Assumed Knowledge",
+    "text": "Assumed Knowledge\nLittle programming experience is required to use the openMSE. However, users of the openMSE packages should have some familiarity with R, and be comfortable with using the command line. The technical documentation attempts to explain the use of the openMSE functions and features in easy to follow steps, but familiarity with the most common R functions is assumed.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#installing-openmse",
+    "href": "index.html#installing-openmse",
+    "title": "openMSE Technical Manual",
+    "section": "Installing openMSE\n",
+    "text": "Installing openMSE\n\n\n\n\n\n\n\nWarning\n\n\n\nThis Technical Manual has been developed for openMSE 2.0, which is currently under development and has not yet been released on CRAN.\nCurrently the latest development version of MSEtool needs to be installed from Github:\n\npak::pkg_install('blue-matter/MSEtool@prerelease')\n\nThis warning will be removed once the openMSE 2.0 packages have been released on CRAN.\n\n\nThe openMSE package is available on CRAN can be installed with:\n\ninstall.packages('openMSE')\n\nand loaded into the R session with:\n\nlibrary('openMSE')\n\nInstalling and loading the openMSE package will install and load the following core packages:\n\nMSEtool - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.\nDLMtool - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. DLMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when DLMtool is loaded into an R session.\nSAMtool - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. SAMtool requires the MSEtool package as a dependency, and all MSEtool functions will be available when SAMtool is loaded into an R session.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "openMSE Technical Manual",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nopenMSE development has been made possible through the generous support of the following funders:\n\nDavid & Lucille Packard Foundation\nFisheries & Oceans Canada\nGordon & Betty Moore Foundation\nKingfisher Foundation\nMarine Stewardship Council\nNatural Resources Defense Council\nOcean Protection Council\nResources Legacy Fund\nUnited Nations Food & Agriculture Organization\n\nWe thank The Ocean Foundation for their support of the code refactoring and the development of openMSE 2.0 and this openMSE Technical Manual.\nFinally, openMSE is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the openMSE R packages.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
     "objectID": "about_openmse.html",
     "href": "about_openmse.html",
     "title": "1  About openMSE 2.0",
@@ -17,6 +67,591 @@
     "text": "1.2 Overview of Major Changes\nThis section is primarily relevant to readers who have been working with openMSE in the past and are interested in learning about the technical differences between openMSE 2.0 and earlier versions of the packages.\nThe majority of the new developments have occurred in the MSEtool package. The most significant changes are the development of new object classes and new accessor and assignment functions related to those objects.\nTable 1.1 provides on overview of the new object classes, and some examples of the accessor and assignment functions that operate on those objects.\nLowercase names are used for all new object classes, however the accessor and assignment functions use either uppercase for acronyms (e.g., OM()) or regular case (e.g., Stock()).\nThe function examples in Table 1.1 are primarily intended for demonstration purposes and, particularly the assignment functions, in practice may require additional arguments. Consult the help documentation for the respective object class (e.g., ?OM ) for further information.\nThe new object classes and related functions are described in more detail elsewhere in this manual.\n\n\nTable 1.1: A brief description of the primary new object classes developed for openMSE 2.0\n\n\n\n\n\n\n\n\n\nNew Class\nDescription\nKey Functions Examples\nDeprecated Class\n\n\n\nom\n\nS4 object containing the operating model information.\nUsed for both single-stock/fleet and multi-stock/fleet models.\n\n\nOM(): Create new om-class object\n\nOM\nMOM\n\n\n\nstock\nS4 object containing information relating to the biological characteristics of a stock.\n\nStock() : Create a new stock-class object\nStock(OM) : Access a stock-class object from an om-class object\nStock(OM) &lt;- Stock() : Assign a stock-class object to an om-class object\n\nStock\n\n\nfleet\nS4 object containing information relating to the exploitation characteristics of a stock.\n\nFleet() : Create a new fleet-class object\nFleet(OM): Access a fleet-class object from an om-class object\nFleet(OM) &lt;- Fleet() : Assign a fleet-class object to an om-class object\n\nFleet\n\n\nobs\nS4 object containing information related to the observation model used to generate fishery data.\n\nObs() : Create a new obs-class object\nObs(OM): Access an obs-class object from an om-class object\nObs(OM) &lt;- Obs() : Assign an obs-class object to an om-class object\n\nObs\n\n\nimp\n\nS4 object containing information related to the implementation error for management advice produced by management procedures.\nNote: Implementation error is currently not implemented in openMSE 2.0 .\n\n\nImp() : Create a new imp-class object\nImp(OM): Access an imp-class object from an om-class object\nImp(OM) &lt;- Imp() : Assign an imp-class object to an om-class object\n\nImp\n\n\ndata\n\nS4 object containing information related to fishery data.\nA data-class object contains the data from all fleets in an OM .\nEach OM has a data-class object for each Stock , or for each stock complex.\n\n\nData() : Create a new data-class object\nData(OM): Access a data-class object from an om-class object\nData(OM) &lt;- Data() : Assign a data-class object to an om-class object\n\nData\n\n\nmp\nFunction that takes a data -class object and returns an advice-class object.\nMyMP &lt;- function(Data, ...) {\nAdvice()\n}\nclass(MyMP) &lt;- 'mp'\nMP\n\n\nadvice\nS4 object returned by a mp-class function and containing information related management advice.\n\nAdvice(): Create a new advice-class object\nRec\n\n\nhist\n\nS4 object containing the simulated historical fishery and information for future population dynamics.\nUsed for both single-stock/fleet and multi-stock/fleet models.\n\n\nHist(MSE) : return historical time series information from an mse-class object.\nNote: The object returned by Hist(MSE) is not a complete hist-class object, but only contains the historical time series data. Other information in hist-class objects is stored elsewhere in mse-class objects\n\n\nHist\nmultiHist\n\n\n\nmse\n\nS4 object containing all information from the historical and projection periods.\nUsed for both single-stock/fleet and multi-stock/fleet models.\n\n\nUsed by performance metric and summary table functions.\nNote: performance metric functions have not yet been developed for mse-class objects.\n\n\nMSE\nMMSE",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>About openMSE 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html",
+    "href": "getting_started.html",
+    "title": "2  Getting Started",
+    "section": "",
+    "text": "2.1 Overview of the MSE Process\nopenMSE has many features and can model a wide range of fishery dynamics, ranging from relatively simple single-stock single-fleet models to considerably more complex scenarios including multiple-stocks/fleets with an option for stock/fleet-specific management, age-dependent spatial structure, hermaphroditism, and between-stock biological interactions such as MICE (Models of Intermediate Complexity for Ecosystems).\nProbably the easiest way to learn to use openMSE is to start with a relatively simple Example of the MSE Process. But first, users should become familiar with a conceptual overview of the MSE process and the primary objects and functions.\nopenMSE is designed with an object-oriented programming (OOP) paradigm, where the code is organized around objects, which contain relevant data, and functions (methods) that operate on those data.\nFigure 2.1 shows a conceptual overview of the MSE process in openMSE, with colors indicating the primary objects and the functions.\nflowchart TD\n  build([&lt;a href='walkthrough.html'&gt;Build&lt;/a&gt;])\n  condition[[&lt;a href='OM_condition.html'&gt;Condition&lt;/a&gt;]]\n  import[[&lt;a href='OM_import.html'&gt;Import&lt;/a&gt;]]\n  convert[[&lt;a href='OM_convert.html'&gt;Convert&lt;/a&gt;]]\n  om[&lt;a href='object_om.html'&gt;OM&lt;/a&gt;]\n  build:::process --&gt; om\n  condition:::function --&gt; om\n  import:::function --&gt; om\n  convert:::function --&gt; om\n  sim[[&lt;a href='walkthrough_hist.html'&gt;Simulate&lt;/a&gt;]]\n  om:::object --&gt; sim:::function\n  hist[&lt;a href='object_hist.html'&gt;Hist&lt;/a&gt;]\n  sim --&gt; hist:::object\n  mp[[&lt;a href='management_procedures.html'&gt;MP&lt;/a&gt;]]\n  data[&lt;a href='object_data.html'&gt;Data&lt;/a&gt;]\n  data:::object --&gt; mp\n  project[[&lt;a href='object_mse.html'&gt;Project&lt;/a&gt;]]\n  hist:::object --&gt; project:::function\n  mp:::function --&gt; project\n  mse[&lt;a href='object_mse.html'&gt;MSE&lt;/a&gt;]\n  project --&gt; mse:::object\n\n\nclassDef process fill:#fe218b, stroke:#111,stroke-width:1px, color:#000\nclassDef function fill:#fed700, stroke:#111,stroke-width:1px, color:#000\nclassDef object fill:#21b0fe, stroke:#111,stroke-width:1px, color:#000\n\n\n\n\n\nFigure 2.1: An overview of the primary objects and functions used in the MSE process.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-om-object",
+    "href": "getting_started.html#the-om-object",
+    "title": "2  Getting Started",
+    "section": "2.2 The OM Object",
+    "text": "2.2 The OM Object\nThe Operating Model (OM) object is the main component of the MSE framework. An OM describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.\nThe sections below briefly describe the various ways to construct an OM (Figure 2.1). Chapter 15 provides more details on the OM object.\n\n2.2.1 Build an OM\nThe first method, indicated by Build in Figure 2.1, is a process rather than applying a single function.\nThe build process involves creating a new OM object, and manually populating the various elements of the object using a combination of expert judgement and available fishery data.\nThis process is most often used in data-limited situations, where there is insufficient data or information to use one of the other approaches.\nThe next part in this manual, Example of the MSE Process, provides an example of constructing an OM using the Build process. Although this method may not be commonly used in practice, users are recommended to read through the examples in Example of the MSE Process to familiarize themselves with the general structure and contents of OM objects.\n\n\n2.2.2 Condition an OM\nOperating models are often generated by fitting a fishery population dynamics model to time-series fishery data (e.g., historical catches, indices of abundance, age and/or length compositions).\nThis process is known as OM conditioning, and is analogous to a conventional stock assessment. However, unlike a stock assessment where the aim is to provide a scientific estimate of the status of the stock (e.g., current biomass relative to a biological reference point), OMs are designed to incorporate the key uncertainties in the knowledge of the fishery system. In other words, while a stock assessment produces a single estimate of the historical fishery dynamics (aka the ‘best model’ approach), an operating model accounts for uncertainties and contains many different hypotheses of plausible fishery dynamics.\nopenMSE's Rapid Conditioning Model (RCM) is designed to condition operating models for a wide range of life-history types and data availability scenarios.\nChapter 11 provides an example of using the Condition function to condition an OM from fishery data.\n\n\n2.2.3 Import an OM\nopenMSE supports importing operating models from several commonly used stock assessment frameworks, including Stock Synthesis 3 (SS3) and the Beaufort Assessment Model (BAM).\nChapter 12 provides an example of using the Import functions to import an OM from stock assessment output.\n\n\n2.2.4 Convert an OM\nThe Convert function is used to convert OM objects (as well as other objects) that were created in earlier versions of openMSE (see Chapter 1) to the new object structure developed in openMSE 2.0.\nChapter 13 provides an example of using the Convert function to convert OM objects developed with earlier versions of openMSE to be compatible with openMSE 2.0.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-hist-object",
+    "href": "getting_started.html#the-hist-object",
+    "title": "2  Getting Started",
+    "section": "2.3 The Hist Object",
+    "text": "2.3 The Hist Object\nHist objects are created by applying the Simulate function to OM objects (Figure 2.1).\nHist objects contain the simulated historical fishery dynamics and are used to project the model forward in time under a range of different management policies (i.e., management procedures).\nChapter 27 describes the Hist object in more detail.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-mse-object",
+    "href": "getting_started.html#the-mse-object",
+    "title": "2  Getting Started",
+    "section": "2.4 The MSE Object",
+    "text": "2.4 The MSE Object\nMSE objects are created by applying the Project function to Hist objects, together with the management procedure (MP) functions that will be used to provide the management advice that was implemented in the simulated fishery (Figure 2.1).\nMSE objects contain the fishery dynamics from both the historical period (Hist) and the projection period where the MPs were applied.\nChapter 28 describes the MSE object in more detail.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-data-object",
+    "href": "getting_started.html#the-data-object",
+    "title": "2  Getting Started",
+    "section": "2.5 The Data Object",
+    "text": "2.5 The Data Object\nData objects contain the fishery data that can be used by the Management Procedures. This fishery data can either be real observed data or simulated data generated by the model.\nChapter 29 describes the Data object in more detail.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "walkthrough.html",
+    "href": "walkthrough.html",
+    "title": "Example of the MSE Process",
+    "section": "",
+    "text": "The chapters in this section follows the Build process indicated in Figure 2.1 to construct and populate an example OM, and then go through the process of simulating the historical fishery, developing some example management procedures, conducting the forward projections, and examining the MSE results.\nIn most cases, users will likely use other methods to construct OMs, such as Condition (11  Conditioning OMs) or Import (12  Importing OMs), where many of the steps described in the first few chapters of this section are done automatically.\nHowever, new users are recommended to read through these chapters to understand the overall structure and contents of OM objects.",
+    "crumbs": [
+      "Example of the MSE Process"
+    ]
+  },
+  {
+    "objectID": "walkthrough_om_initialize.html",
+    "href": "walkthrough_om_initialize.html",
+    "title": "3  Build an OM Object",
+    "section": "",
+    "text": "3.1 Create a new OM Object\nThe OM() function is used to create a new Operating Model object (see ?OM). The contents of the OM can be specified with arguments to the OM function:\nExampleOM &lt;- OM(\"Example OM\",\n  nYear = 30,\n  pYear = 20,\n  nSim = 48\n)\nor by using functions matching the names of the slots in the object.\nFor example, here we’ll change the number of independent stochastic simulations in our OM from the default nSim=48 to a small number so that the code runs very quickly:\nnSim(ExampleOM)\n\n[1] 48\n\nnSim(ExampleOM) &lt;- 5\nnSim(ExampleOM)\n\n[1] 5\nSimilarly, the number of historical years and projection years can be changed:\nnYear(ExampleOM) &lt;- 20\npYear(ExampleOM) &lt;- 10\nThe contents of the OM object, and the various methods to access and modify these contents are discussed in more detail in Chapter 15.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build an `OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthrough_om_initialize.html#populating-the-om-object",
+    "href": "walkthrough_om_initialize.html#populating-the-om-object",
+    "title": "3  Build an OM Object",
+    "section": "\n3.2 Populating the OM Object",
+    "text": "3.2 Populating the OM Object\nAn OM object needs at least one Stock and one Fleet object before it can be used to Simulate a historical fishery and Project it forward for the closed-loop simulation testing (Figure 2.1).\nThe process to build these objects is described in the next few chapters. In Chapter 7, these objects are added to the new ExampleOM object created here.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Build an `OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html",
+    "href": "walkthough_build_stock.html",
+    "title": "4  Build a Stock Object",
+    "section": "",
+    "text": "4.1 Create a new Stock Object\nA Stock object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see ?Stock for more details).\nHere an example Stock object is created using an expert judgment approach, where most parameters are stochastic and sampled from uniform distributions.\nThe stock is loosely based on albacore Thunnus alalunga and should only be considered an example for demonstration purposes.\nIn Chapter 7, this Stock object is added to the OM object created in the previous chapter.\nThe Stock() function is used to create new Stock objects:\nExampleStock &lt;- Stock(\"Example Stock\",\n  CommonName = \"Albacore\",\n  Species = \"Thunnus alalunga\"\n)\nIn addition to Name, CommonName, and Species that were specified in the call to the Stock() function, Stock objects contain several other sub-objects that need to be populated:\nThe sub-objects in italics are optional, see the relevant chapters for each object for details. The other sub-objects must be populated to complete the Stock object.\nThe following sections describe the process to build these objects for the ExampleStock object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#create-a-new-stock-object",
+    "href": "walkthough_build_stock.html#create-a-new-stock-object",
+    "title": "4  Build a Stock Object",
+    "section": "",
+    "text": "Ages\nLength\nWeight\nNaturalMortality\nMaturity\nFecundity\nSRR\nSpatial\nDepletion\n\n\n\n\n\n\n\n\n\nTipHelp Documentation\n\n\n\nHelp documentation can be accessed for all openMSE objects and functions, e.g.,\n\n?OM\n?Stock\n?Ages\n?Length\n# etc",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#ages",
+    "href": "walkthough_build_stock.html#ages",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.2 Ages",
+    "text": "4.2 Ages\nAn Ages object contains information relating to the age structure of the stock. The Ages() function is used to create an Ages object for ExampleStock . The primary information required for an Ages object is the maximum age class:\n\nAges(ExampleStock) &lt;- Ages(MaxAge = 20)\n\nBy default, the maximum age is used as a plus-group (PlusGroup=TRUE).\nThe default behaviour is to set the minimum age-class to 0:\n\nClasses(ExampleStock)\n\n [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20\n\n\nThis can be changed by setting a positive integer value for the MinAge argument in the call to Ages(). See Chapter 17 for more details on the Ages object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#length",
+    "href": "walkthough_build_stock.html#length",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.3 Length",
+    "text": "4.3 Length\nThe Length object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.\nThe two key pieces of information stored in the Length object are:\n\n\nMeanAtAge: the mean length-at-age schedule for each simulation and year;\n\nCVatAge: the coefficient of variability for the distribution of length-at-age, which can be either normally (Dist='normal') or log-normally (Dist='lognormal') distributed around MeanAtAge.\n\nInternally, both MeanAtAge and CVatAge will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years). However, the openMSE objects have been designed such that users only need to enter the minimal information to populate the model.\nIn this example, the values for MeanAtAge are defined by means of a list of named parameters (Pars) for a built-in growth function (vonBert):\n\nLength(ExampleStock) &lt;- Length(\n  Pars = list(\n    Linf = c(121, 135),\n    K = c(0.16, 0.22),\n    t0 = c(-1.86, -1.41)\n  ),\n  Model = \"vonBert\",\n  CVatAge = c(0.1, 0.15)\n)\n\nThe parameters for the vonBert function and the values for CVatAge are entered as lower and upper bounds of a uniform distribution. Internally, nSim values for the Linf, K, and t0 parameters will be sampled from uniform distributions, and these used to calculate the values for MeanAtAge. Similarly, nSim values will be sampled for CVatAge and used within each simulation as a constant value over all simulations and time steps.\nThere are many other ways to populate Length objects, including sampling from non-uniform distributions and having values vary over time.\nSee Chapter 18 for more details on the Length object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#weight",
+    "href": "walkthough_build_stock.html#weight",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.4 Weight",
+    "text": "4.4 Weight\nThe Weight object contains information related to the weight-at-age and/or the length-weight relationship. In this example, an allometric length-weight relationship with parameters alpha and beta is specified, with values that are constant over all simulations and time-steps:\n\nWeight(ExampleStock) &lt;- Weight(\n  Pars = list(\n    alpha = 1.34E-05,\n    beta = 3.106\n  )\n)\n\nInternally, these alpha and beta parameters values will be used together with the information contained in the Length object to calculate the mean weight-at-age (MeanAtAge) for this stock.\nChapter 19 has more details on the Weight object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#naturalmortality",
+    "href": "walkthough_build_stock.html#naturalmortality",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.5 NaturalMortality",
+    "text": "4.5 NaturalMortality\nThe NaturalMortality object contains information relating to the natural mortality rate for each age-class and time step:\n\nNaturalMortality(ExampleStock) &lt;- NaturalMortality(\n  Pars = list(\n    M = c(0.35, 0.45)\n  )\n)\n\nIn this example, M is assumed to be constant across all age-classes and years, and is specified as a named parameter in the Pars list, with the values indicating lower and upper bounds of a uniform distribution.\nChapter 20 has more details on the NaturalMortality object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#maturity",
+    "href": "walkthough_build_stock.html#maturity",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.6 Maturity",
+    "text": "4.6 Maturity\nMaturity objects contain information related to the probability that a specific age- and/or length-class is mature. This example uses a 2-parameter logistic function to specify the probability of maturity-at-length, once again using lower and upper bounds of a uniform distribution to account for uncertainty:\n\nMaturity(ExampleStock) &lt;- Maturity(\n  Pars = list(\n    L50 = c(81, 91),\n    L50_95 = c(10, 12)\n  )\n)\n\nIn this example, parameters in Pars are used to calculate MeanAtLength , which is then used together with the age-length key described in the Length object to calculate the values for MeanAtAge .\nChapter 21 has more details on the Maturity object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#fecundity",
+    "href": "walkthough_build_stock.html#fecundity",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.7 Fecundity",
+    "text": "4.7 Fecundity\nThe Fecundity object contains information describing the fecundity (e.g., egg production) -at-age schedule.\nFecundity is optional in a Stock object. If it is missing, fecundity-at-age is assumed to be equal to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).\nThis ExampleStock object follows this assumption and leaves the Fecundity object empty.\nChapter 22 has more details on the Fecundity object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#srr",
+    "href": "walkthough_build_stock.html#srr",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.8 SRR",
+    "text": "4.8 SRR\nSRR objects describe the relationship between spawning production and resulting recruitment. The SRR object also contains data on unfished recruitment (R0), and the recruitment deviations for the historical and projection years.\nThis example uses the Beverton-Holt stock-recruit model (specified by the named parameter h in Pars; see SRRModels() for other options):\n\nSRR(ExampleStock) &lt;- SRR(\n  Pars = list(h = c(0.65, 0.85)),\n  R0 = 1000,\n  SD = c(0.15, 0.3),\n  AC = c(0.1, 0.9)\n)\n\nIn this example, R0 is specified as a single value, indicating that it is constant over all simulations and years. SD and AC are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors.\nChapter 23 has more details on the SRR object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#spatial",
+    "href": "walkthough_build_stock.html#spatial",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.9 Spatial",
+    "text": "4.9 Spatial\nSpatial objects are only required if an OM has spatial structure. If an OM does not require spatial structure, Spatial can be left empty.\nThis example assumes a 2-area model, with Area-1 representing about 10% of the total area (RelativeSize), and about 10% of the unfished stock in Area-1 (UnfishedDist), with at least 20% probability of individuals in Area-1 remaining in the area in any given time step (ProbStaying):\n\nSpatial(ExampleStock) &lt;- Spatial(\n  UnfishedDist = c(0.095, 0.105),\n  ProbStaying = c(0.8, 0.9),\n  RelativeSize = c(0.095, 0.105)\n)\n\nThere are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See Chapter 24 for more details on the Spatial object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_stock.html#depletion",
+    "href": "walkthough_build_stock.html#depletion",
+    "title": "4  Build a Stock Object",
+    "section": "\n4.10 Depletion",
+    "text": "4.10 Depletion\nThe final object to be added to ExampleStock is a Depletion object. This object is used to set the Initial or Final depletion values in the first and last historical years respectively.\nBy default, operating models initialize stocks in the first historical year assuming dynamic unfished conditions. The Initial depletion value is used to override this assumption and set the the age-structure in the initial historical year to match some user-specified depletion level.\nFinal is used to force the model to achieve user-specified depletion level in the terminal historical year. This is generally only required when users have no knowledge of the depletion of the stock (e.g., a data-limited fishery) and wish to test a range of plausible scenarios.\nIf a value is set for Final , the model will optimize for the Catchability value that, given the stock’s exploitation history (see Chapter 5 and Chapter 26) such that the depletion in the terminal historical year matches the user-specified value.\nIf neither Initial or Final depletion values are required, the Depletion object can be left empty. It is not required in most cases where an OM is conditioned (Chapter 11) or imported (Chapter 12 ).\nIn this example, current depletion (defined as \\(\\frac{B}{B_0}\\) in this case) is assumed to be completely unknown, and a wide range of values are considered plausible:\n\nDepletion(ExampleStock) &lt;- Depletion(\n  Final = c(0.05, 0.6),\n  Reference = \"B0\"\n)\n\nChapter 25 has more details on the Depletion object.",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Build a `Stock` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_fleet.html",
+    "href": "walkthough_build_fleet.html",
+    "title": "5  Build a Fleet Object",
+    "section": "",
+    "text": "Fleet",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Build a `Fleet` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_add_objects.html",
+    "href": "walkthough_add_objects.html",
+    "title": "7  Populate the OM Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Populate the `OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_hist.html",
+    "href": "walkthough_hist.html",
+    "title": "8  Simulate Historical Fishery",
+    "section": "",
+    "text": "Hist",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>`Simulate` Historical Fishery</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_build_mps.html",
+    "href": "walkthough_build_mps.html",
+    "title": "9  Develop Example MPs",
+    "section": "",
+    "text": "MPs",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Develop Example `MP`s</span>"
+    ]
+  },
+  {
+    "objectID": "walkthough_mse.html",
+    "href": "walkthough_mse.html",
+    "title": "10  Project Fishery Dynamics",
+    "section": "",
+    "text": "Project",
+    "crumbs": [
+      "Example of the MSE Process",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>`Project` Fishery Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "operatingmodels.html",
+    "href": "operatingmodels.html",
+    "title": "Constructing Operating Models",
+    "section": "",
+    "text": "Case studies ….\n\nBuild\nImport\nCondition\nConvert\n\n\n\n\n\n\n\nNote\n\n\n\nThis section is incomplete and will be updated later.",
+    "crumbs": [
+      "Constructing Operating Models"
+    ]
+  },
+  {
+    "objectID": "OM_condition.html",
+    "href": "OM_condition.html",
+    "title": "11  Conditioning OMs",
+    "section": "",
+    "text": "The Condition function takes information related to the biological properties of the stock(s) (see ?Stock) together with the available fishery data (see ?Data), and fits an age-structured population dynamics model to estimate the range of fishery dynamics that are most compatible with the observed data and assumed life-history parameters.\nCondition function",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Conditioning OMs</span>"
+    ]
+  },
+  {
+    "objectID": "OM_import.html",
+    "href": "OM_import.html",
+    "title": "12  Importing OMs",
+    "section": "",
+    "text": "The Import function takes the stock assessment output and imports it into the openMSE framework, ensuring that the fishery dynamics described in the OM match those predicted by the stock assessment model.",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Importing OMs</span>"
+    ]
+  },
+  {
+    "objectID": "OM_convert.html",
+    "href": "OM_convert.html",
+    "title": "13  Converting OMs",
+    "section": "",
+    "text": "Convert ff",
+    "crumbs": [
+      "Constructing Operating Models",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Converting OMs</span>"
+    ]
+  },
+  {
+    "objectID": "OM_casestudies.html",
+    "href": "OM_casestudies.html",
+    "title": "OM Case Studies",
+    "section": "",
+    "text": "Description of case studies",
+    "crumbs": [
+      "OM Case Studies"
+    ]
+  },
+  {
+    "objectID": "OM_octopus.html",
+    "href": "OM_octopus.html",
+    "title": "14  Octopus",
+    "section": "",
+    "text": "14.1 Create the OM Object\nAn example of an operating model for a short-lived (monthly time steps) semelparous species.\nThis OM is for a data-limited fishery, where the OM is conditioned with expert judgement and values from the literature …\nThis is an example …\nOctopusOM &lt;- OM('Octopus',\n                Author='Adrian Hordyk',\n                Email='adrian@bluematterscience.com',\n                nYear=10, # 10 historical years\n                pYear=10, # 10 projection years\n                Seasons = 12, # monthly time steps\n                nSim=20)\n\nYears(OctopusOM, 'Historical') |&gt; head()\n\n[1] 2016.000 2016.085 2016.164 2016.249 2016.331 2016.415\n\nYears(OctopusOM, 'Projection') |&gt; tail()\n\n[1] 2035.496 2035.581 2035.666 2035.748 2035.833 2035.915",
+    "crumbs": [
+      "OM Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Octopus</span>"
+    ]
+  },
+  {
+    "objectID": "OM_octopus.html#construct-the-stock-object",
+    "href": "OM_octopus.html#construct-the-stock-object",
+    "title": "14  Octopus",
+    "section": "\n14.2 Construct the Stock Object",
+    "text": "14.2 Construct the Stock Object\n\nstock &lt;- Stock('Octopus',\n               Species='Octopus sp')\n\n\nAges(stock) &lt;- Ages(MaxAge=14,\n                    Units='month',\n                    PlusGroup = FALSE)",
+    "crumbs": [
+      "OM Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Octopus</span>"
+    ]
+  },
+  {
+    "objectID": "object_om.html",
+    "href": "object_om.html",
+    "title": "15  OM Object",
+    "section": "",
+    "text": "15.1 Years and Seasons\nThe\nCurrentYear is the last historical year before the projections begin, and is automatically set to the current calendar year:\nCurrentYear(ExampleOM)\n\n[1] 2020\nThis can be over-written using either the CurrentYear argument in OM() or by assigning a new value to the OM object with CurrentYear():\nCurrentYear(ExampleOM) &lt;- 2020\nThe Years function can be used to return the values of the historical or projection years:\nYears(ExampleOM, \"H\")\n\n [1] 2001.000 2001.247 2001.496 2001.748 2002.000 2002.247 2002.496 2002.748\n [9] 2003.000 2003.247 2003.496 2003.748 2004.000 2004.249 2004.497 2004.749\n[17] 2005.000 2005.247 2005.496 2005.748 2006.000 2006.247 2006.496 2006.748\n[25] 2007.000 2007.247 2007.496 2007.748 2008.000 2008.249 2008.497 2008.749\n[33] 2009.000 2009.247 2009.496 2009.748 2010.000 2010.247 2010.496 2010.748\n[41] 2011.000 2011.247 2011.496 2011.748 2012.000 2012.249 2012.497 2012.749\n[49] 2013.000 2013.247 2013.496 2013.748 2014.000 2014.247 2014.496 2014.748\n[57] 2015.000 2015.247 2015.496 2015.748 2016.000 2016.249 2016.497 2016.749\n[65] 2017.000 2017.247 2017.496 2017.748 2018.000 2018.247 2018.496 2018.748\n[73] 2019.000 2019.247 2019.496 2019.748 2020.000 2020.249 2020.497 2020.749\n\nYears(ExampleOM, \"P\")\n\n [1] 2021.000 2021.247 2021.496 2021.748 2022.000 2022.247 2022.496 2022.748\n [9] 2023.000 2023.247 2023.496 2023.748 2024.000 2024.249 2024.497 2024.749\n[17] 2025.000 2025.247 2025.496 2025.748 2026.000 2026.247 2026.496 2026.748\n[25] 2027.000 2027.247 2027.496 2027.748 2028.000 2028.249 2028.497 2028.749\n[33] 2029.000 2029.247 2029.496 2029.748 2030.000 2030.247 2030.496 2030.748\nUnless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the Seasons slot of the OM object:\nSeasons(ExampleOM) &lt;- 4 # 4-quarters\nYears(ExampleOM, \"H\") |&gt; head(8)\n\n[1] 2001.000 2001.247 2001.496 2001.748 2002.000 2002.247 2002.496 2002.748\nAs shown above, Seasons changes the values of the historical and projection years into decimal years corresponding with the specified number of seasons within a year.\nIf required, the lubridate package can be used to convert decimal years into dates (and back again):\nExampleOM |&gt;\n  Years() |&gt;\n  lubridate::date_decimal() |&gt;\n  lubridate::as_date() |&gt;\n  head()\n\n[1] \"2001-01-01\" \"2001-04-01\" \"2001-07-01\" \"2001-09-30\" \"2002-01-01\"\n[6] \"2002-04-01\"\n\n# Example OM Populate ----\n\nExampleOM@Stock &lt;- ExampleStock",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>`OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_om.html#years-and-seasons",
+    "href": "object_om.html#years-and-seasons",
+    "title": "15  OM Object",
+    "section": "",
+    "text": "TipAvoid using assigning values with @\n\n\n\nAlmost all openMSE objects have been developed using the R S4 system.\nS4 objects contain slots, named components of the object that can be accessed using the @ operator (this is analogous to using the $ symbol to access contents of S3 objects), for example:\nThe @ symbol can be used to assign new values to slots, for example:\n\nExampleOM@nSim &lt;- 5\n\nHowever, while earlier versions of openMSE advocated using the @ symbol to access slots and assign new values, this practice is not recommended for openMSE 2.0.\nInstead, users are encouraged to use the accessor and assignment functions that have been developed for each object class.\nThis is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the @ symbol is used for assigning new values to an object.\nFor example, consider the Seasons assignment function:\nNote that in addition to assigning the new value to the Seasons slot, the Seasons assignment function also recalculates the values for the Years slot, a step that would have been missed if the new value was assigned directly using the @ symbol and would lead to unexpected errors.\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThe Seasons value in the OM defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.\nThe accounting in openMSE always starts at the beginning of the first historical year (i.e., Years(ExampleOM)[1]) and moves sequentially through the annual or seasonal time steps in Years(ExampleOM).\nAll stocks must have the same time units as the OM. See the Ages section below for an example.\nAdditionally, because it is used to set up the time and age structure of the model, the Seasons value should not be changed once an operating model is constructed.",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>`OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_om.html#om-metadata",
+    "href": "object_om.html#om-metadata",
+    "title": "15  OM Object",
+    "section": "\n15.2 OM Metadata",
+    "text": "15.2 OM Metadata",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>`OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_om.html#other-contents-of-the-om-object",
+    "href": "object_om.html#other-contents-of-the-om-object",
+    "title": "15  OM Object",
+    "section": "\n15.3 Other Contents of the OM Object",
+    "text": "15.3 Other Contents of the OM Object\nOM objects can contain one or more Stock objects.",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>`OM` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_ages.html",
+    "href": "object_ages.html",
+    "title": "17  Ages Object",
+    "section": "",
+    "text": "An Ages object contains information relating to the age structure of the stock.\n\nAges(ExampleStock) &lt;- Ages(MaxAge = 4 * 20, Units = \"quarter\")\n\nNote that MaxAge is set in time units of quarter. It is important that the time units in the Ages object matches the number of seasons in the OM.\nAlso note that, following the convention in Years(OM) the age classes are always in units of year:\n\nClasses(ExampleStock)\n\n [1]  0.00  0.25  0.50  0.75  1.00  1.25  1.50  1.75  2.00  2.25  2.50  2.75\n[13]  3.00  3.25  3.50  3.75  4.00  4.25  4.50  4.75  5.00  5.25  5.50  5.75\n[25]  6.00  6.25  6.50  6.75  7.00  7.25  7.50  7.75  8.00  8.25  8.50  8.75\n[37]  9.00  9.25  9.50  9.75 10.00 10.25 10.50 10.75 11.00 11.25 11.50 11.75\n[49] 12.00 12.25 12.50 12.75 13.00 13.25 13.50 13.75 14.00 14.25 14.50 14.75\n[61] 15.00 15.25 15.50 15.75 16.00 16.25 16.50 16.75 17.00 17.25 17.50 17.75\n[73] 18.00 18.25 18.50 18.75 19.00 19.25 19.50 19.75 20.00\n\n\nTo keep things simple, we’ll change our OM back to annual time-steps and re-recreate the Ages object accordingly:\n\nSeasons(ExampleOM) &lt;- 1 # annual\nAges(ExampleStock) &lt;- Ages(MaxAge = 20)\nClasses(ExampleStock)\n\n [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>`Ages` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_length.html",
+    "href": "object_length.html",
+    "title": "18  Length Object",
+    "section": "",
+    "text": "18.1 Methods for Populating Age- and Time-Dynamic Values\nThe Length() function is used to create Length objects. The help documentation for this function (?Length) provides details on the contents of the Length object and a description of the arguments for the Length() function (Figure 18.1).\nUltimately, users must provide information to populate MeanAtAge and CVatAge in a Length object. MeanAtAge is common to all objects that contain at-age information, and, as the name suggests, contains information describing the mean at-age schedule (in this case the mean length-at-age). CVatAge contains the coefficient of variability for the distribution of length-at-age, which can be either normally (Dist='normal') or log-normally (Dist='lognormal') distributed around MeanAtAge.\nInternally, both MeanAtAge and CVatAge will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years but as noted above, for seasonal models the time steps will actually be decimal years). However, the openMSE objects have been designed such that users only need to enter the minimal information to populate the model.\nIn this example, the values for MeanAtAge are defined by means of a list of named parameters (Pars) for a built-in growth function (vonBert):\nThe parameters for the vonBert function and the values for CVatAge are entered as lower and upper bounds of a uniform distribution. Internally, nSim values for the Linf, K, and t0 parameters will be sampled from uniform distributions, and these used to calculate the values for MeanAtAge. Similarly, nSim values will be sampled for CVatAge.\nThis is done internally by the Populate function, which is run here on the Length object to demonstrate:\nNotice that, because in this object mean length-at-age is constant over time, while MeanAtAge is a 3-dimensional array, the third dimension (Year) is only length 1 and named as the first historical year. Similarly, while CVatAge is a 3-dimensional array, the dimensions Age and Year are only length 1 and named as the first age-class and year respectively. Internally, these array will be expanded out for all age-classes and years.\nThere are several other ways to specify values for Pars, MeanAtAge, and CVatAge, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in Chapter 18.\nExamples …\nPars, MeanAtAge ….",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Length` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_length.html#length",
+    "href": "object_length.html#length",
+    "title": "18  Length Object",
+    "section": "\n18.2 Length",
+    "text": "18.2 Length\n\n\n\n\n\n\nImportant\n\n\n\nMany sub-objects in the Stock object are structured and populated in a similar manner to Length objects.\nThis section describes populating Length objects in detail. The other sub-objects with a similar structure are described in less detail.\nReaders should refer back to this section for the specific details for the different ways to populate those objects.\n\n\nFigure 18.1 shows the that default value for CVatAge is a single numeric value 0.1. This value will be converted internally to an array with the correct dimensions, with a CV of 0.1 for all simulations, ages, and time steps.\n\n18.2.1 Populating CVatAge\n\nFigure 18.1 shows the that default value for CVatAge is a single numeric value 0.1. This value will be converted internally to an array with the correct dimensions, with a CV of 0.1 for all simulations, ages, and time steps.\nThere are several ways to include uncertainty in the values for CVatAge , and have it vary by simulation, age, and/or time step. These approaches are described in the sub-sections below. In general, all age- and time-dynamic values can be populated in the same manner.\n\n18.2.1.1 Stochastic Samples from Distributions\nThe easiest way to include uncertainty is to sample from a uniform distribution. To do this, enter to numeric values representing the lower and upper bounds of a uniform distribution:\nThe above code creates a new Length class object with only the CVatAge slot populated.\nThis object is processed internally to sample from a uniform distribution with these bounds and produce an array with the correct dimensions.\nThis is done internally by the Populate function, which is run here on the Length_CV_uniform object to demonstrate:\nIn practice, users will rarely need to call the Populate function as this processing is done internally in the Simulate function.\nCVatAge in Length_CV_uniform is now a 3-dimensional array:\nwith the value for each simulation drawn from a uniform distribution with the specified bounds:\nOnce an object has been populated by Populate , all dimensions will be named:\nNotice that while CVatAge is a 3-dimensional array, the dimensions Age and Year are only length 1 and named as the first age-class and year respectively. This is because CVatAge in this example only varies by simulation and is constant for all ages-classes and years. Internally, the array will be expanded out for all age-classes and years.\nThe values for CVatAge can also be entered as a vector of length nSim (provided nSim &gt; 2 ). The following are will result in the same output as the code above:\nThis approach can be also used to sample values from different distributions, for example:\n\n18.2.1.2 Age-Specific Values\nAge-specific values can be generated by specifying CVatAge as an array with dimensions nSim and nAge :\n\n18.2.1.3 Time- and Age-Specific Values\nThe same approach can be used to generate values that vary of both age and time:\n\n18.2.2 Populating MeanAtAge\n\nThe previous section described the different methods to populate CVatAge. Additional methods are used to populate MeanAtAge.\nThe methods described in this section are used to populate MeanAtAge for the Length object. The same process is used for all objects that contain MeanAtAge information (e.g., ?Weight, ?Maturity, ?Selectivitity, etc).\n\n18.2.2.1 Using Pars and Model\n\nThe first two arguments to the Length() function are Pars and Model (Figure 18.1).\nThese values are used to generate the MeanAtAge schedule from a growth model and corresponding parameter values.\nAlternatively, as described in the next section, MeanAtAge can be populated directly in a similar manner as described above for CVatAge.\nPars is a named list, with the names of the parameters for (in this case) the growth model specified in Model.\nopenMSE includes built-in models for all objects that contain MeanAtAge information. Currently there is one built-in length-at-age model, the von Bertalanffy growth function (see also ?vonBert:\n\\[\nL_a = L_\\infty(1-\\exp(-K(a-t_0))\n\\tag{18.1}\\]\nIn general, a list of built-in models for a specific object class can be printed to the console with [CLASS]Models(). For example LengthModels() prints the built-in models corresponding to Length objects (Figure 18.2).\n\n\n\n\n\nFigure 18.2: Output printed in the console by LengthModels()\n\n\nIf the names in Pars corresponds with a built-in model, Model will be set automatically and does not need to be defined.\nAlternatively, Model can be a R function that takes an Ages object as the first argument followed by the additional parameters that describe the mean length-at-age relationship.\nThe output from LengthModels() shows that the vonBert function has three parameters: Linf, K, t0 (Figure 18.2). Values for these parameters must be entered in Pars in order to use this growth function.\nThe structure for the values contained in Pars is similar to that described for CVatLength above, where the values can be constant over all simulations and years, or vary by simulation and/or year.\n\n18.2.2.1.1 Constant Values over Simulations and Years\n\n18.2.2.1.2 Linf varies over Simulations, all Pars Constant over Years\n\n18.2.2.1.3 Time-Varying Parameters\nSpecifying time-varying parameters is a little more involved.\n\n18.2.2.2 Populating MeanAtAge Directly\nHere the process to create and populate a Length object is broken into several steps. In practice this can be done in one or two lines of code.\nCreate a new Length object:\nThe mean length-at-age schedule is stored in a slot named MeanAtAge, which can be specified in two ways:\n\nA growth model and a list of the respective parameter values\nDirectly as an array specifying the mean length-at-age for each simulation and year.\n\n18.2.2.3 Model and Parameters\nThe Model and Pars slots are used to generate the mean length-at-age.\nModel specifies the growth function, and Pars is a named list with the parameter values.\n\nModel can either be a character string specifying the name of the growth model corresponding with the named parameters in Pars, or",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Length` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_length.html#create-length-object-to-simplestock",
+    "href": "object_length.html#create-length-object-to-simplestock",
+    "title": "18  Length Object",
+    "section": "\n18.3 Create Length Object to SimpleStock\n",
+    "text": "18.3 Create Length Object to SimpleStock\n\nThe above sections described various ways to populate a Length object.\nHere a Length object is created with stochastic values for the growth parameters (Pars) and CVatLength that vary over simulations, and the object is added to the SimpleStock object:",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Length` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_length.html#weight",
+    "href": "object_length.html#weight",
+    "title": "18  Length Object",
+    "section": "\n18.4 Weight",
+    "text": "18.4 Weight",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Length` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_weight.html",
+    "href": "object_weight.html",
+    "title": "19  Weight Object",
+    "section": "",
+    "text": "The",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>`Weight` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_naturalmortality.html",
+    "href": "object_naturalmortality.html",
+    "title": "20  NaturalMortality Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>`NaturalMortality` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_maturity.html",
+    "href": "object_maturity.html",
+    "title": "21  Maturity Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>`Maturity` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_fecundity.html",
+    "href": "object_fecundity.html",
+    "title": "22  Fecundity Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>`Fecundity` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_srr.html",
+    "href": "object_srr.html",
+    "title": "23  SRR Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>`SRR` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_spatial.html",
+    "href": "object_spatial.html",
+    "title": "24  Spatial Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>`Spatial` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_depletion.html",
+    "href": "object_depletion.html",
+    "title": "25  Depletion Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>`Depletion` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_fleet.html",
+    "href": "object_fleet.html",
+    "title": "26  Fleet Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>`Fleet` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_hist.html",
+    "href": "object_hist.html",
+    "title": "27  Hist Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>`Hist` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_mse.html",
+    "href": "object_mse.html",
+    "title": "28  MSE Object",
+    "section": "",
+    "text": "The …",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>`MSE` Object</span>"
+    ]
+  },
+  {
+    "objectID": "object_data.html",
+    "href": "object_data.html",
+    "title": "29  Data Object",
+    "section": "",
+    "text": "The Data",
+    "crumbs": [
+      "About the Objects",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>`Data` Object</span>"
+    ]
+  },
+  {
+    "objectID": "Eq_overview.html",
+    "href": "Eq_overview.html",
+    "title": "Equations",
+    "section": "",
+    "text": "The following sections ….",
+    "crumbs": [
+      "Equations"
+    ]
+  },
+  {
+    "objectID": "Eq_popdynamics.html",
+    "href": "Eq_popdynamics.html",
+    "title": "31  Population Dynamics",
+    "section": "",
+    "text": "31.1 Number at Age",
+    "crumbs": [
+      "Equations",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Population Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "Eq_popdynamics.html#number-at-age",
+    "href": "Eq_popdynamics.html#number-at-age",
+    "title": "31  Population Dynamics",
+    "section": "",
+    "text": "31.1.1 Initial\n\nannual\nseasonal - initialized to account for seasonal recruitment\n\nNotes:\n\nage of recruitment is MinAge(Stock)\nMinAge(Stock) == 0 means that recruitment occurs in same time step as SProduction\notherwise lagged by appropriate number of time steps (year, quarters, months)\n\n\\[\nN_{t+1} = N_t ...\n\\]",
+    "crumbs": [
+      "Equations",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Population Dynamics</span>"
     ]
   }
 ]

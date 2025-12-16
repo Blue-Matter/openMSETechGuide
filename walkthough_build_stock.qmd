@@ -92,7 +92,9 @@ In this example, the values for `MeanAtAge` are defined by means of a list of na
 
 The parameters for the `vonBert` function and the values for `CVatAge` are entered as lower and upper bounds of a uniform distribution. Internally, `nSim` values for the `Linf`, `K`, and `t0` parameters will be sampled from uniform distributions, and these used to calculate the values for `MeanAtAge`. Similarly, `nSim` values will be sampled for `CVatAge` and used within each simulation as a constant value over all simulations and time steps.
 
-There are many other ways to populate `Length` objects, including sampling from non-uniform distributions and having values vary over time. See @sec-object_length for more details.
+There are many other ways to populate `Length` objects, including sampling from non-uniform distributions and having values vary over time.
+
+See @sec-object_length for more details on the `Length` object.
 
 ## Weight
 

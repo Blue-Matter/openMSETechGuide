@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
 <title>18&nbsp; Length Object – openMSE Technical Manual</title>
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -111,7 +112,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -145,7 +146,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
         <div class="sidebar-tools-main">
@@ -427,7 +428,7 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#sec-object_length" id="toc-sec-object_length" class="nav-link active" data-scroll-target="#sec-object_length"><span class="header-section-number">18.1</span> Methods for Populating Age- and Time-Dynamic Values</a></li>
+<li><a href="#methods-for-populating-age--and-time-dynamic-values" id="toc-methods-for-populating-age--and-time-dynamic-values" class="nav-link active" data-scroll-target="#methods-for-populating-age--and-time-dynamic-values"><span class="header-section-number">18.1</span> Methods for Populating Age- and Time-Dynamic Values</a></li>
   <li>
 <a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">18.2</span> Length</a>
   <ul class="collapse">
@@ -468,7 +469,7 @@ Note
 <p>The <code>Length</code> object is optional if no other objects are a function of length (e.g., <code>Weight</code>, <code>Maturity</code>, <code>Fecundity</code> and <code>Selectivity</code> etc in the <code>Fleet</code> object, and there is no requirement to generate catch-at-length data.</p>
 </div>
 </div>
-<p>The <code>Length()</code> function is used to create <code>Length</code> objects. The help documentation for this function (<code>?Length</code>) provides details on the contents of the <code>Length</code> object and a description of the arguments for the <code>Length()</code> function (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-length_help</span></a>).</p>
+<p>The <code>Length()</code> function is used to create <code>Length</code> objects. The help documentation for this function (<code>?Length</code>) provides details on the contents of the <code>Length</code> object and a description of the arguments for the <code>Length()</code> function (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a>).</p>
 <div id="fig-length_help" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Length_help.png" class="img-fluid figure-img" style="width:60.0%">
@@ -481,7 +482,7 @@ Figure&nbsp;18.1: Screenshot of the help documentation for the <code>Length</cod
 <p>Internally, both <code>MeanAtAge</code> and <code>CVatAge</code> will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years but as noted above, for seasonal models the time steps will actually be decimal years). However, the <code>openMSE</code> objects have been designed such that users only need to enter the minimal information to populate the model.</p>
 <p>In this example, the values for <code>MeanAtAge</code> are defined by means of a list of named parameters (<code>Pars</code>) for a built-in growth function (<code>vonBert</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span>,</span>
 <span>    K <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.22</span><span class="op">)</span>,</span>
@@ -489,19 +490,19 @@ Figure&nbsp;18.1: Screenshot of the help documentation for the <code>Length</cod
 <span>  <span class="op">)</span>,</span>
 <span>  Model <span class="op">=</span> <span class="st">"vonBert"</span>,</span>
 <span>  CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The parameters for the <code>vonBert</code> function and the values for <code>CVatAge</code> are entered as lower and upper bounds of a uniform distribution. Internally, <code>nSim</code> values for the <code>Linf</code>, <code>K</code>, and <code>t0</code> parameters will be sampled from uniform distributions, and these used to calculate the values for <code>MeanAtAge</code>. Similarly, <code>nSim</code> values will be sampled for <code>CVatAge</code>.</p>
 <p>This is done internally by the <code>Populate</code> function, which is run here on the <code>Length</code> object to demonstrate:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleLengthComplete</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleLengthComplete</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">Populate</span><span class="op">(</span></span>
 <span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span>,</span>
 <span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span>,</span>
 <span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="fu">Pars</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">Pars</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$Linf
    Year
@@ -530,7 +531,7 @@ Sim      2001
   4 -1.440765
   5 -1.655196</code></pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">MeanAtAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">MeanAtAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>, , Year = 2001
 
@@ -556,7 +557,7 @@ Sim       16       17       18       19       20
   4 126.0385 126.7851 127.3980 127.9011 128.3142
   5 120.3557 121.0819 121.6807 122.1746 122.5819</code></pre>
 </div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CVatAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CVatAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>, , Year = 2001
 
@@ -570,8 +571,8 @@ Sim         0
 </div>
 </div>
 <p>Notice that, because in this object mean length-at-age is constant over time, while <code>MeanAtAge</code> is a 3-dimensional array, the third dimension (<code>Year</code>) is only length 1 and named as the first historical year. Similarly, while <code>CVatAge</code> is a 3-dimensional array, the dimensions <code>Age</code> and <code>Year</code> are only length 1 and named as the first age-class and year respectively. Internally, these array will be expanded out for all age-classes and years.</p>
-<p>There are several other ways to specify values for <code>Pars</code>, <code>MeanAtAge</code>, and <code>CVatAge</code>, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in <a href="#sec-object_length" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_length</span></a>.</p>
-<section id="sec-object_length" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="sec-object_length">
+<p>There are several other ways to specify values for <code>Pars</code>, <code>MeanAtAge</code>, and <code>CVatAge</code>, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in <a href="#sec-object_length" class="quarto-xref"><span>Chapter 18</span></a>.</p>
+<section id="methods-for-populating-age--and-time-dynamic-values" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="methods-for-populating-age--and-time-dynamic-values">
 <span class="header-section-number">18.1</span> Methods for Populating Age- and Time-Dynamic Values</h2>
 <p>Examples …</p>
 <p><code>Pars</code>, <code>MeanAtAge</code> ….</p>
@@ -592,11 +593,11 @@ Important
 <p>Readers should refer back to this section for the specific details for the different ways to populate those objects.</p>
 </div>
 </div>
-<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-length_help</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
+<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
 <section id="populating-cvatage" class="level3" data-number="18.2.1"><h3 data-number="18.2.1" class="anchored" data-anchor-id="populating-cvatage">
 <span class="header-section-number">18.2.1</span> Populating <code>CVatAge</code>
 </h3>
-<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-length_help</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
+<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
 <p>There are several ways to include uncertainty in the values for <code>CVatAge</code> , and have it vary by simulation, age, and/or time step. These approaches are described in the sub-sections below. In general, all age- and time-dynamic values can be populated in the same manner.</p>
 <section id="stochastic-samples-from-distributions" class="level4" data-number="18.2.1.1"><h4 data-number="18.2.1.1" class="anchored" data-anchor-id="stochastic-samples-from-distributions">
 <span class="header-section-number">18.2.1.1</span> Stochastic Samples from Distributions</h4>
@@ -625,7 +626,7 @@ Important
 <section id="using-pars-and-model" class="level4" data-number="18.2.2.1"><h4 data-number="18.2.2.1" class="anchored" data-anchor-id="using-pars-and-model">
 <span class="header-section-number">18.2.2.1</span> Using <code>Pars</code> and <code>Model</code>
 </h4>
-<p>The first two arguments to the <code>Length()</code> function are <code>Pars</code> and <code>Model</code> (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-length_help</span></a>).</p>
+<p>The first two arguments to the <code>Length()</code> function are <code>Pars</code> and <code>Model</code> (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a>).</p>
 <p>These values are used to generate the <code>MeanAtAge</code> schedule from a growth model and corresponding parameter values.</p>
 <p>Alternatively, as described in the next section, <code>MeanAtAge</code> can be populated directly in a similar manner as described above for <code>CVatAge</code>.</p>
 <p><code>Pars</code> is a named list, with the names of the parameters for (in this case) the growth model specified in <code>Model</code>.</p>
@@ -633,7 +634,7 @@ Important
 <p><span id="eq-vonB"><span class="math display">\[
 L_a = L_\infty(1-\exp(-K(a-t_0))
 \tag{18.1}\]</span></span></p>
-<p>In general, a list of built-in models for a specific object class can be printed to the console with <code>[CLASS]Models()</code>. For example <code>LengthModels()</code> prints the built-in models corresponding to <code>Length</code> objects (<a href="#fig-length_models" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-length_models</span></a>).</p>
+<p>In general, a list of built-in models for a specific object class can be printed to the console with <code>[CLASS]Models()</code>. For example <code>LengthModels()</code> prints the built-in models corresponding to <code>Length</code> objects (<a href="#fig-length_models" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>).</p>
 <div id="fig-length_models" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-length_models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Length_models.png" class="img-fluid figure-img" style="width:60.0%">
@@ -644,7 +645,7 @@ Figure&nbsp;18.2: Output printed in the console by <code>LengthModels()</code>
 </div>
 <p>If the names in <code>Pars</code> corresponds with a built-in model, <code>Model</code> will be set automatically and does not need to be defined.</p>
 <p>Alternatively, <code>Model</code> can be a R function that takes an <code>Ages</code> object as the first argument followed by the additional parameters that describe the mean length-at-age relationship.</p>
-<p>The output from <code>LengthModels()</code> shows that the <code>vonBert</code> function has three parameters: <code>Linf</code>, <code>K</code>, <code>t0</code> (<a href="#fig-length_models" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-length_models</span></a>). Values for these parameters must be entered in <code>Pars</code> in order to use this growth function.</p>
+<p>The output from <code>LengthModels()</code> shows that the <code>vonBert</code> function has three parameters: <code>Linf</code>, <code>K</code>, <code>t0</code> (<a href="#fig-length_models" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>). Values for these parameters must be entered in <code>Pars</code> in order to use this growth function.</p>
 <p>The structure for the values contained in <code>Pars</code> is similar to that described for <code>CVatLength</code> above, where the values can be constant over all simulations and years, or vary by simulation and/or year.</p>
 <section id="constant-values-over-simulations-and-years" class="level5" data-number="18.2.2.1.1"><h5 data-number="18.2.2.1.1" class="anchored" data-anchor-id="constant-values-over-simulations-and-years">
 <span class="header-section-number">18.2.2.1.1</span> Constant Values over Simulations and Years</h5>
@@ -727,13 +728,14 @@ Figure&nbsp;18.2: Output printed in the console by <code>LengthModels()</code>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
 <title>4&nbsp; Build a Stock Object – openMSE Technical Manual</title>
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -111,7 +112,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -145,7 +146,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
         <div class="sidebar-tools-main">
@@ -458,15 +459,15 @@ window.Quarto = {
 </header><p>A <code>Stock</code> object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see <code>?Stock</code> for more details).</p>
 <p>Here an example <code>Stock</code> object is created using an expert judgment approach, where most parameters are stochastic and sampled from uniform distributions.</p>
 <p>The stock is loosely based on albacore <em>Thunnus alalunga</em> and should only be considered an example for demonstration purposes.</p>
-<p>In <a href="#sec-om_populate" class="quarto-xref"><span class="quarto-unresolved-ref">sec-om_populate</span></a>, this <code>Stock</code> object is added to the <code>OM</code> object created in the previous chapter.</p>
+<p>In <a href="walkthough_add_objects.html" class="quarto-xref"><span>Chapter 7</span></a>, this <code>Stock</code> object is added to the <code>OM</code> object created in the previous chapter.</p>
 <section id="create-a-new-stock-object" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="create-a-new-stock-object">
 <span class="header-section-number">4.1</span> Create a new <code>Stock</code> Object</h2>
 <p>The <code>Stock()</code> function is used to create new <code>Stock</code> objects:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
 <span>  CommonName <span class="op">=</span> <span class="st">"Albacore"</span>,</span>
 <span>  Species <span class="op">=</span> <span class="st">"Thunnus alalunga"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In addition to <code>Name</code>, <code>CommonName</code>, and <code>Species</code> that were specified in the call to the <code>Stock()</code> function, <code>Stock</code> objects contain several other sub-objects that need to be populated:</p>
 <ol type="1">
@@ -488,17 +489,17 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Help Documentation
+<span class="screen-reader-only">Tip</span>Help Documentation
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Help documentation can be accessed for all <code>openMSE</code> objects and functions, e.g.,</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">OM</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">OM</span></span>
 <span><span class="op">?</span><span class="va">Stock</span></span>
 <span><span class="op">?</span><span class="va">Ages</span></span>
 <span><span class="op">?</span><span class="va">Length</span></span>
-<span><span class="co"># etc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co"># etc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -506,17 +507,17 @@ Help Documentation
 <span class="header-section-number">4.2</span> Ages</h2>
 <p>An <code>Ages</code> object contains information relating to the age structure of the stock. The <code>Ages()</code> function is used to create an <code>Ages</code> object for <code>ExampleStock</code> . The primary information required for an <code>Ages</code> object is the maximum age class:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>By default, the maximum age is used as a plus-group (<code>PlusGroup=TRUE</code>).</p>
 <p>The default behaviour is to set the minimum age-class to 0:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Classes</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Classes</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 </div>
 </div>
-<p>This can be changed by setting a positive integer value for the <code>MinAge</code> argument in the call to <code>Ages()</code>. See <a href="#sec-object_ages" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_ages</span></a> for more details on the <code>Ages</code> object.</p>
+<p>This can be changed by setting a positive integer value for the <code>MinAge</code> argument in the call to <code>Ages()</code>. See <a href="object_ages.html" class="quarto-xref"><span>Chapter 17</span></a> for more details on the <code>Ages</code> object.</p>
 </section><section id="length" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="length">
 <span class="header-section-number">4.3</span> Length</h2>
 <p>The <code>Length</code> object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.</p>
@@ -530,7 +531,7 @@ Help Documentation
 <p>Internally, both <code>MeanAtAge</code> and <code>CVatAge</code> will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years). However, the <code>openMSE</code> objects have been designed such that users only need to enter the minimal information to populate the model.</p>
 <p>In this example, the values for <code>MeanAtAge</code> are defined by means of a list of named parameters (<code>Pars</code>) for a built-in growth function (<code>vonBert</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span>,</span>
 <span>    K <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.22</span><span class="op">)</span>,</span>
@@ -538,95 +539,96 @@ Help Documentation
 <span>  <span class="op">)</span>,</span>
 <span>  Model <span class="op">=</span> <span class="st">"vonBert"</span>,</span>
 <span>  CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The parameters for the <code>vonBert</code> function and the values for <code>CVatAge</code> are entered as lower and upper bounds of a uniform distribution. Internally, <code>nSim</code> values for the <code>Linf</code>, <code>K</code>, and <code>t0</code> parameters will be sampled from uniform distributions, and these used to calculate the values for <code>MeanAtAge</code>. Similarly, <code>nSim</code> values will be sampled for <code>CVatAge</code> and used within each simulation as a constant value over all simulations and time steps.</p>
-<p>There are many other ways to populate <code>Length</code> objects, including sampling from non-uniform distributions and having values vary over time. See <a href="#sec-object_length" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_length</span></a> for more details.</p>
+<p>There are many other ways to populate <code>Length</code> objects, including sampling from non-uniform distributions and having values vary over time.</p>
+<p>See <a href="object_length.html" class="quarto-xref"><span>Chapter 18</span></a> for more details on the <code>Length</code> object.</p>
 </section><section id="weight" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="weight">
 <span class="header-section-number">4.4</span> Weight</h2>
 <p>The <code>Weight</code> object contains information related to the weight-at-age and/or the length-weight relationship. In this example, an allometric length-weight relationship with parameters <code>alpha</code> and <code>beta</code> is specified, with values that are constant over all simulations and time-steps:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    alpha <span class="op">=</span> <span class="fl">1.34E-05</span>,</span>
 <span>    beta <span class="op">=</span> <span class="fl">3.106</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Internally, these <code>alpha</code> and <code>beta</code> parameters values will be used together with the information contained in the <code>Length</code> object to calculate the mean weight-at-age (<code>MeanAtAge</code>) for this stock.</p>
-<p><a href="#sec-object_weight" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_weight</span></a> has more details on the <code>Weight</code> object.</p>
+<p><a href="object_weight.html" class="quarto-xref"><span>Chapter 19</span></a> has more details on the <code>Weight</code> object.</p>
 </section><section id="naturalmortality" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="naturalmortality">
 <span class="header-section-number">4.5</span> NaturalMortality</h2>
 <p>The <code>NaturalMortality</code> object contains information relating to the natural mortality rate for each age-class and time step:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.45</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this example, <code>M</code> is assumed to be constant across all age-classes and years, and is specified as a named parameter in the <code>Pars</code> list, with the values indicating lower and upper bounds of a uniform distribution.</p>
-<p><a href="#sec-object_naturalmortality" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_naturalmortality</span></a> has more details on the <code>NaturalMortality</code> object.</p>
+<p><a href="object_naturalmortality.html" class="quarto-xref"><span>Chapter 20</span></a> has more details on the <code>NaturalMortality</code> object.</p>
 </section><section id="maturity" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="maturity">
 <span class="header-section-number">4.6</span> Maturity</h2>
 <p><code>Maturity</code> objects contain information related to the probability that a specific age- and/or length-class is mature. This example uses a 2-parameter logistic function to specify the probability of maturity-at-length, once again using lower and upper bounds of a uniform distribution to account for uncertainty:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Maturity</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Maturity</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Maturity</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Maturity</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    L50 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">81</span>, <span class="fl">91</span><span class="op">)</span>,</span>
 <span>    L50_95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this example, parameters in <code>Pars</code> are used to calculate <code>MeanAtLength</code> , which is then used together with the age-length key described in the <code>Length</code> object to calculate the values for <code>MeanAtAge</code> .</p>
-<p><a href="#sec-object_maturity" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_maturity</span></a> has more details on the <code>Maturity</code> object.</p>
+<p><a href="object_maturity.html" class="quarto-xref"><span>Chapter 21</span></a> has more details on the <code>Maturity</code> object.</p>
 </section><section id="fecundity" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="fecundity">
 <span class="header-section-number">4.7</span> Fecundity</h2>
 <p>The <code>Fecundity</code> object contains information describing the fecundity (e.g., egg production) -at-age schedule.</p>
 <p><code>Fecundity</code> is optional in a <code>Stock</code> object. If it is missing, fecundity-at-age is assumed to be equal to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).</p>
 <p>This <code>ExampleStock</code> object follows this assumption and leaves the <code>Fecundity</code> object empty.</p>
-<p><a href="#sec-object_fecundity" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_fecundity</span></a> has more details on the <code>Fecundity</code> object.</p>
+<p><a href="object_fecundity.html" class="quarto-xref"><span>Chapter 22</span></a> has more details on the <code>Fecundity</code> object.</p>
 </section><section id="srr" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="srr">
 <span class="header-section-number">4.8</span> SRR</h2>
 <p><code>SRR</code> objects describe the relationship between spawning production and resulting recruitment. The <code>SRR</code> object also contains data on unfished recruitment (<code>R0</code>), and the recruitment deviations for the historical and projection years.</p>
 <p>This example uses the Beverton-Holt stock-recruit model (specified by the named parameter <code>h</code> in <code>Pars</code>; see <code>SRRModels()</code> for other options):</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">SRR</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">SRR</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">SRR</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">SRR</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.85</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  R0 <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
 <span>  AC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this example, <code>R0</code> is specified as a single value, indicating that it is constant over all simulations and years. <code>SD</code> and <code>AC</code> are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors.</p>
-<p><a href="#sec-object_srr" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_srr</span></a> has more details on the <code>SRR</code> object.</p>
+<p><a href="object_srr.html" class="quarto-xref"><span>Chapter 23</span></a> has more details on the <code>SRR</code> object.</p>
 </section><section id="spatial" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="spatial">
 <span class="header-section-number">4.9</span> Spatial</h2>
 <p><code>Spatial</code> objects are only required if an <code>OM</code> has spatial structure. If an <code>OM</code> does not require spatial structure, <code>Spatial</code> can be left empty.</p>
 <p>This example assumes a 2-area model, with Area-1 representing about 10% of the total area (<code>RelativeSize</code>), and about 10% of the unfished stock in Area-1 (<code>UnfishedDist</code>), with at least 20% probability of individuals in Area-1 remaining in the area in any given time step (<code>ProbStaying</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Spatial</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Spatial</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Spatial</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Spatial</span><span class="op">(</span></span>
 <span>  UnfishedDist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.095</span>, <span class="fl">0.105</span><span class="op">)</span>,</span>
 <span>  ProbStaying <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span><span class="op">)</span>,</span>
 <span>  RelativeSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.095</span>, <span class="fl">0.105</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>There are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See <a href="#sec-object_spatial" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_spatial</span></a> for more details on the <code>Spatial</code> object.</p>
+<p>There are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See <a href="object_spatial.html" class="quarto-xref"><span>Chapter 24</span></a> for more details on the <code>Spatial</code> object.</p>
 </section><section id="depletion" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="depletion">
 <span class="header-section-number">4.10</span> Depletion</h2>
 <p>The final object to be added to <code>ExampleStock</code> is a <code>Depletion</code> object. This object is used to set the <code>Initial</code> or <code>Final</code> depletion values in the first and last historical years respectively.</p>
 <p>By default, operating models initialize stocks in the first historical year assuming dynamic unfished conditions. The <code>Initial</code> depletion value is used to override this assumption and set the the age-structure in the initial historical year to match some user-specified depletion level.</p>
 <p><code>Final</code> is used to force the model to achieve user-specified depletion level in the terminal historical year. This is generally only required when users have no knowledge of the depletion of the stock (e.g., a data-limited fishery) and wish to test a range of plausible scenarios.</p>
-<p>If a value is set for <code>Final</code> , the model will optimize for the <code>Catchability</code> value that, given the stock’s exploitation history (see <a href="#sec-fleet_build" class="quarto-xref"><span class="quarto-unresolved-ref">sec-fleet_build</span></a> and <a href="#sec-object_fleet" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_fleet</span></a>) such that the depletion in the terminal historical year matches the user-specified value.</p>
-<p>If neither <code>Initial</code> or <code>Final</code> depletion values are required, the <code>Depletion</code> object can be left empty. It is not required in most cases where an <code>OM</code> is conditioned (<a href="#sec-om_condition" class="quarto-xref"><span class="quarto-unresolved-ref">sec-om_condition</span></a>) or imported (<a href="#sec-om_import" class="quarto-xref"><span class="quarto-unresolved-ref">sec-om_import</span></a> ).</p>
+<p>If a value is set for <code>Final</code> , the model will optimize for the <code>Catchability</code> value that, given the stock’s exploitation history (see <a href="walkthough_build_fleet.html" class="quarto-xref"><span>Chapter 5</span></a> and <a href="object_fleet.html" class="quarto-xref"><span>Chapter 26</span></a>) such that the depletion in the terminal historical year matches the user-specified value.</p>
+<p>If neither <code>Initial</code> or <code>Final</code> depletion values are required, the <code>Depletion</code> object can be left empty. It is not required in most cases where an <code>OM</code> is conditioned (<a href="OM_condition.html" class="quarto-xref"><span>Chapter 11</span></a>) or imported (<a href="OM_import.html" class="quarto-xref"><span>Chapter 12</span></a> ).</p>
 <p>In this example, current depletion (defined as <span class="math inline">\(\frac{B}{B_0}\)</span> in this case) is assumed to be completely unknown, and a wide range of values are considered plausible:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Depletion</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Depletion</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Depletion</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Depletion</span><span class="op">(</span></span>
 <span>  Final <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.6</span><span class="op">)</span>,</span>
 <span>  Reference <span class="op">=</span> <span class="st">"B0"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="#sec-object_depletion" class="quarto-xref"><span class="quarto-unresolved-ref">sec-object_depletion</span></a> has more details on the <code>Depletion</code> object.</p>
+<p><a href="object_depletion.html" class="quarto-xref"><span>Chapter 25</span></a> has more details on the <code>Depletion</code> object.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -680,13 +682,14 @@ Help Documentation
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
