@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Management Strategy Evaluation with openMSE">
+<title>18&nbsp; Length Object – openMSE Technical Manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./object_weight.html" rel="next">
+<link href="./object_ages.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./object_details.html">About the Objects</a></li><li class="breadcrumb-item"><a href="./object_length.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Technical Manual</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://openMSE.com" title="openMSE" class="quarto-navigation-tool px-1" aria-label="openMSE"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/blue-matter/openMSETechGuide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_openmse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Example of the MSE Process</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthrough_om_initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_build_stock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_build_fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_build_obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build an <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_add_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Populate the <code>OM</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_hist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>Simulate</code> Historical Fishery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_build_mps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Develop Example <code>MP</code>s</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./walkthough_mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>Project</code> Fishery Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./operatingmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Constructing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OM_condition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Conditioning OMs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OM_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Importing OMs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OM_convert.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Converting OMs</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./OM_casestudies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OM Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OM_octopus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Octopus</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./object_details.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Objects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>OM</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_stock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>Stock</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_ages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Ages</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_length.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_maturity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>Maturity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_hist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>Hist</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><code>MSE</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./management_procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mps_tac.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Total Allowable Catch</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./Eq_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Eq_popdynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#sec-object_length" id="toc-sec-object_length" class="nav-link active" data-scroll-target="#sec-object_length"><span class="header-section-number">18.1</span> Methods for Populating Age- and Time-Dynamic Values</a></li>
+  <li>
+<a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">18.2</span> Length</a>
+  <ul class="collapse">
+<li><a href="#populating-cvatage" id="toc-populating-cvatage" class="nav-link" data-scroll-target="#populating-cvatage"><span class="header-section-number">18.2.1</span> Populating <code>CVatAge</code></a></li>
+  <li><a href="#populating-meanatage" id="toc-populating-meanatage" class="nav-link" data-scroll-target="#populating-meanatage"><span class="header-section-number">18.2.2</span> Populating <code>MeanAtAge</code></a></li>
+  </ul>
+</li>
+  <li><a href="#create-length-object-to-simplestock" id="toc-create-length-object-to-simplestock" class="nav-link" data-scroll-target="#create-length-object-to-simplestock"><span class="header-section-number">18.3</span> Create <code>Length</code> Object to <code>SimpleStock</code></a></li>
+  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">18.4</span> Weight</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/object_length.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./object_details.html">About the Objects</a></li><li class="breadcrumb-item"><a href="./object_length.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-object_length" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>Length</code> object is optional if no other objects are a function of length (e.g., <code>Weight</code>, <code>Maturity</code>, <code>Fecundity</code> and <code>Selectivity</code> etc in the <code>Fleet</code> object, and there is no requirement to generate catch-at-length data.</p>
+</div>
+</div>
+<p>The <code>Length()</code> function is used to create <code>Length</code> objects. The help documentation for this function (<code>?Length</code>) provides details on the contents of the <code>Length</code> object and a description of the arguments for the <code>Length()</code> function (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a>).</p>
+<div id="fig-length_help" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Length_help.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.1: Screenshot of the help documentation for the <code>Length</code> function
+</figcaption></figure>
+</div>
+<p>Ultimately, users must provide information to populate <code>MeanAtAge</code> and <code>CVatAge</code> in a <code>Length</code> object. <code>MeanAtAge</code> is common to all objects that contain at-age information, and, as the name suggests, contains information describing the mean at-age schedule (in this case the mean length-at-age). <code>CVatAge</code> contains the coefficient of variability for the distribution of length-at-age, which can be either normally (<code>Dist='normal'</code>) or log-normally (<code>Dist='lognormal'</code>) distributed around <code>MeanAtAge</code>.</p>
+<p>Internally, both <code>MeanAtAge</code> and <code>CVatAge</code> will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years but as noted above, for seasonal models the time steps will actually be decimal years). However, the <code>openMSE</code> objects have been designed such that users only need to enter the minimal information to populate the model.</p>
+<p>In this example, the values for <code>MeanAtAge</code> are defined by means of a list of named parameters (<code>Pars</code>) for a built-in growth function (<code>vonBert</code>):</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
+<span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span>,</span>
+<span>    K <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.22</span><span class="op">)</span>,</span>
+<span>    t0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.86</span>, <span class="op">-</span><span class="fl">1.41</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  Model <span class="op">=</span> <span class="st">"vonBert"</span>,</span>
+<span>  CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The parameters for the <code>vonBert</code> function and the values for <code>CVatAge</code> are entered as lower and upper bounds of a uniform distribution. Internally, <code>nSim</code> values for the <code>Linf</code>, <code>K</code>, and <code>t0</code> parameters will be sampled from uniform distributions, and these used to calculate the values for <code>MeanAtAge</code>. Similarly, <code>nSim</code> values will be sampled for <code>CVatAge</code>.</p>
+<p>This is done internally by the <code>Populate</code> function, which is run here on the <code>Length</code> object to demonstrate:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleLengthComplete</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">Populate</span><span class="op">(</span></span>
+<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span>,</span>
+<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span>,</span>
+<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu">Pars</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Linf
+   Year
+Sim     2001
+  1 126.2108
+  2 121.6135
+  3 130.9356
+  4 130.2077
+  5 124.4980
+
+$K
+   Year
+Sim      2001
+  1 0.1780033
+  2 0.1950920
+  3 0.1800080
+  4 0.1973207
+  5 0.1927497
+
+$t0
+   Year
+Sim      2001
+  1 -1.464092
+  2 -1.541906
+  3 -1.530612
+  4 -1.440765
+  5 -1.655196</code></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">MeanAtAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2001
+
+   Age
+Sim        0        1        2        3        4        5         6         7
+  1 28.95541 44.81390 58.08650 69.19487 78.49190 86.27296  92.78523  98.23561
+  2 31.59329 47.54857 60.67592 71.47657 80.36290 87.67421  93.68965  98.63891
+  3 31.53252 47.90783 61.58553 73.01001 82.55247 90.52293  97.18037 102.74108
+  4 32.22036 49.76721 64.17190 75.99710 85.70473 93.67399 100.21618 105.58683
+  5 34.00693 49.87106 62.95403 73.74340 82.64127 89.97924  96.03078 101.02141
+   Age
+Sim        8        9       10       11       12       13       14       15
+  1 102.7973 106.6151 109.8104 112.4846 114.7228 116.5960 118.1638 119.4760
+  2 102.7110 106.0613 108.8178 111.0857 112.9517 114.4869 115.7500 116.7893
+  3 107.3857 111.2653 114.5057 117.2123 119.4730 121.3613 122.9385 124.2559
+  4 109.9958 113.6152 116.5864 119.0256 121.0280 122.6718 124.0213 125.1291
+  5 105.1371 108.5313 111.3305 113.6389 115.5426 117.1126 118.4073 119.4751
+   Age
+Sim       16       17       18       19       20
+  1 120.5741 121.4933 122.2625 122.9063 123.4451
+  2 117.6444 118.3479 118.9267 119.4029 119.7947
+  3 125.3563 126.2754 127.0431 127.6844 128.2200
+  4 126.0385 126.7851 127.3980 127.9011 128.3142
+  5 120.3557 121.0819 121.6807 122.1746 122.5819</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CVatAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 2001
+
+   Age
+Sim         0
+  1 0.1295160
+  2 0.1410218
+  3 0.1112059
+  4 0.1205833
+  5 0.1019305</code></pre>
+</div>
+</div>
+<p>Notice that, because in this object mean length-at-age is constant over time, while <code>MeanAtAge</code> is a 3-dimensional array, the third dimension (<code>Year</code>) is only length 1 and named as the first historical year. Similarly, while <code>CVatAge</code> is a 3-dimensional array, the dimensions <code>Age</code> and <code>Year</code> are only length 1 and named as the first age-class and year respectively. Internally, these array will be expanded out for all age-classes and years.</p>
+<p>There are several other ways to specify values for <code>Pars</code>, <code>MeanAtAge</code>, and <code>CVatAge</code>, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in <a href="#sec-object_length" class="quarto-xref"><span>Section 18.1</span></a>.</p>
+<section id="sec-object_length" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="sec-object_length">
+<span class="header-section-number">18.1</span> Methods for Populating Age- and Time-Dynamic Values</h2>
+<p>Examples …</p>
+<p><code>Pars</code>, <code>MeanAtAge</code> ….</p>
+</section><section id="length" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="length">
+<span class="header-section-number">18.2</span> Length</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many sub-objects in the <code>Stock</code> object are structured and populated in a similar manner to <code>Length</code> objects.</p>
+<p>This section describes populating <code>Length</code> objects in detail. The other sub-objects with a similar structure are described in less detail.</p>
+<p>Readers should refer back to this section for the specific details for the different ways to populate those objects.</p>
+</div>
+</div>
+<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
+<section id="populating-cvatage" class="level3" data-number="18.2.1"><h3 data-number="18.2.1" class="anchored" data-anchor-id="populating-cvatage">
+<span class="header-section-number">18.2.1</span> Populating <code>CVatAge</code>
+</h3>
+<p><a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> shows the that default value for <code>CVatAge</code> is a single numeric value <code>0.1</code>. This value will be converted internally to an array with the correct dimensions, with a CV of <code>0.1</code> for all simulations, ages, and time steps.</p>
+<p>There are several ways to include uncertainty in the values for <code>CVatAge</code> , and have it vary by simulation, age, and/or time step. These approaches are described in the sub-sections below. In general, all age- and time-dynamic values can be populated in the same manner.</p>
+<section id="stochastic-samples-from-distributions" class="level4" data-number="18.2.1.1"><h4 data-number="18.2.1.1" class="anchored" data-anchor-id="stochastic-samples-from-distributions">
+<span class="header-section-number">18.2.1.1</span> Stochastic Samples from Distributions</h4>
+<p>The easiest way to include uncertainty is to sample from a uniform distribution. To do this, enter to numeric values representing the lower and upper bounds of a uniform distribution:</p>
+<p>The above code creates a new <code>Length</code> class object with only the <code>CVatAge</code> slot populated.</p>
+<p>This object is processed internally to sample from a uniform distribution with these bounds and produce an array with the correct dimensions.</p>
+<p>This is done internally by the <code>Populate</code> function, which is run here on the <code>Length_CV_uniform</code> object to demonstrate:</p>
+<p>In practice, users will rarely need to call the <code>Populate</code> function as this processing is done internally in the <code>Simulate</code> function.</p>
+<p><code>CVatAge</code> in <code>Length_CV_uniform</code> is now a 3-dimensional array:</p>
+<p>with the value for each simulation drawn from a uniform distribution with the specified bounds:</p>
+<p>Once an object has been populated by <code>Populate</code> , all dimensions will be named:</p>
+<p>Notice that while <code>CVatAge</code> is a 3-dimensional array, the dimensions <code>Age</code> and <code>Year</code> are only length 1 and named as the first age-class and year respectively. This is because <code>CVatAge</code> in this example only varies by simulation and is constant for all ages-classes and years. Internally, the array will be expanded out for all age-classes and years.</p>
+<p>The values for <code>CVatAge</code> can also be entered as a vector of length <code>nSim</code> (provided <code>nSim &gt; 2</code> ). The following are will result in the same output as the code above:</p>
+<p>This approach can be also used to sample values from different distributions, for example:</p>
+</section><section id="age-specific-values" class="level4" data-number="18.2.1.2"><h4 data-number="18.2.1.2" class="anchored" data-anchor-id="age-specific-values">
+<span class="header-section-number">18.2.1.2</span> Age-Specific Values</h4>
+<p>Age-specific values can be generated by specifying <code>CVatAge</code> as an array with dimensions <code>nSim</code> and <code>nAge</code> :</p>
+</section><section id="time--and-age-specific-values" class="level4" data-number="18.2.1.3"><h4 data-number="18.2.1.3" class="anchored" data-anchor-id="time--and-age-specific-values">
+<span class="header-section-number">18.2.1.3</span> Time- and Age-Specific Values</h4>
+<p>The same approach can be used to generate values that vary of both age and time:</p>
+</section></section><section id="populating-meanatage" class="level3" data-number="18.2.2"><h3 data-number="18.2.2" class="anchored" data-anchor-id="populating-meanatage">
+<span class="header-section-number">18.2.2</span> Populating <code>MeanAtAge</code>
+</h3>
+<p>The previous section described the different methods to populate <code>CVatAge</code>. Additional methods are used to populate <code>MeanAtAge</code>.</p>
+<p>The methods described in this section are used to populate <code>MeanAtAge</code> for the <code>Length</code> object. The same process is used for all objects that contain <code>MeanAtAge</code> information (e.g., <code>?Weight</code>, <code>?Maturity</code>, <code>?Selectivitity</code>, etc).</p>
+<section id="using-pars-and-model" class="level4" data-number="18.2.2.1"><h4 data-number="18.2.2.1" class="anchored" data-anchor-id="using-pars-and-model">
+<span class="header-section-number">18.2.2.1</span> Using <code>Pars</code> and <code>Model</code>
+</h4>
+<p>The first two arguments to the <code>Length()</code> function are <code>Pars</code> and <code>Model</code> (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>18.1</span></a>).</p>
+<p>These values are used to generate the <code>MeanAtAge</code> schedule from a growth model and corresponding parameter values.</p>
+<p>Alternatively, as described in the next section, <code>MeanAtAge</code> can be populated directly in a similar manner as described above for <code>CVatAge</code>.</p>
+<p><code>Pars</code> is a named list, with the names of the parameters for (in this case) the growth model specified in <code>Model</code>.</p>
+<p><code>openMSE</code> includes built-in models for all objects that contain <code>MeanAtAge</code> information. Currently there is one built-in length-at-age model, the von Bertalanffy growth function (see also <code>?vonBert</code>:</p>
+<p><span id="eq-vonB"><span class="math display">\[
+L_a = L_\infty(1-\exp(-K(a-t_0))
+\tag{18.1}\]</span></span></p>
+<p>In general, a list of built-in models for a specific object class can be printed to the console with <code>[CLASS]Models()</code>. For example <code>LengthModels()</code> prints the built-in models corresponding to <code>Length</code> objects (<a href="#fig-length_models" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>).</p>
+<div id="fig-length_models" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-length_models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Length_models.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-length_models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.2: Output printed in the console by <code>LengthModels()</code>
+</figcaption></figure>
+</div>
+<p>If the names in <code>Pars</code> corresponds with a built-in model, <code>Model</code> will be set automatically and does not need to be defined.</p>
+<p>Alternatively, <code>Model</code> can be a R function that takes an <code>Ages</code> object as the first argument followed by the additional parameters that describe the mean length-at-age relationship.</p>
+<p>The output from <code>LengthModels()</code> shows that the <code>vonBert</code> function has three parameters: <code>Linf</code>, <code>K</code>, <code>t0</code> (<a href="#fig-length_models" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>). Values for these parameters must be entered in <code>Pars</code> in order to use this growth function.</p>
+<p>The structure for the values contained in <code>Pars</code> is similar to that described for <code>CVatLength</code> above, where the values can be constant over all simulations and years, or vary by simulation and/or year.</p>
+<section id="constant-values-over-simulations-and-years" class="level5" data-number="18.2.2.1.1"><h5 data-number="18.2.2.1.1" class="anchored" data-anchor-id="constant-values-over-simulations-and-years">
+<span class="header-section-number">18.2.2.1.1</span> Constant Values over Simulations and Years</h5>
+</section><section id="linf-varies-over-simulations-all-pars-constant-over-years" class="level5" data-number="18.2.2.1.2"><h5 data-number="18.2.2.1.2" class="anchored" data-anchor-id="linf-varies-over-simulations-all-pars-constant-over-years">
+<span class="header-section-number">18.2.2.1.2</span> <code>Linf</code> varies over Simulations, all <code>Pars</code> Constant over Years</h5>
+</section><section id="time-varying-parameters" class="level5" data-number="18.2.2.1.3"><h5 data-number="18.2.2.1.3" class="anchored" data-anchor-id="time-varying-parameters">
+<span class="header-section-number">18.2.2.1.3</span> Time-Varying Parameters</h5>
+<p>Specifying time-varying parameters is a little more involved.</p>
+</section></section><section id="populating-meanatage-directly" class="level4" data-number="18.2.2.2"><h4 data-number="18.2.2.2" class="anchored" data-anchor-id="populating-meanatage-directly">
+<span class="header-section-number">18.2.2.2</span> Populating <code>MeanAtAge</code> Directly</h4>
+<p>Here the process to create and populate a <code>Length</code> object is broken into several steps. In practice this can be done in one or two lines of code.</p>
+<p>Create a new <code>Length</code> object:</p>
+<p>The mean length-at-age schedule is stored in a slot named <code>MeanAtAge</code>, which can be specified in two ways:</p>
+<ol type="1">
+<li>A growth model and a list of the respective parameter values</li>
+<li>Directly as an array specifying the mean length-at-age for each simulation and year.</li>
+</ol></section><section id="model-and-parameters" class="level4" data-number="18.2.2.3"><h4 data-number="18.2.2.3" class="anchored" data-anchor-id="model-and-parameters">
+<span class="header-section-number">18.2.2.3</span> Model and Parameters</h4>
+<p>The <code>Model</code> and <code>Pars</code> slots are used to generate the mean length-at-age.</p>
+<p><code>Model</code> specifies the growth function, and <code>Pars</code> is a named list with the parameter values.</p>
+<pre><code></code></pre>
+<p><code>Model</code> can either be a character string specifying the name of the growth model corresponding with the named parameters in <code>Pars</code>, or</p>
+</section></section></section><section id="create-length-object-to-simplestock" class="level2" data-number="18.3"><h2 data-number="18.3" class="anchored" data-anchor-id="create-length-object-to-simplestock">
+<span class="header-section-number">18.3</span> Create <code>Length</code> Object to <code>SimpleStock</code>
+</h2>
+<p>The above sections described various ways to populate a <code>Length</code> object.</p>
+<p>Here a <code>Length</code> object is created with stochastic values for the growth parameters (<code>Pars</code>) and <code>CVatLength</code> that vary over simulations, and the object is added to the <code>SimpleStock</code> object:</p>
+</section><section id="weight" class="level2" data-number="18.4"><h2 data-number="18.4" class="anchored" data-anchor-id="weight">
+<span class="header-section-number">18.4</span> Weight</h2>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/docs\.openMSE\.com\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./object_ages.html" class="pagination-link" aria-label="`Ages` Object">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Ages</code> Object</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./object_weight.html" class="pagination-link" aria-label="`Weight` Object">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/object_length.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

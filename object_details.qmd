@@ -1,18 +1,3 @@
-```{r}
-#| eval: true
-#| include: false
-#| message: false
-#| warning: false
-#| cache: false
-library(MSEtool)
-source('../MSEtool/CaseStudies/SimpleOM/SimpleOM.R')
-knitr::read_chunk('../MSEtool/CaseStudies/SimpleOM/SimpleOM.R')
-```
-
-# More Details on Object Classes
-
-
-
-
+# About the Objects
 
 

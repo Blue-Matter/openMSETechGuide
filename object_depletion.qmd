@@ -1,0 +1,4 @@
+# `Depletion` Object {#sec-object_depletion}
+
+The ...
+

@@ -1,4 +1,4 @@
-# Introduction {.unnumbered}   
+# Introduction {.unnumbered}    
 
 Welcome to the **openMSE Technical Manual**.
 
@@ -27,7 +27,13 @@ Little programming experience is required to use the `openMSE`. However, users o
 ::: {.callout-warning}
 This Technical Manual has been developed for `openMSE 2.0`, which is currently under development and has not yet been released on CRAN. 
 
-The code in this manual is only compatible with the latest development branches of `MSEtool`, `SAMtool`, `DLMtool`, and `openMSE`.
+Currently the latest development version of `MSEtool` needs to be installed from Github:
+
+```{r}
+#| eval: false
+pak::pkg_install('blue-matter/MSEtool@prerelease')
+```
+
 
 This warning will be removed once the `openMSE 2.0` packages have been released on CRAN.
 
@@ -56,15 +62,6 @@ Installing and loading the `openMSE` package will install and load the following
 
 3.  [SAMtool](https://SAMtool.openMSE.com) - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. `SAMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `SAMtool` is loaded into an R session.
 
-::: {.callout-important}
-Currently the latest development version of `MSEtool` needs to be installed from Github:
-
-```{r}
-#| eval: false
-pak::pkg_install('blue-matter/MSEtool@prerelease')
-```
-
-:::
 
 
 ## Acknowledgements 

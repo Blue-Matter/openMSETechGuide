@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
 <title>4&nbsp; Build a Stock Object – openMSE Technical Manual</title>
@@ -67,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -101,7 +100,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -121,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
         <div class="sidebar-tools-main">
@@ -145,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./openmse.html" class="sidebar-item-text sidebar-link">
+  <a href="./about_openmse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span></a>
   </div>
 </li>
@@ -263,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./object_details.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">More Details on Object Classes</span></a>
+ <span class="menu-text">About the Objects</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -271,8 +295,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./length_object.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">The <code>Length</code> Object</span></span></a>
+  <a href="./object_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>OM</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_stock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>Stock</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_ages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Ages</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_length.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_naturalmortality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>NaturalMortality</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_maturity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>Maturity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_fecundity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><code>Fecundity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_srr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title"><code>SRR</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><code>Spatial</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_depletion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><code>Depletion</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><code>Fleet</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_hist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><code>Hist</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><code>MSE</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./management_procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mps_tac.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Total Allowable Catch</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,15 +406,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./Eq_overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Equations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Eq_popdynamics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,15 +427,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#ages" id="toc-ages" class="nav-link active" data-scroll-target="#ages"><span class="header-section-number">4.1</span> Ages</a></li>
-  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">4.2</span> Length</a></li>
-  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">4.3</span> Weight</a></li>
-  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">4.4</span> NaturalMortality</a></li>
-  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">4.5</span> Maturity</a></li>
-  <li><a href="#fecundity" id="toc-fecundity" class="nav-link" data-scroll-target="#fecundity"><span class="header-section-number">4.6</span> Fecundity</a></li>
-  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">4.7</span> SRR</a></li>
-  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">4.8</span> Spatial</a></li>
-  <li><a href="#depletion" id="toc-depletion" class="nav-link" data-scroll-target="#depletion"><span class="header-section-number">4.9</span> Depletion</a></li>
+<li><a href="#create-a-new-stock-object" id="toc-create-a-new-stock-object" class="nav-link active" data-scroll-target="#create-a-new-stock-object"><span class="header-section-number">4.1</span> Create a new <code>Stock</code> Object</a></li>
+  <li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">4.2</span> Ages</a></li>
+  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">4.3</span> Length</a></li>
+  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">4.4</span> Weight</a></li>
+  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">4.5</span> NaturalMortality</a></li>
+  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">4.6</span> Maturity</a></li>
+  <li><a href="#fecundity" id="toc-fecundity" class="nav-link" data-scroll-target="#fecundity"><span class="header-section-number">4.7</span> Fecundity</a></li>
+  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">4.8</span> SRR</a></li>
+  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">4.9</span> Spatial</a></li>
+  <li><a href="#depletion" id="toc-depletion" class="nav-link" data-scroll-target="#depletion"><span class="header-section-number">4.10</span> Depletion</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/walkthough_build_stock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -330,112 +456,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>A <code>Stock</code> object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see <code>?Stock</code> for more details).</p>
-<p>Here an example <code>Stock</code> object is created using an expert judgment approach, where most parameters are stochastic.</p>
+<p>Here an example <code>Stock</code> object is created using an expert judgment approach, where most parameters are stochastic and sampled from uniform distributions.</p>
 <p>The stock is loosely based on albacore <em>Thunnus alalunga</em> and should only be considered an example for demonstration purposes.</p>
-<p>Later, this <code>Stock</code> object will be added to the <code>OM</code> object created in the previous chapter.</p>
+<p>In <a href="walkthough_add_objects.html" class="quarto-xref"><span>Chapter 7</span></a>, this <code>Stock</code> object is added to the <code>OM</code> object created in the previous chapter.</p>
+<section id="create-a-new-stock-object" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="create-a-new-stock-object">
+<span class="header-section-number">4.1</span> Create a new <code>Stock</code> Object</h2>
 <p>The <code>Stock()</code> function is used to create new <code>Stock</code> objects:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
 <span>  CommonName <span class="op">=</span> <span class="st">"Albacore"</span>,</span>
 <span>  Species <span class="op">=</span> <span class="st">"Thunnus alalunga"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In addition to <code>Name</code>, <code>CommonName</code>, and <code>Species</code> that were specified in the call to the <code>Stock()</code> function, <code>Stock</code> objects contain several other sub-objects that need to be populated:</p>
 <ol type="1">
-<li><code>Ages</code></li>
-<li><code>Length</code></li>
-<li><code>Weight</code></li>
-<li><code>NaturalMortality</code></li>
-<li><code>Maturity</code></li>
-<li><em><code>Fecundity</code></em></li>
-<li><code>SRR</code></li>
-<li><em><code>Spatial</code></em></li>
-<li><em><code>Depletion</code></em></li>
+<li><a href="object_ages.html"><code>Ages</code></a></li>
+<li><a href="object_length.html"><code>Length</code></a></li>
+<li><a href="object_weight.html"><code>Weight</code></a></li>
+<li><a href="object_naturalmortality.html"><code>NaturalMortality</code></a></li>
+<li><a href="object_maturity.html"><code>Maturity</code></a></li>
+<li><a href="object_fecundity.html"><em><code>Fecundity</code></em></a></li>
+<li><a href="object_srr.html"><code>SRR</code></a></li>
+<li><a href="object_spatial.html"><em><code>Spatial</code></em></a></li>
+<li><a href="object_depletion.html"><em><code>Depletion</code></em></a></li>
 </ol>
-<p>The sub-objects in italics are optional, see the sections below for details. The other sub-objects must be populated to complete the <code>Stock</code> object.</p>
+<p>The sub-objects in italics are optional, see the relevant chapters for each object for details. The other sub-objects must be populated to complete the <code>Stock</code> object.</p>
+<p>The following sections describe the process to build these objects for the <code>ExampleStock</code> object.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Help Documentation
+Help Documentation
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Help documentation can be accessed for all <code>openMSE</code> objects and functions, e.g.,</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">OM</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">OM</span></span>
 <span><span class="op">?</span><span class="va">Stock</span></span>
 <span><span class="op">?</span><span class="va">Ages</span></span>
 <span><span class="op">?</span><span class="va">Length</span></span>
-<span><span class="co"># etc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co"># etc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<section id="ages" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="ages">
-<span class="header-section-number">4.1</span> Ages</h2>
-<p>An <code>Ages</code> object contains information relating to the age structure of the stock.</p>
+</section><section id="ages" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="ages">
+<span class="header-section-number">4.2</span> Ages</h2>
+<p>An <code>Ages</code> object contains information relating to the age structure of the stock. The <code>Ages()</code> function is used to create an <code>Ages</code> object for <code>ExampleStock</code> . The primary information required for an <code>Ages</code> object is the maximum age class:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> <span class="fl">20</span>, Units <span class="op">=</span> <span class="st">"quarter"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that <code>MaxAge</code> is set in time units of <code>quarter</code>. It is important that the time units in the <code>Ages</code> object matches the number of seasons in the <code>OM</code>.</p>
-<p>Also note that, following the convention in <code>Years(OM)</code> the age classes are <em>always</em> in units of year:</p>
+<p>By default, the maximum age is used as a plus-group (<code>PlusGroup=TRUE</code>).</p>
+<p>The default behaviour is to set the minimum age-class to 0:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Classes</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.00  0.25  0.50  0.75  1.00  1.25  1.50  1.75  2.00  2.25  2.50  2.75
-[13]  3.00  3.25  3.50  3.75  4.00  4.25  4.50  4.75  5.00  5.25  5.50  5.75
-[25]  6.00  6.25  6.50  6.75  7.00  7.25  7.50  7.75  8.00  8.25  8.50  8.75
-[37]  9.00  9.25  9.50  9.75 10.00 10.25 10.50 10.75 11.00 11.25 11.50 11.75
-[49] 12.00 12.25 12.50 12.75 13.00 13.25 13.50 13.75 14.00 14.25 14.50 14.75
-[61] 15.00 15.25 15.50 15.75 16.00 16.25 16.50 16.75 17.00 17.25 17.50 17.75
-[73] 18.00 18.25 18.50 18.75 19.00 19.25 19.50 19.75 20.00</code></pre>
-</div>
-</div>
-<p>To keep things simple, we’ll change our <code>OM</code> back to annual time-steps and re-recreate the <code>Ages</code> object accordingly:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seasons</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># annual</span></span>
-<span><span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="fu">Classes</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Classes</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 </div>
 </div>
-</section><section id="length" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="length">
-<span class="header-section-number">4.2</span> Length</h2>
-<p>The <code>Length</code> object describes the mean length-at-age schedule and how length-at-age is distributed around the mean. This information is primarily used for two purposes:</p>
+<p>This can be changed by setting a positive integer value for the <code>MinAge</code> argument in the call to <code>Ages()</code>. See <a href="object_ages.html" class="quarto-xref"><span>Chapter 17</span></a> for more details on the <code>Ages</code> object.</p>
+</section><section id="length" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="length">
+<span class="header-section-number">4.3</span> Length</h2>
+<p>The <code>Length</code> object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.</p>
+<p>The two key pieces of information stored in the <code>Length</code> object are:</p>
 <ol type="1">
-<li>Calculating mean weight-at-age from a length-weight relationship a the mean length-at-age</li>
-<li>Calculating the age-length key for converting at-age values (such as maturity-at-age) to at-length (i.e., maturity-at-length) and vice versa, and for generating catch-at-length data.</li>
+<li>
+<code>MeanAtAge</code>: the mean length-at-age schedule for each simulation and year;</li>
+<li>
+<code>CVatAge</code>: the coefficient of variability for the distribution of length-at-age, which can be either normally (<code>Dist='normal'</code>) or log-normally (<code>Dist='lognormal'</code>) distributed around <code>MeanAtAge</code>.</li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>Length</code> object is optional if no other objects are a function of length (e.g., <code>Weight</code>, <code>Maturity</code>, <code>Fecundity</code> and <code>Selectivity</code> etc in the <code>Fleet</code> object, and there is no requirement to generate catch-at-length data.</p>
-</div>
-</div>
-<p>The <code>Length()</code> function is used to create <code>Length</code> objects. The help documentation for this function (<code>?Length</code>) provides details on the contents of the <code>Length</code> object and a description of the arguments for the <code>Length()</code> function (<a href="#fig-length_help" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>).</p>
-<div id="fig-length_help" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Length_help.png" class="img-fluid figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-length_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Screenshot of the help documentation for the <code>Length</code> function
-</figcaption></figure>
-</div>
-<p>Ultimately, users must provide information to populate <code>MeanAtAge</code> and <code>CVatAge</code> in a <code>Length</code> object. <code>MeanAtAge</code> is common to all objects that contain at-age information, and, as the name suggests, contains information describing the mean at-age schedule (in this case the mean length-at-age). <code>CVatAge</code> contains the coefficient of variability for the distribution of length-at-age, which can be either normally (<code>Dist='normal'</code>) or log-normally (<code>Dist='lognormal'</code>) distributed around <code>MeanAtAge</code>.</p>
-<p>Internally, both <code>MeanAtAge</code> and <code>CVatAge</code> will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years but as noted above, for seasonal models the time steps will actually be decimal years). However, the <code>openMSE</code> objects have been designed such that users only need to enter the minimal information to populate the model.</p>
+<p>Internally, both <code>MeanAtAge</code> and <code>CVatAge</code> will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years). However, the <code>openMSE</code> objects have been designed such that users only need to enter the minimal information to populate the model.</p>
 <p>In this example, the values for <code>MeanAtAge</code> are defined by means of a list of named parameters (<code>Pars</code>) for a built-in growth function (<code>vonBert</code>):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">121</span>, <span class="fl">135</span><span class="op">)</span>,</span>
 <span>    K <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.22</span><span class="op">)</span>,</span>
@@ -443,280 +538,95 @@ Figure&nbsp;4.1: Screenshot of the help documentation for the <code>Length</code
 <span>  <span class="op">)</span>,</span>
 <span>  Model <span class="op">=</span> <span class="st">"vonBert"</span>,</span>
 <span>  CVatAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The parameters for the <code>vonBert</code> function and the values for <code>CVatAge</code> are entered as lower and upper bounds of a uniform distribution. Internally, <code>nSim</code> values for the <code>Linf</code>, <code>K</code>, and <code>t0</code> parameters will be sampled from uniform distributions, and these used to calculate the values for <code>MeanAtAge</code>. Similarly, <code>nSim</code> values will be sampled for <code>CVatAge</code>.</p>
-<p>This is done internally by the <code>Populate</code> function, which is run here on the <code>Length</code> object to demonstrate:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleLengthComplete</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span>,</span>
-<span>    nSim <span class="op">=</span> <span class="fu">nSim</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">Pars</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$Linf
-   Year
-Sim     2001
-  1 126.2108
-  2 121.6135
-  3 130.9356
-  4 130.2077
-  5 124.4980
-
-$K
-   Year
-Sim      2001
-  1 0.1780033
-  2 0.1950920
-  3 0.1800080
-  4 0.1973207
-  5 0.1927497
-
-$t0
-   Year
-Sim      2001
-  1 -1.464092
-  2 -1.541906
-  3 -1.530612
-  4 -1.440765
-  5 -1.655196</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">MeanAtAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>, , Year = 2001
-
-   Age
-Sim        0        1        2        3        4        5         6         7
-  1 28.95541 44.81390 58.08650 69.19487 78.49190 86.27296  92.78523  98.23561
-  2 31.59329 47.54857 60.67592 71.47657 80.36290 87.67421  93.68965  98.63891
-  3 31.53252 47.90783 61.58553 73.01001 82.55247 90.52293  97.18037 102.74108
-  4 32.22036 49.76721 64.17190 75.99710 85.70473 93.67399 100.21618 105.58683
-  5 34.00693 49.87106 62.95403 73.74340 82.64127 89.97924  96.03078 101.02141
-   Age
-Sim        8        9       10       11       12       13       14       15
-  1 102.7973 106.6151 109.8104 112.4846 114.7228 116.5960 118.1638 119.4760
-  2 102.7110 106.0613 108.8178 111.0857 112.9517 114.4869 115.7500 116.7893
-  3 107.3857 111.2653 114.5057 117.2123 119.4730 121.3613 122.9385 124.2559
-  4 109.9958 113.6152 116.5864 119.0256 121.0280 122.6718 124.0213 125.1291
-  5 105.1371 108.5313 111.3305 113.6389 115.5426 117.1126 118.4073 119.4751
-   Age
-Sim       16       17       18       19       20
-  1 120.5741 121.4933 122.2625 122.9063 123.4451
-  2 117.6444 118.3479 118.9267 119.4029 119.7947
-  3 125.3563 126.2754 127.0431 127.6844 128.2200
-  4 126.0385 126.7851 127.3980 127.9011 128.3142
-  5 120.3557 121.0819 121.6807 122.1746 122.5819</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CVatAge</span><span class="op">(</span><span class="va">ExampleLengthComplete</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>, , Year = 2001
-
-   Age
-Sim         0
-  1 0.1295160
-  2 0.1410218
-  3 0.1112059
-  4 0.1205833
-  5 0.1019305</code></pre>
-</div>
-</div>
-<p>Notice that, because in this object mean length-at-age is constant over time, while <code>MeanAtAge</code> is a 3-dimensional array, the third dimension (<code>Year</code>) is only length 1 and named as the first historical year. Similarly, while <code>CVatAge</code> is a 3-dimensional array, the dimensions <code>Age</code> and <code>Year</code> are only length 1 and named as the first age-class and year respectively. Internally, these array will be expanded out for all age-classes and years.</p>
-<p>There are several other ways to specify values for <code>Pars</code>, <code>MeanAtAge</code>, and <code>CVatAge</code>, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in <a href="length_object.html#sec-object_length" class="quarto-xref"><span>Section 15.1</span></a>.</p>
-</section><section id="weight" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="weight">
-<span class="header-section-number">4.3</span> Weight</h2>
+<p>The parameters for the <code>vonBert</code> function and the values for <code>CVatAge</code> are entered as lower and upper bounds of a uniform distribution. Internally, <code>nSim</code> values for the <code>Linf</code>, <code>K</code>, and <code>t0</code> parameters will be sampled from uniform distributions, and these used to calculate the values for <code>MeanAtAge</code>. Similarly, <code>nSim</code> values will be sampled for <code>CVatAge</code> and used within each simulation as a constant value over all simulations and time steps.</p>
+<p>There are many other ways to populate <code>Length</code> objects, including sampling from non-uniform distributions and having values vary over time. See <a href="object_length.html#sec-object_length" class="quarto-xref"><span>Section 18.1</span></a> for more details.</p>
+</section><section id="weight" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="weight">
+<span class="header-section-number">4.4</span> Weight</h2>
 <p>The <code>Weight</code> object contains information related to the weight-at-age and/or the length-weight relationship. In this example, an allometric length-weight relationship with parameters <code>alpha</code> and <code>beta</code> is specified, with values that are constant over all simulations and time-steps:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    alpha <span class="op">=</span> <span class="fl">1.34E-05</span>,</span>
 <span>    beta <span class="op">=</span> <span class="fl">3.106</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Internally, the <code>Populate</code> function will be used to calculate the mean weight-at-age from the <code>alpha</code> and <code>beta</code> parameters and the length defined in the <code>Length</code> object.</p>
-<p><span class="quarto-unresolved-ref">?sec-object_weight</span> has more details on the <code>Weight</code> object.</p>
-</section><section id="naturalmortality" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="naturalmortality">
-<span class="header-section-number">4.4</span> NaturalMortality</h2>
+<p>Internally, these <code>alpha</code> and <code>beta</code> parameters values will be used together with the information contained in the <code>Length</code> object to calculate the mean weight-at-age (<code>MeanAtAge</code>) for this stock.</p>
+<p><a href="object_weight.html" class="quarto-xref"><span>Chapter 19</span></a> has more details on the <code>Weight</code> object.</p>
+</section><section id="naturalmortality" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="naturalmortality">
+<span class="header-section-number">4.5</span> NaturalMortality</h2>
 <p>The <code>NaturalMortality</code> object contains information relating to the natural mortality rate for each age-class and time step:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.45</span><span class="op">)</span>,</span>
-<span>    Msd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.2</span><span class="op">)</span></span>
+<span>    M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.45</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In this example, <code>M</code> is specified as a named parameter in the <code>Pars</code> list, with the values indicating lower and upper bounds of a uniform distribution. The second element in <code>Pars</code> is <code>Msd</code>, with values also indicating lower and upper bounds of a uniform distribution. The <code>Msd</code> parameter indicates the standard deviation of log-normally distributed process error which is used as a simple method to add stochastic time-varying variation to <code>M</code> :</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleStock</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">NaturalMortality</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Years <span class="op">=</span> <span class="fl">2023</span><span class="op">:</span><span class="fl">2025</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Pars</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$M
-   Year
-Sim      2023      2024      2025
-  1 0.4029189 0.3875625 0.3711781
-  2 0.3952582 0.3350171 0.3328722
-  3 0.4048179 0.4486208 0.4094666
-  4 0.4892802 0.3637180 0.3943089
-  5 0.3992442 0.3986595 0.3270530</code></pre>
-</div>
-</div>
-<p><span class="quarto-unresolved-ref">?sec-object_natural_mortality</span> has more details on the <code>NaturalMortality</code> object.</p>
-</section><section id="maturity" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="maturity">
-<span class="header-section-number">4.5</span> Maturity</h2>
+<p>In this example, <code>M</code> is assumed to be constant across all age-classes and years, and is specified as a named parameter in the <code>Pars</code> list, with the values indicating lower and upper bounds of a uniform distribution.</p>
+<p><a href="object_naturalmortality.html" class="quarto-xref"><span>Chapter 20</span></a> has more details on the <code>NaturalMortality</code> object.</p>
+</section><section id="maturity" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="maturity">
+<span class="header-section-number">4.6</span> Maturity</h2>
 <p><code>Maturity</code> objects contain information related to the probability that a specific age- and/or length-class is mature. This example uses a 2-parameter logistic function to specify the probability of maturity-at-length, once again using lower and upper bounds of a uniform distribution to account for uncertainty:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Maturity</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Maturity</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Maturity</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Maturity</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    L50 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">81</span>, <span class="fl">91</span><span class="op">)</span>,</span>
 <span>    L50_95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In this example, parameters in <code>Pars</code> are used to calculate <code>MeanAtLength</code> , which is then used together with the age-length key described in the <code>Length</code> object to calculate the values for <code>MeanAtAge</code> :</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleMaturityComplete</span> <span class="op">&lt;-</span> <span class="va">ExampleStock</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Maturity</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Populate</span><span class="op">(</span></span>
-<span>    Ages <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span>,</span>
-<span>    Length <span class="op">=</span> <span class="fu">Length</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span>,</span>
-<span>    Years <span class="op">=</span> <span class="fu">Years</span><span class="op">(</span><span class="va">ExampleOM</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">ExampleMaturityComplete</span> <span class="op">|&gt;</span> <span class="fu">Pars</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$L50
-   Year
-Sim     2001
-  1 84.72198
-  2 81.43825
-  3 88.09684
-  4 87.57690
-  5 83.49856
-
-$L50_95
-   Year
-Sim     2001
-  1 10.60011
-  2 11.16973
-  3 10.66693
-  4 11.24402
-  5 11.09166</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleMaturityComplete</span> <span class="op">|&gt;</span> <span class="fu">MeanAtLength</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>, , Year = 2001
-
-   Class
-Sim         2.05         6.15        10.25        14.35        18.45
-  1 1.063634e-10 3.321997e-10 1.037544e-09 3.240511e-09 1.012094e-08
-  2 8.153255e-10 2.402783e-09 7.081059e-09 2.086805e-08 6.149863e-08
-  3 4.838297e-11 1.500380e-10 4.652750e-10 1.442840e-09 4.474318e-09
-  4 1.876064e-10 5.489464e-10 1.606247e-09 4.699965e-09 1.375235e-08
-  5 4.072132e-10 1.209232e-09 3.590850e-09 1.066314e-08 3.166450e-08
-   Class
-Sim        22.55        26.65        30.75        34.85        38.95
-  1 3.161024e-08 9.872675e-08 3.083485e-07 9.630498e-07 3.007842e-06
-  2 1.812379e-07 5.341122e-07 1.574040e-06 4.638717e-06 1.367029e-05
-  3 1.387508e-08 4.302729e-08 1.334297e-07 4.137719e-07 1.283126e-06
-  4 4.024012e-08 1.177448e-07 3.445275e-07 1.008105e-06 2.949765e-06
-  5 9.402867e-08 2.792209e-07 8.291543e-07 2.462194e-06 7.311524e-06
-   Class
-Sim        43.05        47.15        51.25        55.35        59.45
-  1 9.394190e-06 2.933984e-05 9.163003e-05 0.0002861281 0.0008931077
-  2 4.028558e-05 1.187133e-04 3.497699e-04 0.0010300787 0.0030295902
-  3 3.979025e-06 1.233905e-05 3.826299e-05 0.0001186459 0.0003678349
-  4 8.631122e-06 2.525471e-05 7.389305e-05 0.0002161843 0.0006323036
-  5 2.171148e-05 6.447012e-05 1.914216e-04 0.0005682180 0.0016854541
-   Class
-Sim       63.55       67.65      71.75      75.85      79.95     84.05
-  1 0.002784122 0.008644415 0.02651208 0.07839115 0.20989891 0.4534701
-  2 0.008875917 0.025713173 0.07216447 0.18647023 0.40316009 0.6656288
-  3 0.001139793 0.003526110 0.01085422 0.03290898 0.09545244 0.2465558
-  4 0.001847904 0.005387891 0.01560334 0.04432414 0.11949358 0.2842290
-  5 0.004988447 0.014669218 0.04233749 0.11604595 0.28049345 0.5365319
-   Class
-Sim     88.15     92.25     96.35    100.45    104.55    108.65    112.75
-  1 0.7215604 0.8900342 0.9619465 0.9874925 0.9959610 0.9987032 0.9995844
-  2 0.8543676 0.9453224 0.9807512 0.9933842 0.9977453 0.9992338 0.9997399
-  3 0.5036684 0.7588554 0.9070516 0.9680123 0.9894564 0.9965755 0.9988931
-  4 0.5374485 0.7727192 0.9086602 0.9667871 0.9883955 0.9960036 0.9986306
-  5 0.7746562 0.9107800 0.9680651 0.9890131 0.9962730 0.9987418 0.9995759
-   Class
-Sim    116.85    120.95    125.05    129.15    133.25    137.35    141.45
-  1 0.9998669 0.9999574 0.9999864 0.9999956 0.9999986 0.9999996 0.9999999
-  2 0.9999117 0.9999700 0.9999898 0.9999966 0.9999988 0.9999996 0.9999999
-  3 0.9996428 0.9998848 0.9999628 0.9999880 0.9999961 0.9999988 0.9999996
-  4 0.9995316 0.9998399 0.9999453 0.9999813 0.9999936 0.9999978 0.9999993
-  5 0.9998572 0.9999519 0.9999838 0.9999945 0.9999982 0.9999994 0.9999998
-   Class
-Sim    145.55    149.65 153.75 157.85
-  1 1.0000000 1.0000000      1      1
-  2 1.0000000 1.0000000      1      1
-  3 0.9999999 1.0000000      1      1
-  4 0.9999997 0.9999999      1      1
-  5 0.9999999 1.0000000      1      1</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleMaturityComplete</span> <span class="op">|&gt;</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>, , Year = 2001
-
-   Age
-Sim            0            1           2          3         4         5
-  1 2.924775e-07 4.058967e-05 0.002723098 0.06561401 0.2938568 0.5518711
-  2 3.402872e-06 4.051411e-04 0.020337605 0.19381021 0.4685562 0.6826091
-  3 2.512670e-07 3.512844e-05 0.002394766 0.06048580 0.3020281 0.5848147
-  4 7.844627e-07 1.237267e-04 0.008872198 0.14081307 0.4377506 0.6876872
-  5 2.768166e-06 2.722809e-04 0.012003129 0.15316778 0.4670193 0.7264999
-   Age
-Sim         6         7         8         9        10        11        12
-  1 0.7354867 0.8457289 0.9088722 0.9451282 0.9664933 0.9788057 0.9865156
-  2 0.8132021 0.8879148 0.9310077 0.9560687 0.9716500 0.9808585 0.9871464
-  3 0.7774447 0.8841953 0.9395974 0.9682774 0.9825473 0.9901324 0.9940596
-  4 0.8346134 0.9119924 0.9520487 0.9734962 0.9842427 0.9908404 0.9939788
-  5 0.8698484 0.9385292 0.9700638 0.9851082 0.9916357 0.9953921 0.9970376
-   Age
-Sim        13        14        15        16        17        18        19 20
-  1 0.9914907 0.9941707 0.9961226 0.9975744 0.9986743 0.9992893 0.9996859  1
-  2 0.9913930 0.9938276 0.9956349 0.9970003 0.9980470 0.9988594 0.9994964  1
-  3 0.9966181 0.9977180 0.9985050 0.9990812 0.9995115 0.9997465 0.9998884  1
-  4 0.9961261 0.9976394 0.9984145 0.9989187 0.9993005 0.9995937 0.9998214  1
-  5 0.9981408 0.9989036 0.9992418 0.9994853 0.9996683 0.9998078 0.9999157  1</code></pre>
-</div>
-</div>
-<p><span class="quarto-unresolved-ref">?sec-object_maturity</span> has more details on the <code>Maturity</code> object.</p>
-</section><section id="fecundity" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="fecundity">
-<span class="header-section-number">4.6</span> Fecundity</h2>
-<p>The <code>Fecundity</code> object contains information describing the fecundity (e.g., egg production) -at-age schedule. <code>Fecundity</code> is optional in a <code>Stock</code> object. If it is missing, fecundity-at-age is assumed to be proportional to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).</p>
+<p>In this example, parameters in <code>Pars</code> are used to calculate <code>MeanAtLength</code> , which is then used together with the age-length key described in the <code>Length</code> object to calculate the values for <code>MeanAtAge</code> .</p>
+<p><a href="object_maturity.html" class="quarto-xref"><span>Chapter 21</span></a> has more details on the <code>Maturity</code> object.</p>
+</section><section id="fecundity" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="fecundity">
+<span class="header-section-number">4.7</span> Fecundity</h2>
+<p>The <code>Fecundity</code> object contains information describing the fecundity (e.g., egg production) -at-age schedule.</p>
+<p><code>Fecundity</code> is optional in a <code>Stock</code> object. If it is missing, fecundity-at-age is assumed to be equal to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).</p>
 <p>This <code>ExampleStock</code> object follows this assumption and leaves the <code>Fecundity</code> object empty.</p>
-<p><span class="quarto-unresolved-ref">?sec-object_fecundity</span> has more details on the <code>Fecundity</code> object.</p>
-</section><section id="srr" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="srr">
-<span class="header-section-number">4.7</span> SRR</h2>
+<p><a href="object_fecundity.html" class="quarto-xref"><span>Chapter 22</span></a> has more details on the <code>Fecundity</code> object.</p>
+</section><section id="srr" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="srr">
+<span class="header-section-number">4.8</span> SRR</h2>
 <p><code>SRR</code> objects describe the relationship between spawning production and resulting recruitment. The <code>SRR</code> object also contains data on unfished recruitment (<code>R0</code>), and the recruitment deviations for the historical and projection years.</p>
 <p>This example uses the Beverton-Holt stock-recruit model (specified by the named parameter <code>h</code> in <code>Pars</code>; see <code>SRRModels()</code> for other options):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">SRR</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">SRR</span><span class="op">(</span></span>
-<span>  Pars<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.85</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  R0<span class="op">=</span><span class="fl">1000</span>,</span>
-<span>  SD<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
-<span>  AC<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">SRR</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">SRR</span><span class="op">(</span></span>
+<span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.85</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  R0 <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
+<span>  AC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>R0</code> is specified as a single value, indicating that it is constant over all simulations and years. <code>SD</code> and <code>AC</code> are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors..</p>
-<p><span class="quarto-unresolved-ref">?sec-object_srr</span> has more details on the <code>SRR</code> object.</p>
-</section><section id="spatial" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="spatial">
-<span class="header-section-number">4.8</span> Spatial</h2>
-<p><span class="quarto-unresolved-ref">?sec-object_spatial</span> has more details on the <code>Spatial</code> object.</p>
-</section><section id="depletion" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="depletion">
-<span class="header-section-number">4.9</span> Depletion</h2>
-<p><span class="quarto-unresolved-ref">?sec-object_depletion</span> has more details on the <code>Depletion</code> object.</p>
+<p>In this example, <code>R0</code> is specified as a single value, indicating that it is constant over all simulations and years. <code>SD</code> and <code>AC</code> are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors.</p>
+<p><a href="object_srr.html" class="quarto-xref"><span>Chapter 23</span></a> has more details on the <code>SRR</code> object.</p>
+</section><section id="spatial" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="spatial">
+<span class="header-section-number">4.9</span> Spatial</h2>
+<p><code>Spatial</code> objects are only required if an <code>OM</code> has spatial structure. If an <code>OM</code> does not require spatial structure, <code>Spatial</code> can be left empty.</p>
+<p>This example assumes a 2-area model, with Area-1 representing about 10% of the total area (<code>RelativeSize</code>), and about 10% of the unfished stock in Area-1 (<code>UnfishedDist</code>), with at least 20% probability of individuals in Area-1 remaining in the area in any given time step (<code>ProbStaying</code>):</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Spatial</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Spatial</span><span class="op">(</span></span>
+<span>  UnfishedDist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.095</span>, <span class="fl">0.105</span><span class="op">)</span>,</span>
+<span>  ProbStaying <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span><span class="op">)</span>,</span>
+<span>  RelativeSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.095</span>, <span class="fl">0.105</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See <a href="object_spatial.html" class="quarto-xref"><span>Chapter 24</span></a> for more details on the <code>Spatial</code> object.</p>
+</section><section id="depletion" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="depletion">
+<span class="header-section-number">4.10</span> Depletion</h2>
+<p>The final object to be added to <code>ExampleStock</code> is a <code>Depletion</code> object. This object is used to set the <code>Initial</code> or <code>Final</code> depletion values in the first and last historical years respectively.</p>
+<p>By default, operating models initialize stocks in the first historical year assuming dynamic unfished conditions. The <code>Initial</code> depletion value is used to override this assumption and set the the age-structure in the initial historical year to match some user-specified depletion level.</p>
+<p><code>Final</code> is used to force the model to achieve user-specified depletion level in the terminal historical year. This is generally only required when users have no knowledge of the depletion of the stock (e.g., a data-limited fishery) and wish to test a range of plausible scenarios.</p>
+<p>If a value is set for <code>Final</code> , the model will optimize for the <code>Catchability</code> value that, given the stock’s exploitation history (see <a href="walkthough_build_fleet.html" class="quarto-xref"><span>Chapter 5</span></a> and <a href="object_fleet.html" class="quarto-xref"><span>Chapter 26</span></a>) such that the depletion in the terminal historical year matches the user-specified value.</p>
+<p>If neither <code>Initial</code> or <code>Final</code> depletion values are required, the <code>Depletion</code> object can be left empty. It is not required in most cases where an <code>OM</code> is conditioned (<a href="OM_condition.html" class="quarto-xref"><span>Chapter 11</span></a>) or imported (<a href="OM_import.html" class="quarto-xref"><span>Chapter 12</span></a> ).</p>
+<p>In this example, current depletion (defined as <span class="math inline">\(\frac{B}{B_0}\)</span> in this case) is assumed to be completely unknown, and a wide range of values are considered plausible:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Depletion</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Depletion</span><span class="op">(</span></span>
+<span>  Final <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.6</span><span class="op">)</span>,</span>
+<span>  Reference <span class="op">=</span> <span class="st">"B0"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="object_depletion.html" class="quarto-xref"><span>Chapter 25</span></a> has more details on the <code>Depletion</code> object.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -770,14 +680,13 @@ Sim        13        14        15        16        17        18        19 20
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://docs.openMSE.com/index.html</loc>
-    <lastmod>2025-12-12T03:38:38.966Z</lastmod>
+    <lastmod>2025-12-16T16:00:23.974Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/OM_overview.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://docs.openMSE.com/getting_started.html</loc>
-    <lastmod>2025-12-12T02:44:54.892Z</lastmod>
+    <lastmod>2025-12-16T16:58:31.722Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/acknowledgements.html</loc>
@@ -70,15 +70,15 @@
   </url>
   <url>
     <loc>https://docs.openMSE.com/walkthrough.html</loc>
-    <lastmod>2025-12-12T02:44:54.910Z</lastmod>
+    <lastmod>2025-12-16T17:01:58.226Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/walkthrough_om_initialize.html</loc>
-    <lastmod>2025-12-15T22:24:02.114Z</lastmod>
+    <lastmod>2025-12-16T17:23:27.053Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/walkthough_build_stock.html</loc>
-    <lastmod>2025-12-15T23:52:47.264Z</lastmod>
+    <lastmod>2025-12-16T18:40:30.839Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/walkthough_build_mps.html</loc>
@@ -102,14 +102,82 @@
   </url>
   <url>
     <loc>https://docs.openMSE.com/walkthough_add_objects.html</loc>
-    <lastmod>2025-12-11T22:35:27.203Z</lastmod>
+    <lastmod>2025-12-16T17:22:06.574Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/length_object.html</loc>
-    <lastmod>2025-12-15T23:06:26.337Z</lastmod>
+    <lastmod>2025-12-16T15:41:15.519Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/object_details.html</loc>
     <lastmod>2025-12-15T20:52:28.508Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_stock.html</loc>
+    <lastmod>2025-12-16T15:54:27.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_length.html</loc>
+    <lastmod>2025-12-16T18:00:42.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_maturity.html</loc>
+    <lastmod>2025-12-16T18:10:13.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_weight.html</loc>
+    <lastmod>2025-12-16T17:59:29.159Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_om.html</loc>
+    <lastmod>2025-12-16T17:10:08.591Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/about_openmse.html</loc>
+    <lastmod>2025-12-16T16:03:14.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_hist.html</loc>
+    <lastmod>2025-12-16T16:22:42.307Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_mse.html</loc>
+    <lastmod>2025-12-16T16:24:58.426Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/management_procedures.html</loc>
+    <lastmod>2025-12-16T16:36:04.586Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_data.html</loc>
+    <lastmod>2025-12-16T16:55:44.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_ages.html</loc>
+    <lastmod>2025-12-16T17:32:26.467Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_naturalmortality.html</loc>
+    <lastmod>2025-12-16T18:04:16.021Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_fecundity.html</loc>
+    <lastmod>2025-12-16T18:12:19.694Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_srr.html</loc>
+    <lastmod>2025-12-16T18:14:26.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_spatial.html</loc>
+    <lastmod>2025-12-16T18:17:41.950Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_depletion.html</loc>
+    <lastmod>2025-12-16T18:22:25.694Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object_fleet.html</loc>
+    <lastmod>2025-12-16T18:28:12.813Z</lastmod>
   </url>
 </urlset>

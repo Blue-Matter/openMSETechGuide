@@ -1,0 +1,28 @@
+```{r}
+#| eval: true
+#| include: false
+#| message: false
+#| warning: false
+#| cache: false
+library(MSEtool)
+knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
+```
+
+# `Ages` Object {#sec-object_ages}
+
+An `Ages` object contains information relating to the age structure of the stock.
+
+```{r create-ages_1}
+```
+
+Note that `MaxAge` is set in time units of `quarter`. It is important that the time units in the `Ages` object matches the number of seasons in the `OM`.
+
+Also note that, following the convention in `Years(OM)` the age classes are *always* in units of year:
+
+```{r classes-ages}
+```
+
+To keep things simple, we'll change our `OM` back to annual time-steps and re-recreate the `Ages` object accordingly:
+
+```{r create-ages_2}
+```

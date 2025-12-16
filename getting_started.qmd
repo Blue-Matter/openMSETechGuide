@@ -2,40 +2,41 @@
 
 `openMSE` has many features and can model a wide range of fishery dynamics, ranging from relatively simple single-stock single-fleet models to considerably more complex scenarios including multiple-stocks/fleets with an option for stock/fleet-specific management, age-dependent spatial structure, hermaphroditism, and between-stock biological interactions such as MICE (Models of Intermediate Complexity for Ecosystems).
 
-Probably the easiest way to learn to use `openMSE` is to start with a walkthrough of the MSE process with a relatively simple example. But first, users should become familiar with a conceptual overview of the MSE process and the primary objects and functions.
+Probably the easiest way to learn to use `openMSE` is to start with a relatively simple [Example of the MSE Process](walkthrough.html). But first, users should become familiar with a conceptual overview of the MSE process and the primary objects and functions.
 
 ## Overview of the MSE Process
 
-`openMSE` is designed around an object-oriented programming (OOP) paradigm, where the code is organized around **objects**, which contain relevant data, and **functions** (methods) that operate on those data.
+`openMSE` is designed with an object-oriented programming (OOP) paradigm, where the code is organized around **objects**, which contain relevant data, and **functions** (methods) that operate on those data.
 
-@fig-flowchart shows a conceptual overview of the MSE process in `openMSE`, with colors indicating the primary [**objects**]{style="background:#21b0fe;"} and [**functions**]{style="background:#fed700;"}.
-
-The following sub-sections describe these primary objects and the functions that either operate on them, or are used to create them.
+@fig-flowchart shows a conceptual overview of the MSE process in `openMSE`, with colors indicating the primary [**objects**]{style="background:#21b0fe;"} and the [**functions**]{style="background:#fed700;"}.
 
 ```{mermaid}
 %%| label: fig-flowchart
 %%| fig-cap: "An overview of the primary objects and functions used in the MSE process."
 
 flowchart TD
-  build([Build])
-  condition[[Condition]]
-  import[[Import]]
-  convert[[Convert]]
-  om[OM]
+  build([<a href='walkthrough.html'>Build</a>])
+  condition[[<a href='OM_condition.html'>Condition</a>]]
+  import[[<a href='OM_import.html'>Import</a>]]
+  convert[[<a href='OM_convert.html'>Convert</a>]]
+  om[<a href='object_om.html'>OM</a>]
   build:::process --> om
   condition:::function --> om
   import:::function --> om
   convert:::function --> om
-  sim[[Simulate]]
+  sim[[<a href='walkthrough_hist.html'>Simulate</a>]]
   om:::object --> sim:::function
-  hist[Hist]
+  hist[<a href='object_hist.html'>Hist</a>]
   sim --> hist:::object
-  mp[[MP]]
-  project[[Project]]
+  mp[[<a href='management_procedures.html'>MP</a>]]
+  data[<a href='object_data.html'>Data</a>]
+  data:::object --> mp
+  project[[<a href='object_mse.html'>Project</a>]]
   hist:::object --> project:::function
   mp:::function --> project
-  mse[MSE]
+  mse[<a href='object_mse.html'>MSE</a>]
   project --> mse:::object
+
 
 classDef process fill:#fe218b, stroke:#111,stroke-width:1px, color:#000
 classDef function fill:#fed700, stroke:#111,stroke-width:1px, color:#000
@@ -47,7 +48,7 @@ classDef object fill:#21b0fe, stroke:#111,stroke-width:1px, color:#000
 
 The Operating Model (`OM`) object is the main component of the MSE framework. An `OM` describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.
 
-There are several ways to construct an `OM` (@fig-flowchart). These methods are briefly described in the sections below.
+The sections below briefly describe the various ways to construct an `OM` (@fig-flowchart). @sec-object_om provides more details on the `OM` object.
 
 ### Build an OM
 
@@ -57,15 +58,13 @@ The build process involves creating a new `OM` object, and manually populating t
 
 This process is most often used in data-limited situations, where there is insufficient data or information to use one of the other approaches.
 
-The [Example of the MSE Process](walkthrough.html) section provides an example of using the `Build` process to construct an `OM`.
-
-Although this method may not be commonly used in practice, users are recommended to read start with [Example of the MSE Process](walkthrough.html) to familiarize themselves to the structure and contents of `OM` objects.
+The next part in this manual, [Example of the MSE Process](walkthrough.html), provides an example of constructing an `OM` using the `Build` process. Although this method may not be commonly used in practice, users are recommended to read through the examples in [Example of the MSE Process](walkthrough.html) to familiarize themselves with the general structure and contents of `OM` objects.
 
 ### Condition an OM
 
 Operating models are often generated by fitting a fishery population dynamics model to time-series fishery data (e.g., historical catches, indices of abundance, age and/or length compositions).
 
-This process is known as OM conditioning, and is analogous to a conventional stock assessment. However, unlike a stock assessment where the aim is to provide a scientific estimate of the status of the stock (e.g., current biomass relative to a biological reference point), OMs are designed to incorporate the key uncertainties in the knowledge of the fishery system. In other words, while a stock assessment produces a single estimate of the historical fishery dynamics (aka the ‘best model’ approach), an operating model accounts for uncertainties and contains many different hypotheses of plausible fishery dynamics.
+This process is known as **OM conditioning**, and is analogous to a conventional stock assessment. However, unlike a stock assessment where the aim is to provide a scientific estimate of the status of the stock (e.g., current biomass relative to a biological reference point), OMs are designed to incorporate the key uncertainties in the knowledge of the fishery system. In other words, while a stock assessment produces a single estimate of the historical fishery dynamics (aka the ‘best model’ approach), an operating model accounts for uncertainties and contains many different hypotheses of plausible fishery dynamics.
 
 `openMSE's` [Rapid Conditioning Model (RCM)](https://samtool.openmse.com/reference/RCM.html) is designed to condition operating models for a wide range of life-history types and data availability scenarios.
 
@@ -75,7 +74,7 @@ This process is known as OM conditioning, and is analogous to a conventional sto
 
 `openMSE` supports importing operating models from several commonly used stock assessment frameworks, including [Stock Synthesis 3 (SS3)](https://nmfs-ost.github.io/ss3-website/) and the [Beaufort Assessment Model (BAM)](https://repository.library.noaa.gov/view/noaa/4847).
 
-@sec-om_import provides an example of using the `Import` function to import an `OM` from stock assessment output.
+@sec-om_import provides an example of using the `Import` functions to import an `OM` from stock assessment output.
 
 ### Convert an OM
 
@@ -89,9 +88,7 @@ The `Convert` function is used to convert `OM` objects (as well as other objects
 
 `Hist` objects contain the simulated historical fishery dynamics and are used to project the model forward in time under a range of different management policies (i.e., management procedures).
 
-::: callout-note
-This section is incomplete and will be updated later.
-:::
+@sec-object_hist describes the `Hist` object in more detail.
 
 ## The MSE Object
 
@@ -99,6 +96,10 @@ This section is incomplete and will be updated later.
 
 `MSE` objects contain the fishery dynamics from both the historical period (`Hist`) and the projection period where the `MPs` were applied.
 
-::: callout-note
-This section is incomplete and will be updated later.
-:::
+@sec-object_mse describes the `MSE` object in more detail.
+
+## The `Data` Object
+
+`Data` objects contain the fishery data that can be used by the [Management Procedures](management_procedures.html). This fishery data can either be real observed data or simulated data generated by the model.
+
+@sec-object_data describes the `Data` object in more detail.

@@ -12,11 +12,13 @@ knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 
 A `Stock` object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see `?Stock` for more details).
 
-Here an example `Stock` object is created using an expert judgment approach, where most parameters are stochastic.
+Here an example `Stock` object is created using an expert judgment approach, where most parameters are stochastic and sampled from uniform distributions.
 
 The stock is loosely based on albacore *Thunnus alalunga* and should only be considered an example for demonstration purposes.
 
-Later, this `Stock` object will be added to the `OM` object created in the previous chapter.
+In @sec-om_populate, this `Stock` object is added to the `OM` object created in the previous chapter.
+
+## Create a new `Stock` Object
 
 The `Stock()` function is used to create new `Stock` objects:
 
@@ -25,17 +27,19 @@ The `Stock()` function is used to create new `Stock` objects:
 
 In addition to `Name`, `CommonName`, and `Species` that were specified in the call to the `Stock()` function, `Stock` objects contain several other sub-objects that need to be populated:
 
-1.  `Ages`
-2.  `Length`
-3.  `Weight`
-4.  `NaturalMortality`
-5.  `Maturity`
-6.  *`Fecundity`*
-7.  `SRR`
-8.  *`Spatial`*
-9.  *`Depletion`*
+1.  [`Ages`](object_ages.html)
+2.  [`Length`](object_length.html)
+3.  [`Weight`](object_weight.html)
+4.  [`NaturalMortality`](object_naturalmortality.html)
+5.  [`Maturity`](object_maturity.html)
+6.  [*`Fecundity`*](object_fecundity.html)
+7.  [`SRR`](object_srr.html)
+8.  [*`Spatial`*](object_spatial.html)
+9.  [*`Depletion`*](object_depletion.html)
 
-The sub-objects in italics are optional, see the sections below for details. The other sub-objects must be populated to complete the `Stock` object.
+The sub-objects in italics are optional, see the relevant chapters for each object for details. The other sub-objects must be populated to complete the `Stock` object.
+
+The following sections describe the process to build these objects for the `ExampleStock` object.
 
 ::: callout-tip
 ## Help Documentation
@@ -54,59 +58,41 @@ Help documentation can be accessed for all `openMSE` objects and functions, e.g.
 
 ## Ages
 
-An `Ages` object contains information relating to the age structure of the stock.
+An `Ages` object contains information relating to the age structure of the stock. The `Ages()` function is used to create an `Ages` object for `ExampleStock` . The primary information required for an `Ages` object is the maximum age class:
 
-```{r create-ages_1}
+```{r create-ages}
+
 ```
 
-Note that `MaxAge` is set in time units of `quarter`. It is important that the time units in the `Ages` object matches the number of seasons in the `OM`.
+By default, the maximum age is used as a plus-group (`PlusGroup=TRUE`).
 
-Also note that, following the convention in `Years(OM)` the age classes are *always* in units of year:
+The default behaviour is to set the minimum age-class to 0:
 
-```{r classes-ages}
+```{r ages-classes}
+
 ```
 
-To keep things simple, we'll change our `OM` back to annual time-steps and re-recreate the `Ages` object accordingly:
-
-```{r create-ages_2}
-```
+This can be changed by setting a positive integer value for the `MinAge` argument in the call to `Ages()`. See @sec-object_ages for more details on the `Ages` object.
 
 ## Length
 
-The `Length` object describes the mean length-at-age schedule and how length-at-age is distributed around the mean. This information is primarily used for two purposes:
+The `Length` object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.
 
-1.  Calculating mean weight-at-age from a length-weight relationship a the mean length-at-age
-2.  Calculating the age-length key for converting at-age values (such as maturity-at-age) to at-length (i.e., maturity-at-length) and vice versa, and for generating catch-at-length data.
+The two key pieces of information stored in the `Length` object are:
 
-::: callout-note
-The `Length` object is optional if no other objects are a function of length (e.g., `Weight`, `Maturity`, `Fecundity` and `Selectivity` etc in the `Fleet` object, and there is no requirement to generate catch-at-length data.
-:::
+1.  `MeanAtAge`: the mean length-at-age schedule for each simulation and year;
+2.  `CVatAge`: the coefficient of variability for the distribution of length-at-age, which can be either normally (`Dist='normal'`) or log-normally (`Dist='lognormal'`) distributed around `MeanAtAge`.
 
-The `Length()` function is used to create `Length` objects. The help documentation for this function (`?Length`) provides details on the contents of the `Length` object and a description of the arguments for the `Length()` function (@fig-length_help).
-
-![Screenshot of the help documentation for the `Length` function](images/Length_help.png){#fig-length_help width="60%"}
-
-Ultimately, users must provide information to populate `MeanAtAge` and `CVatAge` in a `Length` object. `MeanAtAge` is common to all objects that contain at-age information, and, as the name suggests, contains information describing the mean at-age schedule (in this case the mean length-at-age). `CVatAge` contains the coefficient of variability for the distribution of length-at-age, which can be either normally (`Dist='normal'`) or log-normally (`Dist='lognormal'`) distributed around `MeanAtAge`.
-
-Internally, both `MeanAtAge` and `CVatAge` will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years but as noted above, for seasonal models the time steps will actually be decimal years). However, the `openMSE` objects have been designed such that users only need to enter the minimal information to populate the model.
+Internally, both `MeanAtAge` and `CVatAge` will be 3-dimensional arrays with dimensions containing values for each simulation, age-class, and historical and projection time step (typically years). However, the `openMSE` objects have been designed such that users only need to enter the minimal information to populate the model.
 
 In this example, the values for `MeanAtAge` are defined by means of a list of named parameters (`Pars`) for a built-in growth function (`vonBert`):
 
 ```{r create-length}
-
 ```
 
-The parameters for the `vonBert` function and the values for `CVatAge` are entered as lower and upper bounds of a uniform distribution. Internally, `nSim` values for the `Linf`, `K`, and `t0` parameters will be sampled from uniform distributions, and these used to calculate the values for `MeanAtAge`. Similarly, `nSim` values will be sampled for `CVatAge`.
+The parameters for the `vonBert` function and the values for `CVatAge` are entered as lower and upper bounds of a uniform distribution. Internally, `nSim` values for the `Linf`, `K`, and `t0` parameters will be sampled from uniform distributions, and these used to calculate the values for `MeanAtAge`. Similarly, `nSim` values will be sampled for `CVatAge` and used within each simulation as a constant value over all simulations and time steps.
 
-This is done internally by the `Populate` function, which is run here on the `Length` object to demonstrate:
-
-```{r populate-length}
-
-```
-
-Notice that, because in this object mean length-at-age is constant over time, while `MeanAtAge` is a 3-dimensional array, the third dimension (`Year`) is only length 1 and named as the first historical year. Similarly, while `CVatAge` is a 3-dimensional array, the dimensions `Age` and `Year` are only length 1 and named as the first age-class and year respectively. Internally, these array will be expanded out for all age-classes and years.
-
-There are several other ways to specify values for `Pars`, `MeanAtAge`, and `CVatAge`, including using alternative growth functions, and specifying values that vary over time and/or ages. These methods are discussed in more detail in @sec-object_length.
+There are many other ways to populate `Length` objects, including sampling from non-uniform distributions and having values vary over time. See @sec-object_length for more details.
 
 ## Weight
 
@@ -115,7 +101,7 @@ The `Weight` object contains information related to the weight-at-age and/or the
 ```{r create-weight}
 ```
 
-Internally, the `Populate` function will be used to calculate the mean weight-at-age from the `alpha` and `beta` parameters and the length defined in the `Length` object.
+Internally, these `alpha` and `beta` parameters values will be used together with the information contained in the `Length` object to calculate the mean weight-at-age (`MeanAtAge`) for this stock.
 
 @sec-object_weight has more details on the `Weight` object.
 
@@ -126,13 +112,9 @@ The `NaturalMortality` object contains information relating to the natural morta
 ```{r create-natural-mortality }
 ```
 
-In this example, `M` is specified as a named parameter in the `Pars` list, with the values indicating lower and upper bounds of a uniform distribution. The second element in `Pars` is `Msd`, with values also indicating lower and upper bounds of a uniform distribution. The `Msd` parameter indicates the standard deviation of log-normally distributed process error which is used as a simple method to add stochastic time-varying variation to `M` :
+In this example, `M` is assumed to be constant across all age-classes and years, and is specified as a named parameter in the `Pars` list, with the values indicating lower and upper bounds of a uniform distribution.
 
-```{r populate-M}
-
-```
-
-@sec-object_natural_mortality has more details on the `NaturalMortality` object.
+@sec-object_naturalmortality has more details on the `NaturalMortality` object.
 
 ## Maturity
 
@@ -142,17 +124,15 @@ In this example, `M` is specified as a named parameter in the `Pars` list, with 
 
 ```
 
-In this example, parameters in `Pars` are used to calculate `MeanAtLength` , which is then used together with the age-length key described in the `Length` object to calculate the values for `MeanAtAge` :
-
-```{r populate-maturity}
-
-```
+In this example, parameters in `Pars` are used to calculate `MeanAtLength` , which is then used together with the age-length key described in the `Length` object to calculate the values for `MeanAtAge` .
 
 @sec-object_maturity has more details on the `Maturity` object.
 
 ## Fecundity
 
-The `Fecundity` object contains information describing the fecundity (e.g., egg production) -at-age schedule. `Fecundity` is optional in a `Stock` object. If it is missing, fecundity-at-age is assumed to be proportional to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).
+The `Fecundity` object contains information describing the fecundity (e.g., egg production) -at-age schedule.
+
+`Fecundity` is optional in a `Stock` object. If it is missing, fecundity-at-age is assumed to be equal to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).
 
 This `ExampleStock` object follows this assumption and leaves the `Fecundity` object empty.
 
@@ -168,16 +148,38 @@ This example uses the Beverton-Holt stock-recruit model (specified by the named 
 
 ```
 
-`R0` is specified as a single value, indicating that it is constant over all simulations and years. `SD` and `AC` are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors..
+In this example, `R0` is specified as a single value, indicating that it is constant over all simulations and years. `SD` and `AC` are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors.
 
 @sec-object_srr has more details on the `SRR` object.
 
 ## Spatial
 
-`Spatial` objects are only required if an `OM` has spatial structure.
+`Spatial` objects are only required if an `OM` has spatial structure. If an `OM` does not require spatial structure, `Spatial` can be left empty.
 
-@sec-object_spatial has more details on the `Spatial` object.
+This example assumes a 2-area model, with Area-1 representing about 10% of the total area (`RelativeSize`), and about 10% of the unfished stock in Area-1 (`UnfishedDist`), with at least 20% probability of individuals in Area-1 remaining in the area in any given time step (`ProbStaying`):
+
+```{r create-spatial}
+
+```
+
+There are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See @sec-object_spatial for more details on the `Spatial` object.
 
 ## Depletion
+
+The final object to be added to `ExampleStock` is a `Depletion` object. This object is used to set the `Initial` or `Final` depletion values in the first and last historical years respectively.
+
+By default, operating models initialize stocks in the first historical year assuming dynamic unfished conditions. The `Initial` depletion value is used to override this assumption and set the the age-structure in the initial historical year to match some user-specified depletion level.
+
+`Final` is used to force the model to achieve user-specified depletion level in the terminal historical year. This is generally only required when users have no knowledge of the depletion of the stock (e.g., a data-limited fishery) and wish to test a range of plausible scenarios.
+
+If a value is set for `Final` , the model will optimize for the `Catchability` value that, given the stock's exploitation history (see @sec-fleet_build and @sec-object_fleet) such that the depletion in the terminal historical year matches the user-specified value.
+
+If neither `Initial` or `Final` depletion values are required, the `Depletion` object can be left empty. It is not required in most cases where an `OM` is conditioned (@sec-om_condition) or imported (@sec-om_import ).
+
+In this example, current depletion (defined as $\frac{B}{B_0}$ in this case) is assumed to be completely unknown, and a wide range of values are considered plausible:
+
+```{r create-depletion}
+
+```
 
 @sec-object_depletion has more details on the `Depletion` object.

@@ -19,7 +19,7 @@ book:
 
   chapters:
     - index.qmd
-    - openmse.qmd
+    - about_openmse.qmd
     - getting_started.qmd
     - part: walkthrough.qmd
       chapters:
@@ -41,7 +41,24 @@ book:
         - OM_octopus.qmd
     - part: object_details.qmd
       chapters:
-        - length_object.qmd
+        - object_om.qmd
+        - object_stock.qmd
+        - object_ages.qmd
+        - object_length.qmd
+        - object_weight.qmd
+        - object_naturalmortality.qmd
+        - object_maturity.qmd
+        - object_fecundity.qmd
+        - object_srr.qmd
+        - object_spatial.qmd
+        - object_depletion.qmd
+        - object_fleet.qmd
+        - object_hist.qmd
+        - object_mse.qmd
+        - object_data.qmd
+    - part: management_procedures.qmd
+      chapters:
+        - mps_tac.qmd
     - part: Eq_overview.qmd
       chapters:
         - Eq_popdynamics.qmd

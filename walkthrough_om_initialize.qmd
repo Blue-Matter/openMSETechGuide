@@ -10,9 +10,7 @@ knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 
 # Build an `OM` Object {#sec-om_build}
 
-This chapter describes the process to create an `OM` object and explore some of its properties.
-
-## Initialize OM
+## Create a new `OM` Object
 
 The `OM()` function is used to create a new Operating Model object (see `?OM`). The contents of the `OM` can be specified with arguments to the `OM` function:
 
@@ -33,83 +31,10 @@ Similarly, the number of historical years and projection years can be changed:
 
 ```
 
-## Years and Seasons
+The contents of the `OM` object, and the various methods to access and modify these contents are discussed in more detail in @sec-object_om.
 
-`CurrentYear` is the last historical year before the projections begin, and is automatically set to the current calendar year:
+## Populating the `OM` Object
 
-```{r current-year-read}
-```
+An `OM` object needs at least one [`Stock`](object_stock.html) and one [`Fleet`](object_fleet.html) object before it can be used to `Simulate` a historical fishery and `Project` it forward for the closed-loop simulation testing (@fig-flowchart).
 
-This can be over-written using either the `CurrentYear` argument in `OM()` or by assigning a new value to the `OM` object with `CurrentYear()`:
-
-```{r current-year-assign}
-
-```
-
-The `Years` function can be used to return the values of the historical or projection years:
-
-```{r, years-read}
-
-```
-
-Unless specified otherwise, operating models are constructed using annual time steps. Seasonality can be added to the model by assigning a value to the `Seasons` slot of the `OM` object:
-
-```{r change-seasons}
-```
-
-As shown above, `Seasons` changes the values of the historical and projection years into decimal years corresponding with the specified number of seasons within a year.
-
-::: callout-tip
-## Avoid using assigning values with \@
-
-Almost all `openMSE` objects have been developed using the [R S4 system](https://adv-r.hadley.nz/s4.html).
-
-S4 objects contain **slots**, named components of the object that can be accessed using the \@ operator (this is analogous to using the \$ symbol to access contents of S3 objects), for example:
-
-```{r om-slotnames}
-```
-
-The \@ symbol ***can*** be used to assign new values to slots, for example:
-
-```{r}
-#| eval: false
-ExampleOM@nSim <- 5
-```
-
-However, while earlier versions of `openMSE` advocated using the \@ symbol to access slots and assign new values, this practice is not recommended for `openMSE 2.0`.
-
-Instead, users are encouraged to use the **accessor** and **assignment** functions that have been developed for each object class.
-
-This is especially important when assigning new values, where the assignment functions may have side effects that will be missed if the \@ symbol is used for assigning new values to an object.
-
-For example, consider the `Seasons` assignment function:
-
-```{r print-season}
-
-```
-
-Note that in addition to assigning the new value to the `Seasons` slot, the `Seasons` assignment function also recalculates the values for the `Years` slot, a step that would have been missed if the new value was assigned directly using the \@ symbol and would lead to unexpected errors.
-:::
-
-If required, the `lubridate` package can be used to convert decimal years into dates (and back again):
-
-```{r date-convert}
-
-```
-
-::: callout-important
-The `Seasons` value in the `OM` defines the number of historical and projection time steps, as well as the structure of the age classes for all stocks in the OM.
-
-The accounting in `openMSE` always starts at the beginning of the first historical year (i.e., `Years(ExampleOM)[1]`) and moves sequentially through the annual or seasonal time steps in `Years(ExampleOM)`.
-
-All stocks must have the same time units as the `OM`. See the `Ages` section below for an example.
-
-Additionally, because it is used to set up the time and age structure of the model, the `Seasons` value should not be changed once an operating model is constructed.
-:::
-
-## `OM` Metadata
-
-
-## Other Contents of the `OM` Object
-
-`OM` objects can contain one or more `Stock` objects.
+The process to build these objects is described in the next few chapters. In @sec-om_populate, these objects are added to the new `ExampleOM` object created here.
