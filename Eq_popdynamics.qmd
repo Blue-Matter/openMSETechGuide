@@ -1,5 +1,7 @@
 # Population Dynamics
 
+> Note: no simulation subscript in any equations
+
 ## Number at Age
 
 ### Initial
@@ -21,9 +23,9 @@ $$
 
 ## Spatial Utility
 
-> Note: no simulation subscript in any equations
+> Note: subscripts follow the structure of the arrays in the model
 
-Spatial Utility is currently calculated as proportional to fleet- and area-specific expected catch rates (currently assuming a unit of catch in weight is equally valuable for all stocks), accounting for within-time-step depletion.
+Spatial utility is currently calculated as proportional to fleet- and area-specific expected catch rates (currently assuming a unit of catch in weight is equally valuable for all stocks), accounting for within-time-step depletion.
 
 Exploitable biomass per unit effort $B$ for stock $s$ and fleet $f$ in year $y$ and area $r$ calculated as the fleet-specific vulnerable biomass multiplied by fleet-specific catchability:
 
@@ -43,32 +45,37 @@ where:
 
 -   $R_{s,y,a,f}$: retention-at-age $a$ for stock $s$ and fleet $f$ in year $y$
 
-Next, exploitable biomass is scaled by habitat capacity to calculate habitat-weighted utility:
+> Note: the above equation could/should include (age-specific) value per unit catch biomass in the summation term to account for stock-specific targeting/preference. Current model assumes all stocks have equal value per unit catch
+
+Area-specific fishing utility is assumed to be proportional to exploitable biomass, with a fleet saturation term that scales with biomass density relative to effective habitat capacity, ensuring that small areas saturate more rapidly under fishing pressure. The stock-specific utility is calculated as:
 
 $$
-\tilde{B}_{s,y,f,r}=H_{s,y,r} B_{s,y,f,r}     
+\hat{U}_{s,y,f,r}=\frac
+{B_{s,y,f,r}}
+{1+\phi_{s,y,f}\Gamma_{s,y,f,r}}
 $$
 
-where $H_{s,y,r}$ is relative habitat capacity for stock $s$ in area $r$ in year $y$, assumed to be the relative unfished biomass in each area.
-
-Habitat-weighted utility is summed over stocks:
+where $\phi_{s,y,f}$ represents the relative fishing pressure $q_{s,y,f}E_{y,f}$ and $\Gamma_{s,y,f,r}$ represents the relative density of exploitable biomass:
 
 $$
-\hat{B}_{y,f,r} = \sum_s{\omega_{s,y,f} \tilde{B}_{s,y,f,r}}
+\Gamma_{s,y,f,r} = \begin{cases}
+\frac
+{B_{s,y,f,r}}
+{A_r B^\text{ref}_{s,y,f}} & B^\text{ref}_{s,y,f}>0 \\
+0 & \text{otherwise}
+\end{cases}
 $$
 
-where $\omega_{s,y,f}$ is the relative weighting of the stocks (currently $\omega$ is assumed to be 1 for all stocks; i.e., unit weight catch of all stocks equal value).
+where $A_r$ is the relative size of area $r$ and $B^\text{ref}_{s,y,f}$ is calculated as the median exploitable biomass across all areas and used as a normalization that is insensitive to extreme local biomass values:
 
-Areas with high catch rates relative to habitat capacity will deplete more rapidly within a time step. Rapid local depletion when catch rates are high is captured by a saturating utility function:
+$$ B^\text{ref}_{s,y,f} = \text{median}_r\left( B_{s,y,f,r}\right) $$
 
-$$
-\tilde{U}_{y,f,r} = \frac{\hat{B}_{y,f,r}}  {1+E_{y,f} \frac{\hat{B}_{y,f,r}}{B^\text{ref}_{y,f} }}
-$$
-
-where $E_{y,f}$ is the total fishing effort, and $B^\text{ref}_{y,f}$ represents a fleets typical exploitable biomass per unit effort across space:
+Relative spatial utility is then calculated by summing $\hat{U}_{y,f,r}$ over stocks and normalizing:
 
 $$
-B^\text{ref}_{y,f} = \text{median}_r\left( \sum_s \omega_{s,y,f} B_{s,y,f,r}\right)
+U_{y,f,r} = \frac{
+\sum_s{\hat{U}_{s,y,f,r}}}
+{\sum_r\sum_s{\hat{U}_{s,y,f,r}}}
 $$
 
 > Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc

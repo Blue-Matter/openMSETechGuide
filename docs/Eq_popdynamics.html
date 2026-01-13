@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,15 +35,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,7 +85,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -128,8 +127,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
@@ -418,6 +416,9 @@ window.Quarto = {
 </header>
 
 
+<blockquote class="blockquote">
+<p>Note: no simulation subscript in any equations</p>
+</blockquote>
 <section id="number-at-age" class="level2" data-number="27.1">
 <h2 data-number="27.1" class="anchored" data-anchor-id="number-at-age"><span class="header-section-number">27.1</span> Number at Age</h2>
 <section id="initial" class="level3" data-number="27.1.1">
@@ -442,9 +443,9 @@ N_{t+1} = N_t ...
 <section id="spatial-utility" class="level2" data-number="28.1">
 <h2 data-number="28.1" class="anchored" data-anchor-id="spatial-utility"><span class="header-section-number">28.1</span> Spatial Utility</h2>
 <blockquote class="blockquote">
-<p>Note: no simulation subscript in any equations</p>
+<p>Note: subscripts follow the structure of the arrays in the model</p>
 </blockquote>
-<p>Spatial Utility is currently calculated as proportional to fleet- and area-specific expected catch rates (currently assuming a unit of catch in weight is equally valuable for all stocks), accounting for within-time-step depletion.</p>
+<p>Spatial utility is currently calculated as proportional to fleet- and area-specific expected catch rates (currently assuming a unit of catch in weight is equally valuable for all stocks), accounting for within-time-step depletion.</p>
 <p>Exploitable biomass per unit effort <span class="math inline">\(B\)</span> for stock <span class="math inline">\(s\)</span> and fleet <span class="math inline">\(f\)</span> in year <span class="math inline">\(y\)</span> and area <span class="math inline">\(r\)</span> calculated as the fleet-specific vulnerable biomass multiplied by fleet-specific catchability:</p>
 <p><span class="math display">\[
 B_{s,y,f,r}=q_{s,y,f}\sum_{a}N_{s,y,a,r}\, W_{s,y,a,f}\, S_{s,y,a,f,r}\, R_{s,y,a,f,r}
@@ -457,23 +458,31 @@ B_{s,y,f,r}=q_{s,y,f}\sum_{a}N_{s,y,a,r}\, W_{s,y,a,f}\, S_{s,y,a,f,r}\, R_{s,y,
 <li><p><span class="math inline">\(S_{s,y,a,f}\)</span>: selectivity-at-age <span class="math inline">\(a\)</span> for stock <span class="math inline">\(s\)</span> and fleet <span class="math inline">\(f\)</span> in year <span class="math inline">\(y\)</span></p></li>
 <li><p><span class="math inline">\(R_{s,y,a,f}\)</span>: retention-at-age <span class="math inline">\(a\)</span> for stock <span class="math inline">\(s\)</span> and fleet <span class="math inline">\(f\)</span> in year <span class="math inline">\(y\)</span></p></li>
 </ul>
-<p>Next, exploitable biomass is scaled by habitat capacity to calculate habitat-weighted utility:</p>
+<blockquote class="blockquote">
+<p>Note: the above equation could/should include (age-specific) value per unit catch biomass in the summation term to account for stock-specific targeting/preference. Current model assumes all stocks have equal value per unit catch</p>
+</blockquote>
+<p>Area-specific fishing utility is assumed to be proportional to exploitable biomass, with a fleet saturation term that scales with biomass density relative to effective habitat capacity, ensuring that small areas saturate more rapidly under fishing pressure. The stock-specific utility is calculated as:</p>
 <p><span class="math display">\[
-\tilde{B}_{s,y,f,r}=H_{s,y,r} B_{s,y,f,r}     
+\hat{U}_{s,y,f,r}=\frac
+{B_{s,y,f,r}}
+{1+\phi_{s,y,f}\Gamma_{s,y,f,r}}
 \]</span></p>
-<p>where <span class="math inline">\(H_{s,y,r}\)</span> is relative habitat capacity for stock <span class="math inline">\(s\)</span> in area <span class="math inline">\(r\)</span> in year <span class="math inline">\(y\)</span>, assumed to be the relative unfished biomass in each area.</p>
-<p>Habitat-weighted utility is summed over stocks:</p>
+<p>where <span class="math inline">\(\phi_{s,y,f}\)</span> represents the relative fishing pressure <span class="math inline">\(q_{s,y,f}E_{y,f}\)</span> and <span class="math inline">\(\Gamma_{s,y,f,r}\)</span> represents the relative density of exploitable biomass:</p>
 <p><span class="math display">\[
-\hat{B}_{y,f,r} = \sum_s{\omega_{s,y,f} \tilde{B}_{s,y,f,r}}
+\Gamma_{s,y,f,r} = \begin{cases}
+\frac
+{B_{s,y,f,r}}
+{A_r B^\text{ref}_{s,y,f}} &amp; B^\text{ref}_{s,y,f}&gt;0 \\
+0 &amp; \text{otherwise}
+\end{cases}
 \]</span></p>
-<p>where <span class="math inline">\(\omega_{s,y,f}\)</span> is the relative weighting of the stocks (currently <span class="math inline">\(\omega\)</span> is assumed to be 1 for all stocks; i.e., unit weight catch of all stocks equal value).</p>
-<p>Areas with high catch rates relative to habitat capacity will deplete more rapidly within a time step. Rapid local depletion when catch rates are high is captured by a saturating utility function:</p>
+<p>where <span class="math inline">\(A_r\)</span> is the relative size of area <span class="math inline">\(r\)</span> and <span class="math inline">\(B^\text{ref}_{s,y,f}\)</span> is calculated as the median exploitable biomass across all areas and used as a normalization that is insensitive to extreme local biomass values:</p>
+<p><span class="math display">\[ B^\text{ref}_{s,y,f} = \text{median}_r\left( B_{s,y,f,r}\right) \]</span></p>
+<p>Relative spatial utility is then calculated by summing <span class="math inline">\(\hat{U}_{y,f,r}\)</span> over stocks and normalizing:</p>
 <p><span class="math display">\[
-\tilde{U}_{y,f,r} = \frac{\hat{B}_{y,f,r}}  {1+E_{y,f} \frac{\hat{B}_{y,f,r}}{B^\text{ref}_{y,f} }}
-\]</span></p>
-<p>where <span class="math inline">\(E_{y,f}\)</span> is the total fishing effort, and <span class="math inline">\(B^\text{ref}_{y,f}\)</span> represents a fleets typical exploitable biomass per unit effort across space:</p>
-<p><span class="math display">\[
-B^\text{ref}_{y,f} = \text{median}_r\left( \sum_s \omega_{s,y,f} B_{s,y,f,r}\right)
+U_{y,f,r} = \frac{
+\sum_s{\hat{U}_{s,y,f,r}}}
+{\sum_r\sum_s{\hat{U}_{s,y,f,r}}}
 \]</span></p>
 <blockquote class="blockquote">
 <p>Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc</p>
@@ -535,14 +544,13 @@ B^\text{ref}_{y,f} = \text{median}_r\left( \sum_s \omega_{s,y,f} B_{s,y,f,r}\rig
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
