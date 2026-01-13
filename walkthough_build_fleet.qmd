@@ -1,4 +1,0 @@
-# Build a `Fleet` Object {#sec-fleet_build}
-
-`Fleet`
-

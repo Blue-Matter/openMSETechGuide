@@ -5,12 +5,11 @@
 #| warning: false
 #| cache: false
 library(MSEtool)
-knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 ```
 
 # `OM` Object {#sec-object_om}
 
-The 
+The `OM` object 
 
 
 ## Years and Seasons

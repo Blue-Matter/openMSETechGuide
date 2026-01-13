@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>4&nbsp; Build a Stock Object – openMSE Technical Manual</title>
+<title>6&nbsp; Build a Stock Object – openMSE Technical Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -62,8 +62,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./walkthough_build_fleet.html" rel="next">
-<link href="./walkthrough_om_initialize.html" rel="prev">
+<link href="./build_fleet.html" rel="next">
+<link href="./build_om.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -135,7 +135,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./walkthrough.html">Example of the MSE Process</a></li><li class="breadcrumb-item"><a href="./walkthough_build_stock.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./om_build.html">Building OMs</a></li><li class="breadcrumb-item"><a href="./build_stock.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,84 +165,42 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./about_openmse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./getting_started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Example of the MSE Process</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Overview and Demonstration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./walkthrough_om_initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></a>
+  <a href="./overview_MSE_process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Primary Objects and Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_stock.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_fleet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_obs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build an <code>Obs</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_add_objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Populate the <code>OM</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_hist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>Simulate</code> Historical Fishery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_mps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Develop Example <code>MP</code>s</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>Project</code> Fishery Dynamics</span></span></a>
+  <a href="./overview_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Explore an <code>OM</code> Object</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./operatingmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Constructing Operating Models</span></a>
+            <a href="./om_build.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building OMs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -250,96 +208,133 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./OM_condition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Conditioning OMs</span></span></a>
+  <a href="./build_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./OM_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Importing OMs</span></span></a>
+  <a href="./build_stock.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./OM_convert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Converting OMs</span></span></a>
+  <a href="./build_fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./build_obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Build an <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./build_om_add_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Populate the <code>OM</code> Object</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./OM_casestudies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OM Case Studies</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./OM_octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Octopus</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Conditioning OMs</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Importing OMs</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Converting OMs</span></span>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./object_details.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About the Objects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>OM</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_stock.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>Stock</code> Object</span></span></a>
+  <a href="./object_advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>Advice</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_ages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Ages</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>Ages</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_length.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></a>
+  <a href="./object_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_weight.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_naturalmortality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>NaturalMortality</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_maturity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>Maturity</code> Object</span></span></a>
+  <a href="./object_depletion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>Depletion</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_fecundity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><code>Fecundity</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><code>Fecundity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>Fleet</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_hist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>Hist</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_length.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_maturity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Maturity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_naturalmortality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>NaturalMortality</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>MSE</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>OM</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><code>Spatial</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -350,38 +345,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><code>Spatial</code> Object</span></span></a>
+  <a href="./object_stock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><code>Stock</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_depletion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><code>Depletion</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_fleet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><code>Fleet</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_hist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><code>Hist</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><code>MSE</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
+  <a href="./object_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span></a>
   </div>
 </li>
       </ul>
@@ -390,15 +361,15 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./management_procedures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Management Procedures</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mps_tac.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Total Allowable Catch</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Total Allowable Catch</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,15 +378,15 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./Eq_overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Equations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Eq_popdynamics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
   </div>
 </li>
       </ul>
@@ -428,21 +399,21 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#create-a-new-stock-object" id="toc-create-a-new-stock-object" class="nav-link active" data-scroll-target="#create-a-new-stock-object"><span class="header-section-number">4.1</span> Create a new <code>Stock</code> Object</a></li>
-  <li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">4.2</span> Ages</a></li>
-  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">4.3</span> Length</a></li>
-  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">4.4</span> Weight</a></li>
-  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">4.5</span> NaturalMortality</a></li>
-  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">4.6</span> Maturity</a></li>
-  <li><a href="#fecundity" id="toc-fecundity" class="nav-link" data-scroll-target="#fecundity"><span class="header-section-number">4.7</span> Fecundity</a></li>
-  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">4.8</span> SRR</a></li>
-  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">4.9</span> Spatial</a></li>
-  <li><a href="#depletion" id="toc-depletion" class="nav-link" data-scroll-target="#depletion"><span class="header-section-number">4.10</span> Depletion</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/walkthough_build_stock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<li><a href="#create-a-new-stock-object" id="toc-create-a-new-stock-object" class="nav-link active" data-scroll-target="#create-a-new-stock-object"><span class="header-section-number">6.1</span> Create a new <code>Stock</code> Object</a></li>
+  <li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">6.2</span> Ages</a></li>
+  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">6.3</span> Length</a></li>
+  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">6.4</span> Weight</a></li>
+  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">6.5</span> NaturalMortality</a></li>
+  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">6.6</span> Maturity</a></li>
+  <li><a href="#fecundity" id="toc-fecundity" class="nav-link" data-scroll-target="#fecundity"><span class="header-section-number">6.7</span> Fecundity</a></li>
+  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">6.8</span> SRR</a></li>
+  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">6.9</span> Spatial</a></li>
+  <li><a href="#depletion" id="toc-depletion" class="nav-link" data-scroll-target="#depletion"><span class="header-section-number">6.10</span> Depletion</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/build_stock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./walkthrough.html">Example of the MSE Process</a></li><li class="breadcrumb-item"><a href="./walkthough_build_stock.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-stock_build" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./om_build.html">Building OMs</a></li><li class="breadcrumb-item"><a href="./build_stock.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-stock_build" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></h1>
 </div>
 
 
@@ -456,12 +427,12 @@ window.Quarto = {
   
 
 
-</header><p>A <code>Stock</code> object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see <code>?Stock</code> for more details).</p>
+</header><p>A <code>Stock</code> object contains information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see <code>?Stock</code> for more details).</p>
 <p>Here an example <code>Stock</code> object is created using an expert judgment approach, where most parameters are stochastic and sampled from uniform distributions.</p>
 <p>The stock is loosely based on albacore <em>Thunnus alalunga</em> and should only be considered an example for demonstration purposes.</p>
-<p>In <a href="walkthough_add_objects.html" class="quarto-xref"><span>Chapter 7</span></a>, this <code>Stock</code> object is added to the <code>OM</code> object created in the previous chapter.</p>
-<section id="create-a-new-stock-object" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="create-a-new-stock-object">
-<span class="header-section-number">4.1</span> Create a new <code>Stock</code> Object</h2>
+<p>In <a href="build_om_add_objects.html" class="quarto-xref"><span>Chapter 9</span></a>, this <code>Stock</code> object is added to the <code>OM</code> object created in the previous chapter.</p>
+<section id="create-a-new-stock-object" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="create-a-new-stock-object">
+<span class="header-section-number">6.1</span> Create a new <code>Stock</code> Object</h2>
 <p>The <code>Stock()</code> function is used to create new <code>Stock</code> objects:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ExampleStock</span> <span class="op">&lt;-</span> <span class="fu">Stock</span><span class="op">(</span><span class="st">"Example Stock"</span>,</span>
@@ -503,8 +474,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="ages" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="ages">
-<span class="header-section-number">4.2</span> Ages</h2>
+</section><section id="ages" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="ages">
+<span class="header-section-number">6.2</span> Ages</h2>
 <p>An <code>Ages</code> object contains information relating to the age structure of the stock. The <code>Ages()</code> function is used to create an <code>Ages</code> object for <code>ExampleStock</code> . The primary information required for an <code>Ages</code> object is the maximum age class:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Ages</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -517,9 +488,9 @@ window.Quarto = {
 <pre><code> [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 </div>
 </div>
-<p>This can be changed by setting a positive integer value for the <code>MinAge</code> argument in the call to <code>Ages()</code>. See <a href="object_ages.html" class="quarto-xref"><span>Chapter 17</span></a> for more details on the <code>Ages</code> object.</p>
-</section><section id="length" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="length">
-<span class="header-section-number">4.3</span> Length</h2>
+<p>This can be changed by setting a positive integer value for the <code>MinAge</code> argument in the call to <code>Ages()</code>. See <a href="object_ages.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on the <code>Ages</code> object.</p>
+</section><section id="length" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="length">
+<span class="header-section-number">6.3</span> Length</h2>
 <p>The <code>Length</code> object describes the mean length-at-age schedule and how length-at-age is distributed around the mean.</p>
 <p>The two key pieces of information stored in the <code>Length</code> object are:</p>
 <ol type="1">
@@ -543,9 +514,9 @@ window.Quarto = {
 </div>
 <p>The parameters for the <code>vonBert</code> function and the values for <code>CVatAge</code> are entered as lower and upper bounds of a uniform distribution. Internally, <code>nSim</code> values for the <code>Linf</code>, <code>K</code>, and <code>t0</code> parameters will be sampled from uniform distributions, and these used to calculate the values for <code>MeanAtAge</code>. Similarly, <code>nSim</code> values will be sampled for <code>CVatAge</code> and used within each simulation as a constant value over all simulations and time steps.</p>
 <p>There are many other ways to populate <code>Length</code> objects, including sampling from non-uniform distributions and having values vary over time.</p>
-<p>See <a href="object_length.html" class="quarto-xref"><span>Chapter 18</span></a> for more details on the <code>Length</code> object.</p>
-</section><section id="weight" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="weight">
-<span class="header-section-number">4.4</span> Weight</h2>
+<p>See <a href="object_length.html" class="quarto-xref"><span>Chapter 17</span></a> for more details on the <code>Length</code> object.</p>
+</section><section id="weight" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="weight">
+<span class="header-section-number">6.4</span> Weight</h2>
 <p>The <code>Weight</code> object contains information related to the weight-at-age and/or the length-weight relationship. In this example, an allometric length-weight relationship with parameters <code>alpha</code> and <code>beta</code> is specified, with values that are constant over all simulations and time-steps:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
@@ -556,9 +527,9 @@ window.Quarto = {
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Internally, these <code>alpha</code> and <code>beta</code> parameters values will be used together with the information contained in the <code>Length</code> object to calculate the mean weight-at-age (<code>MeanAtAge</code>) for this stock.</p>
-<p><a href="object_weight.html" class="quarto-xref"><span>Chapter 19</span></a> has more details on the <code>Weight</code> object.</p>
-</section><section id="naturalmortality" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="naturalmortality">
-<span class="header-section-number">4.5</span> NaturalMortality</h2>
+<p><a href="object_weight.html" class="quarto-xref"><span>Chapter 25</span></a> has more details on the <code>Weight</code> object.</p>
+</section><section id="naturalmortality" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="naturalmortality">
+<span class="header-section-number">6.5</span> NaturalMortality</h2>
 <p>The <code>NaturalMortality</code> object contains information relating to the natural mortality rate for each age-class and time step:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
@@ -568,9 +539,9 @@ window.Quarto = {
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this example, <code>M</code> is assumed to be constant across all age-classes and years, and is specified as a named parameter in the <code>Pars</code> list, with the values indicating lower and upper bounds of a uniform distribution.</p>
-<p><a href="object_naturalmortality.html" class="quarto-xref"><span>Chapter 20</span></a> has more details on the <code>NaturalMortality</code> object.</p>
-</section><section id="maturity" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="maturity">
-<span class="header-section-number">4.6</span> Maturity</h2>
+<p><a href="object_naturalmortality.html" class="quarto-xref"><span>Chapter 19</span></a> has more details on the <code>NaturalMortality</code> object.</p>
+</section><section id="maturity" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="maturity">
+<span class="header-section-number">6.6</span> Maturity</h2>
 <p><code>Maturity</code> objects contain information related to the probability that a specific age- and/or length-class is mature. This example uses a 2-parameter logistic function to specify the probability of maturity-at-length, once again using lower and upper bounds of a uniform distribution to account for uncertainty:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Maturity</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Maturity</span><span class="op">(</span></span>
@@ -581,15 +552,15 @@ window.Quarto = {
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this example, parameters in <code>Pars</code> are used to calculate <code>MeanAtLength</code> , which is then used together with the age-length key described in the <code>Length</code> object to calculate the values for <code>MeanAtAge</code> .</p>
-<p><a href="object_maturity.html" class="quarto-xref"><span>Chapter 21</span></a> has more details on the <code>Maturity</code> object.</p>
-</section><section id="fecundity" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="fecundity">
-<span class="header-section-number">4.7</span> Fecundity</h2>
+<p><a href="object_maturity.html" class="quarto-xref"><span>Chapter 18</span></a> has more details on the <code>Maturity</code> object.</p>
+</section><section id="fecundity" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="fecundity">
+<span class="header-section-number">6.7</span> Fecundity</h2>
 <p>The <code>Fecundity</code> object contains information describing the fecundity (e.g., egg production) -at-age schedule.</p>
 <p><code>Fecundity</code> is optional in a <code>Stock</code> object. If it is missing, fecundity-at-age is assumed to be equal to spawning biomass-at-age (i.e., maturity-at-age multiplied by weight-at-age).</p>
 <p>This <code>ExampleStock</code> object follows this assumption and leaves the <code>Fecundity</code> object empty.</p>
-<p><a href="object_fecundity.html" class="quarto-xref"><span>Chapter 22</span></a> has more details on the <code>Fecundity</code> object.</p>
-</section><section id="srr" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="srr">
-<span class="header-section-number">4.8</span> SRR</h2>
+<p><a href="object_fecundity.html" class="quarto-xref"><span>Chapter 14</span></a> has more details on the <code>Fecundity</code> object.</p>
+</section><section id="srr" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="srr">
+<span class="header-section-number">6.8</span> SRR</h2>
 <p><code>SRR</code> objects describe the relationship between spawning production and resulting recruitment. The <code>SRR</code> object also contains data on unfished recruitment (<code>R0</code>), and the recruitment deviations for the historical and projection years.</p>
 <p>This example uses the Beverton-Holt stock-recruit model (specified by the named parameter <code>h</code> in <code>Pars</code>; see <code>SRRModels()</code> for other options):</p>
 <div class="cell">
@@ -602,8 +573,8 @@ window.Quarto = {
 </div>
 <p>In this example, <code>R0</code> is specified as a single value, indicating that it is constant over all simulations and years. <code>SD</code> and <code>AC</code> are specified as stochastic parameters from a uniform distribution, representing the standard deviation and the lag-1 autocorrelation respectively of the log-normally distributed process errors.</p>
 <p><a href="object_srr.html" class="quarto-xref"><span>Chapter 23</span></a> has more details on the <code>SRR</code> object.</p>
-</section><section id="spatial" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="spatial">
-<span class="header-section-number">4.9</span> Spatial</h2>
+</section><section id="spatial" class="level2" data-number="6.9"><h2 data-number="6.9" class="anchored" data-anchor-id="spatial">
+<span class="header-section-number">6.9</span> Spatial</h2>
 <p><code>Spatial</code> objects are only required if an <code>OM</code> has spatial structure. If an <code>OM</code> does not require spatial structure, <code>Spatial</code> can be left empty.</p>
 <p>This example assumes a 2-area model, with Area-1 representing about 10% of the total area (<code>RelativeSize</code>), and about 10% of the unfished stock in Area-1 (<code>UnfishedDist</code>), with at least 20% probability of individuals in Area-1 remaining in the area in any given time step (<code>ProbStaying</code>):</p>
 <div class="cell">
@@ -613,14 +584,14 @@ window.Quarto = {
 <span>  RelativeSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.095</span>, <span class="fl">0.105</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>There are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See <a href="object_spatial.html" class="quarto-xref"><span>Chapter 24</span></a> for more details on the <code>Spatial</code> object.</p>
-</section><section id="depletion" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="depletion">
-<span class="header-section-number">4.10</span> Depletion</h2>
+<p>There are many other ways to specify spatial structure for a stock, including any number of spatial areas and age- and time-dependent movement. See <a href="object_spatial.html" class="quarto-xref"><span>Chapter 22</span></a> for more details on the <code>Spatial</code> object.</p>
+</section><section id="depletion" class="level2" data-number="6.10"><h2 data-number="6.10" class="anchored" data-anchor-id="depletion">
+<span class="header-section-number">6.10</span> Depletion</h2>
 <p>The final object to be added to <code>ExampleStock</code> is a <code>Depletion</code> object. This object is used to set the <code>Initial</code> or <code>Final</code> depletion values in the first and last historical years respectively.</p>
 <p>By default, operating models initialize stocks in the first historical year assuming dynamic unfished conditions. The <code>Initial</code> depletion value is used to override this assumption and set the the age-structure in the initial historical year to match some user-specified depletion level.</p>
 <p><code>Final</code> is used to force the model to achieve user-specified depletion level in the terminal historical year. This is generally only required when users have no knowledge of the depletion of the stock (e.g., a data-limited fishery) and wish to test a range of plausible scenarios.</p>
-<p>If a value is set for <code>Final</code> , the model will optimize for the <code>Catchability</code> value that, given the stock’s exploitation history (see <a href="walkthough_build_fleet.html" class="quarto-xref"><span>Chapter 5</span></a> and <a href="object_fleet.html" class="quarto-xref"><span>Chapter 26</span></a>) such that the depletion in the terminal historical year matches the user-specified value.</p>
-<p>If neither <code>Initial</code> or <code>Final</code> depletion values are required, the <code>Depletion</code> object can be left empty. It is not required in most cases where an <code>OM</code> is conditioned (<a href="OM_condition.html" class="quarto-xref"><span>Chapter 11</span></a>) or imported (<a href="OM_import.html" class="quarto-xref"><span>Chapter 12</span></a> ).</p>
+<p>If a value is set for <code>Final</code> , the model will optimize for the <code>Catchability</code> value that, given the stock’s exploitation history (see <a href="build_fleet.html" class="quarto-xref"><span>Chapter 7</span></a> and <a href="object_fleet.html" class="quarto-xref"><span>Chapter 15</span></a>) such that the depletion in the terminal historical year matches the user-specified value.</p>
+<p>If neither <code>Initial</code> or <code>Final</code> depletion values are required, the <code>Depletion</code> object can be left empty. It is not required in most cases where an <code>OM</code> is conditioned (<span class="quarto-unresolved-ref">?sec-om_condition</span>) or imported (<span class="quarto-unresolved-ref">?sec-om_import</span> ).</p>
 <p>In this example, current depletion (defined as <span class="math inline">\(\frac{B}{B_0}\)</span> in this case) is assumed to be completely unknown, and a wide range of values are considered plausible:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Depletion</span><span class="op">(</span><span class="va">ExampleStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Depletion</span><span class="op">(</span></span>
@@ -628,7 +599,7 @@ window.Quarto = {
 <span>  Reference <span class="op">=</span> <span class="st">"B0"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="object_depletion.html" class="quarto-xref"><span>Chapter 25</span></a> has more details on the <code>Depletion</code> object.</p>
+<p><a href="object_depletion.html" class="quarto-xref"><span>Chapter 13</span></a> has more details on the <code>Depletion</code> object.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1031,13 +1002,13 @@ window.Quarto = {
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./walkthrough_om_initialize.html" class="pagination-link" aria-label="Build an `OM` Object">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span>
+      <a href="./build_om.html" class="pagination-link" aria-label="Build an `OM` Object">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./walkthough_build_fleet.html" class="pagination-link" aria-label="Build a `Fleet` Object">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./build_fleet.html" class="pagination-link" aria-label="Build a `Fleet` Object">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1045,4 +1016,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/walkthough_build_stock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/build_stock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

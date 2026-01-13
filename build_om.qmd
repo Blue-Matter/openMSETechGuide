@@ -14,21 +14,25 @@ knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 
 The `OM()` function is used to create a new Operating Model object (see `?OM`). The contents of the `OM` can be specified with arguments to the `OM` function:
 
-```{r initialize-om }
+```{r create-om}
 
 ```
 
 or by using functions matching the names of the slots in the object.
 
-For example, here we'll change the number of independent stochastic simulations in our OM from the default `nSim=48` to a small number so that the code runs very quickly:
+For example, to change the number of independent stochastic simulations in the `OM`: 
 
-```{r access-assign-1}
+```{r}
+nSim(ExampleOM)
+nSim(ExampleOM) <- 100
+nSim(ExampleOM)
 ```
 
-Similarly, the number of historical years and projection years can be changed:
+Similarly, the number of historical years and projection years could be changed in the same manner:
 
-```{r access-assign-2}
-
+```{r}
+nYear(ExampleOM) <- 20
+pYear(ExampleOM) <- 10
 ```
 
 The contents of the `OM` object, and the various methods to access and modify these contents are discussed in more detail in @sec-object_om.

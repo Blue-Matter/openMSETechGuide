@@ -5,12 +5,23 @@
 #| warning: false
 #| cache: false
 library(MSEtool)
-knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 ```
 
-# `Ages` Object {#sec-object_ages}
+# `Ages` {#sec-object_ages}
 
-An `Ages` object contains information relating to the age structure of the stock.
+The S4 object class `ages` contains information related to the age classes of a [`Stock`](object_stock.html) object.
+
+New `Ages` objects are created with the `Ages()` function, which has one required argument `MaxAge` that specifies the value of the maximum age class:
+
+```{r}
+myAges <- Ages(MaxAge=20)
+```
+
+```{r}
+Units(myAges)
+```
+
+
 
 ```{r create-ages_1}
 ```

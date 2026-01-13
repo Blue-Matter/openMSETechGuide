@@ -10,7 +10,7 @@ knitr::read_chunk('../MSEtool/data-raw/ExampleOM.R')
 
 # Build a `Stock` Object {#sec-stock_build}
 
-A `Stock` object contains the information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see `?Stock` for more details).
+A `Stock` object contains information related the biological characteristics of a stock, including growth and maturity schedules, natural mortality rates, stock-recruitment relationship, and other information relating to spatial distribution and movement patterns (see `?Stock` for more details).
 
 Here an example `Stock` object is created using an expert judgment approach, where most parameters are stochastic and sampled from uniform distributions.
 
@@ -22,7 +22,7 @@ In @sec-om_populate, this `Stock` object is added to the `OM` object created in 
 
 The `Stock()` function is used to create new `Stock` objects:
 
-```{r initialize-stock}
+```{r create-stock}
 ```
 
 In addition to `Name`, `CommonName`, and `Species` that were specified in the call to the `Stock()` function, `Stock` objects contain several other sub-objects that need to be populated:
@@ -68,8 +68,8 @@ By default, the maximum age is used as a plus-group (`PlusGroup=TRUE`).
 
 The default behaviour is to set the minimum age-class to 0:
 
-```{r ages-classes}
-
+```{r}
+Classes(ExampleStock)
 ```
 
 This can be changed by setting a positive integer value for the `MinAge` argument in the call to `Ages()`. See @sec-object_ages for more details on the `Ages` object.

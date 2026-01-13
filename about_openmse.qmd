@@ -40,9 +40,9 @@ The majority of the new developments have occurred in the `MSEtool` package. The
 
 @tbl-compare_classes provides on overview of the new object classes, and some examples of the accessor and assignment functions that operate on those objects.
 
-Lowercase names are used for all new object classes, however the accessor and assignment functions use either uppercase for acronyms (e.g., `OM()`) or regular case (e.g., `Stock()`).
+The new object classes have been defined with lowercase names, however the accessor and assignment functions use either uppercase for acronyms (e.g., `OM()`) or regular case (e.g., `Stock()`).
 
-The function examples in @tbl-compare_classes are primarily intended for demonstration purposes and, particularly the assignment functions, in practice may require additional arguments. Consult the help documentation for the respective object class (e.g., `?OM` ) for further information.
+The function examples in @tbl-compare_classes are primarily intended for demonstration purposes. In practice, these functions, particularly the assignment functions, may require additional arguments. Consult the help documentation for the respective object class (e.g., `?OM` ) for further information.
 
 The new object classes and related functions are described in more detail elsewhere in this manual.
 

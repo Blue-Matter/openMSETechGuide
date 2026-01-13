@@ -8,7 +8,7 @@
 
 <meta name="description" content="Management Strategy Evaluation with openMSE">
 
-<title>Constructing Operating Models – openMSE Technical Manual</title>
+<title>3&nbsp; Primary Objects and Functions – openMSE Technical Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./OM_condition.html" rel="next">
-<link href="./walkthough_mse.html" rel="prev">
+<link href="./overview_om.html" rel="next">
+<link href="./about_openmse.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -72,6 +72,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -85,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./operatingmodels.html">Constructing Operating Models</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview_MSE_process.html">Overview and Demonstration</a></li><li class="breadcrumb-item"><a href="./overview_MSE_process.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Primary Objects and Functions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -121,25 +124,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./about_openmse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./getting_started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Example of the MSE Process</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Overview and Demonstration</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -147,155 +144,156 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./walkthrough_om_initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></a>
+  <a href="./overview_MSE_process.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Primary Objects and Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_stock.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_fleet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_obs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build an <code>Obs</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_add_objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Populate the <code>OM</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_hist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>Simulate</code> Historical Fishery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_build_mps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Develop Example <code>MP</code>s</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./walkthough_mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>Project</code> Fishery Dynamics</span></span></a>
+  <a href="./overview_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Explore an <code>OM</code> Object</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./operatingmodels.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Constructing Operating Models</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="./om_build.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building OMs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./OM_condition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Conditioning OMs</span></span></a>
+  <a href="./build_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Build an <code>OM</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./OM_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Importing OMs</span></span></a>
+  <a href="./build_stock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build a <code>Stock</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./OM_convert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Converting OMs</span></span></a>
+  <a href="./build_fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Build a <code>Fleet</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./build_obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Build an <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./build_om_add_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Populate the <code>OM</code> Object</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./OM_casestudies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OM Case Studies</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./OM_octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Octopus</span></span></a>
-  </div>
-</li>
-      </ul>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Conditioning OMs</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Importing OMs</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Converting OMs</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./object_details.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About the Objects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>OM</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_stock.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>Stock</code> Object</span></span></a>
+  <a href="./object_advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>Advice</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_ages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Ages</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>Ages</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_length.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></a>
+  <a href="./object_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_weight.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_naturalmortality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>NaturalMortality</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_maturity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>Maturity</code> Object</span></span></a>
+  <a href="./object_depletion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>Depletion</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_fecundity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><code>Fecundity</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><code>Fecundity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_fleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>Fleet</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_hist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>Hist</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_length.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>Length</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_maturity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Maturity</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_naturalmortality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title"><code>NaturalMortality</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title"><code>MSE</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title"><code>OM</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><code>Spatial</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -306,38 +304,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><code>Spatial</code> Object</span></span></a>
+  <a href="./object_stock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title"><code>Stock</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_depletion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><code>Depletion</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_fleet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"><code>Fleet</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_hist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"><code>Hist</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"><code>MSE</code> Object</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./object_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
+  <a href="./object_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"><code>Weight</code> Object</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,15 +320,15 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="./management_procedures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Management Procedures</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mps_tac.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Total Allowable Catch</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Total Allowable Catch</span></span></a>
   </div>
 </li>
       </ul>
@@ -363,15 +337,15 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="./Eq_overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Equations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Eq_popdynamics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Population Dynamics</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,15 +355,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-om-object" id="toc-the-om-object" class="nav-link active" data-scroll-target="#the-om-object"><span class="header-section-number">3.1</span> The <code>OM</code> Object</a></li>
+  <li><a href="#the-hist-object" id="toc-the-hist-object" class="nav-link" data-scroll-target="#the-hist-object"><span class="header-section-number">3.2</span> The <code>Hist</code> Object</a></li>
+  <li><a href="#the-data-object" id="toc-the-data-object" class="nav-link" data-scroll-target="#the-data-object"><span class="header-section-number">3.3</span> The <code>Data</code> Object</a></li>
+  <li><a href="#management-procedure-mp-functions" id="toc-management-procedure-mp-functions" class="nav-link" data-scroll-target="#management-procedure-mp-functions"><span class="header-section-number">3.4</span> Management Procedure (<code>MP</code>) Functions</a></li>
+  <li><a href="#the-mse-object" id="toc-the-mse-object" class="nav-link" data-scroll-target="#the-mse-object"><span class="header-section-number">3.5</span> The <code>MSE</code> Object</a></li>
+  <li><a href="#demonstration-of-the-mse-process" id="toc-demonstration-of-the-mse-process" class="nav-link" data-scroll-target="#demonstration-of-the-mse-process"><span class="header-section-number">3.6</span> Demonstration of the MSE Process</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/overview_MSE_process.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview_MSE_process.html">Overview and Demonstration</a></li><li class="breadcrumb-item"><a href="./overview_MSE_process.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Primary Objects and Functions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="om-construct" class="quarto-section-identifier">Constructing Operating Models</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Primary Objects and Functions</span></h1>
 </div>
 
 
@@ -406,28 +391,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Case studies ….</p>
-<ul>
-<li>Build</li>
-<li>Import</li>
-<li>Condition</li>
-<li>Convert</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section is incomplete and will be updated later.</p>
-</div>
-</div>
+<p><code>openMSE</code> is designed with an object-oriented programming (OOP) paradigm, where the code is organized around <strong>objects</strong>, which contain relevant data, and <strong>functions</strong> (methods) that operate on those objects.</p>
+<p><a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows a conceptual overview of the MSE process in <code>openMSE</code>, with colors indicating the primary <span style="background:#21b0fe;"><strong>objects</strong></span> and the <span style="background:#fed700;"><strong>functions</strong></span>.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-flowchart">flowchart TD
+  build([&lt;a href='om_build.html'&gt;Build&lt;/a&gt;])
+  condition[[&lt;a href='om_condition.html'&gt;Condition&lt;/a&gt;]]
+  import[[&lt;a href='om_import.html'&gt;Import&lt;/a&gt;]]
+  convert[[&lt;a href='om_convert.html'&gt;Convert&lt;/a&gt;]]
+  om[&lt;a href='object_om.html'&gt;OM&lt;/a&gt;]
+  build:::process --&gt; om
+  condition:::function --&gt; om
+  import:::function --&gt; om
+  convert:::function --&gt; om
+  sim[[&lt;a href='walkthrough_hist.html'&gt;Simulate&lt;/a&gt;]]
+  om:::object --&gt; sim:::function
+  hist[&lt;a href='object_hist.html'&gt;Hist&lt;/a&gt;]
+  sim --&gt; hist:::object
+  mp[[&lt;a href='management_procedures.html'&gt;MP&lt;/a&gt;]]
+  data[&lt;a href='object_data.html'&gt;Data&lt;/a&gt;]
+  data:::object --&gt; mp
+  project[[&lt;a href='object_mse.html'&gt;Project&lt;/a&gt;]]
+  hist:::object --&gt; project:::function
+  mp:::function --&gt; project
+  mse[&lt;a href='object_mse.html'&gt;MSE&lt;/a&gt;]
+  project --&gt; mse:::object
 
 
+classDef process fill:#fe218b, stroke:#111,stroke-width:1px, color:#000
+classDef function fill:#fed700, stroke:#111,stroke-width:1px, color:#000
+classDef object fill:#21b0fe, stroke:#111,stroke-width:1px, color:#000
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: An overview of the primary objects and functions used in the MSE process.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="the-om-object" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-om-object"><span class="header-section-number">3.1</span> The <code>OM</code> Object</h2>
+<p>The Operating Model (<code>OM</code>) object is the main component of the MSE framework. It describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.</p>
+<p><code>OM</code> objects can be constructed using one of the following methods:</p>
+<ol type="1">
+<li><a href="om_build.html"><strong>Build</strong></a>: a process rather than a single function, this method involves creating a new <code>OM</code> object, and manually populating the various elements of the object using a combination of expert judgement and available fishery data.</li>
+<li><a href="om_condition.html"><strong>Condition</strong></a>: generate an <code>OM</code> by fitting a fishery population dynamics model to time-series fishery data (e.g., historical catches, indices of abundance, age and/or length compositions).</li>
+<li><a href="om_import.html"><strong>Import</strong></a>: import an <code>OM</code> from the output of an age-structured stock assessment.</li>
+<li><a href="om_convert.html"><strong>Convert</strong></a><strong>:</strong> convert <code>OM</code> objectsthat were created in earlier versions of openMSE (see <a href="about_openmse.html" class="quarto-xref"><span>Chapter 2</span></a>) to the new object structure developed in openMSE 2.0.</li>
+</ol>
+<p><a href="object_om.html" class="quarto-xref"><span>Chapter 21</span></a> describes the <code>OM</code> object in more detail.</p>
+</section>
+<section id="the-hist-object" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-hist-object"><span class="header-section-number">3.2</span> The <code>Hist</code> Object</h2>
+<p><code>Hist</code> objects are created by applying the <code>Simulate</code> function to <code>OM</code> objects (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>). These objects contain the simulated historical fishery dynamics and are used to project the model forward in time under a range of different management policies (i.e., management procedures).</p>
+<p><a href="object_hist.html" class="quarto-xref"><span>Chapter 16</span></a> describes the <code>Hist</code> object in more detail.</p>
+</section>
+<section id="the-data-object" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="the-data-object"><span class="header-section-number">3.3</span> The <code>Data</code> Object</h2>
+<p><code>Data</code> objects contain the fishery data that can be used by management procedures (<code>MP</code>s) to generate management advice. This fishery data can either be real observed data (primarily for the historical period described in the <code>Hist</code> object) or simulated data generated by the model.</p>
+<p><a href="object_data.html" class="quarto-xref"><span>Chapter 12</span></a> describes the <code>Data</code> object in more detail.</p>
+</section>
+<section id="management-procedure-mp-functions" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="management-procedure-mp-functions"><span class="header-section-number">3.4</span> Management Procedure (<code>MP</code>) Functions</h2>
+<p>A Management Procedures (<code>MP</code>) is a set of rules which define how a fishery will be managed. These rules can range from simple harvest policies to more complex arrangements.</p>
+<p>In <code>openMSE</code>, MPs are defined as special R functions that take a <code>Data</code> object as the primary argument, and return an <code>Advice</code> object (see <a href="object_advice.html" class="quarto-xref"><span>Chapter 10</span></a>) that contains the management regulations that will be implemented into the fishery.</p>
+<p>See the <a href="management_procedures.html">Management Procedures</a> section for more details on management procedures.</p>
+</section>
+<section id="the-mse-object" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="the-mse-object"><span class="header-section-number">3.5</span> The <code>MSE</code> Object</h2>
+<p><code>MSE</code> objects are created by applying the <code>Project</code> function to <code>Hist</code> objects, together with the management procedure (MP) functions that will be used to provide the management advice that was implemented in the simulated fishery (<a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
+<p><code>MSE</code> objects contain the fishery dynamics from both the historical period (<code>Hist</code>) and the projection period where the <code>MPs</code> were applied.</p>
+<p><a href="object_mse.html" class="quarto-xref"><span>Chapter 20</span></a> describes the <code>MSE</code> object in more detail.</p>
+</section>
+<section id="demonstration-of-the-mse-process" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="demonstration-of-the-mse-process"><span class="header-section-number">3.6</span> Demonstration of the MSE Process</h2>
+<p>The following chapters in this section explore these objects and functions in more detail and provide a demonstration of the MSE process.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -832,13 +881,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./walkthough_mse.html" class="pagination-link" aria-label="`Project` Fishery Dynamics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>Project</code> Fishery Dynamics</span></span>
+      <a href="./about_openmse.html" class="pagination-link" aria-label="About openMSE 2.0">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About openMSE 2.0</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./OM_condition.html" class="pagination-link" aria-label="Conditioning OMs">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Conditioning OMs</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./overview_om.html" class="pagination-link" aria-label="Explore an `OM` Object">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Explore an <code>OM</code> Object</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -847,4 +896,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/operatingmodels.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/overview_MSE_process.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

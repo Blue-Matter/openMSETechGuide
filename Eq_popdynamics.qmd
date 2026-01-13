@@ -1,23 +1,74 @@
-# Population Dynamics 
+# Population Dynamics
 
 ## Number at Age
 
 ### Initial
 
-- annual 
-- seasonal  - initialized to account for seasonal recruitment
+-   annual
+-   seasonal - initialized to account for seasonal recruitment
 
 Notes:
 
-- age of recruitment is `MinAge(Stock)`
-- `MinAge(Stock) == 0` means that recruitment occurs in same time step as `SProduction`
-- otherwise lagged by appropriate number of time steps (year, quarters, months)
-
-
-
+-   age of recruitment is `MinAge(Stock)`
+-   `MinAge(Stock) == 0` means that recruitment occurs in same time step as `SProduction`
+-   otherwise lagged by appropriate number of time steps (year, quarters, months)
 
 $$
 N_{t+1} = N_t ...
 $$
 
+# Spatial
 
+## Spatial Utility
+
+> Note: no simulation subscript in any equations
+
+Spatial Utility is currently calculated as proportional to fleet- and area-specific expected catch rates (currently assuming a unit of catch in weight is equally valuable for all stocks), accounting for within-time-step depletion.
+
+Exploitable biomass per unit effort $B$ for stock $s$ and fleet $f$ in year $y$ and area $r$ calculated as the fleet-specific vulnerable biomass multiplied by fleet-specific catchability:
+
+$$
+B_{s,y,f,r}=q_{s,y,f}\sum_{a}N_{s,y,a,r}\, W_{s,y,a,f}\, S_{s,y,a,f,r}\, R_{s,y,a,f,r}
+$$
+
+where:
+
+-   $q_{s,y,f}$ : catchability by or stock $s$ an fleet $f$ in year $y$
+
+-   $N_{s,y,a,r}$: number-at-age $a$ for stock $s$ in year $y$ and area $a$
+
+-   $W_{s,y,a,f}$: weight-at-age $a$ for stock $s$ and fleet $f$ in year $y$
+
+-   $S_{s,y,a,f}$: selectivity-at-age $a$ for stock $s$ and fleet $f$ in year $y$
+
+-   $R_{s,y,a,f}$: retention-at-age $a$ for stock $s$ and fleet $f$ in year $y$
+
+Next, exploitable biomass is scaled by habitat capacity to calculate habitat-weighted utility:
+
+$$
+\tilde{B}_{s,y,f,r}=H_{s,y,r} B_{s,y,f,r}     
+$$
+
+where $H_{s,y,r}$ is relative habitat capacity for stock $s$ in area $r$ in year $y$, assumed to be the relative unfished biomass in each area.
+
+Habitat-weighted utility is summed over stocks:
+
+$$
+\hat{B}_{y,f,r} = \sum_s{\omega_{s,y,f} \tilde{B}_{s,y,f,r}}
+$$
+
+where $\omega_{s,y,f}$ is the relative weighting of the stocks (currently $\omega$ is assumed to be 1 for all stocks; i.e., unit weight catch of all stocks equal value).
+
+Areas with high catch rates relative to habitat capacity will deplete more rapidly within a time step. Rapid local depletion when catch rates are high is captured by a saturating utility function:
+
+$$
+\tilde{U}_{y,f,r} = \frac{\hat{B}_{y,f,r}}  {1+E_{y,f} \frac{\hat{B}_{y,f,r}}{B^\text{ref}_{y,f} }}
+$$
+
+where $E_{y,f}$ is the total fishing effort, and $B^\text{ref}_{y,f}$ represents a fleets typical exploitable biomass per unit effort across space:
+
+$$
+B^\text{ref}_{y,f} = \text{median}_r\left( \sum_s \omega_{s,y,f} B_{s,y,f,r}\right)
+$$
+
+> Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc

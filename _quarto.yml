@@ -20,42 +20,59 @@ book:
   chapters:
     - index.qmd
     - about_openmse.qmd
-    - getting_started.qmd
-    - part: walkthrough.qmd
+    - part: Overview and Demonstration
       chapters:
-        - walkthrough_om_initialize.qmd
-        - walkthough_build_stock.qmd
-        - walkthough_build_fleet.qmd
-        - walkthough_build_obs.qmd
-        - walkthough_add_objects.qmd
-        - walkthough_hist.qmd
-        - walkthough_build_mps.qmd
-        - walkthough_mse.qmd
-    - part: operatingmodels.qmd
+        - overview_MSE_process.qmd
+        - overview_om.qmd
+        # - hist_overview.qmd
+        # - mp_overview.qmd
+        # - mse_overview.qmd
+    # - part: walkthrough.qmd
+    #   chapters:
+    #     - walkthough_hist.qmd
+    #     - walkthough_build_mps.qmd
+    #     - walkthough_mse.qmd
+    - part: om_build.qmd
       chapters:
-        - OM_condition.qmd
-        - OM_import.qmd
-        - OM_convert.qmd
-    - part: OM_casestudies.qmd
-      chapters:
-        - OM_octopus.qmd
+        - build_om.qmd
+        - build_stock.qmd
+        - build_fleet.qmd
+        - build_obs.qmd
+        - build_om_add_objects.qmd
+    - part: om_condition.qmd
+      # chapters:
+        # - condition_om.qmd
+    - part: om_import.qmd
+      # chapters:
+        # - import_om_SS3.qmd
+    - part: om_convert.qmd
+
+    # - part: operatingmodels.qmd
+    #   chapters:
+    #     - OM_condition.qmd
+    #     - OM_import.qmd
+    #     - OM_convert.qmd
+    # - part: OM_casestudies.qmd
+    #   chapters:
+    #     - OM_octopus.qmd
     - part: object_details.qmd
       chapters:
-        - object_om.qmd
-        - object_stock.qmd
+        - object_advice.qmd
         - object_ages.qmd
-        - object_length.qmd
-        - object_weight.qmd
-        - object_naturalmortality.qmd
-        - object_maturity.qmd
-        - object_fecundity.qmd
-        - object_srr.qmd
-        - object_spatial.qmd
+        - object_data.qmd
         - object_depletion.qmd
+        - object_fecundity.qmd
         - object_fleet.qmd
         - object_hist.qmd
+        - object_length.qmd
+        - object_maturity.qmd
+        - object_naturalmortality.qmd
         - object_mse.qmd
-        - object_data.qmd
+        - object_om.qmd
+        - object_spatial.qmd
+        - object_srr.qmd
+        - object_stock.qmd
+        - object_weight.qmd
     - part: management_procedures.qmd
       chapters:
         - mps_tac.qmd
@@ -65,6 +82,7 @@ book:
   sidebar:
     title: 'Technical Manual'
     logo: "images/openMSE_logo.png"
+    collapse-level: 1
     tools:
       - icon: globe
         href: https://openMSE.com
