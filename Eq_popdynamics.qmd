@@ -19,7 +19,9 @@ $$
 N_{t+1} = N_t ...
 $$
 
-# Spatial
+# Spatial Distribution of Fishing Effort
+
+> Note: If users provide values for `Distribution` for any specific sims, fleets, and years, these values will be used instead of the calculations below
 
 ## Spatial Utility
 
@@ -79,3 +81,25 @@ U_{y,f,r} = \frac{
 $$
 
 > Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc
+
+> Note: currently there is no stochasticityin utility - this could be added
+
+## Distribution of Fishing Effort
+
+> Note: currently there is no constraint on the maximum effort per area - this could be added as a parameter in the fleet object.
+
+The spatial distribution of fishing effort is calculated with a gravity model:
+
+$$
+P_{y,f,r}=\frac{U^\theta_{y,f,r}} {\sum_{r'}{U^\theta_{y,f,r'}}}  \text{with } U_{r'} \geq 0
+$$
+
+where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y$ and $\theta$ is a effort concentration or spread parameter:
+
+-   $\theta = 1$ : effort proportional to utility
+
+-   $\theta < 1$: effort more evenly distributed than utility
+
+-   $\theta > 1$: effort more concentrated than utility
+
+> Note: additional models could include logit random utility model

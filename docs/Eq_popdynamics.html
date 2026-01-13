@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,14 +35,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +86,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -127,7 +128,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
@@ -387,9 +389,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#initial" id="toc-initial" class="nav-link" data-scroll-target="#initial"><span class="header-section-number">27.1.1</span> Initial</a></li>
   </ul></li>
-  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial"><span class="header-section-number">28</span> Spatial</a>
+  <li><a href="#spatial-distribution-of-fishing-effort" id="toc-spatial-distribution-of-fishing-effort" class="nav-link" data-scroll-target="#spatial-distribution-of-fishing-effort"><span class="header-section-number">28</span> Spatial Distribution of Fishing Effort</a>
   <ul class="collapse">
   <li><a href="#spatial-utility" id="toc-spatial-utility" class="nav-link" data-scroll-target="#spatial-utility"><span class="header-section-number">28.1</span> Spatial Utility</a></li>
+  <li><a href="#distribution-of-fishing-effort" id="toc-distribution-of-fishing-effort" class="nav-link" data-scroll-target="#distribution-of-fishing-effort"><span class="header-section-number">28.2</span> Distribution of Fishing Effort</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/Eq_popdynamics.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -438,8 +441,11 @@ N_{t+1} = N_t ...
 \]</span></p>
 </section>
 </section>
-<section id="spatial" class="level1" data-number="28">
-<h1 data-number="28"><span class="header-section-number">28</span> Spatial</h1>
+<section id="spatial-distribution-of-fishing-effort" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> Spatial Distribution of Fishing Effort</h1>
+<blockquote class="blockquote">
+<p>Note: If users provide values for <code>Distribution</code> for any specific sims, fleets, and years, these values will be used instead of the calculations below</p>
+</blockquote>
 <section id="spatial-utility" class="level2" data-number="28.1">
 <h2 data-number="28.1" class="anchored" data-anchor-id="spatial-utility"><span class="header-section-number">28.1</span> Spatial Utility</h2>
 <blockquote class="blockquote">
@@ -486,6 +492,28 @@ U_{y,f,r} = \frac{
 \]</span></p>
 <blockquote class="blockquote">
 <p>Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Note: currently there is no stochasticityin utility - this could be added</p>
+</blockquote>
+</section>
+<section id="distribution-of-fishing-effort" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="distribution-of-fishing-effort"><span class="header-section-number">28.2</span> Distribution of Fishing Effort</h2>
+<blockquote class="blockquote">
+<p>Note: currently there is no constraint on the maximum effort per area - this could be added as a parameter in the fleet object.</p>
+</blockquote>
+<p>The spatial distribution of fishing effort is calculated with a gravity model:</p>
+<p><span class="math display">\[
+P_{y,f,r}=\frac{U^\theta_{y,f,r}} {\sum_{r'}{U^\theta_{y,f,r'}}}  \text{with } U_{r} \geq 0
+\]</span></p>
+<p>where <span class="math inline">\(P_{y,f,r}\)</span> is the probability of fleet <span class="math inline">\(f\)</span> fishing in area <span class="math inline">\(r\)</span> in year <span class="math inline">\(y\)</span> and <span class="math inline">\(\theta\)</span> is a effort concentration or spread parameter:</p>
+<ul>
+<li><p><span class="math inline">\(\theta = 1\)</span> : effort proportional to utility</p></li>
+<li><p><span class="math inline">\(\theta &lt; 1\)</span>: effort more evenly distributed than utility</p></li>
+<li><p><span class="math inline">\(\theta &gt; 1\)</span>: effort more concentrated than utility</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>Note: additional models could include logit random utility model</p>
 </blockquote>
 
 
@@ -544,13 +572,14 @@ U_{y,f,r} = \frac{
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
