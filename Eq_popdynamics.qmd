@@ -88,13 +88,21 @@ $$
 
 > Note: currently there is no constraint on the maximum effort per area - this could be added as a parameter in the fleet object.
 
-The spatial distribution of fishing effort is calculated with a gravity model:
+The spatial distribution of fishing effort is calculated as:
 
 $$
-P_{y,f,r}=\frac{U^\theta_{y,f,r}} {\sum_{r'}{U^\theta_{y,f,r'}}}  \text{with } U_{r'} \geq 0
+E_{y,f,r}=E'_{y,f}P_{y,f,r}
 $$
 
-where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y$ and $\theta$ is a effort concentration or spread parameter:
+where $E'_{y,f}$ is total effort for fleet $f$ in year $y$ and $P_{y,f,r}$ is the probability of effort calculated using a gravity model:
+
+$$
+P_{y,f,r}=\frac{U^{\theta_{y,f}}_{y,f,r}} {\sum_{r'}{U^{\theta_{y,f}}_{y,f,r'}}}  \text{with } U_{r'} \geq 0
+$$
+
+where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y$ and $\theta_{y,f}$ is a effort concentration or spread parameter:
+
+-   $\theta = 0$ : effort uniformly distibuted
 
 -   $\theta = 1$ : effort proportional to utility
 
@@ -103,3 +111,9 @@ where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y
 -   $\theta > 1$: effort more concentrated than utility
 
 > Note: additional models could include logit random utility model
+
+# Fishing Mortality
+
+## Area-Specific F
+
+## Overall F 
