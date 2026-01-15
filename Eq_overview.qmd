@@ -1,3 +1,12 @@
-# Equations 
 
-The following sections ....
+# Overview
+
+OpenMSE assumes age-structured population and fishery dynamics, recruiting and moving individuals along cohorts as the model progresses from an initial state in the first historical year, through a set of historical years followed by a future set of projected years. 
+
+The model includes an 'age-0' age class which represents recruits originating from spawning biomass in the same time step. 
+
+The performance of candidate management procedures is evaluated in the projected period. Hence the simulations are 'spooled-up' in the historical period and then branch by MP in the projected period.
+
+Uncertainty in population dynamics, exploitation dynamics and data is accounted for by having multiple stochastic simulations. The model includes stochasticity in the form of process errors in the historical and projected time period and observation error in the projected time period (the historical data have been observed and there therefore 'fixed').
+
+Both process errors and observation errors are the same for each management procedure - they operate on the same underlying stochastic conditions. This is intended to help reveal relative performance differences among MPs in the fewest number of simulations (e.g., MP1 might always obtain 10% higher yields than MP2 and this can be seen in a handful of simulations if they are evaluated with the same stochastic conditions).

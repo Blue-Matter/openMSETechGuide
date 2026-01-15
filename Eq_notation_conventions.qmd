@@ -1,0 +1,89 @@
+# Notation
+
+## Variables
+
+| Symbol | Description |
+|--------------------------|----------------------------------------------|
+| $N$ | Number of individuals |
+| $R$ | Recruitment to age class 0 (number of individuals) |
+| $B$ | Biomass |
+| $W$ | Weight of individual |
+| $L$ | Length of individual |
+| $M$ | Instantaneous natural mortality rate |
+| $\zeta$ | Natural survival rate |
+| $S$ | Spawning biomass |
+| $\varphi_{S}$ | Spawn timing |
+| $C$ | Catch |
+| $\phi$ | Relative fishing pressure |
+| $\Gamma$ | Relative density of exploitation biomass |
+| $A$ | Area size |
+| $U$ | Utility of spatial fishing opportunity |
+| $E$ | Fishing effort |
+| $P$ | Distribution of fishing effort |
+| $\theta$ | Fishing effort concentration parameter |
+| $F$ | Instantaneous fishing mortality rate of most selected age class |
+| $q$ | Catchability |
+| $Y$ | Selectivity |
+| $D$ | Deviation |
+| $\Delta$ | Markov-movement matrix transition probability |
+| $\alpha$ | Length-weight scale parameter |
+| $\beta$ | Length-weight exponent parameter |
+| $\upsilon$ | Process error |
+| $\varepsilon$ | Observation error |
+
+: {tbl-colwidths="\[15,85\]"}
+
+## Subscripts
+
+| Symbol | Description      |
+|--------|------------------|
+| $t$    | Time step        |
+| $a$    | Age class        |
+| $r$    | Area (region)    |
+| $b$    | Biomass          |
+| $n$    | Numbers          |
+| $rem$  | Removed          |
+| $ret$  | Retained         |
+| $land$ | Landed           |
+| $disc$ | Discarded        |
+| $from$ | Area moving from |
+| $to$   | Area moving to   |
+| $0$    | Given unfished conditions |
+| $rec$  | Recruitment |
+| $num$  | Stock numbers |
+
+: {tbl-colwidths="\[15,85\]"}
+
+## Superscripts
+
+| Symbol | Description      |
+|--------|------------------|
+| $ref$    | Reference value  |
+
+: {tbl-colwidths="\[15,85\]"}
+
+## Dimensions
+
+| Symbol  | Description              |
+|---------|--------------------------|
+| $n_{t}$ | \# time step            |
+| $n_{s}$ | \# seasons per year      |
+| $n_{f}$ | \# fleet                |
+| $n_{h}$ | \# historical time step |
+| $n_{p}$ | \# projected time step  |
+| $n_{r}$ | \# area                 |
+| $n_{a}$ | \# age classe           |
+
+: {tbl-colwidths="\[15,85\]"}
+
+## Bespoke Functions
+
+Certain aspects of openMSE population dynamics are fixed such as the order of operations within each time step of the model (recruitment, movement among areas followed by mortality).
+
+In most other ways the population dynamics are flexible and can be tailored to individual fisheries based on user-defined functions. For example, somatic growth, the length-weight relationship and the stock-recruitment dynamics can all be based on bespoke, user-defined functions. In such cases these represented by the generic notation. For example for somatic growth length $L$ of an individual in time step $t$ is a function of age $a$ and growth parameters $\theta$: $L_{t,a} = f_{growth}(a,\theta_{growth})$.
+
+## Stochastic Variables
+
+Lognormally distributed variables
+
+Multinomially distributed variables

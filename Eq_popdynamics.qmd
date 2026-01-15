@@ -1,6 +1,85 @@
-# Population Dynamics
+# Initialization
 
-> Note: no simulation subscript in any equations
+## Movement
+
+All openMSE operating models have a spatial dimension. If not specified by the user, this defaults to a 2-area model with very high stock mixing among time-steps - a Markov movement matrix 2 'from' area rows by 2 'to' area columns, with all four transitions set to 0.5. In this configuration the 2-area model almost exactly matches the dynamics of a spatially aggregated model.
+
+If the user wishes to specify some degree of spatial heterogeneity and stock viscosity this is most easily achieved by specifying the time- and age-invariant probability of individuals staying in the first area and the asymptotic fraction of the stock numbers found in area 1. With those two aspects specified it is possible to numerically solve for all values of the 2 x 2 area Markov matrix $\Delta_{t,a,r_{from},r_{to}}$. Since each $r_{from}$ row must sum to 1, there are only two parameters to solve for: $\Delta_{t,a,1,1}$ and $\Delta_{t,a,2,1}$.
+
+These are found by non-linear maximum likelihood estimation using the nlminb() algorithm of R in which finds the values of $\Delta_{t,a,1,1}$ and $\Delta_{t,a,2,1}$ such that $\Delta_{t,a,1,1}$ matches the user specified probability of staying in area 1 and the asymptotic distribution implied by the movement matrix has a fraction of individuals that match user-specified fraction of individuals in area 1.
+
+OpenMSE also allows for using similar non-linear estimation techniques to specify movement matrices for many area models that match a user-specified asymptotic distribution and a mean probability of staying in each area.
+
+## Spatial Distribution
+
+The unfished spatial distribution of numbers by time step and age $D_{t,a}$ is determined by the specified array of movement probabilities $\Delta_{t,a,r_{from},r_{to}}$. The movement matrix for every time and age $\Delta_{t,a}$ is a Markov matrix in which the values in the $r_{from}$ rows sum to 1.
+
+$D$ is calculated numerically. An initialization distribution $D_{I}$ is defined that is homogeneous with the same fraction in each area. I.e., $n_{r}$ elements of value $\frac{1}{n_{r}}$:
+
+$$
+D_{I} = [\frac{1}{n_{r}}, \frac{1}{n_{r}}, ... , \frac{1}{n_{r}}]
+$$ {#eq-D_init}
+
+For any time step $t$, the distribution of individuals in the first age class ($a=1$) is given by the movement matrix $\Delta$, for that time step and age class :
+
+$$D_{t,1} = D_{I}\Delta_{t,1}$$ {#eq-D_ts}
+
+When calculating $D$ for the first time step, the distribution of individuals in each age class depends on whether a seasonal movement model has been specified or not.
+
+In a non-seasonal model, the distribution in the initial time step is calculated assuming the movement matrix in the first time step occurred in prior time steps:
+
+$$D_{1,a+1} = D_{1,a}\Delta_{1,a+1}$$ {#eq-D_ts1}
+
+In seasonal models the seasonal movement pattern is preserved by assuming the first year ($n_{s}$ time steps) of movements also occurred immediately before the first year:
+
+$$D_{1,a+1} = D_{n_{s},a}\Delta_{1,a+1}$$ {#eq-D_ts1_seas}
+
+For all other time steps ($t>1$) and age classes ($a>1$) the unfished distribution of individuals is given by:
+
+$$D_{t+1,a+1} = D_{t,a}\Delta_{t+1,a+1}$$ {#eq-D}
+
+In this configuration the movement matrix for age class 1 determines the distribution of age class 1 recruits. If the user should wish to distribute these according to some vector of proportions by area, they should put that vector in each of the $r_{from}$ rows for movement in age class 1.
+
+## Unfished Conditions
+
+Natural survival of age-0 fish is assumed to be 100% for all time steps:
+
+$$\zeta_{1,t} = 1$$ {#eq-UC_S_1_0}
+
+In the first time step, survival of older age classes is determined by natural mortality rate $M$, and spawntiming $\varphi_{S}$:
+
+$$\zeta_{a+1,1} = \zeta_{a,1}e^{(-M_{a,1}(1-\varphi_{S})-M_{a+1,1}\varphi_{S})}$$ {#eq-UC_S_1_a}
+
+In subsequent time steps survival is given by:
+
+$$\zeta_{a+1,t+1} = \zeta_{a,t}e^{(-M_{a,t}(1-\varphi_{S})-M_{a+1,t+1}\varphi_{S})}$$ {#eq-UC_S_t_a}
+
+## Age Structure in First Time Step
+
+Age class 1 numbers $N$ in the first time step are calculated from from equilibrium unfished recruitment $R_{0}$ and the recruitment deviation in time step 1 $D_{rec}$:
+
+$$N_{1,1} = R_{0}D_{rec,1}$$ {#eq-AS1_N_0}
+
+For age classes greater than 1, numbers at age in the first time step are calculated from a vector of deviation terms $D_{num}$:
+
+$$N_{a,1} = R_{0}D_{num,a}$$ {#eq-AS1_N_a}
+
+OpenMSE includes tools for solving for user-specified initial stock depletion (spawning biomass in time step 1 relative to unfished, i.e., $\frac{S_{1}}{S_{0}}$).
+
+## Numbers-At-Age 
+
+Rec dev is N0
+
+Na is Z
+
+Move then Z
+
+Numbers at age age are calculated from recruitment
+
+
+## Semelparous species
+
+# Survival\[,age,1\] \<- Survival\[,age-1,1\] \* exp(-(MLastAge*(1-SpawnTimeFrac)+MThisAge*SpawnTimeFrac)) \* (1-PostSpawnMortalityLastAge)
 
 ## Number at Age
 
@@ -18,102 +97,3 @@ Notes:
 $$
 N_{t+1} = N_t ...
 $$
-
-# Spatial Distribution of Fishing Effort
-
-> Note: If users provide values for `Distribution` for any specific sims, fleets, and years, these values will be used instead of the calculations below
-
-## Spatial Utility
-
-> Note: subscripts follow the structure of the arrays in the model
-
-Spatial utility is currently calculated as proportional to fleet- and area-specific expected catch rates (currently assuming a unit of catch in weight is equally valuable for all stocks), accounting for within-time-step depletion.
-
-Exploitable biomass per unit effort $B$ for stock $s$ and fleet $f$ in year $y$ and area $r$ calculated as the fleet-specific vulnerable biomass multiplied by fleet-specific catchability:
-
-$$
-B_{s,y,f,r}=q_{s,y,f}\sum_{a}N_{s,y,a,r}\, W_{s,y,a,f}\, S_{s,y,a,f,r}\, R_{s,y,a,f,r}
-$$
-
-where:
-
--   $q_{s,y,f}$ : catchability by or stock $s$ an fleet $f$ in year $y$
-
--   $N_{s,y,a,r}$: number-at-age $a$ for stock $s$ in year $y$ and area $a$
-
--   $W_{s,y,a,f}$: weight-at-age $a$ for stock $s$ and fleet $f$ in year $y$
-
--   $S_{s,y,a,f}$: selectivity-at-age $a$ for stock $s$ and fleet $f$ in year $y$
-
--   $R_{s,y,a,f}$: retention-at-age $a$ for stock $s$ and fleet $f$ in year $y$
-
-> Note: the above equation could/should include (age-specific) value per unit catch biomass in the summation term to account for stock-specific targeting/preference. Current model assumes all stocks have equal value per unit catch
-
-Area-specific fishing utility is assumed to be proportional to exploitable biomass, with a fleet saturation term that scales with biomass density relative to effective habitat capacity, ensuring that small areas saturate more rapidly under fishing pressure. The stock-specific utility is calculated as:
-
-$$
-\hat{U}_{s,y,f,r}=\frac
-{B_{s,y,f,r}}
-{1+\phi_{s,y,f}\Gamma_{s,y,f,r}}
-$$
-
-where $\phi_{s,y,f}$ represents the relative fishing pressure $q_{s,y,f}E_{y,f}$ and $\Gamma_{s,y,f,r}$ represents the relative density of exploitable biomass:
-
-$$
-\Gamma_{s,y,f,r} = \begin{cases}
-\frac
-{B_{s,y,f,r}}
-{A_r B^\text{ref}_{s,y,f}} & B^\text{ref}_{s,y,f}>0 \\
-0 & \text{otherwise}
-\end{cases}
-$$
-
-where $A_r$ is the relative size of area $r$ and $B^\text{ref}_{s,y,f}$ is calculated as the median exploitable biomass across all areas and used as a normalization that is insensitive to extreme local biomass values:
-
-$$ B^\text{ref}_{s,y,f} = \text{median}_r\left( B_{s,y,f,r}\right) $$
-
-Relative spatial utility is then calculated by summing $\hat{U}_{y,f,r}$ over stocks and normalizing:
-
-$$
-U_{y,f,r} = \frac{
-\sum_s{\hat{U}_{s,y,f,r}}}
-{\sum_r\sum_s{\hat{U}_{s,y,f,r}}}
-$$
-
-> Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc
-
-> Note: currently there is no stochasticityin utility - this could be added
-
-## Distribution of Fishing Effort
-
-> Note: currently there is no constraint on the maximum effort per area - this could be added as a parameter in the fleet object.
-
-The spatial distribution of fishing effort is calculated as:
-
-$$
-E_{y,f,r}=E'_{y,f}P_{y,f,r}
-$$
-
-where $E'_{y,f}$ is total effort for fleet $f$ in year $y$ and $P_{y,f,r}$ is the probability of effort calculated using a gravity model:
-
-$$
-P_{y,f,r}=\frac{U^{\theta_{y,f}}_{y,f,r}} {\sum_{r'}{U^{\theta_{y,f}}_{y,f,r'}}}  \text{with } U_{r'} \geq 0
-$$
-
-where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y$ and $\theta_{y,f}$ is a effort concentration or spread parameter:
-
--   $\theta = 0$ : effort uniformly distibuted
-
--   $\theta = 1$ : effort proportional to utility
-
--   $\theta < 1$: effort more evenly distributed than utility
-
--   $\theta > 1$: effort more concentrated than utility
-
-> Note: additional models could include logit random utility model
-
-# Fishing Mortality
-
-## Area-Specific F
-
-## Overall F 
