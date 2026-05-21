@@ -1,76 +1,82 @@
-# Introduction 
+# Introduction
 
 Welcome to the **openMSE Technical Manual**.
 
-`openMSE` is an umbrella R package for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries. 
+`openMSE` is a framework for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.
 
-This book is intended for fisheries scientists and other analysts who wish to learn how to use `openMSE` for all aspects of Management Strategy Evaluation (MSE):
+This book is intended for fisheries scientists and other analysts who wish to learn how to use `openMSE` for all aspects related to Management Strategy Evaluation (MSE), including:
 
 -   building operating models;
+-   simulating historical fishery dynamics;
 -   developing management procedures;
 -   conducting closed-loop simulation testing;
 -   summarizing and presenting results.
 
-The `openMSE` collection of packages were developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at [Blue Matter Science](https://www.bluematterscience.com/). 
+## About openMSE
+
+`openMSE` is an umbrella R package that is comprised of the following core packages:
+
+1.  [MSEtool](https://MSEtool.openMSE.com) - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.
+
+2.  [DLMtool](https://DLMtool.openMSE.com) - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. `DLMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `DLMtool` is loaded into an R session.
+
+3.  [SAMtool](https://SAMtool.openMSE.com) - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. `SAMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `SAMtool` is loaded into an R session.
+
+::: callout-note
+
+The aims of this Technical Manual are to describe the key features of `openMSE`, provide a technical description of the methodology, and provide examples of how to use the framework to conduct an MSE.
+
+Each `openMSE` package has its own webpage, accessible via the links above. Users should refer to these technical documentation pages for information on how to use specific functions for each respective package.
+
+Links to these webpages are made throughout this book.
+
+:::
+
+::::: columns
+::: {.column width="70%"}
+The `openMSE` collection of packages were developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at [Blue Matter Science](https://www.bluematterscience.com/).
+:::
+
+::: {.column width="30%"}
+[![](images/bm.jpg){width="60%"}](https://www.bluematterscience.com/)
+:::
+:::::
 
 For more general information about `openMSE` see the [openMSE website](http://openMSE.com).
 
-## Installing `openMSE`
+## About Version 2.0 
 
-::: {.callout-warning}
-This Technical Manual has been developed for `openMSE 2.0`, which is currently under development and has not yet been released on CRAN. 
+`openMSE 2.0` represents a major update from earlier versions of `openMSE` and its component packages.
 
-Currently the latest development version of `MSEtool` needs to be installed from Github:
+These updates include a complete code refactoring, where all existing source code was restructured to improve efficiency, readability, and ease of maintenance, and a redesign of the core object classes in the `openMSE` framework and the related functions .
+
+The majority of these revisions have been done in the `MSEtool` package. The following package versions are required to use the new features of `openMSE 2.0`:
+
+-   `openMSE >=2.0`
+-   `MSEtool >=4.0`
+-   `DLMtool >= 7.0`
+-   `SAMtool >= 2.0`
+
+::: callout-important
+Currently only `MSEtool v4.0` has been developed and needs to be installed from Github:
 
 ```{r}
 #| eval: false
 pak::pkg_install('blue-matter/MSEtool@prerelease')
 ```
 
-This warning will be removed once the `openMSE 2.0` packages have been released on CRAN.
+Despite what it says above, all code in this Technical Manual will work with existing CRAN versions of `openMSE`, `DLMtool`, and `SAMtool`.
 
+These packages will be updated to the latest versions specified above once `MSEtool v4.0` is stable and released on CRAN.
+
+This note will be removed when the updated packages are released on CRAN.
 :::
 
-The `openMSE` package is available on [CRAN](#cran-openMSE) can be installed with:
 
-```{r}
-#| eval: false
-install.packages('openMSE')
-```
+The `openMSE 2.0` packages are completely backwards compatible with earlier versions, so all code developed using earlier versions of `openMSE` and its component packages should still work without any changes. Please file an [issue](https://github.com/Blue-Matter/openMSE/issues) if you experience issues where `openMSE 2.0` has caused issues with existing code.
 
-and loaded into the R session with:
+Other than fixes to maintain backwards compatibility, the legacy code base will not be updated. For new applications, users are recommended to update to `openMSE 2.0` and follow the structure outlined in this manual.
 
-```{r}
-#| eval: false
-library('openMSE')
-```
-
-Installing and loading the `openMSE` package will install and load the following core packages:
-
-1. [MSEtool](https://MSEtool.openMSE.com) - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing. 
-2.  [DLMtool](https://DLMtool.openMSE.com) - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. `DLMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `DLMtool` is loaded into an R session. 
-
-3.  [SAMtool](https://SAMtool.openMSE.com) - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. `SAMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `SAMtool` is loaded into an R session.
-
-## Acknowledgements 
-
-`openMSE` development has been made possible through the generous support of the following funders:
-
-* [David & Lucille Packard Foundation](https://www.packard.org/)
-* [Fisheries & Oceans Canada](https://www.dfo-mpo.gc.ca/index-eng.htm)
-* [Gordon & Betty Moore Foundation](https://www.moore.org/)
-* [Kingfisher Foundation](http://www.kingfisherfoundation.org/)
-* [Marine Stewardship Council](https://www.msc.org/home)
-* [Natural Resources Defense Council](https://www.nrdc.org/)
-* [Ocean Protection Council](https://www.opc.ca.gov/)
-* [Resources Legacy Fund](https://resourceslegacyfund.org/)
-* [United Nations Food & Agriculture Organization](http://www.fao.org/home/en/)
-
-We thank [The Ocean Foundation](https://oceanfdn.org/) for their support of the
-code refactoring and the development of `openMSE 2.0` and this `openMSE` Technical Manual. 
-
-Finally, `openMSE` is a collaborative effort and we thank all collaborators who have notified us of bugs, provided suggestions for improvement, and helped in countless other ways in continuing the development of the `openMSE` R packages.
-
-
+For more information on the major changes between `openMSE 2.0` and earlier versions of the packages see @sec-changes.
 
 
