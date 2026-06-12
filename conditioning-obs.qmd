@@ -1,0 +1,12 @@
+# Conditioning `Obs` Object {#sec-obsdataconditioning}
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| include: false
+library(openMSE)
+rnorm(5)
+```
+
+

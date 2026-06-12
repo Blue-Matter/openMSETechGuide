@@ -1,0 +1,125 @@
+# Populating an Operating Model {#sec-populate}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+Building an operating model in `openMSE` is a two-stage process. First, the user constructs the component objects — `Stock`, `Fleet`, `Obs`, `Imp` — by specifying parameter values as described in @sec-objectmodel and @sec-schedules. At this stage, most slots contain compact representations of the inputs: scalar values, length-2 bounds vectors, control-point data frames, or partially-filled arrays. Second, `Populate()` is called to expand these compact inputs into the full `Sim × Age × Year` arrays that the simulation engine requires, sampling stochastic values, resolving model functions, building derived quantities, and checking internal consistency.
+
+In normal use, population happens automatically — calling `Populate()` on an `OM` object triggers the full population sequence across all components. Users rarely need to call it directly on individual subcomponents, though this is possible for inspection and debugging.
+
+---
+
+## `Populate()`
+
+`Populate()` is a generic dispatcher. It inspects the class of the object passed to it and calls the appropriate class-specific population function:
+
+```r
+# Populate a full operating model
+OM <- Populate(OM)
+
+# Populate a stock object independently
+Stock <- Populate(Stock, nSim = 100, nYear = 40, pYear = 30)
+
+# Populate a fleet using an already-populated stock
+Fleet <- Populate(Fleet, Stock = Stock)
+```
+
+The class-specific functions called by `Populate()` are: `PopulateOM()`, `PopulateStock()`, `PopulateFleet()`, `PopulateObs()`, and population functions for all individual subcomponents (`PopulateLength()`, `PopulateSelectivity()`, etc.). Users can call these directly if needed; see `?PopulateOM` and related help pages.
+
+---
+
+## Population Sequence
+
+When `Populate(OM)` is called, `PopulateOM()` orchestrates the full sequence:
+
+1. **Stocks** — each `Stock` object is populated via `PopulateStock()`, which calls the subcomponent population functions in a fixed order:
+   i. `PopulateLength()` — generates `MeanAtAge` and builds the `ALK`
+   ii. `PopulateWeight()` — generates `MeanAtAge` and `MeanAtLength`; uses the `ALK` from the previous step
+   iii. `PopulateNaturalMortality()` — generates `MeanAtAge`
+   iv. `PopulateMaturity()` — generates `MeanAtAge` and `MeanAtLength`; uses the `ALK`
+   v. `PopulateFecundity()` — generates `MeanAtAge`; uses the `ALK`
+   vi. `PopulateSRR()` — generates recruitment deviations for historical and projection years
+   vii. `PopulateSpatial()` — constructs the movement probability matrix
+   viii. `PopulateDepletion()` — draws `Initial` and `Final` depletion values
+
+2. **Fleets** — each `Fleet` object is populated via `PopulateFleet()`, which receives the already-populated `Stock` object for the corresponding stock. Population within each fleet proceeds as:
+   i. `PopulateEffort()` — generates the `Sim × Year` effort array from the control-point data frame or expands the existing array
+   ii. `PopulateCatchability()` — populates gear efficiency; if `Depletion@Final` is set on the stock, catchability is back-calculated to achieve the target terminal depletion
+   iii. `PopulateSelectivity()` — expands `Pars` and calls the selectivity model to produce `MeanAtAge`; scales length-based parameters by $L_{50}$ if `isRel = TRUE`
+   iv. `PopulateRetention()` — same process as selectivity
+   v. `PopulateDiscardMortality()` — expands and fills `MeanAtAge`
+   vi. `PopulateClosure()` — fills the closure array; defaults to all areas open
+
+3. **Implementation models** — `Imp` objects are initialised with default values where not specified.
+
+4. **Stock complexes** — the `Complexes` structure is resolved, defining which stocks are managed jointly.
+
+5. **Observation models** — each `Obs` object is populated via `PopulateObs()`, using the `Ages@Classes` from the corresponding stock and the `Selectivity@Classes` from the corresponding fleet to set the age and size bin structure for composition samples.
+
+The ordering within this sequence is intentional and load-bearing. `PopulateWeight()` requires the `ALK` produced by `PopulateLength()`; `PopulateSelectivity()` requires `Maturity@MeanAtAge` when `isRel = TRUE`; `PopulateCatchability()` requires `Depletion@Final` which is populated before fleets are processed. Users should not attempt to reorder these steps.
+
+---
+
+## Digest-based Caching
+
+Population is potentially expensive for large operating models with many simulations, stocks, and fleets. To avoid unnecessary recomputation, `Populate()` uses a digest-based caching mechanism. Before populating any object, it computes a hash of the object's current contents and the key arguments passed to the population function (e.g., `nSim`, `nYear`, `seed`). If the hash matches a stored digest from a previous population call and `force = FALSE`, the object is returned unchanged.
+
+This means that calling `Populate(OM)` repeatedly on an unchanged model is essentially free after the first call. The cache is invalidated automatically whenever the object is modified — for example, when a parameter value is updated via a slot-assignment operator — so the user does not need to manage it manually.
+
+To force re-population regardless of the digest (e.g., when debugging or after changing the random seed), pass `force = TRUE`:
+
+```r
+OM <- Populate(OM, force = TRUE)
+```
+
+---
+
+## Seeding and Reproducibility
+
+Each subcomponent population function receives its own integer seed, derived by incrementing the base seed stored in `OM@Seed`. This ensures that:
+
+- All stochastic draws are fully reproducible given a fixed `OM@Seed`.
+- Population of one subcomponent does not affect the random state of another.
+- Stocks and fleets receive distinct seeds, so stochastic variation in one component is independent of another even when the same parameter ranges are specified.
+
+To change the stochastic realisation of an operating model without changing any parameter values, update `OM@Seed` and call `Populate()` again:
+
+```r
+OM@Seed <- 42
+OM <- Populate(OM, force = TRUE)
+```
+
+---
+
+## Populating Individual Objects
+
+Although `Populate(OM)` is the normal entry point, individual objects can be populated independently. This is useful for inspecting what a set of parameter values produces before assembling a full operating model:
+
+```r
+# Inspect the length-at-age schedule produced by a set of parameters
+stock <- Populate(AlbacoreExStock, nSim = 100, nYear = 30, pYear = 20)
+Length(stock) |> MeanAtAge()
+```
+
+When populating a `Fleet` independently, the paired `Stock` object must be provided so that quantities such as $L_{50}$ (required by `isRel = TRUE` selectivity) and the `ALK` (required for size-to-age conversions) are available:
+
+```r
+fleet <- Populate(AsympExFleet, Stock = stock)
+```
+
+Populated `Stock` and `Fleet` objects can be passed directly to `OM()` without triggering re-population, as their digests will be current.
+
+---
+
+## When Population Occurs Automatically
+
+In practice, users rarely need to call `Populate()` explicitly. It is called automatically in the following contexts:
+
+- When running a simulation via `runMSE()` or equivalent
+- When calling `Hist()` to generate the historical period
+- When printing or summarising an `OM` object
+
+The result is cached via the digest mechanism, so the cost is only incurred when the object has actually changed.

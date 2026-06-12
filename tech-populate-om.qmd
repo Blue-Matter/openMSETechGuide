@@ -1,0 +1,14 @@
+# Populating Operating Model
+
+The first step 
+
+
+
+## Populate Stock
+
+
+## Populate Fleet
+
+## Populate Obs
+
+

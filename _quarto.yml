@@ -1,7 +1,4 @@
 project:
-  preview:
-    port: 4200
-    browser: true
   type: book
   output-dir: docs
 
@@ -18,12 +15,45 @@ book:
   date: today
 
   chapters:
-    - index.qmd
-    - getting_started.qmd
-    - part: Overview and Demonstration
+    - index.qmd 
+    - overview-manual.qmd
+    - part: getting-started.qmd
       chapters:
-        - overview_MSE_process.qmd
-        - overview_om.qmd
+        - overview-openMSE.qmd  
+        - overview-objects.qmd  
+        - example-objects.qmd    
+        - example-mse.qmd 
+    - part: mps-data-advice.qmd
+      chapters:
+        - object-data.qmd
+        - conditioning-obs.qmd
+        - generate-data.qmd
+        - object-advice.qmd
+        - management-procedures.qmd
+        - example-mps.qmd    
+    - part: developing-oms.qmd
+      chapters:
+        - om-built-in.qmd  
+        - om-import-ss3.qmd
+        - om-import-bam.qmd 
+        - om-condition-rcm.qmd    
+        - om-octopus.qmd
+    - part: Concepts
+      chapters:
+        - concept-schedules.qmd        
+        - concept-populate.qmd
+        - concept-complexes.qmd
+        - concept-seasonal.qmd
+        - concept-spatial.qmd
+        - concept-ref-points.qmd
+        - concept-data-obs.qmd
+
+    - part: Technical Details
+      chapters:
+        - tech-populate-om.qmd
+        - tech-initialize.qmd
+        - tech-unfished.qmd
+
         # - hist_overview.qmd
         # - mp_overview.qmd
         # - mse_overview.qmd
@@ -39,13 +69,13 @@ book:
     #     - build_fleet.qmd
     #     - build_obs.qmd
     #     - build_om_add_objects.qmd
-    - part: om_condition.qmd
+   # - part: om_condition.qmd
       # chapters:
         # - condition_om.qmd
-    - part: om_import.qmd
+    #- part: om_import.qmd
       # chapters:
         # - import_om_SS3.qmd
-    - part: om_convert.qmd
+   # - part: om_convert.qmd
 
     # - part: operatingmodels.qmd
     #   chapters:
@@ -73,15 +103,15 @@ book:
     #     - object_srr.qmd
     #     - object_stock.qmd
     #     - object_weight.qmd
-    - part: management_procedures.qmd
-      chapters:
-        - mps_tac.qmd
-    - part: Eq_overview.qmd
-      chapters:
-        - Eq_popdynamics.qmd
+   # - part: management_procedures.qmd
+    #  chapters:
+     #   - mps_tac.qmd
+    #- part: Eq_overview.qmd
+     # chapters:
+      #  - Eq_popdynamics.qmd
   appendices:
-    - acknowledgements.qmd
-    - changes_overview.qmd
+    - z-app-acknowledgements.qmd
+    - z-app-changes_overview.qmd
 
   sidebar:
     title: 'Technical Manual'
@@ -97,4 +127,6 @@ format:
   html:
     theme: cosmo
     code-link: true
+
+
 

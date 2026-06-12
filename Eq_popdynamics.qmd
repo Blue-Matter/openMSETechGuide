@@ -6,18 +6,16 @@
 
 ### Initial
 
--   annual
--   seasonal - initialized to account for seasonal recruitment
+- annual
+- seasonal - initialized to account for seasonal recruitment
 
 Notes:
 
--   age of recruitment is `MinAge(Stock)`
--   `MinAge(Stock) == 0` means that recruitment occurs in same time step as `SProduction`
--   otherwise lagged by appropriate number of time steps (year, quarters, months)
+- age of recruitment is `MinAge(Stock)`
+- `MinAge(Stock) == 0` means that recruitment occurs in same time step as `SProduction`
+- otherwise lagged by appropriate number of time steps (year, quarters, months)
 
-$$
-N_{t+1} = N_t ...
-$$
+$$N_{t+1} = N_t ...$$
 
 # Spatial Distribution of Fishing Effort
 
@@ -31,42 +29,36 @@ Spatial utility is currently calculated as proportional to fleet- and area-speci
 
 Exploitable biomass per unit effort $B$ for stock $s$ and fleet $f$ in year $y$ and area $r$ calculated as the fleet-specific vulnerable biomass multiplied by fleet-specific catchability:
 
-$$
-B_{s,y,f,r}=q_{s,y,f}\sum_{a}N_{s,y,a,r}\, W_{s,y,a,f}\, S_{s,y,a,f,r}\, R_{s,y,a,f,r}
-$$
+$$B_{s,y,f,r}=q_{s,y,f}\sum_{a}N_{s,y,a,r}\, W_{s,y,a,f}\, S_{s,y,a,f,r}\, R_{s,y,a,f,r}$$
 
 where:
 
--   $q_{s,y,f}$ : catchability by or stock $s$ an fleet $f$ in year $y$
+- $q_{s,y,f}$ : catchability by or stock $s$ an fleet $f$ in year $y$
 
--   $N_{s,y,a,r}$: number-at-age $a$ for stock $s$ in year $y$ and area $a$
+- $N_{s,y,a,r}$: number-at-age $a$ for stock $s$ in year $y$ and area $a$
 
--   $W_{s,y,a,f}$: weight-at-age $a$ for stock $s$ and fleet $f$ in year $y$
+- $W_{s,y,a,f}$: weight-at-age $a$ for stock $s$ and fleet $f$ in year $y$
 
--   $S_{s,y,a,f}$: selectivity-at-age $a$ for stock $s$ and fleet $f$ in year $y$
+- $S_{s,y,a,f}$: selectivity-at-age $a$ for stock $s$ and fleet $f$ in year $y$
 
--   $R_{s,y,a,f}$: retention-at-age $a$ for stock $s$ and fleet $f$ in year $y$
+- $R_{s,y,a,f}$: retention-at-age $a$ for stock $s$ and fleet $f$ in year $y$
 
 > Note: the above equation could/should include (age-specific) value per unit catch biomass in the summation term to account for stock-specific targeting/preference. Current model assumes all stocks have equal value per unit catch
 
 Area-specific fishing utility is assumed to be proportional to exploitable biomass, with a fleet saturation term that scales with biomass density relative to effective habitat capacity, ensuring that small areas saturate more rapidly under fishing pressure. The stock-specific utility is calculated as:
 
-$$
-\hat{U}_{s,y,f,r}=\frac
+$$\hat{U}_{s,y,f,r}=\frac
 {B_{s,y,f,r}}
-{1+\phi_{s,y,f}\Gamma_{s,y,f,r}}
-$$
+{1+\phi_{s,y,f}\Gamma_{s,y,f,r}}$$
 
 where $\phi_{s,y,f}$ represents the relative fishing pressure $q_{s,y,f}E_{y,f}$ and $\Gamma_{s,y,f,r}$ represents the relative density of exploitable biomass:
 
-$$
-\Gamma_{s,y,f,r} = \begin{cases}
+$$\Gamma_{s,y,f,r} = \begin{cases}
 \frac
 {B_{s,y,f,r}}
 {A_r B^\text{ref}_{s,y,f}} & B^\text{ref}_{s,y,f}>0 \\
 0 & \text{otherwise}
-\end{cases}
-$$
+\end{cases}$$
 
 where $A_r$ is the relative size of area $r$ and $B^\text{ref}_{s,y,f}$ is calculated as the median exploitable biomass across all areas and used as a normalization that is insensitive to extreme local biomass values:
 
@@ -74,11 +66,9 @@ $$ B^\text{ref}_{s,y,f} = \text{median}_r\left( B_{s,y,f,r}\right) $$
 
 Relative spatial utility is then calculated by summing $\hat{U}_{y,f,r}$ over stocks and normalizing:
 
-$$
-U_{y,f,r} = \frac{
+$$U_{y,f,r} = \frac{
 \sum_s{\hat{U}_{s,y,f,r}}}
-{\sum_r\sum_s{\hat{U}_{s,y,f,r}}}
-$$
+{\sum_r\sum_s{\hat{U}_{s,y,f,r}}}$$
 
 > Note that the model currently assumes all stocks have equal value per unit catch weight, and all areas have relative cost per fleet (and stock). This model can be extended later to include price (value) of catch-at-age/size, cost-per-unit-effort for each fleet, fixed spatial costs, etc
 
@@ -90,25 +80,21 @@ $$
 
 The spatial distribution of fishing effort is calculated as:
 
-$$
-E_{y,f,r}=E'_{y,f}P_{y,f,r}
-$$
+$$E_{y,f,r}=E'_{y,f}P_{y,f,r}$$
 
 where $E'_{y,f}$ is total effort for fleet $f$ in year $y$ and $P_{y,f,r}$ is the probability of effort calculated using a gravity model:
 
-$$
-P_{y,f,r}=\frac{U^{\theta_{y,f}}_{y,f,r}} {\sum_{r'}{U^{\theta_{y,f}}_{y,f,r'}}}  \text{with } U_{r'} \geq 0
-$$
+$$P_{y,f,r}=\frac{U^{\theta_{y,f}}_{y,f,r}} {\sum_{r'}{U^{\theta_{y,f}}_{y,f,r'}}}  \text{with } U_{r'} \geq 0$$
 
 where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y$ and $\theta_{y,f}$ is a effort concentration or spread parameter:
 
--   $\theta = 0$ : effort uniformly distibuted
+- $\theta = 0$ : effort uniformly distibuted
 
--   $\theta = 1$ : effort proportional to utility
+- $\theta = 1$ : effort proportional to utility
 
--   $\theta < 1$: effort more evenly distributed than utility
+- $\theta < 1$: effort more evenly distributed than utility
 
--   $\theta > 1$: effort more concentrated than utility
+- $\theta > 1$: effort more concentrated than utility
 
 > Note: additional models could include logit random utility model
 
@@ -116,4 +102,4 @@ where $P_{y,f,r}$ is the probability of fleet $f$ fishing in area $r$ in year $y
 
 ## Area-Specific F
 
-## Overall F 
+## Overall F

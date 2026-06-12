@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Management Strategy Evaluation with openMSE">
+<title>4&nbsp; The Operating Model: Classes and Components – openMSE Technical Manual</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./example-objects.html" rel="next">
+<link href="./overview-openMSE.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./overview-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Technical Manual</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://openMSE.com" title="openMSE" class="quarto-navigation-tool px-1" aria-label="openMSE"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/blue-matter/openMSETechGuide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading this Manual</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./mps-data-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Concepts</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-seasonal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-data-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The <code>Data</code> and <code>Obs</code> Objects</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Technical Details</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Unfished</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./z-app-acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./z-app-changes_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Overview of Major Changes</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#om" id="toc-om" class="nav-link active" data-scroll-target="#om"><span class="header-section-number">4.1</span> <code>OM</code></a></li>
+  <li>
+<a href="#stock" id="toc-stock" class="nav-link" data-scroll-target="#stock"><span class="header-section-number">4.2</span> <code>Stock</code></a>
+  <ul class="collapse">
+<li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">4.2.1</span> <code>Ages</code></a></li>
+  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">4.2.2</span> <code>Length</code></a></li>
+  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">4.2.3</span> <code>Weight</code></a></li>
+  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">4.2.4</span> <code>NaturalMortality</code></a></li>
+  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">4.2.5</span> <code>Maturity</code></a></li>
+  <li><a href="#fecundity-optional" id="toc-fecundity-optional" class="nav-link" data-scroll-target="#fecundity-optional"><span class="header-section-number">4.2.6</span> <code>Fecundity</code> <em>(optional)</em></a></li>
+  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">4.2.7</span> <code>SRR</code></a></li>
+  <li><a href="#spatial-optional" id="toc-spatial-optional" class="nav-link" data-scroll-target="#spatial-optional"><span class="header-section-number">4.2.8</span> <code>Spatial</code> <em>(optional)</em></a></li>
+  <li><a href="#depletion-optional" id="toc-depletion-optional" class="nav-link" data-scroll-target="#depletion-optional"><span class="header-section-number">4.2.9</span> <code>Depletion</code> <em>(optional)</em></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#fleet" id="toc-fleet" class="nav-link" data-scroll-target="#fleet"><span class="header-section-number">4.3</span> <code>Fleet</code></a>
+  <ul class="collapse">
+<li><a href="#effort" id="toc-effort" class="nav-link" data-scroll-target="#effort"><span class="header-section-number">4.3.1</span> <code>Effort</code></a></li>
+  <li><a href="#catchability" id="toc-catchability" class="nav-link" data-scroll-target="#catchability"><span class="header-section-number">4.3.2</span> <code>Catchability</code></a></li>
+  <li><a href="#selectivity-required" id="toc-selectivity-required" class="nav-link" data-scroll-target="#selectivity-required"><span class="header-section-number">4.3.3</span> <code>Selectivity</code> <em>(required)</em></a></li>
+  <li><a href="#retention-optional" id="toc-retention-optional" class="nav-link" data-scroll-target="#retention-optional"><span class="header-section-number">4.3.4</span> <code>Retention</code> <em>(optional)</em></a></li>
+  <li><a href="#discardmortality-optional" id="toc-discardmortality-optional" class="nav-link" data-scroll-target="#discardmortality-optional"><span class="header-section-number">4.3.5</span> <code>DiscardMortality</code> <em>(optional)</em></a></li>
+  <li><a href="#weightfleet-optional" id="toc-weightfleet-optional" class="nav-link" data-scroll-target="#weightfleet-optional"><span class="header-section-number">4.3.6</span> <code>WeightFleet</code> <em>(optional)</em></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#obs" id="toc-obs" class="nav-link" data-scroll-target="#obs"><span class="header-section-number">4.4</span> <code>Obs</code></a>
+  <ul class="collapse">
+<li><a href="#catchobs" id="toc-catchobs" class="nav-link" data-scroll-target="#catchobs"><span class="header-section-number">4.4.1</span> <code>CatchObs</code></a></li>
+  <li><a href="#effortobs" id="toc-effortobs" class="nav-link" data-scroll-target="#effortobs"><span class="header-section-number">4.4.2</span> <code>EffortObs</code></a></li>
+  <li><a href="#indicesobs" id="toc-indicesobs" class="nav-link" data-scroll-target="#indicesobs"><span class="header-section-number">4.4.3</span> <code>IndicesObs</code></a></li>
+  <li><a href="#compobs" id="toc-compobs" class="nav-link" data-scroll-target="#compobs"><span class="header-section-number">4.4.4</span> <code>CompObs</code></a></li>
+  </ul>
+</li>
+  <li><a href="#imp" id="toc-imp" class="nav-link" data-scroll-target="#imp"><span class="header-section-number">4.5</span> <code>Imp</code></a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/overview-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./overview-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-primaryobjects" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p><code>openMSE</code> organises all inputs in an <code>OM</code> object, the top-level container that holds all the components needed to run a simulation. The <code>OM</code> object is itself built from a hierarchy of S4 subcomponent objects, each responsible for a distinct aspect of the model.</p>
+<p>Understanding this hierarchy, what each subcomponent represents, what it contains, and how the pieces fit together, is important for building, modifying, and interpreting operating models.</p>
+<p>The primary subcomponents of an <code>OM</code> object are <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values.</p>
+<p>This chapter describes all of these classes and their contents.</p>
+<p>This chapter contains a lot of detail. Readers who are new to <code>openMSE</code> may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.</p>
+<section id="om" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="om">
+<span class="header-section-number">4.1</span> <code>OM</code>
+</h2>
+<p>An <code>OM</code> object is the top-level operating model. It holds one or more <code>Stock</code> objects and, for each stock, a corresponding set of <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code> objects.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Stock</code>: a <code>stock-class</code> object or named list of <code>stock-class</code> objects, one per stock in the operating model.</li>
+<li>
+<code>Fleet</code>: a hierarchical named list of <code>fleet-class</code> objects, indexed first by stock then by fleet. Each stock must have the same number of fleets.</li>
+<li>
+<code>Obs</code>: a hierarchical named list of <code>obs-class</code> objects, indexed first by stock complex then by fleet. Must be length <code>nComplex</code> (the number of stock complexes defined in <code>Complexes</code>), not <code>nStock</code>. Each element is itself a named list of <code>obs-class</code> objects, one per fleet, with optional additional elements for fishery-independent survey indices.</li>
+<li>
+<code>Imp</code>: a hierarchical named list of <code>imp-class</code> objects, one per stock-fleet combination.</li>
+<li>
+<code>nSim</code>: number of stochastic simulations. Determines the <code>Sim</code> dimension of all populated arrays.</li>
+<li>
+<code>nYear</code>: number of historical years in the simulation.</li>
+<li>
+<code>pYear</code>: number of projection years in the simulation.</li>
+<li>
+<code>CurrentYear</code>: final calendar year of the historical period, used to label the <code>Year</code> dimension of all arrays.</li>
+<li>
+<code>Seasons</code>: number of seasons per year. Default 1 (annual time steps).</li>
+<li>
+<code>Complexes</code>: a named list defining stock complexes. Groups of stocks whose catch data are reported and managed jointly. Each element is an integer vector of stock indices belonging to that complex. If not specified, each stock is treated as its own complex.</li>
+<li>
+<code>Interval</code>: management update interval in projection years. How frequently the management procedure is called to update advice. Default 1 (annual).</li>
+<li>
+<code>Data</code>: a <code>data-class</code> object or named list of <code>data-class</code> objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See <a href="concept-data-obs.html" class="quarto-xref"><span>Chapter 17</span></a> for more details on the <code>Data</code> object and how it interacts with <code>Obs</code> objects.</li>
+</ul></section><section id="stock" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="stock">
+<span class="header-section-number">4.2</span> <code>Stock</code>
+</h2>
+<p>A <code>Stock</code> object defines the biological and demographic characteristics of a fish population. It is composed of the following subcomponents:</p>
+<section id="ages" class="level3" data-number="4.2.1"><h3 data-number="4.2.1" class="anchored" data-anchor-id="ages">
+<span class="header-section-number">4.2.1</span> <code>Ages</code>
+</h3>
+<p>Defines the discrete age structure of the population.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>MaxAge</code>: maximum age (<em>required</em>).</li>
+<li>
+<code>MinAge</code>: youngest age class (default 0).</li>
+<li>
+<code>Units</code>: the units of <code>MaxAge</code> and <code>MinAge</code>. One of: <code>year, half-year, quarter, month, week</code>. Determines temporal timestep of model. (default <code>year</code>).</li>
+<li>
+<code>PlusGroup</code>: logical; if <code>TRUE</code>, all fish at or beyond <code>MaxAge</code> are aggregated into a plus-group. (default <code>TRUE</code>).</li>
+<li>
+<code>Classes</code>: vector of age classes, derived automatically from the above. Always in units of <code>year</code>.</li>
+</ul></section><section id="length" class="level3" data-number="4.2.2"><h3 data-number="4.2.2" class="anchored" data-anchor-id="length">
+<span class="header-section-number">4.2.2</span> <code>Length</code>
+</h3>
+<p>Defines the mean length-at-age schedule.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list of growth model parameters (e.g., <code>Linf</code>, <code>K</code>, <code>t0</code> for von Bertalanffy).</li>
+<li>
+<code>Model</code>: growth model function, inferred automatically from <code>Pars</code> if not specified; see <code>?LengthModels</code>.</li>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of mean length at age. Derived from <code>Pars</code> and <code>Model</code> if <code>Pars</code> is populated. Otherwise can be input by users directly.</li>
+<li>
+<code>CVatAge</code>: coefficient of variation of length at age, used to generate the within-age length distribution.</li>
+<li>
+<code>ALK</code>: age-length key, derived internally from <code>MeanAtAge</code> and <code>CVatAge</code>.</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins. If not supplied, bin boundaries are derived automatically from <code>MeanAtAge</code> and <code>CVatAge</code> to span the plausible range of lengths in the population.</li>
+</ul>
+<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on populating <code>Pars</code>, <code>MeanAt*</code>, and <code>CVatAge</code> arrays.</p>
+</section><section id="weight" class="level3" data-number="4.2.3"><h3 data-number="4.2.3" class="anchored" data-anchor-id="weight">
+<span class="header-section-number">4.2.3</span> <code>Weight</code>
+</h3>
+<p>Defines the mean weight-at-age and weight-at-length schedules.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list of parameters (e.g., <code>alpha</code>, <code>beta</code> for an allometric relationship).</li>
+<li>
+<code>Model</code>: weight model function; see <code>?WeightModels</code>.</li>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of mean weight at age.<br>
+</li>
+<li>
+<code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of mean weight at length, where the <code>Class</code> dimension is length <code>length(Classes)</code>.</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
+</ul>
+<p>The <code>AtAge</code> and <code>AtLength</code> schedules are specified either by supplying <code>Pars</code> and <code>Model</code>, or by providing <code>MeanAtAge</code> and/or <code>MeanAtLength</code> directly when <code>Pars</code> is an empty list.</p>
+<p>When model-based, the model function populates either <code>MeanAtAge</code> or <code>MeanAtLength</code> depending on whether the model is age- or length-based. The other array is then back-calculated automatically using the age-length key (<code>ALK</code>) from the <code>Length</code> subcomponent.</p>
+<p>When supplying arrays directly, either or both may be provided, if only one is given, the other is derived from the <code>ALK</code> in the same way.</p>
+<p>This same pattern applies to all subcomponent objects that have <code>MeanAtAge</code> and <code>MeanAtLength</code> slots. See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for full details on input formats and array dimension conventions.</p>
+</section><section id="naturalmortality" class="level3" data-number="4.2.4"><h3 data-number="4.2.4" class="anchored" data-anchor-id="naturalmortality">
+<span class="header-section-number">4.2.4</span> <code>NaturalMortality</code>
+</h3>
+<p>Defines the natural mortality schedule, which may vary by age, length, simulation, and year.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list of mortality model parameters (e.g., <code>M</code> for a constant rate).</li>
+<li>
+<code>Model</code>: mortality model function; see <code>?NaturalMortalityModels</code>
+</li>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of instantaneous natural mortality at age.</li>
+<li>
+<code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of instantaneous natural mortality at length, where the <code>Class</code> dimension is length <code>length(Classes)</code>.</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
+</ul></section><section id="maturity" class="level3" data-number="4.2.5"><h3 data-number="4.2.5" class="anchored" data-anchor-id="maturity">
+<span class="header-section-number">4.2.5</span> <code>Maturity</code>
+</h3>
+<p>Defines the maturity ogive, which may be expressed as a function of age, length, or weight.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list of maturity model parameters (e.g., <code>L50</code>, <code>L50_95</code> for a logistic curve)</li>
+<li>
+<code>Model</code>: maturity model function; see <code>?MaturityModels</code>
+</li>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of maturity-at-age (0–1)</li>
+<li>
+<code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of maturity-at-length (0–1)</li>
+<li>
+<code>Semelparous</code>: controls post-spawning mortality. Accepts a logical <code>TRUE</code> or a <code>Sim × Age × Year</code> array. Default <code>Semelparous</code> is <code>FALSE</code>, meaning no post-spawning mortality. See below.</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
+</ul>
+<p><strong>Semelparity</strong></p>
+<p>Setting <code>Semelparous</code> to <code>TRUE</code> sets post-spawning mortality equal to the maturity ogive; fully mature fish die after spawning with probability 1, fish on the ascending limb of the ogive die proportionally, and immature fish are unaffected.</p>
+<p>A numeric array may also be supplied directly, allowing post-spawning mortality to be specified independently of the maturity schedule (e.g., to represent a species where only the oldest mature fish are semelparous or there is a lag between spawning and post-spawning mortality).</p>
+</section><section id="fecundity-optional" class="level3" data-number="4.2.6"><h3 data-number="4.2.6" class="anchored" data-anchor-id="fecundity-optional">
+<span class="header-section-number">4.2.6</span> <code>Fecundity</code> <em>(optional)</em>
+</h3>
+<p>Defines egg production per individual as a function of age or length. When omitted, spawning production is set equal to spawning biomass.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list of fecundity model parameters.</li>
+<li>
+<code>Model</code>: fecundity model function; see <code>?FecundityModels</code>.</li>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of fecundity at age.</li>
+<li>
+<code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of fecundity at length.</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
+</ul></section><section id="srr" class="level3" data-number="4.2.7"><h3 data-number="4.2.7" class="anchored" data-anchor-id="srr">
+<span class="header-section-number">4.2.7</span> <code>SRR</code>
+</h3>
+<p>Defines the stock-recruitment relationship and recruitment variability.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list containing the steepness parameter (e.g., <code>list(h = ...)</code> for Beverton-Holt).</li>
+<li>
+<code>Model</code>: SRR function; defaults to <code>"BevertonHolt"</code>; see <code>?SRRModels</code>.</li>
+<li>
+<code>R0</code>: unfished equilibrium recruitment, used to set the scale of population numbers.</li>
+<li>
+<code>SD</code>: log-space standard deviation of recruitment deviations.</li>
+<li>
+<code>AC</code>: lag-1 autocorrelation of recruitment deviations.</li>
+<li>
+<code>SpawnTimeFrac</code>: fraction of the time step elapsed before spawning (0 = start, 1 = end).</li>
+</ul></section><section id="spatial-optional" class="level3" data-number="4.2.8"><h3 data-number="4.2.8" class="anchored" data-anchor-id="spatial-optional">
+<span class="header-section-number">4.2.8</span> <code>Spatial</code> <em>(optional)</em>
+</h3>
+<p>Defines spatial structure and movement dynamics. When omitted, a single well-mixed area is assumed.</p>
+<p>Key slots:</p>
+<ul>
+<li><p><code>UnfishedDist</code>: the equilibrium distribution of unfished biomass across areas. For two-area models, specifies the fraction of biomass in Area 1 as a scalar, a length-2 bounds vector (sampled from <code>Uniform(lower, upper)</code> across simulations), or a full <code>Sim × Area × Age × Year</code> array. The Area 2 fraction is derived as <code>1 - UnfishedDist</code>. For models with more than two areas, an array must be supplied and values must sum to 1 across the <code>Area</code> dimension.</p></li>
+<li><p><code>ProbStaying</code>: the annual probability that an individual remains in its current area between time steps. For two-area models, specifies Area 1 only; the Area 2 value is solved internally. Accepts a scalar, a length-2 bounds vector, or a full <code>Sim × Area × Age × Year</code> array.</p></li>
+<li><p><code>RelativeSize</code>: the relative habitat size of each area, used to compute biomass density (biomass per unit area) for the spatial effort allocation algorithm. For two-area models, accepts a scalar (Area 1 fraction, with Area 2 as <code>1 - RelativeSize</code>) or a length-2 bounds vector. The special value <code>"EqualDensity"</code> sets <code>RelativeSize</code> equal to the mean unfished distribution across ages and years, so that unfished biomass density is equal across areas. When <code>NULL</code>, all areas are assumed equal in size.</p></li>
+<li><p><code>Movement</code>: <code>Sim × FromArea × ToArea × Age × Year</code> array of movement probabilities. Row <code>[i, ]</code> gives the probabilities of moving from area <code>i</code> to each other area, and rows sum to 1. Normally derived automatically during <code>Populate()</code> by numerical optimisation of the target <code>UnfishedDist</code> and <code>ProbStaying</code> values. Can also be supplied directly, in which case the asymptotic unfished distribution is back-calculated from the movement matrix.</p></li>
+<li><p><code>FracOther</code>: required for models with more than two areas. A <code>Sim × FromArea × ToArea × Age × Year</code> array where off-diagonal element <code>[i, j]</code> gives the relative probability of moving from area <code>i</code> to area <code>j</code>. Diagonal elements must be <code>NA</code> (the staying probability is taken from <code>ProbStaying</code>). Used as a penalty-weight matrix during movement optimisation to guide how movement is distributed among destination areas.</p></li>
+</ul>
+<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 15</span></a> for more details on spatial structure.</p>
+</section><section id="depletion-optional" class="level3" data-number="4.2.9"><h3 data-number="4.2.9" class="anchored" data-anchor-id="depletion-optional">
+<span class="header-section-number">4.2.9</span> <code>Depletion</code> <em>(optional)</em>
+</h3>
+<p>Defines the stock depletion at the start and/or end of the historical period. When omitted, the stock starts unfished and terminal depletion is determined by the fleet effort and catchability.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Initial</code>: depletion at the first historical time step, relative to <code>Reference</code>. When specified, the model initialises the population at unfished equilibrium and then rescales numbers-at-age by a single multiplicative scalar, found by numerical optimisation, such that the resulting biomass matches the target depletion level.</li>
+<li>
+<code>Final</code>: target depletion at the terminal historical time step, relative to <code>Reference</code>. When specified, fleet catchability is optimised to achieve this level. Typically only used for data-limited cases where terminal depletion is unknown and set to custom ranges.</li>
+<li>
+<code>Reference</code>: reference biomass used to scale depletion (e.g., <code>"B0"</code>, <code>"SB0"</code>).</li>
+</ul></section></section><section id="fleet" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="fleet">
+<span class="header-section-number">4.3</span> <code>Fleet</code>
+</h2>
+<p>A <code>Fleet</code> object defines the exploitation characteristics of a fishing fleet. A stock may be fished by one or more fleets, each with its own <code>Fleet</code> object. It is composed of the following subcomponents:</p>
+<section id="effort" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="effort">
+<span class="header-section-number">4.3.1</span> <code>Effort</code>
+</h3>
+<p>Defines the historical fishing effort trajectory and its spatial allocation.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Effort</code>: historical effort as a <code>Sim × Year</code> array or a control-point data frame from which stochastic trajectories are generated; see <code>?GenHistEffort</code>.</li>
+<li>
+<code>Units</code>: units of fishing effort (e.g., <code>"hours"</code>, <code>"trips"</code>, or <code>unitless</code>).</li>
+<li>
+<code>Distribution</code>: <code>Sim × Year × Area</code> array of the fraction of total effort allocated to each area, with values summing to 1 across the <code>Area</code> dimension within each simulation and year. Typically calculated internally by the spatial effort allocation algorithm each year based on relative exploitable biomass density and the <code>Targeting</code> parameter. Individual cells can be fixed to specific values by supplying a non-<code>NA</code> numeric, which overrides the internal algorithm for those simulation-year-area combinations while leaving the remainder to be calculated normally.</li>
+<li>
+<code>Targeting</code>: <code>Sim × Year</code> targeting concentration parameter controlling how strongly effort is attracted to high-density areas.</li>
+</ul></section><section id="catchability" class="level3" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="catchability">
+<span class="header-section-number">4.3.2</span> <code>Catchability</code>
+</h3>
+<p>Defines gear efficiency and optional projected-year trends or stochasticity.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Efficiency</code>: gear efficiency <span class="math inline">\(q\)</span>, which converts effort to instantaneous fishing mortality via <span class="math inline">\(F = q \cdot E\)</span>. May be left empty when <code>Depletion@Final</code> is specified, in which case it is back-calculated internally to match the specified depletion level.</li>
+</ul></section><section id="selectivity-required" class="level3" data-number="4.3.3"><h3 data-number="4.3.3" class="anchored" data-anchor-id="selectivity-required">
+<span class="header-section-number">4.3.3</span> <code>Selectivity</code> <em>(required)</em>
+</h3>
+<p>Defines the probability of capture as a function of age, length, or weight.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Pars</code>: named list of selectivity model parameters (e.g., <code>L5</code>, <code>LFS</code>, <code>Vmaxlen</code> for a double-normal curve)</li>
+<li>
+<code>Model</code>: selectivity model function, inferred automatically from <code>Pars</code>; see <code>?SelectivityModels</code>
+</li>
+<li>
+<code>isRel</code>: logical. Default <code>FALSE</code>. If <code>TRUE</code>, length-based parameters are interpreted as multiples of <span class="math inline">\(L_{50}\)</span> of the paired stock. Typically only required for example stock and fleet objects (see <a href="example-objects.html" class="quarto-xref"><span>Chapter 4</span></a>).</li>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of selectivity at age (0–1).</li>
+<li>
+<code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of selectivity at length (0–1).</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
+</ul>
+<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on populating <code>Pars</code>, <code>MeanAt*</code>, and <code>CVatAge</code> arrays.</p>
+</section><section id="retention-optional" class="level3" data-number="4.3.4"><h3 data-number="4.3.4" class="anchored" data-anchor-id="retention-optional">
+<span class="header-section-number">4.3.4</span> <code>Retention</code> <em>(optional)</em>
+</h3>
+<p>Defines the probability of retention given capture, as a function of age, length, or weight. When omitted, all fish are assumed fully retained. Fish that are selected but not retained are treated as discards, and their fate is determined by <code>DiscardMortality</code>.</p>
+<p>Has the same slot structure as <code>Selectivity</code> (<code>Pars</code>, <code>Model</code>, <code>isRel</code>, <code>MeanAtAge</code>, <code>MeanAtLength</code>, <code>MeanAtWeight</code>); see <code>?RetentionModels</code>.</p>
+<p>Unlike <code>Selectivity</code>, the <code>MeanAtAge</code> array is not required to reach a maximum of 1. Retention models support an optional <code>MaxRet</code> parameter that caps the asymptote below 1, representing situations where even fully-selected fish are not always retained, for example, under a maximum size limit, a trip-level bag limit, or where a proportion of catch is systematically discarded regardless of size.</p>
+</section><section id="discardmortality-optional" class="level3" data-number="4.3.5"><h3 data-number="4.3.5" class="anchored" data-anchor-id="discardmortality-optional">
+<span class="header-section-number">4.3.5</span> <code>DiscardMortality</code> <em>(optional)</em>
+</h3>
+<p>Defines the proportion of discarded catch that dies, at age or at length. When omitted, all discarded fish are assumed to survive.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of discard mortality at age (0 = all survive, 1 = all die).</li>
+<li>
+<code>MeanAtLength</code>: <code>Sim × Length × Year</code> array of discard mortality at length.</li>
+<li>
+<code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
+</ul></section><section id="weightfleet-optional" class="level3" data-number="4.3.6"><h3 data-number="4.3.6" class="anchored" data-anchor-id="weightfleet-optional">
+<span class="header-section-number">4.3.6</span> <code>WeightFleet</code> <em>(optional)</em>
+</h3>
+<p>A <code>Sim × Age × Year</code> array of fleet-specific weight-at-age, used in fleet-level biomass calculations. This slot is relevant when the fleet’s catch has a different weight-at-age schedule from the overall stock.</p>
+<p>When omitted (the default), <code>WeightFleet</code> is set equal to the corresponding stock’s weight-at-age array.</p>
+</section></section><section id="obs" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="obs">
+<span class="header-section-number">4.4</span> <code>Obs</code>
+</h2>
+<p>An <code>Obs</code> object defines the observation model for a fleet, describing how each data type is collected and the magnitude of sampling error and systematic bias. Each fleet has its own <code>Obs</code> object.</p>
+<p>Each slot of <code>Obs</code> is itself a subcomponent object: <code>CatchObs</code>, <code>EffortObs</code>, <code>IndicesObs</code>, or <code>CompObs</code>, that each specify the error structure for that data type.</p>
+<p>All sub-components of an <code>Obs</code> object are optional. If a sub-component (e.g., <code>CatchObs</code>) is not populated, no data of that type will be generated in the model.</p>
+<p>The <code>Obs</code> object interacts closely with <code>Data</code> objects. See <a href="concept-data-obs.html" class="quarto-xref"><span>Chapter 17</span></a> for more details.</p>
+<section id="catchobs" class="level3" data-number="4.4.1"><h3 data-number="4.4.1" class="anchored" data-anchor-id="catchobs">
+<span class="header-section-number">4.4.1</span> <code>CatchObs</code>
+</h3>
+<p>Used for <code>Obs@Landings</code> and <code>Obs@Discards</code>. Defines lognormal observation error and multiplicative bias applied to simulated catch.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<p><code>CV</code>: coefficient of variation of lognormal observation error. Accepts:</p>
+<ul>
+<li>
+<code>NULL</code>: no observation error unless <code>Error</code> is supplied directly.</li>
+<li>Scalar: a single CV applied uniformly to all simulations.</li>
+<li>Length-2 vector <code>c(lower, upper)</code>: a unique CV per simulation drawn from <code>Uniform(lower, upper)</code>.</li>
+<li>Length-<code>nSim</code> vector: used directly.</li>
+</ul>
+<p>After population, <code>@CV</code> becomes a named <code>[nSim]</code> vector (one value per simulation) and <code>@Error</code> becomes a named <code>[nSim × nYear]</code> lognormal array drawn from those CVs.</p>
+</li>
+<li>
+<p><code>Bias</code>: multiplicative observation bias on the natural scale. Accepts:</p>
+<ul>
+<li>
+<code>NULL</code> or empty: defaults to 1 (unbiased) for all simulations.</li>
+<li>Scalar: treated as the CV of a lognormal distribution from which <code>nSim</code> unique bias values are drawn, centred at 1.</li>
+<li>Length-<code>nSim</code> vector or named array: used directly, one bias value per simulation.</li>
+</ul>
+<p>After population, <code>@Bias</code> is a named <code>[nSim]</code> array of positive multipliers. The error applied to simulated catch in each simulation and year is <code>Bias[sim] × Error[sim, year]</code>.</p>
+</li>
+<li><p><code>Error</code>: optional pre-specified <code>[nSim × nYear]</code> lognormal multiplier array. When supplied, <code>Error</code> is used directly and <code>CV</code> is ignored.</p></li>
+<li><p><code>Units</code>: <code>"Biomass"</code> or <code>"Number"</code>. Determines the units of the simulated catch data. Default <code>NULL</code> (treated as <code>"Biomass"</code>). <code>Biomass</code> uses <code>WeightFleet</code> (see above). <code>Number</code> is catch in numbers (same units as the stock’s <code>R0</code>).</p></li>
+</ul></section><section id="effortobs" class="level3" data-number="4.4.2"><h3 data-number="4.4.2" class="anchored" data-anchor-id="effortobs">
+<span class="header-section-number">4.4.2</span> <code>EffortObs</code>
+</h3>
+<p>Used for <code>Obs@Effort</code>. Has the same <code>CV</code>, <code>Bias</code>, and <code>Error</code> slots as <code>CatchObs</code>, applied to simulated fishing effort. See <code>?EffortObs</code>.</p>
+</section><section id="indicesobs" class="level3" data-number="4.4.3"><h3 data-number="4.4.3" class="anchored" data-anchor-id="indicesobs">
+<span class="header-section-number">4.4.3</span> <code>IndicesObs</code>
+</h3>
+<p>Used for <code>Obs@CPUE</code> and <code>Obs@Survey</code>. Defines lognormal observation error on abundance indices, with optional autocorrelation.</p>
+<p>Key slots:</p>
+<ul>
+<li><p><code>CV</code>: coefficient of variation of lognormal index error. Accepts the same forms as <code>CatchObs@CV</code> (scalar, length-2 bounds, or length-<code>nSim</code> array). After population, <code>@CV</code> is a named <code>[nSim]</code> vector and <code>@Error</code> is a named <code>[nSim × nYear]</code> lognormal array.</p></li>
+<li>
+<p><code>AC</code>: lag-1 autocorrelation of index residuals, reflecting persistent deviations in survey catchability or other sources of correlated index error. Accepts:</p>
+<ul>
+<li>
+<code>NULL</code> or empty: defaults to 0 (independent errors).</li>
+<li>Scalar: constant autocorrelation applied to all simulations.</li>
+<li>Length-2 vector <code>c(lower, upper)</code>: a unique AC per simulation drawn from <code>Uniform(lower, upper)</code>.</li>
+<li>Length-<code>nSim</code> array: used directly.</li>
+</ul>
+<p>All values must lie in <span class="math inline">\([-1, 1]\)</span>. Autocorrelation is applied on the log scale using a variance-preserving AR(1) formulation.</p>
+</li>
+<li>
+<p><code>Selectivity</code>: controls how the simulated population is aggregated to produce the index:</p>
+<ul>
+<li>
+<code>NULL</code> (default for CPUE): uses the fleet’s selectivity-at-age schedule.</li>
+<li>
+<code>"Biomass"</code>: flat selectivity across all ages (total biomass index).</li>
+<li>
+<code>"SBiomass"</code>: weights by maturity-at-age (spawning biomass index).</li>
+</ul>
+<p>A custom <code>Sim × Age × Year</code> array may also be supplied for other selectivity schemes (e.g., surveys).</p>
+</li>
+</ul></section><section id="compobs" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="compobs">
+<span class="header-section-number">4.4.4</span> <code>CompObs</code>
+</h3>
+<p>Used for <code>Obs@LandingsAtAge</code>, <code>Obs@DiscardsAtAge</code>, <code>Obs@LandingsAtSize</code>, and <code>Obs@DiscardsAtSize</code>. Defines the sampling structure for age or length composition data via a Dirichlet-Multinomial model.</p>
+<p>Key slots:</p>
+<ul>
+<li><p><code>SampleSize</code>: nominal number of fish aged or measured per year. Accepts a scalar (constant across all simulations and years), a length-2 vector <code>c(lower, upper)</code> (one value per simulation drawn from <code>Uniform(lower, upper)</code>, held constant across years), or a change-point matrix (see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a>). After population, <code>@SampleSize</code> is a named <code>[nSim × nYear]</code> array. Setting <code>SampleSize = NULL</code> suppresses generation of that composition data type entirely.</p></li>
+<li><p><code>ESS</code>: effective sample size. Controls the stochastic variability of the composition draw independently of the nominal <code>SampleSize</code>. Accepts the same input forms as <code>SampleSize</code>; after population it is a named <code>[nSim × nYear]</code> array. Defaults to <code>SampleSize</code> when not specified. Values of <code>ESS &lt; SampleSize</code> produce overdispersion relative to a pure multinomial.</p></li>
+<li><p><code>Theta</code>: Dirichlet-Multinomial dispersion parameter, in <span class="math inline">\((0, 1]\)</span>. Accepts the same input forms as <code>SampleSize</code>; after population it is a named <code>[nSim × nYear]</code> array. <code>Theta = 1</code> (default) recovers a standard multinomial draw. Values approaching 0 produce maximum overdispersion.</p></li>
+<li><p><code>Shift</code>: optional per-bin log-concentration offset, capturing systematic directional bias between observed and predicted compositions. <code>NULL</code> (default) applies no shift. See <code>?CompObs</code> for details.</p></li>
+</ul></section></section><section id="imp" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="imp">
+<span class="header-section-number">4.5</span> <code>Imp</code>
+</h2>
+<p>An <code>Imp</code> object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>TAC</code>: implementation error for total allowable catch recommendations</li>
+<li>
+<code>Effort</code>: implementation error for effort-based controls</li>
+<li>
+<code>Size</code>: implementation error for size-based regulations</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>Imp</code> class is currently a placeholder and is not currently implemented. The interface is subject to change.</p>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/docs\.openMSE\.com\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./overview-openMSE.html" class="pagination-link" aria-label="Overview of `openMSE`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./example-objects.html" class="pagination-link" aria-label="Overview of Example Objects">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/overview-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

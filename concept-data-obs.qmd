@@ -1,0 +1,10 @@
+# The `Data` and `Obs` Objects {#sec-dataobs}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5)
+```
+
+The 

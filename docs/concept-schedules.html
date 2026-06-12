@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Management Strategy Evaluation with openMSE">
+<title>11&nbsp; Specifying Biological and Fleet Schedules – openMSE Technical Manual</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./concept-populate.html" rel="next">
+<link href="./om-octopus.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-schedules.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Technical Manual</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://openMSE.com" title="openMSE" class="quarto-navigation-tool px-1" aria-label="openMSE"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/blue-matter/openMSETechGuide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Structure of the <code>OM</code> Object</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Example Objects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Example MSE</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Management Procedures</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Concepts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-seasonal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Technical Details</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./z-app-acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./z-app-changes_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Overview of Major Changes</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#two-ways-to-specify-a-schedule" id="toc-two-ways-to-specify-a-schedule" class="nav-link active" data-scroll-target="#two-ways-to-specify-a-schedule"><span class="header-section-number">11.1</span> Two Ways to Specify a Schedule</a>
+  <ul class="collapse">
+<li><a href="#option-1-model-based-recommended" id="toc-option-1-model-based-recommended" class="nav-link" data-scroll-target="#option-1-model-based-recommended"><span class="header-section-number">11.1.1</span> Option 1: Model-based (recommended)</a></li>
+  <li><a href="#option-2-direct-array" id="toc-option-2-direct-array" class="nav-link" data-scroll-target="#option-2-direct-array"><span class="header-section-number">11.1.2</span> Option 2: Direct array</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#input-formats-for-pars" id="toc-input-formats-for-pars" class="nav-link" data-scroll-target="#input-formats-for-pars"><span class="header-section-number">11.2</span> Input Formats for <code>Pars</code></a>
+  <ul class="collapse">
+<li><a href="#scalar" id="toc-scalar" class="nav-link" data-scroll-target="#scalar"><span class="header-section-number">11.2.1</span> Scalar</a></li>
+  <li><a href="#length-2-bounds-vector" id="toc-length-2-bounds-vector" class="nav-link" data-scroll-target="#length-2-bounds-vector"><span class="header-section-number">11.2.2</span> Length-2 bounds vector</a></li>
+  <li><a href="#length-nsim-vector" id="toc-length-nsim-vector" class="nav-link" data-scroll-target="#length-nsim-vector"><span class="header-section-number">11.2.3</span> Length-<code>nSim</code> vector</a></li>
+  <li><a href="#sim-year-array-with-named-dimensions" id="toc-sim-year-array-with-named-dimensions" class="nav-link" data-scroll-target="#sim-year-array-with-named-dimensions"><span class="header-section-number">11.2.4</span> <code>Sim × Year</code> array with named dimensions</a></li>
+  <li><a href="#temporal-random-walk" id="toc-temporal-random-walk" class="nav-link" data-scroll-target="#temporal-random-walk"><span class="header-section-number">11.2.5</span> Temporal random walk</a></li>
+  </ul>
+</li>
+  <li><a href="#meanat-array-formats-and-dimension-conventions" id="toc-meanat-array-formats-and-dimension-conventions" class="nav-link" data-scroll-target="#meanat-array-formats-and-dimension-conventions"><span class="header-section-number">11.3</span> <code>MeanAt*</code> Array Formats and Dimension Conventions</a></li>
+  <li><a href="#how-meanatlength-and-meanatweight-relate-to-meanatage" id="toc-how-meanatlength-and-meanatweight-relate-to-meanatage" class="nav-link" data-scroll-target="#how-meanatlength-and-meanatweight-relate-to-meanatage"><span class="header-section-number">11.4</span> How <code>MeanAtLength</code> and <code>MeanAtWeight</code> Relate to <code>MeanAtAge</code></a></li>
+  <li><a href="#model-resolution" id="toc-model-resolution" class="nav-link" data-scroll-target="#model-resolution"><span class="header-section-number">11.5</span> Model Resolution</a></li>
+  <li><a href="#sec-schedules-custom" id="toc-sec-schedules-custom" class="nav-link" data-scroll-target="#sec-schedules-custom"><span class="header-section-number">11.6</span> Custom Models</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.7</span> Summary</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-schedules.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-schedules.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-schedules" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>Several subcomponent objects in <code>openMSE</code> share a common structure for specifying parameter schedules across simulations and years. This structure applies to the biological subcomponents of <code>Stock</code> — <code>Length</code>, <code>Weight</code>, <code>NaturalMortality</code>, <code>Maturity</code>, and <code>Fecundity</code> — and to the fleet subcomponents <code>Selectivity</code> and <code>Retention</code>.</p>
+<p>Each of these objects has the same three core slots:</p>
+<ul>
+<li>
+<code>Pars</code>: a named list of model parameters</li>
+<li>
+<code>Model</code>: a model function that maps <code>Pars</code> to a schedule</li>
+<li>
+<code>MeanAt*</code>: a <code>Sim × Age × Year</code> (or <code>Sim × Class × Year</code>) array of the resulting schedule</li>
+</ul>
+<p>Understanding how these slots interact is central to using <code>openMSE</code> effectively. This chapter describes the two ways to populate a schedule, the accepted input formats for <code>Pars</code>, the dimension conventions for <code>MeanAt*</code> arrays, and how to supply custom model functions.</p>
+<hr>
+<section id="two-ways-to-specify-a-schedule" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="two-ways-to-specify-a-schedule">
+<span class="header-section-number">11.1</span> Two Ways to Specify a Schedule</h2>
+<p>There are two approaches for specifying a biological or fleet schedule. They are mutually exclusive: if <code>Pars</code> contains valid parameter values that can be matched to a model, it takes precedence and any values already in <code>MeanAt*</code> slots will be overwritten.</p>
+<section id="option-1-model-based-recommended" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="option-1-model-based-recommended">
+<span class="header-section-number">11.1.1</span> Option 1: Model-based (recommended)</h3>
+<p>Supply <code>Pars</code> as a named list whose element names match the arguments of a built-in model function. The model is resolved automatically by <code>FindModel()</code>, which scans the candidate models for the object class and finds the one whose formal argument names match the names in <code>Pars</code>. You may also set <code>Model</code> explicitly to a character string or a custom R function (see <a href="#sec-schedules-custom" class="quarto-xref"><span>Section 11.6</span></a>).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Length-at-age specified via von Bertalanffy parameters</span></span>
+<span><span class="fu">Length</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Length</span><span class="op">(</span></span>
+<span>  Pars  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Linf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span>, K <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.25</span><span class="op">)</span>, t0 <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  CVatAge <span class="op">=</span> <span class="fl">0.1</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When model-based, <code>Pars</code> are expanded to <code>Sim × Year</code> arrays by <code>Populate()</code>, the model function is called to produce <code>MeanAtAge</code> (or <code>MeanAtLength</code>/<code>MeanAtWeight</code> for size-based models), and any existing values in <code>MeanAt*</code> slots are overwritten.</p>
+</section><section id="option-2-direct-array" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="option-2-direct-array">
+<span class="header-section-number">11.1.2</span> Option 2: Direct array</h3>
+<p>Leave <code>Pars = list()</code> (the default) and supply <code>MeanAtAge</code>, <code>MeanAtLength</code>, or <code>MeanAtWeight</code> directly as a numeric array. No model is inferred and no overwriting occurs.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Natural mortality supplied directly as a Sim × Age × Year array</span></span>
+<span><span class="va">m_arr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
+<span>  dim      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Sim <span class="op">=</span> <span class="fl">1</span>, Age <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, Year <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span>MeanAtAge <span class="op">=</span> <span class="va">m_arr</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr></section></section><section id="input-formats-for-pars" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="input-formats-for-pars">
+<span class="header-section-number">11.2</span> Input Formats for <code>Pars</code>
+</h2>
+<p>Each element of <code>Pars</code> may be supplied in any of the following forms. All are converted internally to <code>Sim × Year</code> arrays by <code>Populate()</code> before the model function is called.</p>
+<section id="scalar" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="scalar">
+<span class="header-section-number">11.2.1</span> Scalar</h3>
+<p>A single value applied identically to all simulations and years:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Pars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>M <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section><section id="length-2-bounds-vector" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="length-2-bounds-vector">
+<span class="header-section-number">11.2.2</span> Length-2 bounds vector</h3>
+<p>Values are sampled independently for each simulation from <code>Uniform(lower, upper)</code>, producing inter-simulation uncertainty in the parameter. When <code>nSim = 1</code>, the midpoint of the bounds is used:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Pars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span>   <span class="co"># draws nSim values from U(0.1, 0.3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is the most common format for reflecting parameter uncertainty in an operating model, and is used throughout the built-in example objects.</p>
+</section><section id="length-nsim-vector" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="length-nsim-vector">
+<span class="header-section-number">11.2.3</span> Length-<code>nSim</code> vector</h3>
+<p>One value per simulation, held constant across all years. Used when simulation-specific values have already been determined (e.g., drawn from a posterior distribution):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Pars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.18</span>, <span class="fl">0.22</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>   <span class="co"># one value per simulation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section><section id="sim-year-array-with-named-dimensions" class="level3" data-number="11.2.4"><h3 data-number="11.2.4" class="anchored" data-anchor-id="sim-year-array-with-named-dimensions">
+<span class="header-section-number">11.2.4</span> <code>Sim × Year</code> array with named dimensions</h3>
+<p>A fully time-varying specification. Only the years at which the parameter <em>changes</em> need to be included; <code>Extend()</code> forward-fills all intermediate and future years automatically from the most recently supplied value:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_arr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.4</span><span class="op">)</span>,</span>
+<span>  dim      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Sim <span class="op">=</span> <span class="fl">1</span>, Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1990</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">Pars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>M <span class="op">=</span> <span class="va">m_arr</span><span class="op">)</span></span>
+<span><span class="co"># M = 0.2 from 1990 to 2009, then 0.4 from 2010 onwards</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A single-simulation array (<code>Sim</code> dimension of length 1) is replicated to all <code>nSim</code> simulations automatically.</p>
+</section><section id="temporal-random-walk" class="level3" data-number="11.2.5"><h3 data-number="11.2.5" class="anchored" data-anchor-id="temporal-random-walk">
+<span class="header-section-number">11.2.5</span> Temporal random walk</h3>
+<p>Append a companion entry named <code>&lt;ParName&gt;SD</code> to <code>Pars</code>. A mean-preserving log-normal random walk is then applied to the base parameter value across years, generating inter-annual variation within each simulation. The <code>SD</code> entry is removed from <code>Pars</code> after use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Pars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>M <span class="op">=</span> <span class="fl">0.2</span>, MSD <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="co"># M varies around 0.2 from year to year with log-normal SD of 0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This can be combined with any of the above formats for the base parameter. For example, a length-2 bounds vector for <code>M</code> with <code>MSD</code> produces a schedule where the mean level of <span class="math inline">\(M\)</span> differs across simulations <em>and</em> varies randomly within each simulation over time.</p>
+<hr></section></section><section id="meanat-array-formats-and-dimension-conventions" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="meanat-array-formats-and-dimension-conventions">
+<span class="header-section-number">11.3</span> <code>MeanAt*</code> Array Formats and Dimension Conventions</h2>
+<p>All <code>MeanAt*</code> arrays use named dimensions. The expected dimension names depend on the type of schedule:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Array</th>
+<th>Dimensions</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>MeanAtAge</code></td>
+<td><code>Sim × Age × Year</code></td>
+</tr>
+<tr class="even">
+<td><code>MeanAtLength</code></td>
+<td><code>Sim × Class × Year</code></td>
+</tr>
+<tr class="odd">
+<td><code>MeanAtWeight</code></td>
+<td><code>Sim × Class × Year</code></td>
+</tr>
+</tbody>
+</table>
+<p>As with <code>Pars</code>, only the years at which the schedule <em>changes</em> need to be supplied; <code>Extend()</code> forward-fills all other years. A single-simulation array is replicated to all <code>nSim</code> simulations automatically.</p>
+<p>A plain numeric vector of length <code>nAge</code> is also accepted for <code>MeanAtAge</code> and is promoted to a <code>1 × nAge × 1</code> array automatically.</p>
+<hr></section><section id="how-meanatlength-and-meanatweight-relate-to-meanatage" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="how-meanatlength-and-meanatweight-relate-to-meanatage">
+<span class="header-section-number">11.4</span> How <code>MeanAtLength</code> and <code>MeanAtWeight</code> Relate to <code>MeanAtAge</code>
+</h2>
+<p><code>openMSE</code> uses age-based accounting internally, so <code>MeanAtAge</code> is ultimately what the model requires. <code>MeanAtLength</code> and <code>MeanAtWeight</code> serve two roles:</p>
+<ol type="1">
+<li>
+<strong>Generating size-structured data</strong>: observed length and weight compositions, length-based indices, and similar outputs are produced from the size-indexed schedules.</li>
+<li>
+<strong>Conversion to <code>MeanAtAge</code></strong>: when a schedule is naturally expressed on a size axis (e.g., a length-based maturity ogive or length-based selectivity curve), <code>MeanAtLength</code> or <code>MeanAtWeight</code> is converted to <code>MeanAtAge</code> via the age-length key (<code>ALK</code>) or age-weight key (<code>AWK</code>).</li>
+</ol>
+<p>The conversion rules are:</p>
+<ul>
+<li>If <code>MeanAtLength</code> is populated and <code>MeanAtAge</code> is not, <code>Populate()</code> converts <code>MeanAtLength</code> → <code>MeanAtAge</code> via the <code>ALK</code>.</li>
+<li>If <code>MeanAtWeight</code> is populated and <code>MeanAtAge</code> is not, <code>Populate()</code> converts <code>MeanAtWeight</code> → <code>MeanAtAge</code> via the <code>AWK</code>.</li>
+<li>If <code>MeanAtAge</code> is already populated it is <strong>not</strong> overwritten by this conversion.</li>
+<li>If both <code>MeanAtLength</code> and <code>MeanAtAge</code> are populated, <code>MeanAtAge</code> takes precedence and <code>MeanAtLength</code> is used only for size-indexed outputs.</li>
+</ul>
+<p>For model-based specifications, whether the model populates <code>MeanAtAge</code> directly or via <code>MeanAtLength</code> depends on the model function’s signature: models that accept a <code>Length</code> argument produce <code>MeanAtLength</code> first and then convert to <code>MeanAtAge</code> via the <code>ALK</code>; age-based models populate <code>MeanAtAge</code> directly.</p>
+<p>The <code>ALK</code> is stored in the <code>Length</code> subcomponent of the <code>Stock</code> object and must therefore be populated before any size-based schedules are converted to age-based ones. <code>Populate()</code> handles this ordering automatically when called on a <code>Stock</code> or <code>OM</code> object.</p>
+<hr></section><section id="model-resolution" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="model-resolution">
+<span class="header-section-number">11.5</span> Model Resolution</h2>
+<p>When <code>Pars</code> is non-empty and <code>Model</code> is <code>NULL</code>, <code>FindModel()</code> is called automatically. It scans the candidate model functions for the object class — for example, all functions registered as <code>"LengthModel"</code> for a <code>Length</code> object — and finds the one whose formal argument names match the names in <code>Pars</code> exactly (excluding auxiliary arguments such as <code>Ages</code>, <code>Length</code>, and <code>Weight</code>, and ignoring any <code>SD</code>-suffixed entries used for random walks).</p>
+<p>If no unique match is found, an informative error is thrown directing the user to the relevant <code>*Models()</code> function (e.g., <code>?LengthModels</code>, <code>?MaturityModels</code>).</p>
+<p>You may bypass automatic inference by setting <code>Model</code> explicitly:</p>
+<ul>
+<li>
+<strong>Character string</strong>: the name of a built-in model (must exist as an exported function of the appropriate class).</li>
+<li>
+<strong>R function</strong>: a custom function whose formal arguments match the names in <code>Pars</code>; see <a href="#sec-schedules-custom" class="quarto-xref"><span>Section 11.6</span></a>.</li>
+</ul>
+<p>If <code>Model</code> is already a function object (from a previous call), <code>FindModel()</code> returns it unchanged.</p>
+<hr></section><section id="sec-schedules-custom" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="sec-schedules-custom">
+<span class="header-section-number">11.6</span> Custom Models</h2>
+<p>Any R function can be used as a model by passing it to <code>Model</code>. The function must:</p>
+<ul>
+<li>accept arguments whose names match the elements of <code>Pars</code>;</li>
+<li>accept any required auxiliary arguments (<code>Ages</code>, <code>Length</code>, <code>Weight</code>, etc.) as appropriate for the schedule type;</li>
+<li>return a named array with dimensions <code>Sim × Age × Year</code> (for age-based outputs) or <code>Sim × Class × Year</code> (for size-based outputs).</li>
+</ul>
+<p>For example, the following custom natural mortality function produces an age-declining <span class="math inline">\(M\)</span> schedule:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">declining_M</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">M</span>, <span class="va">Ages</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">m_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">M</span>, <span class="va">M</span> <span class="op">/</span> <span class="fl">2</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Ages</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span></span>
+<span>    <span class="va">m_vec</span>,</span>
+<span>    dim      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Ages</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Sim <span class="op">=</span> <span class="fl">1</span>, Age <span class="op">=</span> <span class="va">Ages</span>, Year <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">NaturalMortality</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
+<span>  Pars  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Model <span class="op">=</span> <span class="va">declining_M</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here <code>M</code> is sampled from <code>U(0.3, 0.5)</code> across simulations, and <code>declining_M</code> maps each simulated value to an age-varying schedule that declines from <code>M</code> at the youngest age to <code>M/2</code> at the oldest.</p>
+<p>Custom models follow the same <code>Pars</code> input format rules described above, so <code>M</code> can be a scalar, a length-2 bounds vector, a length-<code>nSim</code> vector, or a <code>Sim × Year</code> array. The <code>Pars</code> expansion to <code>Sim × Year</code> arrays is handled by <code>Populate()</code> before the custom function is called, so the function receives a single numeric value for each parameter, not an array.</p>
+<hr></section><section id="summary" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">11.7</span> Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>Want to specify…</th>
+<th>Use</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>A single fixed value for all sims and years</td>
+<td>Scalar in <code>Pars</code>
+</td>
+</tr>
+<tr class="even">
+<td>Uncertainty across simulations</td>
+<td>Length-2 bounds vector in <code>Pars</code>
+</td>
+</tr>
+<tr class="odd">
+<td>Pre-determined per-simulation values</td>
+<td>Length-<code>nSim</code> vector in <code>Pars</code>
+</td>
+</tr>
+<tr class="even">
+<td>A step-change at a known year</td>
+<td>
+<code>Sim × Year</code> array in <code>Pars</code>
+</td>
+</tr>
+<tr class="odd">
+<td>Inter-annual random variation within sims</td>
+<td>
+<code>&lt;Par&gt;SD</code> companion entry in <code>Pars</code>
+</td>
+</tr>
+<tr class="even">
+<td>A fully custom schedule</td>
+<td>Direct <code>MeanAt*</code> array, or <code>Pars</code> + custom <code>Model</code> function</td>
+</tr>
+</tbody>
+</table>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/docs\.openMSE\.com\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./om-octopus.html" class="pagination-link" aria-label="Build a Seasonal OM">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./concept-populate.html" class="pagination-link" aria-label="Populating an Operating Model">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-schedules.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

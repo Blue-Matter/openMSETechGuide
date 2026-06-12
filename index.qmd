@@ -1,82 +1,86 @@
 # Introduction
 
-Welcome to the **openMSE Technical Manual**.
-
 `openMSE` is a framework for building operating models, analyzing fishery data, and conducting Management Strategy Evaluation (MSE) for a wide range of fisheries.
 
-This book is intended for fisheries scientists and other analysts who wish to learn how to use `openMSE` for all aspects related to Management Strategy Evaluation (MSE), including:
+This manual is intended for fisheries scientists and analysts who wish to use `openMSE` for all stages of an MSE, including:
 
--   building operating models;
--   simulating historical fishery dynamics;
--   developing management procedures;
--   conducting closed-loop simulation testing;
--   summarizing and presenting results.
+- building and conditioning operating models;
+- simulating historical fishery dynamics;
+- developing and testing management procedures;
+- conducting closed-loop simulation testing;
+- summarizing and presenting results.
 
-## About openMSE
+## About `openMSE`
 
-`openMSE` is an umbrella R package that is comprised of the following core packages:
+`openMSE` is an umbrella R package comprising three core packages:
 
-1.  [MSEtool](https://MSEtool.openMSE.com) - the Management Strategy Evaluation toolkit is the core package in the openMSE collection. It contains the core functions for constructing operating models, simulating fishery dynamics, and evaluating the effectiveness of alternative management strategies using closed-loop simulation testing.
+1. [MSEtool](https://MSEtool.openMSE.com) — the Management Strategy Evaluation toolkit. The core package in the collection, containing the primary functions for constructing operating models, simulating fishery dynamics, and running closed-loop MSE.
 
-2.  [DLMtool](https://DLMtool.openMSE.com) - the Data-Limited Methods toolkit is a collection of data-limited management procedures that can be evaluated using MSE. `DLMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `DLMtool` is loaded into an R session.
+2. [DLMtool](https://DLMtool.openMSE.com) — the Data-Limited Methods toolkit. A library of data-limited management procedures for use with `MSEtool`.
 
-3.  [SAMtool](https://SAMtool.openMSE.com) - the Stock Assessment Methods toolkit is a collection of assessment methods and management procedures that have been developed for more data-intensive applications. `SAMtool` requires the `MSEtool` package as a dependency, and all `MSEtool` functions will be available when `SAMtool` is loaded into an R session.
+3. [SAMtool](https://SAMtool.openMSE.com) — the Stock Assessment Methods toolkit. A library of model-based assessment methods and management procedures for data-intensive applications. Includes the Rapid Conditioning Model.
 
-::: callout-note
+Loading `openMSE` into an R session automatically loads all three packages. Each package has its own documentation page (linked above); this manual focuses on the overall framework rather than individual functions.
 
-The aims of this Technical Manual are to describe the key features of `openMSE`, provide a technical description of the methodology, and provide examples of how to use the framework to conduct an MSE.
+`openMSE` was developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at [Blue Matter Science](https://www.bluematterscience.com/).
 
-Each `openMSE` package has its own webpage, accessible via the links above. Users should refer to these technical documentation pages for information on how to use specific functions for each respective package.
+## Installing `openMSE`
 
-Links to these webpages are made throughout this book.
-
-:::
-
-::::: columns
-::: {.column width="70%"}
-The `openMSE` collection of packages were developed by Tom Carruthers, Quang Huynh, and Adrian Hordyk at [Blue Matter Science](https://www.bluematterscience.com/).
-:::
-
-::: {.column width="30%"}
-[![](images/bm.jpg){width="60%"}](https://www.bluematterscience.com/)
-:::
-:::::
-
-For more general information about `openMSE` see the [openMSE website](http://openMSE.com).
-
-## About Version 2.0 
-
-`openMSE 2.0` represents a major update from earlier versions of `openMSE` and its component packages.
-
-These updates include a complete code refactoring, where all existing source code was restructured to improve efficiency, readability, and ease of maintenance, and a redesign of the core object classes in the `openMSE` framework and the related functions .
-
-The majority of these revisions have been done in the `MSEtool` package. The following package versions are required to use the new features of `openMSE 2.0`:
-
--   `openMSE >=2.0`
--   `MSEtool >=4.0`
--   `DLMtool >= 7.0`
--   `SAMtool >= 2.0`
-
-::: callout-important
-Currently only `MSEtool v4.0` has been developed and needs to be installed from Github:
+We recommend installing `openMSE` using [`pak`](https://pak.r-lib.org/reference/pak.html), which automatically checks that all dependency packages meet the minimum version requirements:
 
 ```{r}
 #| eval: false
-pak::pkg_install('blue-matter/MSEtool@prerelease')
+# Install pak if required
+if (!requireNamespace("pak", quietly = TRUE))
+  install.packages("pak")
+
+# Install openMSE and dependencies
+pak::pak("openMSE")
 ```
 
-Despite what it says above, all code in this Technical Manual will work with existing CRAN versions of `openMSE`, `DLMtool`, and `SAMtool`.
+To upgrade all packages to the latest versions:
 
-These packages will be updated to the latest versions specified above once `MSEtool v4.0` is stable and released on CRAN.
+```{r}
+#| eval: false
+pak::pak("openMSE", upgrade = TRUE)
+```
 
-This note will be removed when the updated packages are released on CRAN.
+Then load `openMSE` into your R session:
+
+```{r}
+#| eval: false
+library(openMSE)
+```
+
+::: callout-note
+## Minimum Version Requirements
+
+The features described in this manual require the following package versions:
+
+- `openMSE >= 2.0`
+- `MSEtool >= 4.0`
+- `DLMtool >= 7.0`
+- `SAMtool >= 2.0`
 :::
 
+::: callout-important
+## Development Version
 
-The `openMSE 2.0` packages are completely backwards compatible with earlier versions, so all code developed using earlier versions of `openMSE` and its component packages should still work without any changes. Please file an [issue](https://github.com/Blue-Matter/openMSE/issues) if you experience issues where `openMSE 2.0` has caused issues with existing code.
+`MSEtool v4.0` has not yet been released on CRAN and must be installed from GitHub:
 
-Other than fixes to maintain backwards compatibility, the legacy code base will not be updated. For new applications, users are recommended to update to `openMSE 2.0` and follow the structure outlined in this manual.
+```{r}
+#| eval: false
+pak::pkg_install("blue-matter/MSEtool")
+```
 
-For more information on the major changes between `openMSE 2.0` and earlier versions of the packages see @sec-changes.
+All code in this manual works with this development version. The existing CRAN versions of `openMSE`, `DLMtool`, and `SAMtool` are compatible. This note will be removed once `MSEtool v4.0` is released on CRAN.
+:::
 
+## About Version 2.0
+
+`openMSE 2.0` is a major update to the framework. Key changes include a complete refactoring of the source code for improved efficiency and maintainability, and a redesign of the core S4 object classes and their associated functions. The majority of these changes are in `MSEtool`.
+
+`openMSE 2.0` is backwards compatible; code written for earlier versions should continue to work without modification. Please file an [issue](https://github.com/Blue-Matter/openMSE/issues) if you encounter any compatibility problems. Legacy code will receive fixes to maintain compatibility but will not otherwise be updated; for new work, we recommend following the methods described in this manual.
+
+For a full description of changes see @sec-changes.
 

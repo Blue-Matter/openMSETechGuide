@@ -1,0 +1,335 @@
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5)
+```
+
+# The Operating Model: Classes and Components {#sec-primaryobjects}
+
+`openMSE` organises all inputs in an `OM` object, the top-level container that holds all the components needed to run a simulation. The `OM` object is itself built from a hierarchy of S4 subcomponent objects, each responsible for a distinct aspect of the model.
+
+Understanding this hierarchy, what each subcomponent represents, what it contains, and how the pieces fit together, is important for building, modifying, and interpreting operating models.
+
+The primary subcomponents of an `OM` object are `Stock`, `Fleet`, `Obs`, and `Imp`. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values. 
+
+This chapter describes all of these classes and their contents. 
+
+This chapter contains a lot of detail. Readers who are new to `openMSE` may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.
+
+## `OM`
+
+An `OM` object is the top-level operating model. It holds one or more `Stock` objects and, for each stock, a corresponding set of `Fleet`, `Obs`, and `Imp` objects. 
+
+Key slots:
+
+- `Stock`: a `stock-class` object or named list of `stock-class` objects, one per stock in the operating model.
+- `Fleet`: a hierarchical named list of `fleet-class` objects, indexed first by stock then by fleet. Each stock must have the same number of fleets.
+- `Obs`: a hierarchical named list of `obs-class` objects, indexed first by stock complex then by fleet. Must be length `nComplex` (the number of stock complexes defined in `Complexes`), not `nStock`. Each element is itself a named list of `obs-class` objects, one per fleet, with optional additional elements for fishery-independent survey indices.
+- `Imp`: a hierarchical named list of `imp-class` objects, one per stock-fleet combination.
+- `nSim`: number of stochastic simulations. Determines the `Sim` dimension of all populated arrays.
+- `nYear`: number of historical years in the simulation.
+- `pYear`: number of projection years in the simulation.
+- `CurrentYear`: final calendar year of the historical period, used to label the `Year` dimension of all arrays.
+- `Seasons`: number of seasons per year. Default 1 (annual time steps).
+- `Complexes`: a named list defining stock complexes. Groups of stocks whose catch data are reported and managed jointly. Each element is an integer vector of stock indices belonging to that complex. If not specified, each stock is treated as its own complex.
+- `Interval`: management update interval in projection years. How frequently the management procedure is called to update advice. Default 1 (annual).
+- `Data`: a `data-class` object or named list of `data-class` objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See @sec-dataobs for more details on the `Data` object and how it interacts with `Obs` objects.  
+
+## `Stock`
+
+A `Stock` object defines the biological and demographic characteristics of a fish population. It is composed of the following subcomponents: 
+
+### `Ages`
+
+Defines the discrete age structure of the population. 
+
+Key slots:
+
+- `MaxAge`: maximum age (*required*).
+- `MinAge`: youngest age class (default 0).
+- `Units`: the units of `MaxAge` and `MinAge`. One of: `` `r ValidUnits()` ``. Determines temporal timestep of model. (default `year`).
+- `PlusGroup`: logical; if `TRUE`, all fish at or beyond `MaxAge` are aggregated into a plus-group. (default `TRUE`).
+- `Classes`: vector of age classes, derived automatically from the above. Always in units of `year`.
+
+### `Length`
+
+Defines the mean length-at-age schedule. 
+
+Key slots:
+
+- `Pars`: named list of growth model parameters (e.g., `Linf`, `K`, `t0` for von Bertalanffy).
+- `Model`: growth model function, inferred automatically from `Pars` if not specified; see `?LengthModels`.
+- `MeanAtAge`: `Sim × Age × Year` array of mean length at age. Derived from `Pars` and `Model` if `Pars` is populated. Otherwise can be input by users directly. 
+- `CVatAge`: coefficient of variation of length at age, used to generate the within-age length distribution.
+- `ALK`: age-length key, derived internally from `MeanAtAge` and `CVatAge`.
+- `Classes`: numeric vector of lower bounds of the length bins. If not supplied, bin boundaries are derived automatically from `MeanAtAge` and `CVatAge` to span the plausible range of lengths in the population. 
+
+See @sec-schedules for more details on populating `Pars`, `MeanAt*`, and `CVatAge` arrays. 
+
+### `Weight`
+
+Defines the mean weight-at-age and weight-at-length schedules. 
+
+Key slots:
+
+- `Pars`: named list of parameters (e.g., `alpha`, `beta` for an allometric relationship).
+- `Model`: weight model function; see `?WeightModels`.
+- `MeanAtAge`: `Sim × Age × Year` array of mean weight at age.  
+- `MeanAtLength`: `Sim × Class × Year` array of mean weight at length, where the `Class` dimension is length `length(Classes)`.
+- `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the `Length` component are used.
+
+The `AtAge` and `AtLength` schedules are specified either by supplying `Pars` and `Model`, or by providing `MeanAtAge` and/or `MeanAtLength` directly when `Pars` is an empty list. 
+
+When model-based, the model function populates either `MeanAtAge` or `MeanAtLength` depending on whether the model is age- or length-based. The other array is then back-calculated automatically using the age-length key (`ALK`) from the `Length` subcomponent. 
+
+When supplying arrays directly, either or both may be provided, if only one is given, the other is derived from the `ALK` in the same way. 
+
+This same pattern applies to all subcomponent objects that have `MeanAtAge` and `MeanAtLength` slots. See @sec-schedules for full details on input formats and array dimension conventions.
+
+### `NaturalMortality`
+
+Defines the natural mortality schedule, which may vary by age, length, simulation, and year. 
+
+Key slots:
+
+- `Pars`: named list of mortality model parameters (e.g., `M` for a constant rate).
+- `Model`: mortality model function; see `?NaturalMortalityModels`
+- `MeanAtAge`: `Sim × Age × Year` array of instantaneous natural mortality at age.
+- `MeanAtLength`: `Sim × Class × Year` array of instantaneous natural mortality at length, where the `Class` dimension is length `length(Classes)`. 
+- `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the `Length` component are used.
+
+### `Maturity`
+
+Defines the maturity ogive, which may be expressed as a function of age, length, or weight. 
+
+Key slots:
+
+- `Pars`: named list of maturity model parameters (e.g., `L50`, `L50_95` for a logistic curve)
+- `Model`: maturity model function; see `?MaturityModels`
+- `MeanAtAge`: `Sim × Age × Year` array of maturity-at-age (0–1)
+- `MeanAtLength`: `Sim × Class × Year` array of maturity-at-length (0–1)
+- `Semelparous`: controls post-spawning mortality. Accepts a logical `TRUE` or a `Sim × Age × Year` array. Default `Semelparous` is `FALSE`, meaning no post-spawning mortality. See below.
+- `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the `Length` component are used.
+
+**Semelparity**
+
+Setting `Semelparous` to `TRUE` sets post-spawning mortality equal to the maturity ogive; fully mature fish die after spawning with probability 1, fish on the ascending limb of the ogive die proportionally, and immature fish are unaffected. 
+
+A numeric array may also be supplied directly, allowing post-spawning mortality to be specified independently of the maturity schedule (e.g., to represent a species where only the oldest mature fish are semelparous or there is a lag between spawning and post-spawning mortality). 
+
+
+### `Fecundity` *(optional)*
+
+Defines egg production per individual as a function of age or length. When omitted, spawning production is set equal to spawning biomass. 
+
+Key slots:
+
+- `Pars`: named list of fecundity model parameters.
+- `Model`: fecundity model function; see `?FecundityModels`.
+- `MeanAtAge`: `Sim × Age × Year` array of fecundity at age.
+- `MeanAtLength`: `Sim × Class × Year` array of fecundity at length.
+- `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the `Length` component are used.
+
+### `SRR`
+
+Defines the stock-recruitment relationship and recruitment variability. 
+
+Key slots:
+
+- `Pars`: named list containing the steepness parameter (e.g., `list(h = ...)` for Beverton-Holt).
+- `Model`: SRR function; defaults to `"BevertonHolt"`; see `?SRRModels`.
+- `R0`: unfished equilibrium recruitment, used to set the scale of population numbers.
+- `SD`: log-space standard deviation of recruitment deviations.
+- `AC`: lag-1 autocorrelation of recruitment deviations.
+- `SpawnTimeFrac`: fraction of the time step elapsed before spawning (0 = start, 1 = end).
+
+### `Spatial` *(optional)*
+
+Defines spatial structure and movement dynamics. When omitted, a single well-mixed area is assumed. 
+
+Key slots:
+
+- `UnfishedDist`: the equilibrium distribution of unfished biomass across areas. For two-area models, specifies the fraction of biomass in Area 1 as a scalar, a length-2 bounds vector (sampled from `Uniform(lower, upper)` across simulations), or a full `Sim × Area × Age × Year` array. The Area 2 fraction is derived as `1 - UnfishedDist`. For models with more than two areas, an array must be supplied and values must sum to 1 across the `Area` dimension.
+
+- `ProbStaying`: the annual probability that an individual remains in its current area between time steps. For two-area models, specifies Area 1 only; the Area 2 value is solved internally. Accepts a scalar, a length-2 bounds vector, or a full `Sim × Area × Age × Year` array.
+
+- `RelativeSize`: the relative habitat size of each area, used to compute biomass density (biomass per unit area) for the spatial effort allocation algorithm. For two-area models, accepts a scalar (Area 1 fraction, with Area 2 as `1 - RelativeSize`) or a length-2 bounds vector. The special value `"EqualDensity"` sets `RelativeSize` equal to the mean unfished distribution across ages and years, so that unfished biomass density is equal across areas. When `NULL`, all areas are assumed equal in size.
+
+- `Movement`: `Sim × FromArea × ToArea × Age × Year` array of movement probabilities. Row `[i, ]` gives the probabilities of moving from area `i` to each other area, and rows sum to 1. Normally derived automatically during `Populate()` by numerical optimisation of the target `UnfishedDist` and `ProbStaying` values. Can also be supplied directly, in which case the asymptotic unfished distribution is back-calculated from the movement matrix.
+
+- `FracOther`: required for models with more than two areas. A `Sim × FromArea × ToArea × Age × Year` array where off-diagonal element `[i, j]` gives the relative probability of moving from area `i` to area `j`. Diagonal elements must be `NA` (the staying probability is taken from `ProbStaying`). Used as a penalty-weight matrix during movement optimisation to guide how movement is distributed among destination areas.
+
+See @sec-spatial for more details on spatial structure.
+
+### `Depletion` *(optional)*
+
+Defines the stock depletion at the start and/or end of the historical period. When omitted, the stock starts unfished and terminal depletion is determined by the fleet effort and catchability. 
+
+Key slots:
+
+- `Initial`: depletion at the first historical time step, relative to `Reference`. When specified, the model initialises the population at unfished equilibrium and then rescales numbers-at-age by a single multiplicative scalar, found by numerical optimisation, such that the resulting biomass matches the target depletion level.
+- `Final`: target depletion at the terminal historical time step, relative to `Reference`. When specified, fleet catchability is optimised to achieve this level. Typically only used for data-limited cases where terminal depletion is unknown and set to custom ranges.
+- `Reference`: reference biomass used to scale depletion (e.g., `"B0"`, `"SB0"`).
+
+## `Fleet`
+
+A `Fleet` object defines the exploitation characteristics of a fishing fleet. A stock may be fished by one or more fleets, each with its own `Fleet` object. It is composed of the following subcomponents:
+
+### `Effort`
+
+Defines the historical fishing effort trajectory and its spatial allocation. 
+
+Key slots:
+
+- `Effort`: historical effort as a `Sim × Year` array or a control-point data frame from which stochastic trajectories are generated; see `?GenHistEffort`.
+- `Units`: units of fishing effort (e.g., `"hours"`, `"trips"`, or `unitless`).
+- `Distribution`: `Sim × Year × Area` array of the fraction of total effort allocated to each area, with values summing to 1 across the `Area` dimension within each simulation and year. Typically calculated internally by the spatial effort allocation algorithm each year based on relative exploitable biomass density and the `Targeting` parameter. Individual cells can be fixed to specific values by supplying a non-`NA` numeric, which overrides the internal algorithm for those simulation-year-area combinations while leaving the remainder to be calculated normally.
+- `Targeting`: `Sim × Year` targeting concentration parameter controlling how strongly effort is attracted to high-density areas.
+
+### `Catchability`
+
+Defines gear efficiency and optional projected-year trends or stochasticity. 
+
+Key slots:
+
+- `Efficiency`: gear efficiency $q$, which converts effort to instantaneous fishing mortality via $F = q \cdot E$. May be left empty when `Depletion@Final` is specified, in which case it is back-calculated internally to match the specified depletion level.
+
+### `Selectivity` *(required)*
+
+Defines the probability of capture as a function of age, length, or weight. 
+
+Key slots:
+
+- `Pars`: named list of selectivity model parameters (e.g., `L5`, `LFS`, `Vmaxlen` for a double-normal curve)
+- `Model`: selectivity model function, inferred automatically from `Pars`; see `?SelectivityModels`
+- `isRel`: logical. Default `FALSE`. If `TRUE`, length-based parameters are interpreted as multiples of $L_{50}$ of the paired stock. Typically only required for example stock and fleet objects (see @sec-exampleobjects). 
+- `MeanAtAge`: `Sim × Age × Year` array of selectivity at age (0–1).
+- `MeanAtLength`: `Sim × Class × Year` array of selectivity at length (0–1).
+- `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the corresponding stock's `Length` component are used. 
+
+See @sec-schedules for more details on populating `Pars`, `MeanAt*`, and `CVatAge` arrays. 
+
+### `Retention` *(optional)*
+
+Defines the probability of retention given capture, as a function of age, length, or weight. When omitted, all fish are assumed fully retained. Fish that are selected but not retained are treated as discards, and their fate is determined by `DiscardMortality`.
+
+Has the same slot structure as `Selectivity` (`Pars`, `Model`, `isRel`, `MeanAtAge`, `MeanAtLength`, `MeanAtWeight`); see `?RetentionModels`. 
+
+Unlike `Selectivity`, the `MeanAtAge` array is not required to reach a maximum of 1. Retention models support an optional `MaxRet` parameter that caps the asymptote below 1, representing situations where even fully-selected fish are not always retained, for example, under a maximum size limit, a trip-level bag limit, or where a proportion of catch is systematically discarded regardless of size.
+
+### `DiscardMortality` *(optional)*
+
+Defines the proportion of discarded catch that dies, at age or at length. When omitted, all discarded fish are assumed to survive. 
+
+Key slots:
+
+- `MeanAtAge`: `Sim × Age × Year` array of discard mortality at age (0 = all survive, 1 = all die).
+- `MeanAtLength`: `Sim × Length × Year` array of discard mortality at length.
+- `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the corresponding stock's `Length` component are used. 
+
+### `WeightFleet` *(optional)*
+
+A `Sim × Age × Year` array of fleet-specific weight-at-age, used in fleet-level biomass calculations. This slot is relevant when the fleet's catch has a different weight-at-age schedule from the overall stock. 
+
+When omitted (the default), `WeightFleet` is set equal to the corresponding stock's weight-at-age array. 
+
+## `Obs`
+
+An `Obs` object defines the observation model for a fleet, describing how each data type is collected and the magnitude of sampling error and systematic bias. Each fleet has its own `Obs` object.
+
+Each slot of `Obs` is itself a subcomponent object: `CatchObs`, `EffortObs`, `IndicesObs`, or `CompObs`, that each specify the error structure for that data type. 
+
+All sub-components of an `Obs` object are optional. If a sub-component (e.g., `CatchObs`) is not populated, no data of that type will be generated in the model. 
+
+The `Obs` object interacts closely with `Data` objects. See @sec-dataobs for more details.
+
+### `CatchObs`
+
+Used for `Obs@Landings` and `Obs@Discards`. Defines lognormal observation error and multiplicative bias applied to simulated catch.
+
+Key slots:
+
+- `CV`: coefficient of variation of lognormal observation error. Accepts:
+  - `NULL`: no observation error unless `Error` is supplied directly.
+  - Scalar: a single CV applied uniformly to all simulations.
+  - Length-2 vector `c(lower, upper)`: a unique CV per simulation drawn from
+    `Uniform(lower, upper)`.
+  - Length-`nSim` vector: used directly.
+
+  After population, `@CV` becomes a named `[nSim]` vector (one value per simulation)
+  and `@Error` becomes a named `[nSim × nYear]` lognormal array drawn from those CVs.
+
+- `Bias`: multiplicative observation bias on the natural scale. Accepts:
+  - `NULL` or empty: defaults to 1 (unbiased) for all simulations.
+  - Scalar: treated as the CV of a lognormal distribution from which `nSim` unique
+    bias values are drawn, centred at 1.
+  - Length-`nSim` vector or named array: used directly, one bias value per simulation.
+
+  After population, `@Bias` is a named `[nSim]` array of positive multipliers. The
+  error applied to simulated catch in each simulation and year is `Bias[sim] × Error[sim, year]`.
+
+- `Error`: optional pre-specified `[nSim × nYear]` lognormal multiplier array.
+  When supplied, `Error` is used directly and `CV` is ignored.
+
+- `Units`: `"Biomass"` or `"Number"`. Determines the units of the simulated catch data. Default `NULL` (treated as `"Biomass"`). `Biomass` uses `WeightFleet` (see above). `Number` is catch in numbers (same units as the stock's `R0`).
+
+### `EffortObs`
+
+Used for `Obs@Effort`. Has the same `CV`, `Bias`, and `Error` slots as `CatchObs`, applied to simulated fishing effort. See `?EffortObs`.
+
+### `IndicesObs`
+
+Used for `Obs@CPUE` and `Obs@Survey`. Defines lognormal observation error on abundance indices, with optional autocorrelation.
+
+Key slots:
+
+- `CV`: coefficient of variation of lognormal index error. Accepts the same forms as
+  `CatchObs@CV` (scalar, length-2 bounds, or length-`nSim` array). After population,
+  `@CV` is a named `[nSim]` vector and `@Error` is a named `[nSim × nYear]` lognormal
+  array.
+
+- `AC`: lag-1 autocorrelation of index residuals, reflecting persistent deviations in
+  survey catchability or other sources of correlated index error. Accepts:
+  - `NULL` or empty: defaults to 0 (independent errors).
+  - Scalar: constant autocorrelation applied to all simulations.
+  - Length-2 vector `c(lower, upper)`: a unique AC per simulation drawn from
+    `Uniform(lower, upper)`.
+  - Length-`nSim` array: used directly.
+
+  All values must lie in $[-1, 1]$. Autocorrelation is applied on the log scale using a variance-preserving AR(1) formulation.
+
+- `Selectivity`: controls how the simulated population is aggregated to produce the index:
+  - `NULL` (default for CPUE): uses the fleet's selectivity-at-age schedule.
+  - `"Biomass"`: flat selectivity across all ages (total biomass index).
+  - `"SBiomass"`: weights by maturity-at-age (spawning biomass index).
+  
+  A custom `Sim × Age × Year` array may also be supplied for other selectivity schemes (e.g., surveys).
+
+### `CompObs`
+
+Used for `Obs@LandingsAtAge`, `Obs@DiscardsAtAge`, `Obs@LandingsAtSize`, and `Obs@DiscardsAtSize`. Defines the sampling structure for age or length composition data via a Dirichlet-Multinomial model.
+
+Key slots:
+
+- `SampleSize`: nominal number of fish aged or measured per year. Accepts a scalar (constant across all simulations and years), a length-2 vector `c(lower, upper)` (one value per simulation drawn from `Uniform(lower, upper)`, held constant across years), or a change-point matrix (see @sec-schedules). After population, `@SampleSize`  is a named `[nSim × nYear]` array. Setting `SampleSize = NULL` suppresses generation of that composition data type entirely.
+
+- `ESS`: effective sample size. Controls the stochastic variability of the composition draw independently of the nominal `SampleSize`. Accepts the same input forms as `SampleSize`; after population it is a named `[nSim × nYear]` array. Defaults to `SampleSize` when not specified. Values of `ESS < SampleSize` produce overdispersion  relative to a pure multinomial.
+
+- `Theta`: Dirichlet-Multinomial dispersion parameter, in $(0, 1]$. Accepts the same input forms as `SampleSize`; after population it is a named `[nSim × nYear]` array.  `Theta = 1` (default) recovers a standard multinomial draw. Values approaching 0 produce maximum overdispersion.
+
+- `Shift`: optional per-bin log-concentration offset, capturing systematic directional bias between observed and predicted compositions. `NULL` (default) applies no shift. See `?CompObs` for details.
+
+## `Imp`
+
+An `Imp` object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model. 
+
+Key slots:
+
+- `TAC`: implementation error for total allowable catch recommendations
+- `Effort`: implementation error for effort-based controls
+- `Size`: implementation error for size-based regulations
+
+::: {.callout-note}
+The `Imp` class is currently a placeholder and is not currently implemented. The interface is subject to change.
+:::

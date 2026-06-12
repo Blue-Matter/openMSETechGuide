@@ -1,0 +1,66 @@
+# Overview of Example Objects {#sec-exampleobjects}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5)
+```
+
+`openMSE` includes a number of built-in objects that can be used for testing and demonstration. These objects span all four subcomponent types, `Stock`, `Fleet`, `Obs`, and `Imp`, along with a set of example `OM` objects that combine them in configurations of increasing complexity.
+
+The objects are intended for demonstration and testing purposes only. The biological and exploitation values should not be interpreted as representing real stock assessments or used to inform management advice.
+
+@sec-buildexamples walks through how each object is constructed step by step.
+
+## `Stock` Objects
+
+Two `Stock` objects are provided, representing species with contrasting life histories. See @sec-examplestocks for full construction details.
+
+| Object | Common name | Key characteristics |
+|---|---|---|
+| `AlbacoreExStock` | Albacore tuna | Long-lived, slow-growing, low $M$, low recruitment variability |
+| `ButterfishExStock` | Butterfish | Short-lived, fast-growing, high $M$, high recruitment variability |
+
+## `Fleet` Objects
+
+Two `Fleet` objects are provided, representing gear types with contrasting selectivity patterns. See @sec-examplefleets for full
+construction details.
+
+| Object | Selectivity type | Key characteristics |
+|---|---|---|
+| `AsympExFleet` | Asymptotic | Logistic selectivity pattern; effort builds gradually to a plateau |
+| `DomeExFleet` | Dome-shaped | Reduced selectivity at largest sizes; slower effort build-up |
+
+## `Obs` Objects
+
+Five `Obs` objects are provided, representing monitoring programs of increasing data richness. See @sec-exampleobs for full construction details.
+
+| Object | Data types |
+|---|---|
+| `CommercialFleetObs` | Landings, discards, effort, CPUE |
+| `CatchAndSurveyObs` | Landings, survey index |
+| `AgeStructuredObs` | Landings, discards, survey index, age compositions (landings and discards) |
+| `LengthStructuredObs` | Landings, discards, survey index, length compositions (landings and discards) |
+| `DataRichObs` | Landings, discards, effort, CPUE, survey index, age and length compositions (landings and discards) |
+
+## `Imp` Objects
+
+::: callout-note
+The `Imp` class is currently a placeholder and is not yet implemented. Example `Imp`
+objects will be added in the future.
+:::
+
+## `OM` Objects
+
+Four pre-assembled `OM` objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. All are initialised with `nSim = 8`, `nYear = 20`, and `pYear = 30`. See @sec-exampleOM for full construction details.
+
+| Object | Stocks | Fleets per stock | Obs program(s) |
+|---|---|---|---|
+| `SingleStockOM` | `AlbacoreExStock` | `AsympExFleet` | `AgeStructuredObs` |
+| `TwoFleetOM` | `AlbacoreExStock` | `AsympExFleet`, `DomeExFleet` | `AgeStructuredObs`, `CatchAndSurveyObs` |
+| `MultiStockOM` | `AlbacoreExStock`, `ButterfishExStock` | `AsympExFleet`, `DomeExFleet` | Albacore: `AgeStructuredObs`, `CommercialFleetObs`; Butterfish: `CatchAndSurveyObs`, `LengthStructuredObs` |
+| `ComplexOM` | `AlbacoreExStock`, `ButterfishExStock` (complex) | `AsympExFleet` | `AgeStructuredObs` |
+
+`ComplexOM` groups both stocks into a single stock complex (`StockComplex`), meaning fishery data and management advice are handled at the complex level. See @sec-complexes for more details on stock complexes.
+

@@ -1,0 +1,8 @@
+# The `Advice` Object
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5)
+```

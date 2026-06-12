@@ -1,0 +1,21 @@
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5)
+```
+
+# Reading this Manual 
+
+This manual ...
+
+## Getting Started
+
+
+## Management Procedures 
+
+
+## Developing Operating Models
+
+
+
