@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>15&nbsp; Spatial Structure – openMSE Technical Manual</title>
+<title>22&nbsp; Spatial Structure – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tech-populate-om.html" rel="next">
+<link href="./concept-ref-points.html" rel="next">
 <link href="./concept-seasonal.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-spatial.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-spatial.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spatial Structure</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -147,32 +147,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Structure of the <code>OM</code> Object</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Example Objects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Example MSE</span></span></a>
+  <a href="./overview-manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading this Manual</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Developing Operating Models</span></a>
+            <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -180,100 +162,167 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./mps-data-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Management Procedures</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Concepts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-seasonal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Technical Details</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-data-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The <code>Data</code> and <code>Obs</code> Objects</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,12 +330,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Technical Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Unfished</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./z-app-acknowledgements.html" class="sidebar-item-text sidebar-link">
@@ -309,25 +387,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#single-area-models" id="toc-single-area-models" class="nav-link active" data-scroll-target="#single-area-models"><span class="header-section-number">15.1</span> Single-Area Models</a></li>
-  <li><a href="#two-area-models" id="toc-two-area-models" class="nav-link" data-scroll-target="#two-area-models"><span class="header-section-number">15.2</span> Two-Area Models</a></li>
-  <li><a href="#relative-area-size" id="toc-relative-area-size" class="nav-link" data-scroll-target="#relative-area-size"><span class="header-section-number">15.3</span> Relative Area Size</a></li>
-  <li><a href="#how-the-movement-matrix-is-derived" id="toc-how-the-movement-matrix-is-derived" class="nav-link" data-scroll-target="#how-the-movement-matrix-is-derived"><span class="header-section-number">15.4</span> How the Movement Matrix is Derived</a></li>
-  <li><a href="#age-varying-movement" id="toc-age-varying-movement" class="nav-link" data-scroll-target="#age-varying-movement"><span class="header-section-number">15.5</span> Age-Varying Movement</a></li>
+<li><a href="#single-area-models" id="toc-single-area-models" class="nav-link active" data-scroll-target="#single-area-models"><span class="header-section-number">22.1</span> Single-Area Models</a></li>
+  <li><a href="#two-area-models" id="toc-two-area-models" class="nav-link" data-scroll-target="#two-area-models"><span class="header-section-number">22.2</span> Two-Area Models</a></li>
+  <li><a href="#relative-area-size" id="toc-relative-area-size" class="nav-link" data-scroll-target="#relative-area-size"><span class="header-section-number">22.3</span> Relative Area Size</a></li>
+  <li><a href="#how-the-movement-matrix-is-derived" id="toc-how-the-movement-matrix-is-derived" class="nav-link" data-scroll-target="#how-the-movement-matrix-is-derived"><span class="header-section-number">22.4</span> How the Movement Matrix is Derived</a></li>
+  <li><a href="#age-varying-movement" id="toc-age-varying-movement" class="nav-link" data-scroll-target="#age-varying-movement"><span class="header-section-number">22.5</span> Age-Varying Movement</a></li>
   <li>
-<a href="#sec-spatial-multiarea" id="toc-sec-spatial-multiarea" class="nav-link" data-scroll-target="#sec-spatial-multiarea"><span class="header-section-number">15.6</span> Multi-Area Models</a>
+<a href="#sec-spatial-multiarea" id="toc-sec-spatial-multiarea" class="nav-link" data-scroll-target="#sec-spatial-multiarea"><span class="header-section-number">22.6</span> Multi-Area Models</a>
   <ul class="collapse">
-<li><a href="#tuning-the-optimisation" id="toc-tuning-the-optimisation" class="nav-link" data-scroll-target="#tuning-the-optimisation"><span class="header-section-number">15.6.1</span> Tuning the Optimisation</a></li>
+<li><a href="#tuning-the-optimisation" id="toc-tuning-the-optimisation" class="nav-link" data-scroll-target="#tuning-the-optimisation"><span class="header-section-number">22.6.1</span> Tuning the Optimisation</a></li>
   </ul>
 </li>
-  <li><a href="#supplying-a-movement-matrix-directly" id="toc-supplying-a-movement-matrix-directly" class="nav-link" data-scroll-target="#supplying-a-movement-matrix-directly"><span class="header-section-number">15.7</span> Supplying a Movement Matrix Directly</a></li>
-  <li><a href="#spatial-effort-allocation" id="toc-spatial-effort-allocation" class="nav-link" data-scroll-target="#spatial-effort-allocation"><span class="header-section-number">15.8</span> Spatial Effort Allocation</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">15.9</span> Summary</a></li>
+  <li><a href="#supplying-a-movement-matrix-directly" id="toc-supplying-a-movement-matrix-directly" class="nav-link" data-scroll-target="#supplying-a-movement-matrix-directly"><span class="header-section-number">22.7</span> Supplying a Movement Matrix Directly</a></li>
+  <li><a href="#spatial-effort-allocation" id="toc-spatial-effort-allocation" class="nav-link" data-scroll-target="#spatial-effort-allocation"><span class="header-section-number">22.8</span> Spatial Effort Allocation</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">22.9</span> Summary</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-spatial.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-spatial.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-spatial" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-spatial.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spatial Structure</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-spatial" class="quarto-section-identifier"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></h1>
 </div>
 
 
@@ -345,13 +423,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>Spatial</code> subcomponent of a <code>Stock</code> object defines the spatial structure. It is optional — if omitted, the model assumes a single well-mixed area with no spatial dynamics.</p>
 <p>This chapter describes the available approaches for specifying spatial structure, from the simplest two-area case through to models with age-varying movement and three or more areas. All <code>Stock</code> objects within an operating model must share the same spatial configuration (i.e., the same number of areas).</p>
 <hr>
-<section id="single-area-models" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="single-area-models">
-<span class="header-section-number">15.1</span> Single-Area Models</h2>
+<section id="single-area-models" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="single-area-models">
+<span class="header-section-number">22.1</span> Single-Area Models</h2>
 <p>For a non-spatial model, simply omit the <code>Spatial</code> subcomponent entirely. <code>Populate()</code> will create a default single-area structure automatically:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># No Spatial subcomponent — single well-mixed area assumed</span></span>
 <span><span class="fu">Stock</span><span class="op">(</span><span class="va">my_om</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">AlbacoreExStock</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr></section><section id="two-area-models" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="two-area-models">
-<span class="header-section-number">15.2</span> Two-Area Models</h2>
+<hr></section><section id="two-area-models" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="two-area-models">
+<span class="header-section-number">22.2</span> Two-Area Models</h2>
 <p>Two-area models are the most common spatial configuration. They require three inputs: the unfished biomass distribution across areas, the probability of remaining in an area, and the relative size of each area.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Spatial</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Spatial</span><span class="op">(</span></span>
 <span>  UnfishedDist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.4</span><span class="op">)</span>,   <span class="co"># fraction of unfished biomass in Area 1</span></span>
@@ -366,8 +444,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  ProbStaying  <span class="op">=</span> <span class="fl">0.7</span>,</span>
 <span>  RelativeSize <span class="op">=</span> <span class="fl">0.4</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr></section><section id="relative-area-size" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="relative-area-size">
-<span class="header-section-number">15.3</span> Relative Area Size</h2>
+<hr></section><section id="relative-area-size" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="relative-area-size">
+<span class="header-section-number">22.3</span> Relative Area Size</h2>
 <p><code>RelativeSize</code> controls how biomass is converted to density for the purpose of spatial effort allocation. Fleets are attracted to areas with high biomass density (biomass per unit area), so <code>RelativeSize</code> affects where effort concentrates even when biomass is held constant.</p>
 <p>Three options are available:</p>
 <p><strong>Fixed proportion</strong>: a scalar or bounds vector giving the fraction of total habitat in Area 1 (Area 2 = <code>1 - RelativeSize</code>):</p>
@@ -379,17 +457,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  RelativeSize <span class="op">=</span> <span class="st">"EqualDensity"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><code>NULL</code></strong>: when omitted, all areas are assumed equal in size (<code>1 / nArea</code> each).</p>
-<hr></section><section id="how-the-movement-matrix-is-derived" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="how-the-movement-matrix-is-derived">
-<span class="header-section-number">15.4</span> How the Movement Matrix is Derived</h2>
+<hr></section><section id="how-the-movement-matrix-is-derived" class="level2" data-number="22.4"><h2 data-number="22.4" class="anchored" data-anchor-id="how-the-movement-matrix-is-derived">
+<span class="header-section-number">22.4</span> How the Movement Matrix is Derived</h2>
 <p>When <code>UnfishedDist</code> and <code>ProbStaying</code> are supplied, <code>Populate()</code> derives the movement probability matrix by numerical optimisation. For each simulation, age, and year, the matrix diagonal (staying probabilities) and off-diagonal elements (movement probabilities) are fitted to simultaneously satisfy:</p>
 <ol type="1">
 <li>The asymptotic distribution implied by the movement matrix matches the target <code>UnfishedDist</code>.</li>
 <li>The diagonal elements match the target <code>ProbStaying</code>.</li>
 </ol>
-<p>For two-area models this system has a closed-form solution. For models with three or more areas, a penalty-based optimisation is used (see <a href="#sec-spatial-multiarea" class="quarto-xref"><span>Section 15.6</span></a>).</p>
+<p>For two-area models this system has a closed-form solution. For models with three or more areas, a penalty-based optimisation is used (see <a href="#sec-spatial-multiarea" class="quarto-xref"><span>Section 22.6</span></a>).</p>
 <p>The resulting <code>Movement</code> array has dimensions <code>Sim × FromArea × ToArea × Age × Year</code>. Row <code>[i, ]</code> gives the probabilities of moving from area <code>i</code> to each other area, and rows sum to 1.</p>
-<hr></section><section id="age-varying-movement" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="age-varying-movement">
-<span class="header-section-number">15.5</span> Age-Varying Movement</h2>
+<hr></section><section id="age-varying-movement" class="level2" data-number="22.5"><h2 data-number="22.5" class="anchored" data-anchor-id="age-varying-movement">
+<span class="header-section-number">22.5</span> Age-Varying Movement</h2>
 <p>Movement rates can vary by age by supplying <code>UnfishedDist</code> and/or <code>ProbStaying</code> as arrays with an <code>Age</code> dimension. The movement matrix is then fitted independently for each age class.</p>
 <p>A common application is ontogenetic habitat shift, where juveniles and adults occupy different areas:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ages</span> <span class="op">&lt;-</span> <span class="fu">Ages</span><span class="op">(</span>MaxAge <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -408,8 +486,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  UnfishedDist <span class="op">=</span> <span class="va">ud</span>,</span>
 <span>  ProbStaying  <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr></section><section id="sec-spatial-multiarea" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="sec-spatial-multiarea">
-<span class="header-section-number">15.6</span> Multi-Area Models</h2>
+<hr></section><section id="sec-spatial-multiarea" class="level2" data-number="22.6"><h2 data-number="22.6" class="anchored" data-anchor-id="sec-spatial-multiarea">
+<span class="header-section-number">22.6</span> Multi-Area Models</h2>
 <p>Models with three or more areas require <code>UnfishedDist</code> to be supplied as an array summing to 1 across the <code>Area</code> dimension, and additionally require <code>FracOther</code> to guide the movement optimisation.</p>
 <p><code>FracOther</code> is a <code>Sim × FromArea × ToArea</code> array (optionally extended with <code>Age</code> and <code>Year</code> dimensions) where off-diagonal element <code>[i, j]</code> gives the relative probability of moving from area <code>i</code> to area <code>j</code>. Diagonal elements must be <code>NA</code> — the staying probability is taken from <code>ProbStaying</code>. The values in <code>FracOther</code> need not sum to 1; they are normalised internally.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nArea</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
@@ -432,8 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  FracOther    <span class="op">=</span> <span class="va">fo</span>,</span>
 <span>  RelativeSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="tuning-the-optimisation" class="level3" data-number="15.6.1"><h3 data-number="15.6.1" class="anchored" data-anchor-id="tuning-the-optimisation">
-<span class="header-section-number">15.6.1</span> Tuning the Optimisation</h3>
+<section id="tuning-the-optimisation" class="level3" data-number="22.6.1"><h3 data-number="22.6.1" class="anchored" data-anchor-id="tuning-the-optimisation">
+<span class="header-section-number">22.6.1</span> Tuning the Optimisation</h3>
 <p>Two parameters control the relative weight given to each target in the penalty function:</p>
 <ul>
 <li>
@@ -442,8 +520,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>CVStay</code> (default <code>1</code>): standard deviation of the logit-scale penalty on deviations between the optimised diagonal and the target <code>ProbStaying</code>. Smaller values enforce a tighter fit to the staying probability target.</li>
 </ul>
 <p>In some cases, particularly when <code>FracOther</code> strongly constrains the direction of movement, it may be impossible to simultaneously satisfy both targets exactly. Adjusting <code>CVDist</code> and <code>CVStay</code> controls which target takes priority.</p>
-<hr></section></section><section id="supplying-a-movement-matrix-directly" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="supplying-a-movement-matrix-directly">
-<span class="header-section-number">15.7</span> Supplying a Movement Matrix Directly</h2>
+<hr></section></section><section id="supplying-a-movement-matrix-directly" class="level2" data-number="22.7"><h2 data-number="22.7" class="anchored" data-anchor-id="supplying-a-movement-matrix-directly">
+<span class="header-section-number">22.7</span> Supplying a Movement Matrix Directly</h2>
 <p>As an alternative to specifying <code>UnfishedDist</code> and <code>ProbStaying</code> and letting <code>Populate()</code> derive the movement matrix, the movement matrix can be supplied directly. This is useful when the matrix has been estimated externally (e.g., from a tagging study or a spatially-explicit model) and the user wants to use it as-is.</p>
 <p>The matrix must have dimensions <code>Sim × FromArea × ToArea</code>, optionally extended to <code>Sim × FromArea × ToArea × Age × Year</code>. Rows must sum to 1. When <code>Movement</code> is supplied, the asymptotic unfished distribution is back-calculated from the matrix and assigned to <code>UnfishedDist</code>, overwriting any values already present:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span></span>
@@ -454,14 +532,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">Spatial</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Spatial</span><span class="op">(</span>Movement <span class="op">=</span> <span class="va">mov</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr></section><section id="spatial-effort-allocation" class="level2" data-number="15.8"><h2 data-number="15.8" class="anchored" data-anchor-id="spatial-effort-allocation">
-<span class="header-section-number">15.8</span> Spatial Effort Allocation</h2>
+<hr></section><section id="spatial-effort-allocation" class="level2" data-number="22.8"><h2 data-number="22.8" class="anchored" data-anchor-id="spatial-effort-allocation">
+<span class="header-section-number">22.8</span> Spatial Effort Allocation</h2>
 <p>Spatial structure in the <code>Stock</code> object defines where fish are. How fishing effort is distributed across areas is controlled by the <code>Effort</code> subcomponent of each <code>Fleet</code> object, specifically the <code>Distribution</code> and <code>Targeting</code> slots.</p>
 <p>When <code>Distribution</code> is not specified, effort is allocated dynamically each year based on relative exploitable biomass density across areas, with the degree of concentration controlled by the <code>Targeting</code> parameter. A value of 0 produces uniform effort allocation regardless of biomass distribution; larger values concentrate effort more strongly in the highest-density area. The default <code>Targeting</code> value is 0.8.</p>
 <p>Users can fix effort to a specific spatial allocation by supplying <code>Distribution</code> as a <code>Sim × Year × Area</code> array, bypassing the dynamic allocation algorithm entirely. Any cells set to a non-<code>NA</code> value are treated as fixed overrides and are not modified.</p>
 <p>See <code>?Effort</code> for full documentation of <code>Distribution</code> and <code>Targeting</code>.</p>
-<hr></section><section id="summary" class="level2" data-number="15.9"><h2 data-number="15.9" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">15.9</span> Summary</h2>
+<hr></section><section id="summary" class="level2" data-number="22.9"><h2 data-number="22.9" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">22.9</span> Summary</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -909,12 +987,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./concept-seasonal.html" class="pagination-link" aria-label="Seasonal Dynamics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tech-populate-om.html" class="pagination-link" aria-label="Populating Operating Model">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./concept-ref-points.html" class="pagination-link" aria-label="Reference Points">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Reference Points</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

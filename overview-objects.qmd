@@ -15,7 +15,7 @@ The primary subcomponents of an `OM` object are `Stock`, `Fleet`, `Obs`, and `Im
 
 This chapter describes all of these classes and their contents. 
 
-This chapter contains a lot of detail. Readers who are new to `openMSE` may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.
+This chapter contains a lot of detail. Readers may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.
 
 ## `OM`
 
@@ -25,7 +25,7 @@ Key slots:
 
 - `Stock`: a `stock-class` object or named list of `stock-class` objects, one per stock in the operating model.
 - `Fleet`: a hierarchical named list of `fleet-class` objects, indexed first by stock then by fleet. Each stock must have the same number of fleets.
-- `Obs`: a hierarchical named list of `obs-class` objects, indexed first by stock complex then by fleet. Must be length `nComplex` (the number of stock complexes defined in `Complexes`), not `nStock`. Each element is itself a named list of `obs-class` objects, one per fleet, with optional additional elements for fishery-independent survey indices.
+- `Obs`: a hierarchical named list of `obs-class` objects, indexed first by stock complex then by fleet. Each element is itself a named list of `obs-class` objects, one per fleet, with optional additional elements for fishery-independent survey indices.
 - `Imp`: a hierarchical named list of `imp-class` objects, one per stock-fleet combination.
 - `nSim`: number of stochastic simulations. Determines the `Sim` dimension of all populated arrays.
 - `nYear`: number of historical years in the simulation.
@@ -150,15 +150,10 @@ Defines spatial structure and movement dynamics. When omitted, a single well-mix
 
 Key slots:
 
-- `UnfishedDist`: the equilibrium distribution of unfished biomass across areas. For two-area models, specifies the fraction of biomass in Area 1 as a scalar, a length-2 bounds vector (sampled from `Uniform(lower, upper)` across simulations), or a full `Sim × Area × Age × Year` array. The Area 2 fraction is derived as `1 - UnfishedDist`. For models with more than two areas, an array must be supplied and values must sum to 1 across the `Area` dimension.
-
-- `ProbStaying`: the annual probability that an individual remains in its current area between time steps. For two-area models, specifies Area 1 only; the Area 2 value is solved internally. Accepts a scalar, a length-2 bounds vector, or a full `Sim × Area × Age × Year` array.
-
-- `RelativeSize`: the relative habitat size of each area, used to compute biomass density (biomass per unit area) for the spatial effort allocation algorithm. For two-area models, accepts a scalar (Area 1 fraction, with Area 2 as `1 - RelativeSize`) or a length-2 bounds vector. The special value `"EqualDensity"` sets `RelativeSize` equal to the mean unfished distribution across ages and years, so that unfished biomass density is equal across areas. When `NULL`, all areas are assumed equal in size.
-
-- `Movement`: `Sim × FromArea × ToArea × Age × Year` array of movement probabilities. Row `[i, ]` gives the probabilities of moving from area `i` to each other area, and rows sum to 1. Normally derived automatically during `Populate()` by numerical optimisation of the target `UnfishedDist` and `ProbStaying` values. Can also be supplied directly, in which case the asymptotic unfished distribution is back-calculated from the movement matrix.
-
-- `FracOther`: required for models with more than two areas. A `Sim × FromArea × ToArea × Age × Year` array where off-diagonal element `[i, j]` gives the relative probability of moving from area `i` to area `j`. Diagonal elements must be `NA` (the staying probability is taken from `ProbStaying`). Used as a penalty-weight matrix during movement optimisation to guide how movement is distributed among destination areas.
+- `UnfishedDist`: equilibrium distribution of unfished biomass across areas. For two-area models, accepts a scalar or length-2 bounds vector (sampled from `Uniform(lower, upper)`). For models with more than two areas, a full `Sim × Area × Age × Year` array must be supplied.
+- `ProbStaying`: annual probability that an individual remains in its current area. Accepts the same input forms as `UnfishedDist`.
+- `RelativeSize`: relative habitat size of each area, used for spatial effort allocation. The special value `"EqualDensity"` sets sizes so that unfished biomass density is equal across areas.
+- `Movement`: `Sim × FromArea × ToArea × Age × Year` movement probability matrix, with rows summing to 1. Normally derived automatically during `Populate()` from `UnfishedDist` and `ProbStaying`. Can be supplied directly.
 
 See @sec-spatial for more details on spatial structure.
 
@@ -208,7 +203,7 @@ Key slots:
 - `MeanAtLength`: `Sim × Class × Year` array of selectivity at length (0–1).
 - `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the corresponding stock's `Length` component are used. 
 
-See @sec-schedules for more details on populating `Pars`, `MeanAt*`, and `CVatAge` arrays. 
+See @sec-schedules for more details on populating `Pars` and `MeanAt*` arrays. 
 
 ### `Retention` *(optional)*
 
@@ -225,7 +220,7 @@ Defines the proportion of discarded catch that dies, at age or at length. When o
 Key slots:
 
 - `MeanAtAge`: `Sim × Age × Year` array of discard mortality at age (0 = all survive, 1 = all die).
-- `MeanAtLength`: `Sim × Length × Year` array of discard mortality at length.
+- `MeanAtLength`: `Sim × Class × Year` array of discard mortality at length.
 - `Classes`: numeric vector of lower bounds of the length bins corresponding with `MeanAtLength`. If not supplied, `Classes` from the corresponding stock's `Length` component are used. 
 
 ### `WeightFleet` *(optional)*

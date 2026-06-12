@@ -56,7 +56,7 @@ Once an OM has been constructed, the historical fishery can be simulated (or rec
 ```
 ```{r}
 #| eval: false
-Hist <- Simulate(SingleStockOM)
+myHist <- Simulate(SingleStockOM)
 ```
 
 As with the `OM` object above, typing the object name in the console prints a summary of its contents (@fig-output-singlestock-hist):
@@ -79,7 +79,7 @@ See `?Hist` for full documentation of the `hist-class` and its slots.
 The historical fishery dynamics contained in `Hist` can be explored using a set of extractor functions that return tidy data frames. The key functions are:
 
 - `Number()`: total abundance (numbers) across all ages and areas.
-- `Biomass()`: total biomass. Optionally by age and/or area.
+- `Biomass()`: total biomass. Optionally by age and/or area (via `byAge` and `byArea` arguments).
 - `SBiomass()`: spawning biomass. Optionally by age and/or area.
 - `SProduction()`: spawning production (egg production if `Fecundity` is specified, otherwise equal to spawning biomass; summed over ages and areas).
 - `Landings()`: retained catch in biomass (or numbers if `byAge = TRUE`). Optionally by age, size, area, and/or fleet.
@@ -102,15 +102,13 @@ Landings and discards are extracted similarly:
 ```{r explore-hist-catch}
 ```
 
-
 ::: {.callout-tip}
-## Array Dimensions 
-By default, arrays stored in `Hist` are automatically compressed along the `Sim` dimension to the minimum number of unique simulations (typically 1 or `nSim`), rather than storing a full `nSim` copy for every replicate. When many simulations share identical parameter draws, as can happen when stochastic variation is low or parameters are fixed, this compression can substantially reduce memory use with no loss of information.
+## Array Dimensions
+By default, arrays stored in `Hist` are automatically compressed along the `Sim` dimension when the simulations all share identical values. For example, if all simulations produce zero discards, the discard array is stored with a single row rather than `nSim` identical rows.
 
-However, some operations, such as plotting one line per simulation, may require the `Sim` dimension to be exactly `nSim`. In these cases, use `Extend()` to expand an array back to the full simulation dimension:
+Some operations, such as plotting one line per simulation, require the full `nSim` dimension. Use `Extend()` to expand an array back to full size:
 
 ```{r array-dimensions}
-
 ```
 
 See `?Extend` and `?ReduceDims` for full documentation.
@@ -120,10 +118,12 @@ See `?Extend` and `?ReduceDims` for full documentation.
 
 Once the historical fishery dynamics have been simulated, the operating model can be projected forward under different management policies, known as management procedures (MPs).
 
-The design and selection of MPs is a central component of any MSE, and can range from simple empirical rules based on catch history to complex model-based procedures involving stock assessment. This example MSE uses a set of simple example MPs included with `openMSE` (see @sec-exampleMPs):
+The design and selection of MPs is a central component of any MSE, and can range from simple empirical rules based on catch history to complex model-based procedures involving stock assessment. 
+
+This example MSE uses a set of simple example MPs included with `openMSE` (see @sec-exampleMPs), returned by the convenience function `ExampleMPs()`:
 
 - `CurrentEffort`: maintains fishing effort at its terminal historical level for all fleets.
-- `CurrentCatch:` sets the TAC for each fleet to the total removals (landings plus discards) observed in the last historical year.
+- `CurrentCatch`: sets the TAC for each fleet to the total removals observed in the last historical year.
 - `AverageCatch`: sets the TAC to the mean total removals across all historical years.
 
 A full description of MP development and specification is given in @sec-managementprocedures.
@@ -139,7 +139,6 @@ Once the historical dynamics have been simulated and the MPs specified, the clos
 
 ```{r forward-projections2}
 #| eval: false
-#| 
 ```
 
 `Project()` runs each MP in turn over the projection period. At each management interval, the operating model passes the current `Data` object to the MP, applies the returned `Advice` to the simulated population, and advances the model forward. This loop is repeated until the end of the projection period.
@@ -163,13 +162,26 @@ The projection results can be explored using the same extractor functions as for
 
 ### Evaluating Performance
 
-MSE results are typically evaluated using quantitative performance metrics (PMs), numerical summaries of management procedure performance against objectives specified by fishery managers. 
+MSE results are typically evaluated using quantitative performance metrics (PMs), numerical summaries of management procedure performance against objectives specified by fishery managers. Common examples include the probability of maintaining spawning biomass above a limit reference point, the average catch over the projection period, and the inter-annual variability in catch. 
 
-Common examples include the probability of maintaining spawning biomass above a limit reference point, the average catch over the projection period, and the inter-annual variability in catch. PMs translate the raw simulation output into quantitative quantities that can be compared across MPs and used by managers to identify the MP that is most likely to meet their management objectives.
+`openMSE` includes extractor functions for common derived quantities used in performance metric calculations. For example, `SB_SB0()` returns spawning biomass relative to unfished spawning biomass ($SB/SB_0$) for each simulation, MP, stock, and year (these extractor functions also work for `Hist` objects): 
+
+A simple summary table across MPs:
+
+```{r explore-mse-results}
+```
+
+Projection results can also be visualised directly. @fig-mse-biomass shows $SB/SB_0$ trajectories across simulations and MPs:
+
+```{r fig-mse-biomass}
+#| echo: false
+#| fig-cap: "Spawning biomass relative to unfished ($SB/SB_0$) across simulations
+#|   and MPs for `SingleStockOM`. The shaded region spans the 10th–90th percentile;
+#|   the solid line shows the median. The dashed vertical line marks the end of
+#|   the historical period."
+```
 
 `openMSE` does not currently include built-in example PMs, but these are planned for a future release.
 
-For interactive visualization and exploration of MSE results, we recommend [Slick](https://slick.bluematterscience.com/), a web-based application developed for summarizing and communicating MSE output to scientists, managers, and other stakeholders. 
-
-Slick aprovides an interactive interface for plotting performance metrics, comparing MPs across objectives, and producing presentation-ready figures. It is particularly useful for stakeholder engagement and for the performance trade-off analysis that is central to the MP selection process.
+For interactive visualization and exploration of MSE results, we recommend [Slick](https://slick.bluematterscience.com/), a web-based application developed for summarizing and communicating MSE output to scientists, managers, and other stakeholders. Slick aprovides an interactive interface for plotting performance metrics, comparing MPs across objectives, and producing presentation-ready figures. It is particularly useful for stakeholder engagement and for the performance trade-off analysis that is central to the MP selection process.
 

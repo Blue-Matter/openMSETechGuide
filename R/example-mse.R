@@ -52,10 +52,6 @@ SB_SB0(myMSE) |>
 
 ## ---- fig-mse-biomass ----
 
-#| fig-cap: "Spawning biomass trajectories across simulations and MPs for
-#|   `SingleStockOM`. The shaded region spans the 10th–90th percentile across
-#|   simulations; the solid line shows the median. The dashed vertical line
-#|   marks the end of the historical period."
 SB_SB0(myMSE) |>
   dplyr::group_by(MP, Stock, Year, Period) |>
   dplyr::summarise(

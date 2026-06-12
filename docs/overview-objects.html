@@ -435,7 +435,7 @@ window.Quarto = {
 <p>Understanding this hierarchy, what each subcomponent represents, what it contains, and how the pieces fit together, is important for building, modifying, and interpreting operating models.</p>
 <p>The primary subcomponents of an <code>OM</code> object are <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values.</p>
 <p>This chapter describes all of these classes and their contents.</p>
-<p>This chapter contains a lot of detail. Readers who are new to <code>openMSE</code> may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.</p>
+<p>This chapter contains a lot of detail. Readers may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.</p>
 <section id="om" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="om">
 <span class="header-section-number">4.1</span> <code>OM</code>
 </h2>
@@ -447,7 +447,7 @@ window.Quarto = {
 <li>
 <code>Fleet</code>: a hierarchical named list of <code>fleet-class</code> objects, indexed first by stock then by fleet. Each stock must have the same number of fleets.</li>
 <li>
-<code>Obs</code>: a hierarchical named list of <code>obs-class</code> objects, indexed first by stock complex then by fleet. Must be length <code>nComplex</code> (the number of stock complexes defined in <code>Complexes</code>), not <code>nStock</code>. Each element is itself a named list of <code>obs-class</code> objects, one per fleet, with optional additional elements for fishery-independent survey indices.</li>
+<code>Obs</code>: a hierarchical named list of <code>obs-class</code> objects, indexed first by stock complex then by fleet. Each element is itself a named list of <code>obs-class</code> objects, one per fleet, with optional additional elements for fishery-independent survey indices.</li>
 <li>
 <code>Imp</code>: a hierarchical named list of <code>imp-class</code> objects, one per stock-fleet combination.</li>
 <li>
@@ -608,13 +608,16 @@ window.Quarto = {
 <p>Defines spatial structure and movement dynamics. When omitted, a single well-mixed area is assumed.</p>
 <p>Key slots:</p>
 <ul>
-<li><p><code>UnfishedDist</code>: the equilibrium distribution of unfished biomass across areas. For two-area models, specifies the fraction of biomass in Area 1 as a scalar, a length-2 bounds vector (sampled from <code>Uniform(lower, upper)</code> across simulations), or a full <code>Sim × Area × Age × Year</code> array. The Area 2 fraction is derived as <code>1 - UnfishedDist</code>. For models with more than two areas, an array must be supplied and values must sum to 1 across the <code>Area</code> dimension.</p></li>
-<li><p><code>ProbStaying</code>: the annual probability that an individual remains in its current area between time steps. For two-area models, specifies Area 1 only; the Area 2 value is solved internally. Accepts a scalar, a length-2 bounds vector, or a full <code>Sim × Area × Age × Year</code> array.</p></li>
-<li><p><code>RelativeSize</code>: the relative habitat size of each area, used to compute biomass density (biomass per unit area) for the spatial effort allocation algorithm. For two-area models, accepts a scalar (Area 1 fraction, with Area 2 as <code>1 - RelativeSize</code>) or a length-2 bounds vector. The special value <code>"EqualDensity"</code> sets <code>RelativeSize</code> equal to the mean unfished distribution across ages and years, so that unfished biomass density is equal across areas. When <code>NULL</code>, all areas are assumed equal in size.</p></li>
-<li><p><code>Movement</code>: <code>Sim × FromArea × ToArea × Age × Year</code> array of movement probabilities. Row <code>[i, ]</code> gives the probabilities of moving from area <code>i</code> to each other area, and rows sum to 1. Normally derived automatically during <code>Populate()</code> by numerical optimisation of the target <code>UnfishedDist</code> and <code>ProbStaying</code> values. Can also be supplied directly, in which case the asymptotic unfished distribution is back-calculated from the movement matrix.</p></li>
-<li><p><code>FracOther</code>: required for models with more than two areas. A <code>Sim × FromArea × ToArea × Age × Year</code> array where off-diagonal element <code>[i, j]</code> gives the relative probability of moving from area <code>i</code> to area <code>j</code>. Diagonal elements must be <code>NA</code> (the staying probability is taken from <code>ProbStaying</code>). Used as a penalty-weight matrix during movement optimisation to guide how movement is distributed among destination areas.</p></li>
+<li>
+<code>UnfishedDist</code>: equilibrium distribution of unfished biomass across areas. For two-area models, accepts a scalar or length-2 bounds vector (sampled from <code>Uniform(lower, upper)</code>). For models with more than two areas, a full <code>Sim × Area × Age × Year</code> array must be supplied.</li>
+<li>
+<code>ProbStaying</code>: annual probability that an individual remains in its current area. Accepts the same input forms as <code>UnfishedDist</code>.</li>
+<li>
+<code>RelativeSize</code>: relative habitat size of each area, used for spatial effort allocation. The special value <code>"EqualDensity"</code> sets sizes so that unfished biomass density is equal across areas.</li>
+<li>
+<code>Movement</code>: <code>Sim × FromArea × ToArea × Age × Year</code> movement probability matrix, with rows summing to 1. Normally derived automatically during <code>Populate()</code> from <code>UnfishedDist</code> and <code>ProbStaying</code>. Can be supplied directly.</li>
 </ul>
-<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 15</span></a> for more details on spatial structure.</p>
+<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 22</span></a> for more details on spatial structure.</p>
 </section><section id="depletion-optional" class="level3" data-number="4.2.9"><h3 data-number="4.2.9" class="anchored" data-anchor-id="depletion-optional">
 <span class="header-section-number">4.2.9</span> <code>Depletion</code> <em>(optional)</em>
 </h3>
@@ -673,7 +676,7 @@ window.Quarto = {
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
 </ul>
-<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on populating <code>Pars</code>, <code>MeanAt*</code>, and <code>CVatAge</code> arrays.</p>
+<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on populating <code>Pars</code> and <code>MeanAt*</code> arrays.</p>
 </section><section id="retention-optional" class="level3" data-number="4.3.4"><h3 data-number="4.3.4" class="anchored" data-anchor-id="retention-optional">
 <span class="header-section-number">4.3.4</span> <code>Retention</code> <em>(optional)</em>
 </h3>
@@ -689,7 +692,7 @@ window.Quarto = {
 <li>
 <code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of discard mortality at age (0 = all survive, 1 = all die).</li>
 <li>
-<code>MeanAtLength</code>: <code>Sim × Length × Year</code> array of discard mortality at length.</li>
+<code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of discard mortality at length.</li>
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
 </ul></section><section id="weightfleet-optional" class="level3" data-number="4.3.6"><h3 data-number="4.3.6" class="anchored" data-anchor-id="weightfleet-optional">
