@@ -1,6 +1,0 @@
----
-title: "Explore an `OM` Object "
-editor: visual
----
-
-The Operating Model (OM) object is the main component of the MSE framework. An OM describes the characteristics of a fishery system and contains all the information required to simulate the population and fleet dynamics, the collection of fishery data, and the application of a management procedure.
