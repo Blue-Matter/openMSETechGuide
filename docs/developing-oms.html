@@ -250,20 +250,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-simulate-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -280,55 +286,55 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-life-history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-fleet-schedules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-historical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-reference-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
   </div>
 </li>
       </ul>
@@ -379,20 +385,11 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><p>An operating model (OM) is the central component of an MSE: it encodes beliefs about stock biology, fishery dynamics, and observation error, and it generates the simulated data that management procedures act on. This part covers the practical routes to building and conditioning an OM in <code>openMSE</code>.</p>
-<p>Operating models can be constructed in several ways depending on what information is available:</p>
-<ul>
-<li>
-<strong>From built-in templates</strong> — starting from one of the species-specific or generic OMs included in <code>openMSE</code> and modifying parameters as needed.</li>
-<li>
-<strong>Imported from a stock assessment</strong> — converting the output of an existing Stock Synthesis, BAM, or other assessment model directly into an <code>openMSE</code> OM.</li>
-<li>
-<strong>Conditioned on data</strong> — using <code>RCMtool</code> to condition an OM on catch, effort, and composition data without a pre-existing assessment.</li>
-</ul>
-<p><strong>Built-in Operating Models</strong> (<span class="quarto-unresolved-ref">?sec-om-built-in</span>) describes the library of OMs included in <code>openMSE</code> and how to inspect and modify them.</p>
-<p><strong>Importing from Stock Synthesis</strong> (<a href="om-import-ss3.html" class="quarto-xref"><span>Chapter 13</span></a>) covers how to read a fitted SS3 model and convert it to an <code>openMSE</code> OM, including what is carried over and what requires manual specification.</p>
-<p><strong>Importing from BAM</strong> (<span class="quarto-unresolved-ref">?sec-om-import-bam</span>) covers the equivalent workflow for Beaufort Assessment Model outputs.</p>
-<p><strong>Conditioning with RCM</strong> (<span class="quarto-unresolved-ref">?sec-om-condition-rcm</span>) describes how to use <code>RCMtool</code> to condition an operating model directly on observed data, including the inputs required and how to diagnose the fit.</p>
+</header><p>An operating model (OM) is the central component of an MSE: it encodes hypotheses about stock biology, fishery dynamics, and observation error, and it generates the simulated data that management procedures act on. This part covers the practical methods to constructing and conditioning an OM in <code>openMSE</code>, depending on what information is available: starting from a built-in template, importing the output of an existing stock assessment, or conditioning directly on data.</p>
+<p><a href="om-built-in.html" class="quarto-xref"><span>Chapter 12</span></a> describes the library of OMs included in <code>openMSE</code> and how to inspect and modify them.</p>
+<p><a href="om-import-ss3.html" class="quarto-xref"><span>Chapter 13</span></a> covers how to import a fitted Stock Synthesis model and convert it to an <code>openMSE</code> OM. <strong>This chapter is incomplete</strong>.</p>
+<p><a href="om-import-bam.html" class="quarto-xref"><span>Chapter 14</span></a> covers the equivalent workflow for Beaufort Assessment Model outputs. <strong>This chapter is incomplete</strong>.</p>
+<p><a href="om-condition-rcm.html" class="quarto-xref"><span>Chapter 15</span></a> describes how to use the <em>Rapid Conditioning Model</em> (RCM) to condition an operating model directly on observed data. <strong>This chapter is incomplete</strong>.</p>
 
 
 

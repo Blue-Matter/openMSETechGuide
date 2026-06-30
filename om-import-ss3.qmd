@@ -9,35 +9,3 @@ library(openMSE)
 rnorm(5)
 ```
  
-## Known Discrepancies
-
-### Spawning Biomass for Seasonal Models
-
-When importing a seasonal SS3 model, the unfished spawning biomass (SP0) computed by openMSE will differ slightly from the value reported by SS3. This is intentional — openMSE uses the biologically correct formula, while SS3 contains a bug in its within-season spawn-timing correction.
-
-**Background.** For seasonal models, SS3 reports N-at-age at the *beginning* of each season (`Beg/Mid == "B"` in `replist$natage`). To compute spawning biomass at the actual spawn time (which may fall partway through the spawn season), both SS3 and openMSE apply a within-season mortality correction:
-
-$$N_\text{spawn} = N_\text{season start} \times e^{-Z \cdot t}$$
-
-where $t$ is the fraction of the spawn season elapsed at the time of spawning (`Spawn_timing_in_season` in SS3; `SpawnTimeFrac` in openMSE).
-
-**The bug.** SS3 uses the *annual* mortality rate $Z_\text{annual}$ in this correction:
-
-$$N_\text{spawn}^\text{SS3} = N_\text{season start} \times e^{-Z_\text{annual} \times \texttt{Spawn\_timing\_in\_season}}$$
-
-For a quarterly model with `Spawn_timing_in_season` = 1/3 (spawn occurs one month into the spawn season), this applies 4 months of annual-rate mortality — but only 1 month has actually elapsed since the season started. $N_\text{season start}$ already incorporates the mortality from all prior seasons, so applying $Z_\text{annual} \times 1/3$ effectively double-counts the previous season's mortality in the timing correction.
-
-The correct formula uses the *per-season* mortality rate:
-
-$$N_\text{spawn}^\text{correct} = N_\text{season start} \times e^{-Z_\text{season} \times \texttt{Spawn\_timing\_in\_season}}$$
-
-where $Z_\text{season} = Z_\text{annual} / n_\text{seasons}$. This applies exactly the mortality accumulated during the elapsed fraction of the current season.
-
-**Consequence.** SS3's SP0 is lower than the biologically correct value because it over-applies mortality in the timing correction. The ratio of the two values is approximately:
-
-$$\frac{\text{SP0}_\text{openMSE}}{\text{SP0}_\text{SS3}} \approx e^{\bar{M} \times (n_\text{seasons}-1)/n_\text{seasons} \times \texttt{SpawnTimeFrac}}$$
-
-For NPSWO (adult $M \approx 0.22$, $n_\text{seasons} = 4$, `SpawnTimeFrac` = 1/3) this ratio is approximately 1.058 (5.8%).
-
-**Why openMSE does not replicate the SS3 value.** Because SS3's R0 is calibrated against its own (incorrect) SP0, one might consider replicating the bug so that the recruitment dynamics are internally consistent with SS3. However, this would require embedding a dimensional error into openMSE's population dynamics equations. Instead, openMSE uses the correct per-season mortality rate and accepts the small SP0 discrepancy. Users should be aware that the implied depletion trajectory from an SS3-imported OM may differ marginally from SS3's own output for this reason.
-

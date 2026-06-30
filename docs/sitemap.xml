@@ -5,108 +5,64 @@
     <lastmod>2026-06-19T05:35:17.703Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/getting_started.html</loc>
-    <lastmod>2026-05-22T03:12:26.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview_MSE_process.html</loc>
-    <lastmod>2025-12-30T19:14:00.824Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview_om.html</loc>
-    <lastmod>2025-12-30T19:43:55.885Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/om_condition.html</loc>
-    <lastmod>2025-12-09T21:45:50.610Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/om_import.html</loc>
-    <lastmod>2025-12-09T21:45:49.924Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/om_convert.html</loc>
-    <lastmod>2025-12-09T21:51:36.353Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/management_procedures.html</loc>
-    <lastmod>2025-12-16T16:36:04.586Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/mps_tac.html</loc>
-    <lastmod>2025-12-16T16:35:58.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/Eq_overview.html</loc>
-    <lastmod>2025-12-09T00:01:49.860Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/Eq_popdynamics.html</loc>
-    <lastmod>2026-05-22T20:28:47.065Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/acknowledgements.html</loc>
-    <lastmod>2026-05-21T22:54:20.834Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/changes_overview.html</loc>
-    <lastmod>2026-05-21T23:06:52.607Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview-primary-objects.html</loc>
-    <lastmod>2026-06-01T20:37:24.200Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview-walkthrough.html</loc>
-    <lastmod>2026-06-01T20:45:35.276Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/z-app-acknowledgements.html</loc>
-    <lastmod>2026-05-21T22:54:20.834Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/z-app-changes_overview.html</loc>
-    <lastmod>2026-05-21T23:06:52.607Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/reading_this_manual.html</loc>
-    <lastmod>2026-05-23T15:31:14.100Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview-example-objects.html</loc>
-    <lastmod>2026-06-01T20:18:31.383Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/tech-populate-om.html</loc>
-    <lastmod>2026-06-15T22:12:35.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/tech-initialize.html</loc>
-    <lastmod>2026-05-25T19:28:04.681Z</lastmod>
+    <loc>https://docs.openMSE.com/getting-started.html</loc>
+    <lastmod>2026-06-19T15:31:02.587Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/overview-openMSE.html</loc>
     <lastmod>2026-06-18T05:50:14.588Z</lastmod>
   </url>
   <url>
+    <loc>https://docs.openMSE.com/overview-objects.html</loc>
+    <lastmod>2026-06-17T18:04:38.746Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/example-objects.html</loc>
     <lastmod>2026-06-17T17:34:48.217Z</lastmod>
   </url>
   <url>
+    <loc>https://docs.openMSE.com/example-mse.html</loc>
+    <lastmod>2026-06-17T17:22:54.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/mps-data-advice.html</loc>
+    <lastmod>2026-06-30T02:59:48.215Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object-data.html</loc>
+    <lastmod>2026-06-30T02:47:38.630Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/conditioning-obs.html</loc>
+    <lastmod>2026-06-12T16:29:55.027Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/generate-data.html</loc>
+    <lastmod>2026-06-30T02:49:14.157Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/object-advice.html</loc>
+    <lastmod>2026-06-30T02:49:27.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/management-procedures.html</loc>
+    <lastmod>2026-06-30T02:49:01.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/example-mps.html</loc>
+    <lastmod>2026-06-30T01:21:27.388Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/developing-oms.html</loc>
-    <lastmod>2026-06-17T17:04:12.932Z</lastmod>
+    <lastmod>2026-06-30T02:57:59.661Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/om-built-in.html</loc>
-    <lastmod>2026-06-15T21:24:50.981Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/om-octopus.html</loc>
-    <lastmod>2026-06-11T04:17:34.756Z</lastmod>
+    <lastmod>2026-06-30T02:54:55.316Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/om-import-ss3.html</loc>
-    <lastmod>2026-06-19T19:04:49.526Z</lastmod>
+    <lastmod>2026-06-30T02:56:36.774Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/om-import-bam.html</loc>
@@ -117,12 +73,8 @@
     <lastmod>2026-06-17T17:22:56.750Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/example-mse.html</loc>
-    <lastmod>2026-06-17T17:22:54.014Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview-objects.html</loc>
-    <lastmod>2026-06-17T18:04:38.746Z</lastmod>
+    <loc>https://docs.openMSE.com/concept-overview.html</loc>
+    <lastmod>2026-06-30T03:10:05.970Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/concept-schedules.html</loc>
@@ -133,80 +85,32 @@
     <lastmod>2026-06-22T16:07:55.225Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/concept-complexes.html</loc>
-    <lastmod>2026-06-17T20:47:35.299Z</lastmod>
+    <loc>https://docs.openMSE.com/concept-simulate-project.html</loc>
+    <lastmod>2026-06-22T16:08:07.598Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/concept-seasonal.html</loc>
-    <lastmod>2026-06-11T17:18:12.799Z</lastmod>
+    <loc>https://docs.openMSE.com/concept-complexes.html</loc>
+    <lastmod>2026-06-17T20:47:35.299Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/concept-spatial.html</loc>
     <lastmod>2026-06-17T21:14:35.672Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/overview-data-obs.html</loc>
-    <lastmod>2026-06-11T17:51:34.806Z</lastmod>
-  </url>
-  <url>
     <loc>https://docs.openMSE.com/concept-ref-points.html</loc>
     <lastmod>2026-06-22T16:08:02.146Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/concept-data-obs.html</loc>
-    <lastmod>2026-06-11T17:51:34.806Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/concept-conditioning-obs.html</loc>
-    <lastmod>2026-06-11T21:47:01.836Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/management-procedures.html</loc>
-    <lastmod>2026-06-11T23:36:03.806Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/example-mps.html</loc>
-    <lastmod>2026-06-11T23:36:02.501Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/mps-data-advice.html</loc>
-    <lastmod>2026-06-17T17:04:02.243Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/object-data.html</loc>
-    <lastmod>2026-06-12T16:34:38.296Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/conditioning-obs.html</loc>
-    <lastmod>2026-06-12T16:29:55.027Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/generate-data.html</loc>
-    <lastmod>2026-06-12T16:28:51.879Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/object-advice.html</loc>
-    <lastmod>2026-06-12T16:34:38.296Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/tech-unfished.html</loc>
-    <lastmod>2026-06-16T23:07:53.587Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/overview-manual.html</loc>
-    <lastmod>2026-06-17T17:34:55.940Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/getting-started.html</loc>
-    <lastmod>2026-06-19T15:31:02.587Z</lastmod>
-  </url>
-  <url>
     <loc>https://docs.openMSE.com/tech-overview.html</loc>
-    <lastmod>2026-06-17T17:04:25.431Z</lastmod>
+    <lastmod>2026-06-30T03:12:01.112Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/tech-notation.html</loc>
     <lastmod>2026-06-15T21:30:24.839Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/tech-populate-om.html</loc>
+    <lastmod>2026-06-15T22:12:35.753Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/tech-life-history.html</loc>
@@ -217,8 +121,16 @@
     <lastmod>2026-06-16T03:25:40.096Z</lastmod>
   </url>
   <url>
+    <loc>https://docs.openMSE.com/tech-unfished.html</loc>
+    <lastmod>2026-06-16T23:07:53.587Z</lastmod>
+  </url>
+  <url>
     <loc>https://docs.openMSE.com/tech-historical.html</loc>
     <lastmod>2026-06-17T21:12:02.239Z</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.openMSE.com/tech-observations.html</loc>
+    <lastmod>2026-06-17T15:20:54.095Z</lastmod>
   </url>
   <url>
     <loc>https://docs.openMSE.com/tech-reference-points.html</loc>
@@ -229,15 +141,11 @@
     <lastmod>2026-06-15T21:30:24.948Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/concept-overview.html</loc>
-    <lastmod>2026-06-22T16:02:21.090Z</lastmod>
+    <loc>https://docs.openMSE.com/z-app-acknowledgements.html</loc>
+    <lastmod>2026-05-21T22:54:20.834Z</lastmod>
   </url>
   <url>
-    <loc>https://docs.openMSE.com/tech-observations.html</loc>
-    <lastmod>2026-06-17T15:20:54.095Z</lastmod>
-  </url>
-  <url>
-    <loc>https://docs.openMSE.com/concept-simulate-project.html</loc>
-    <lastmod>2026-06-22T16:08:07.598Z</lastmod>
+    <loc>https://docs.openMSE.com/z-app-changes_overview.html</loc>
+    <lastmod>2026-05-21T23:06:52.607Z</lastmod>
   </url>
 </urlset>

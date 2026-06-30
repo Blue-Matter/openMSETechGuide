@@ -1,4 +1,4 @@
-# Generating Data
+# Generating Data {#sec-generatedata}
 
 ```{r}
 #| echo: false
@@ -6,4 +6,5 @@
 library(MSEtool)
 rnorm(5)
 ```
+
 

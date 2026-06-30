@@ -1,21 +1,21 @@
 # Technical Details {#sec-techdetails}
 
-This part gives the full mathematical specification of the `openMSE` modeling framework. Each chapter derives the equations governing one component of the model, defines notation, and documents the assumptions. Cross-references to the relevant conceptual chapters in [Operating Model Concepts](#sec-techdetails) are provided for readers who want the higher-level description first.
+This part gives the full mathematical specification of the `openMSE` modeling framework. Each chapter derives the equations governing one component of the model, defines notation, and documents the assumptions. Cross-references to the relevant conceptual chapters in [Operating Model Concepts](#sec-om-concepts) are provided for readers who want the higher-level description first.
 
-**Notation** (@sec-tech-notation) defines the index sets, dimensions, and mathematical conventions used throughout the Technical Details chapters.
+@sec-tech-notation defines the index sets, dimensions, and mathematical conventions used throughout the Technical Details chapters. **This chapter is not complete**.
 
-**Populating the Operating Model** (@sec-tech-populate-om) describes how parameter arrays are constructed from the input objects, including how stochastic draws are taken and how conditioning data are incorporated.
+@sec-tech-populate-om describes how parameter arrays are constructed from the input objects, including how stochastic draws are taken and how conditioning data are incorporated.
 
-**Life History Schedules** (@sec-tech-life-history) derives growth, maturity, natural mortality, and fecundity-at-age, including the equations for time-varying schedules.
+@sec-tech-life-history derives growth, maturity, natural mortality, and fecundity-at-age, including the equations for time-varying schedules.
 
-**Fleet and Selectivity Schedules** (@sec-tech-fleet-schedules) covers fishing mortality, selectivity, retention, and discard mortality, including how these vary over time and across simulations.
+@sec-tech-fleet-schedules covers fishing mortality, selectivity, retention, and discard mortality, including how these vary over time and across simulations.
 
-**Unfished Equilibrium** (@sec-tech-unfished) derives the unfished equilibrium population — numbers-at-age, biomass, spawning biomass, and recruitment — which sets the initial conditions for the historical period.
+@sec-tech-unfished derives the unfished equilibrium population, including numbers-at-age, biomass, spawning biomass, and recruitment, which sets the initial conditions for the historical period.
 
-**Historical Population Dynamics** (@sec-tech-historical) specifies the full age-structured population dynamics over the historical period, including recruitment, mortality, movement, and how initial conditions are set.
+@sec-tech-historical specifies the full age-structured population dynamics over the historical period, including recruitment, mortality, movement, and how initial conditions are set.
 
-**Fishery Data and Observations** (@sec-tech-observations) describes how the observation model generates fishery data from the true population, including catch and effort, abundance indices, and composition data.
+@sec-tech-observations describes how the observation model generates fishery data from the true population, including catch and effort, abundance indices, and composition data.
 
-**Reference Points** (@sec-tech-refpoints) gives the full specification of MSY and auxiliary reference point calculations, including the per-recruit framework, fleet allocation, equilibrium recruitment, and seasonal and spatial considerations.
+@sec-tech-refpoints gives the full specification of MSY and auxiliary reference point calculations, including the per-recruit framework, fleet allocation, equilibrium recruitment, and seasonal and spatial considerations.
 
-**Projection Dynamics** (@sec-tech-projection) specifies the forward simulation used during the MSE projection period, including how management advice is applied and how data are generated each time step.
+@sec-tech-projection specifies the forward simulation used during the MSE projection period, including how management advice is applied and how data are generated each time step. **This chapter is not complete**.

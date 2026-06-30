@@ -1,4 +1,4 @@
-# The `Data` Object
+# The `Data` Object {#sec-objectdata}
 
 ```{r}
 #| echo: false

@@ -1,4 +1,4 @@
-# Built-In Examples {#sec-buildexamples}
+# Built-In Examples {#sec-om-built-in}
 
 ```{r}
 #| echo: false
@@ -8,7 +8,7 @@ rnorm(5)
 ```
 
 This chapter describes the built-in example objects included with `openMSE` and walks through how each is constructed.
-
+ 
 The objects are built manually here, with the parameters are specified directly by the user. This is the most transparent approach and the easiest way to understand the structure of each object and its subcomponents.
 
 However, this is not the only way to construct operating models. `openMSE` also supports importing parameter estimates directly from stock assessment output (e.g., Stock Synthesis), as well as conditioning an operating model on observed fishery data such as catch histories and abundance indices. These alternative approaches are covered in other chapters in this section.
@@ -25,7 +25,7 @@ Three example `Stock` objects are provided, representing species with contrastin
 - **`ButterfishExStock`**: a short-lived, fast-growing forage species;
 - **`SeasonalSpatialExStock`**: a short-lived reef fish with monthly time steps, seasonal recruitment, and age-based movement across three areas.
 
-### `AlbacoreExStock`
+### `AlbacoreExStock` 
 
 ```{r}
 #| include: false

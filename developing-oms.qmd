@@ -6,20 +6,16 @@
 #| echo: false
 #| include: false
 library(openMSE)
+rnorm(5)
 ```
 
-An operating model (OM) is the central component of an MSE: it encodes beliefs about stock biology, fishery dynamics, and observation error, and it generates the simulated data that management procedures act on. This part covers the practical routes to building and conditioning an OM in `openMSE`.
+An operating model (OM) is the central component of an MSE: it encodes hypotheses about stock biology, fishery dynamics, and observation error, and it generates the simulated data that management procedures act on. This part covers the practical methods to constructing and conditioning an OM in `openMSE`, depending on what information is available: starting from a built-in template, importing the output of an existing stock assessment, or conditioning directly on data.
 
-Operating models can be constructed in several ways depending on what information is available:
+@sec-om-built-in describes the library of OMs included in `openMSE` and how to inspect and modify them.
 
-- **From built-in templates** — starting from one of the species-specific or generic OMs included in `openMSE` and modifying parameters as needed.
-- **Imported from a stock assessment** — converting the output of an existing Stock Synthesis, BAM, or other assessment model directly into an `openMSE` OM.
-- **Conditioned on data** — using `RCMtool` to condition an OM on catch, effort, and composition data without a pre-existing assessment.
+@sec-om-import-ss3 covers how to import a fitted Stock Synthesis model and convert it to an `openMSE` OM. **This chapter is incomplete**.
 
-**Built-in Operating Models** (@sec-om-built-in) describes the library of OMs included in `openMSE` and how to inspect and modify them.
+@sec-om-import-bam covers the equivalent workflow for Beaufort Assessment Model outputs. **This chapter is incomplete**.
 
-**Importing from Stock Synthesis** (@sec-om-import-ss3) covers how to read a fitted SS3 model and convert it to an `openMSE` OM, including what is carried over and what requires manual specification.
+@sec-om-condition-rcm describes how to use the *Rapid Conditioning Model* (RCM) to condition an operating model directly on observed data. **This chapter is incomplete**.
 
-**Importing from BAM** (@sec-om-import-bam) covers the equivalent workflow for Beaufort Assessment Model outputs.
-
-**Conditioning with RCM** (@sec-om-condition-rcm) describes how to use `RCMtool` to condition an operating model directly on observed data, including the inputs required and how to diagnose the fit.

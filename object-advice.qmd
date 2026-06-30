@@ -1,4 +1,4 @@
-# The `Advice` Object
+# The `Advice` Object {#sec-objectadvice}
 
 ```{r}
 #| echo: false
@@ -6,3 +6,5 @@
 library(MSEtool)
 rnorm(5)
 ```
+
+

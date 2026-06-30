@@ -7,30 +7,3 @@ library(MSEtool)
 rnorm(5)
 ```
 
-
-A management procedure (MP) in `openMSE` is an R function of class `"mp"` that accepts a `Data` object containing the current fishery observations and returns an `Advice` object specifying management actions for the next time step. The framework calls the MP at each management interval during the projection period, passing an updated `Data` object, and applies the returned advice to the operating model.
-
-See `?Advice` for full documentation of the `advice-class` and the management actions it can represent, including TAC, effort controls, spatial closures, and gear regulations.
-
-Four example MPs are provided for testing and demonstration. They are deliberately simple — each uses only the catch history in `Data` and requires no stock assessment or model fitting. Use `ExampleMPs()` to retrieve their names as a character vector
-for batch testing:
-
-```{r}
-ExampleMPs()
-```
-
-### `CurrentEffort`
-
-Maintains fishing effort at its terminal historical level for all fleets. The `Data` argument is accepted for framework compatibility but is not used — this MP is equivalent to assuming no management change from the status quo effort.
-
-### `CurrentCatch`
-
-Sets the TAC for each fleet to the total removals (landings plus discards) observed in the last historical year. If no landings data are available in `Data`, an empty `Advice` object is returned and the OM falls back to its default behaviour.
-
-### `CurrentLandings`
-
-Sets the TAC for each fleet to the landings observed in the last historical year, expressed as a landings-only limit (`TACType = "Landings"`). Discards are not included in the TAC target. If no landings data are available, an empty `Advice` object is returned.
-
-### `AverageCatch`
-
-Sets the TAC to the mean total removals across all historical years, summed over fleets. This is a common data-limited reference point MP used to represent a catch-stabilisation strategy. If no landings data are available, an empty `Advice` object is returned.
