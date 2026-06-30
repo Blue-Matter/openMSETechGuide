@@ -1,0 +1,35 @@
+# Running the Simulation {#sec-simulate-project}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+Once an operating model has been built and populated (@sec-populate), two functions carry it through the rest of the MSE workflow: `Simulate()` reconstructs historical dynamics and conditions the model on the past, and `Project()` runs the management strategy evaluation forward in time under one or more candidate management procedures.
+
+## `Simulate()`
+
+`Simulate()` takes a populated `OM` and returns a `Hist` object. Internally it: (1) computes the unfished equilibrium and, if requested, the dynamic (year-varying) unfished trajectory; (2) runs the age-structured population forward through the historical period, applying fleet-specific fishing mortality, to produce the true historical time series of abundance, biomass, and catch; (3) calculates reference points (SPR0, MSY-based reference points); and (4) applies observation error to the true dynamics to generate the historical `Data` object used by management procedures.
+
+```r
+Hist <- Simulate(OM)
+```
+
+Key arguments control which optional calculations are performed — `DoDynamicUnfished`, `DoMSYRefs`, `DoConditionObs`, and `DoGenerateData` — each of which can be disabled to speed up runs where the corresponding output is not needed. See @sec-tech-historical for the full mathematical specification of the historical dynamics.
+
+## `Project()`
+
+`Project()` takes the `Hist` object and a vector of management procedure (MP) names, and returns an `MSE` object. For each MP, it loops over every projection year, repeating four steps: generate the current year's observed data, apply the MP to produce advice (e.g. a TAC or effort level), update the operating model's fishing parameters to reflect that advice, and advance the population dynamics one year forward.
+
+```r
+MSE <- Project(Hist, MPs = c("FMSYref", "CurrentEffort"))
+```
+
+Because every MP is run against the same historical conditioning, differences in outcomes across MPs in the resulting `MSE` object reflect differences in management strategy rather than differences in the underlying biology or fishery history. See @sec-tech-projection for the full mathematical specification of the projection dynamics, and @sec-mpsdataadvice for how `Data` and `Advice` objects are structured.
+
+## Relationship to other concepts
+
+- `Simulate()` and `Project()` both rely on the conditioned arrays produced by `Populate()` (@sec-populate).
+- Reference points calculated during `Simulate()` (@sec-refpoints) provide the benchmarks against which `Project()` outcomes are evaluated.
+- The observation model conditioning that occurs inside `Simulate()` is described in detail in @sec-mpsdataadvice.

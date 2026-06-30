@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-
-<title>16&nbsp; Populating Operating Model – openMSE Technical Manual</title>
+<title>23&nbsp; Populating the Operating Model – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +23,6 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -34,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tech-initialize.html" rel="next">
-<link href="./concept-spatial.html" rel="prev">
+<link href="./tech-life-history.html" rel="next">
+<link href="./tech-notation.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -46,8 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -73,38 +68,52 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-populate-om.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-populate-om.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-populate-om.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Technical Manual</a> 
         <div class="sidebar-tools-main">
@@ -120,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
@@ -128,147 +137,243 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  <a href="./overview-manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading this Manual</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Structure of the <code>OM</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Example Objects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Example MSE</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
   </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./mps-data-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+  </div>
+</li>
+      </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Developing Operating Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Management Procedures</span></span>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Concepts</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operating Model Concepts</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./concept-seasonal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a href="./tech-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Technical Details</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  <a href="./tech-life-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-fleet-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-historical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-reference-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./z-app-acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
@@ -281,29 +386,26 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#populate-stock" id="toc-populate-stock" class="nav-link active" data-scroll-target="#populate-stock"><span class="header-section-number">16.1</span> Populate Stock</a></li>
-  <li><a href="#populate-fleet" id="toc-populate-fleet" class="nav-link" data-scroll-target="#populate-fleet"><span class="header-section-number">16.2</span> Populate Fleet</a></li>
-  <li><a href="#populate-obs" id="toc-populate-obs" class="nav-link" data-scroll-target="#populate-obs"><span class="header-section-number">16.3</span> Populate Obs</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-populate-om.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<li><a href="#sec-tech-dimensions" id="toc-sec-tech-dimensions" class="nav-link active" data-scroll-target="#sec-tech-dimensions"><span class="header-section-number">23.1</span> Simulation Dimensions</a></li>
+  <li><a href="#sec-tech-sampling" id="toc-sec-tech-sampling" class="nav-link" data-scroll-target="#sec-tech-sampling"><span class="header-section-number">23.2</span> Sampling Parameter Distributions</a></li>
+  <li><a href="#sec-tech-timevarying" id="toc-sec-tech-timevarying" class="nav-link" data-scroll-target="#sec-tech-timevarying"><span class="header-section-number">23.3</span> Time-Varying Parameters</a></li>
+  <li><a href="#sec-tech-populate-stock" id="toc-sec-tech-populate-stock" class="nav-link" data-scroll-target="#sec-tech-populate-stock"><span class="header-section-number">23.4</span> Populate Stock</a></li>
+  <li><a href="#sec-tech-populate-fleet" id="toc-sec-tech-populate-fleet" class="nav-link" data-scroll-target="#sec-tech-populate-fleet"><span class="header-section-number">23.5</span> Populate Fleet</a></li>
+  <li><a href="#sec-tech-populate-obs" id="toc-sec-tech-populate-obs" class="nav-link" data-scroll-target="#sec-tech-populate-obs"><span class="header-section-number">23.6</span> Populate Obs</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-populate-om.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-populate-om.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-populate-om.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-populate-om.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-tech-populate-om" class="quarto-section-identifier"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></h1>
 </div>
 
 
@@ -317,24 +419,114 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Before the simulation can begin, all user-specified parameter distributions must be expanded into fully-dimensioned arrays covering every simulation replicate, age class, and year. This process is called <em>populating</em> the operating model, and is handled by <code>PopulateOM()</code>, which calls <code>PopulateStock()</code> and <code>PopulateFleet()</code> in sequence, followed by the observation model. For a conceptual overview of the population process and worked examples, see <a href="concept-populate.html" class="quarto-xref"><span>Chapter 18</span></a>.</p>
+<section id="sec-tech-dimensions" class="level2" data-number="23.1"><h2 data-number="23.1" class="anchored" data-anchor-id="sec-tech-dimensions">
+<span class="header-section-number">23.1</span> Simulation Dimensions</h2>
+<p>Every array in a populated OM is indexed over some or all of the following dimensions:</p>
+<div id="tbl-dimensions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dimensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;23.1: Core array dimensions.
+</figcaption><div aria-describedby="tbl-dimensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 28%">
+<col style="width: 46%">
+</colgroup>
+<thead><tr class="header">
+<th>Index</th>
+<th>Symbol</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Simulation</td>
+<td><span class="math inline">\(s\)</span></td>
+<td>Stochastic replicate, <span class="math inline">\(s = 1, \ldots, n_\text{sim}\)</span>
+</td>
+</tr>
+<tr class="even">
+<td>Age</td>
+<td><span class="math inline">\(a\)</span></td>
+<td>Age class (years), <span class="math inline">\(a = a_\text{rec}, \ldots, A_\text{max}\)</span>
+</td>
+</tr>
+<tr class="odd">
+<td>Year</td>
+<td><span class="math inline">\(t\)</span></td>
+<td>Time step (historical + projection), <span class="math inline">\(t = 1, \ldots, T\)</span>
+</td>
+</tr>
+<tr class="even">
+<td>Area</td>
+<td><span class="math inline">\(r\)</span></td>
+<td>Spatial area, <span class="math inline">\(r = 1, \ldots, R\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The time dimension merges historical and projection years into a single index: <span class="math inline">\(T = n_\text{year} + p_\text{year}\)</span>, where <span class="math inline">\(n_\text{year}\)</span> is the number of historical years and <span class="math inline">\(p_\text{year}\)</span> the number of projection years. For seasonal models, each calendar year is divided into <span class="math inline">\(S\)</span> seasons, so each time step represents <span class="math inline">\(1/S\)</span> of a year and the total number of time steps is <span class="math inline">\(T = S \cdot (n_\text{year} + p_\text{year})\)</span>.</p>
+<p>Age classes are computed from the <code>Ages</code> object. The first age class corresponds to the age of recruitment, <span class="math inline">\(a_\text{rec}\)</span>, which need not be zero. For a non-seasonal model with annual time steps, <span class="math inline">\(a = a_\text{rec}, a_\text{rec}+1, \ldots, A_\text{max}\)</span> in years. For a seasonal model with <span class="math inline">\(S\)</span> seasons per year, age advances in increments of <span class="math inline">\(1/S\)</span>, giving <span class="math inline">\(a = a_\text{rec}, a_\text{rec} + 1/S, \ldots, A_\text{max}\)</span> in years. The <code>Ages@Classes</code> slot stores these values after population.</p>
+</section><section id="sec-tech-sampling" class="level2" data-number="23.2"><h2 data-number="23.2" class="anchored" data-anchor-id="sec-tech-sampling">
+<span class="header-section-number">23.2</span> Sampling Parameter Distributions</h2>
+<p>Model parameters are specified as distributions rather than fixed values. The input formats accepted by each subcomponent object are described in detail in <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 17</span></a>. This section focuses on the underlying sampling mechanics.</p>
+<p>A common pattern is a uniform distribution bounded by a minimum and maximum value, from which <span class="math inline">\(n_\text{sim}\)</span> draws are taken:</p>
+<p><span class="math display">\[\theta_s \sim \text{Uniform}(\theta_\text{min},\; \theta_\text{max}), \quad s = 1, \ldots, n_\text{sim}\]</span></p>
+<p>When a parameter is fixed (i.e.&nbsp;<span class="math inline">\(\theta_\text{min} = \theta_\text{max}\)</span>), all simulations share the same value. Some parameters are instead specified with a mean and coefficient of variation (CV), in which case draws are taken from a log-normal distribution:</p>
+<p><span class="math display">\[\theta_s \sim \text{LogNormal}\!\left(\log(\bar\theta) - \tfrac{1}{2}\sigma^2,\; \sigma\right), \quad \sigma = \sqrt{\log(1 + \text{CV}^2)}\]</span></p>
+<p>Random draws are seeded deterministically from <code>OM@Seed</code> so that results are reproducible. Each stock and fleet component receives a different offset from the base seed to ensure independence across components while maintaining reproducibility.</p>
+</section><section id="sec-tech-timevarying" class="level2" data-number="23.3"><h2 data-number="23.3" class="anchored" data-anchor-id="sec-tech-timevarying">
+<span class="header-section-number">23.3</span> Time-Varying Parameters</h2>
+<p>There are two broad approaches to specifying a schedule (see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 17</span></a> for the full range of accepted input formats):</p>
+<p><strong>Direct array.</strong> The <code>MeanAtAge</code> (or <code>MeanAtLength</code>, <code>MeanAtWeight</code>) slot of a subcomponent object can be populated directly as a <code>Sim × Age/Class × Year</code> array, bypassing the <code>Pars</code> model-based approach. As with parameter arrays, the <code>Year</code> dimension need only span boundary years (dimnames identify which years are represented), and the <code>Sim</code> dimension must be either 1 or exactly <span class="math inline">\(n_\text{sim}\)</span>.</p>
+<p><strong>Model-based via <code>Pars</code>.</strong> Each element of a <code>Pars</code> list is processed into a <code>Sim × Year</code> parameter array before being passed to the schedule model. Individual parameters can be:</p>
+<ul>
+<li><p><em>Constant (time-invariant)</em>: a fixed value or uniform bounds <span class="math inline">\([\theta_\text{min}, \theta_\text{max}]\)</span> sampled once per simulation (as in <a href="#sec-tech-sampling" class="quarto-xref"><span>Section 23.2</span></a>) and held constant across years: <span class="math inline">\(\theta_{s,t} = \theta_s\)</span> for all <span class="math inline">\(t\)</span>.</p></li>
+<li><p><em>Random walk</em>: if a parameter <code>Pars$foo</code> is accompanied by a paired <code>Pars$fooSD</code> entry, a mean-preserving log-normal random walk is applied across years:</p></li>
+</ul>
+<p><span class="math display">\[\theta_{s,t} = \theta_s \cdot \frac{\epsilon_{s,t}}{\bar\epsilon_s}, \quad \log\epsilon_{s,t} \sim \mathcal{N}\!\left(-\tfrac{1}{2}\sigma^2,\; \sigma\right)\]</span></p>
+<p>where <span class="math inline">\(\sigma\)</span> is the value of <code>Pars$fooSD</code> and <span class="math inline">\(\bar\epsilon_s = T^{-1}\sum_t \epsilon_{s,t}\)</span> is the within-simulation mean of the deviates (mean-preserving correction). After processing, the <code>*SD</code> entry is removed from the parameter list.</p>
+<ul>
+<li>
+<em>Pre-built <code>Sim × Year</code> array</em>: supplied directly inside <code>Pars</code>, extended to fill any missing simulation or year indices by repeating year boundary values. The <code>Year</code> dimension only needs to span the boundary years where the values change (intermediate years are filled by extension; see <code>?Extend</code>). The <code>Sim</code> dimension must be either 1 (the same value is used for all simulations) or exactly <span class="math inline">\(n_\text{sim}\)</span> (simulation-specific values).</li>
+</ul>
+<p>Effort trajectories have an additional input form: a data frame of control points with lower and upper bounds at specified years, between which effort is linearly interpolated (see <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>).</p>
+</section><section id="sec-tech-populate-stock" class="level2" data-number="23.4"><h2 data-number="23.4" class="anchored" data-anchor-id="sec-tech-populate-stock">
+<span class="header-section-number">23.4</span> Populate Stock</h2>
+<p><code>PopulateStock()</code> generates all biological arrays for a single stock. It is called once per stock, with the OM’s <code>nYear</code>, <code>pYear</code>, <code>nSim</code>, and <code>Seasons</code> passed as arguments. The sequence of operations is:</p>
+<ol type="1">
+<li>Calculate age classes (<code>Ages@Classes</code>)</li>
+<li>Populate length-at-age (<code>PopulateLength()</code>)</li>
+<li>Populate weight-at-age (<code>PopulateWeight()</code>)</li>
+<li>Populate natural mortality (<code>PopulateNaturalMortality()</code>)</li>
+<li>Populate maturity-at-age (<code>PopulateMaturity()</code>)</li>
+<li>Populate fecundity-at-age (<code>PopulateFecundity()</code>)</li>
+<li>Populate stock–recruitment (<code>PopulateSRR()</code>)</li>
+<li>Populate spatial structure (<code>PopulateSpatial()</code>)</li>
+<li>Populate initial depletion (<code>PopulateDepletion()</code>)</li>
+</ol>
+<p>The equations governing each of these steps are described in <a href="tech-life-history.html" class="quarto-xref"><span>Chapter 24</span></a>. The resulting arrays have dimensions <span class="math inline">\(n_\text{sim} \times n_\text{age} \times T\)</span> unless noted otherwise.</p>
+</section><section id="sec-tech-populate-fleet" class="level2" data-number="23.5"><h2 data-number="23.5" class="anchored" data-anchor-id="sec-tech-populate-fleet">
+<span class="header-section-number">23.5</span> Populate Fleet</h2>
+<p><code>PopulateFleet()</code> generates all fishery arrays for a single fleet operating on a given stock. It takes the already-populated <code>Stock</code> object as an argument so that fleet schedules can be derived in the same age and size class space. The sequence is:</p>
+<ol type="1">
+<li>Populate effort across historical years (<code>PopulateEffort()</code>)</li>
+<li>Populate catchability (<code>PopulateCatchability()</code>)</li>
+<li>Populate selectivity-at-age (<code>PopulateSelectivity()</code>)</li>
+<li>Populate retention-at-age (<code>PopulateRetention()</code>)</li>
+<li>Populate discard mortality (<code>PopulateDiscardMortality()</code>)</li>
+<li>Populate spatial closures (<code>PopulateClosure()</code>)</li>
+</ol>
+<p>The equations for each step are described in <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>.</p>
+</section><section id="sec-tech-populate-obs" class="level2" data-number="23.6"><h2 data-number="23.6" class="anchored" data-anchor-id="sec-tech-populate-obs">
+<span class="header-section-number">23.6</span> Populate Obs</h2>
+<p><code>PopulateObs()</code> configures the observation model for each fleet–complex combination. Unlike the biological and fishery arrays, observation parameters do not produce age- or year-dimensioned arrays during population. Instead, they set the sampling properties (e.g., error distributions, bias, sample size) used when simulated data are generated in the historical and projection periods.</p>
 
 
-<p>The first step</p>
-<section id="populate-stock" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="populate-stock"><span class="header-section-number">16.1</span> Populate Stock</h2>
-</section>
-<section id="populate-fleet" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="populate-fleet"><span class="header-section-number">16.2</span> Populate Fleet</h2>
-</section>
-<section id="populate-obs" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="populate-obs"><span class="header-section-number">16.3</span> Populate Obs</h2>
-
-
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -733,21 +925,18 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./concept-spatial.html" class="pagination-link" aria-label="Spatial Structure">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span>
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./tech-notation.html" class="pagination-link" aria-label="Notation and Indices">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tech-initialize.html" class="pagination-link" aria-label="Initialize Population Dynamics">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tech-life-history.html" class="pagination-link" aria-label="Life History Schedules">
+        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

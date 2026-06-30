@@ -12,7 +12,7 @@ This chapter introduces the terminology and primary objects and functions used i
 
 ## Primary Objects and Functions
 
-`openMSE` organises its inputs, outputs, and intermediate results into **objects**: structured containers that hold all the data and parameters relevant to a particular component of the model. Each object type has a defined set of slots and is automatically validated whenever it is created or modified, so objects are always internally consistent.
+`openMSE` organises its inputs, outputs, and intermediate results into objects: structured containers that hold all the data and parameters relevant to a particular component of the model. Each object type has a defined set of slots and is automatically validated whenever it is created or modified, so objects are always internally consistent.
 
 In practice, users rarely need to interact with the underlying object structure directly. Accessor and assignment functions (described in @sec-assignmentfunctions) provide a consistent interface for reading and modifying objects, and constructor functions handle the details of creating them correctly. The technical machinery behind this is R's S4 object-oriented programming system; see the S4 chapter in [Advanced R](https://adv-r.hadley.nz/s4.html) for more details, though familiarity with S4 is not required to use `openMSE`.
 
@@ -64,7 +64,7 @@ digraph MSE {
   stock -> om
   fleet -> om
   obs   -> om
-  imp   -> om
+  imp   -> om [style = dashed]
   data  -> om [style = dashed]
 
   # Main spine
@@ -102,12 +102,12 @@ The **Projection** period begins from the terminal historical year and extends f
 
 ### The `OM` Object
 
-An Operating Model (`OM`) represents one hypothesis of the stock and fishery system. It is the central object in `openMSE` and is constructed from four required subcomponents and one optional one:
+An Operating Model (`OM`) represents one hypothesis of the stock and fishery system. It is the central object in `openMSE` and is constructed from three required subcomponents and two optional ones:
 
 1. `Stock`: biological and demographic characteristics of the stock(s).
 2. `Fleet`: exploitation characteristics of the fishing fleet(s).
 3. `Obs`: the observation error model, describing how fishery data are collected and how much error and bias they contain.
-4. `Imp`: the implementation error model, describing how management advice is imperfectly applied.
+4. `Imp` *(optional)*: the implementation error model, describing how management advice is imperfectly applied. When omitted, 100% compliance is assumed.
 5. `Data` *(optional)*: real observed historical data from the fishery. When provided, it is used as the historical fishery data and to condition the `Obs` model so that simulated observations in the projection period match the statistical properties of the historical data.
 
 See @sec-primaryobjects for full details on the `OM` object and its subcomponents.
@@ -201,7 +201,7 @@ SingleStockOM |> Stock() |> SRR()
 SRR(SingleStockOM)               
 SingleStockOM |> SRR()            
 ```
-
+ 
 ### Assignment Functions
 
 Assignment functions update a slot using R's standard replacement-function syntax:

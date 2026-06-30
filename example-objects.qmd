@@ -5,7 +5,7 @@
 #| include: false
 library(MSEtool)
 rnorm(5)
-```
+``` 
 
 `openMSE` includes a number of built-in objects that can be used for testing and demonstration. These objects span all four subcomponent types, `Stock`, `Fleet`, `Obs`, and `Imp`, along with a set of example `OM` objects that combine them in configurations of increasing complexity.
 
@@ -15,12 +15,13 @@ The objects are intended for demonstration and testing purposes only. The biolog
 
 ## `Stock` Objects
 
-Two `Stock` objects are provided, representing species with contrasting life histories. See @sec-examplestocks for full construction details.
+Three `Stock` objects are provided, representing species with contrasting life histories and model configurations. See @sec-examplestocks for full construction details.
 
 | Object | Common name | Key characteristics |
 |---|---|---|
-| `AlbacoreExStock` | Albacore tuna | Long-lived, slow-growing, low $M$, low recruitment variability |
-| `ButterfishExStock` | Butterfish | Short-lived, fast-growing, high $M$, high recruitment variability |
+| `AlbacoreExStock` | Albacore tuna | Long-lived, slow-growing, low $M$, low recruitment variability, 2-area |
+| `ButterfishExStock` | Butterfish | Short-lived, fast-growing, high $M$, high recruitment variability, 2-area |
+| `SeasonalSpatialExStock` | Reef fish | Short-lived, monthly time steps, seasonal recruitment pulse, 3-area ontogenetic movement |
 
 ## `Fleet` Objects
 
@@ -53,14 +54,17 @@ objects will be added in the future.
 
 ## `OM` Objects
 
-Four pre-assembled `OM` objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. All are initialised with `nSim = 8`, `nYear = 20`, and `pYear = 30`. See @sec-exampleOM for full construction details.
+Five pre-assembled `OM` objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. All are initialised with `nSim = 8`, `nYear = 20`, and `pYear = 30`. See @sec-exampleOM for full construction details.
 
-| Object | Stocks | Fleets per stock | Obs program(s) |
-|---|---|---|---|
-| `SingleStockOM` | `AlbacoreExStock` | `AsympExFleet` | `AgeStructuredObs` |
-| `TwoFleetOM` | `AlbacoreExStock` | `AsympExFleet`, `DomeExFleet` | `AgeStructuredObs`, `CatchAndSurveyObs` |
-| `MultiStockOM` | `AlbacoreExStock`, `ButterfishExStock` | `AsympExFleet`, `DomeExFleet` | Albacore: `AgeStructuredObs`, `CommercialFleetObs`; Butterfish: `CatchAndSurveyObs`, `LengthStructuredObs` |
-| `ComplexOM` | `AlbacoreExStock`, `ButterfishExStock` (complex) | `AsympExFleet` | `AgeStructuredObs` |
+| Object | Stocks | Fleets per stock | Obs program(s) | Notes |
+|---|---|---|---|---|
+| `SingleStockOM` | `AlbacoreExStock` | `AsympExFleet` | `AgeStructuredObs` | |
+| `TwoFleetOM` | `AlbacoreExStock` | `AsympExFleet`, `DomeExFleet` | `AgeStructuredObs`, `CatchAndSurveyObs` | |
+| `MultiStockOM` | `AlbacoreExStock`, `ButterfishExStock` | `AsympExFleet`, `DomeExFleet` | Albacore: `AgeStructuredObs`, `CommercialFleetObs`; Butterfish: `CatchAndSurveyObs`, `LengthStructuredObs` | |
+| `ComplexOM` | `AlbacoreExStock`, `ButterfishExStock` (complex) | `AsympExFleet` | `AgeStructuredObs` | Stock complex |
+| `SeasonalSpatialOM` | `SeasonalSpatialExStock` | `DomeExFleet` | `CommercialFleetObs` | Monthly seasons, 3-area spatial model |
 
 `ComplexOM` groups both stocks into a single stock complex (`StockComplex`), meaning fishery data and management advice are handled at the complex level. See @sec-complexes for more details on stock complexes.
+
+`SeasonalSpatialOM` uses `Seasons = 12` to match the monthly age structure of `SeasonalSpatialExStock`. It is an example OM with sub-annual time steps and a multi-area ontogenetic spatial model.
 

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>26&nbsp; Unfished – openMSE Technical Manual</title>
+<title>28&nbsp; Unfished Conditions – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./z-app-acknowledgements.html" rel="next">
-<link href="./tech-initialize.html" rel="prev">
+<link href="./tech-historical.html" rel="next">
+<link href="./tech-fleet-schedules.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -68,7 +68,32 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -77,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-populate-om.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-unfished.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-unfished.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,9 +135,15 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading this Manual</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -122,25 +153,25 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
   </div>
 </li>
       </ul>
@@ -148,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./mps-data-advice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MPs, `Data`, and `Advice`</span></a>
+ <span class="menu-text">Management Procedures</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -157,37 +188,37 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>Data</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>Advice</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,39 +235,33 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Concepts</span></a>
+            <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Framework</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -288,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a href="./tech-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Technical Details</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -297,20 +322,50 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-life-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-fleet-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-historical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-reference-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,14 +397,31 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#sec-tech-unfished-survival" id="toc-sec-tech-unfished-survival" class="nav-link active" data-scroll-target="#sec-tech-unfished-survival"><span class="header-section-number">28.1</span> Survival-at-Age</a></li>
+  <li>
+<a href="#sec-tech-unfished-number" id="toc-sec-tech-unfished-number" class="nav-link" data-scroll-target="#sec-tech-unfished-number"><span class="header-section-number">28.2</span> Unfished Number-at-Age</a>
+  <ul class="collapse">
+<li><a href="#annual-model" id="toc-annual-model" class="nav-link" data-scroll-target="#annual-model"><span class="header-section-number">28.2.1</span> Annual model</a></li>
+  <li><a href="#seasonal-model" id="toc-seasonal-model" class="nav-link" data-scroll-target="#seasonal-model"><span class="header-section-number">28.2.2</span> Seasonal model</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-tech-unfished-biomass" id="toc-sec-tech-unfished-biomass" class="nav-link" data-scroll-target="#sec-tech-unfished-biomass"><span class="header-section-number">28.3</span> Biomass and Spawning Quantities</a>
+  <ul class="collapse">
+<li><a href="#multi-stock-spawning-production" id="toc-multi-stock-spawning-production" class="nav-link" data-scroll-target="#multi-stock-spawning-production"><span class="header-section-number">28.3.1</span> Multi-stock spawning production</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-tech-unfished-spatial" id="toc-sec-tech-unfished-spatial" class="nav-link" data-scroll-target="#sec-tech-unfished-spatial"><span class="header-section-number">28.4</span> Spatial Distribution</a></li>
+  <li><a href="#sec-tech-unfished-eq-vs-dyn" id="toc-sec-tech-unfished-eq-vs-dyn" class="nav-link" data-scroll-target="#sec-tech-unfished-eq-vs-dyn"><span class="header-section-number">28.5</span> Equilibrium vs Dynamic Unfished</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-unfished.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-populate-om.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-unfished.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished</span>
-</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-unfished.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-tech-unfished" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></h1>
 </div>
 
 
@@ -363,10 +435,67 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Unfished conditions provide the baseline reference against which stock status and biological reference points are measured. Two unfished states are computed:</p>
+<ul>
+<li>
+<strong>Equilibrium</strong> (<code>Hist@Unfished@Equilibrium</code>): the steady-state population produced by <code>R0</code>, current natural mortality, and (for seasonal models) the seasonal pattern of recruitment, with no fishing. Computed analytically or by iteration.</li>
+<li>
+<strong>Dynamic</strong> (<code>Hist@Unfished@Dynamic</code>): the population trajectory that would have occurred over the historical period had fishing never taken place (i.e.&nbsp;catchability set to zero). Accounts for time-varying biology.</li>
+</ul>
+<p>Both states are stored in a <code>popdynamics</code> object and are computed by <code>CalcUnfished_Equilibrium()</code> and <code>CalcUnfished_Dynamic()</code> respectively. <code>Number</code> is a list of length <code>nStock</code>, each element an array with dimensions <code>Sim × Age × Year × Area</code>. <code>Biomass</code>, <code>SBiomass</code>, and <code>SProduction</code> are arrays with dimensions <code>Sim × Stock × Year</code> (summed over ages and areas).</p>
+<section id="sec-tech-unfished-survival" class="level2" data-number="28.1"><h2 data-number="28.1" class="anchored" data-anchor-id="sec-tech-unfished-survival">
+<span class="header-section-number">28.1</span> Survival-at-Age</h2>
+<p>Cumulative survival from recruitment to age <span class="math inline">\(a\)</span> is computed by <code>CalcSurvival()</code>. Two variants are produced: survival to age <span class="math inline">\(a\)</span> (used for numbers-at-age) and survival to the spawning event at fraction <span class="math inline">\(\omega\)</span> through the age-<span class="math inline">\(a\)</span> time step (<code>SpawnTimeFrac</code>; used for spawning biomass and production). When <span class="math inline">\(\omega = 0\)</span> (the default) the two are identical.</p>
+<p>For an annual model, end-of-step survival is:</p>
+<p><span class="math display">\[S_{a,t} = \begin{cases}
+\exp\!\bigl(-M_{1,t}\,\omega\bigr) &amp; a = 1 \\[6pt]
+S_{a-1,t}\;\exp\!\bigl(-(M_{a-1,t}(1-\omega) + M_{a,t}\,\omega)\bigr)\;(1 - \xi_{a-1,t}) &amp; a &gt; 1
+\end{cases}\]</span></p>
+<p>where <span class="math inline">\(M_{a,t}\)</span> is natural mortality-at-age and <span class="math inline">\(\xi_{a,t}\)</span> is semelparous post-spawning mortality (zero for iteroparous species; see <a href="tech-life-history.html#sec-tech-maturity" class="quarto-xref"><span>Section 26.5</span></a>).</p>
+<p>For the plus group (when <code>Ages@PlusGroup = TRUE</code>), the plus-group age class accumulates fish that survive beyond the maximum discrete age. The survival is adjusted to account for the ongoing geometric series of survivors:</p>
+<p><span class="math display">\[S_{n_\text{age},t} \;\leftarrow\; \frac{S_{n_\text{age},t}}{1 - \exp(-M_{n_\text{age},t})}\]</span></p>
+<p>When <code>SpawnTimeFrac = 0</code> (spawning at the start of each step, the default) the formula reduces to the familiar discrete Leslie-matrix survival <span class="math inline">\(S_{a,t} = \exp(-\sum_{i=1}^{a-1} M_{i,t})\)</span> for iteroparous species.</p>
+</section><section id="sec-tech-unfished-number" class="level2" data-number="28.2"><h2 data-number="28.2" class="anchored" data-anchor-id="sec-tech-unfished-number">
+<span class="header-section-number">28.2</span> Unfished Number-at-Age</h2>
+<p>Unfished numbers-at-age are computed under equilibrium conditions: the stable age structure that would arise if the scheduled biology persisted indefinitely with no fishing and no recruitment deviations. For the dynamic unfished state, numbers are obtained by running the full historical simulation with catchability set to zero (see <a href="#sec-tech-unfished-eq-vs-dyn" class="quarto-xref"><span>Section 28.5</span></a>).</p>
+<section id="annual-model" class="level3" data-number="28.2.1"><h3 data-number="28.2.1" class="anchored" data-anchor-id="annual-model">
+<span class="header-section-number">28.2.1</span> Annual model</h3>
+<p>For a non-seasonal operating model, equilibrium unfished number-at-age is the product of unfished recruitment <span class="math inline">\(R_0\)</span> and survival:</p>
+<p><span class="math display">\[N^0_{a,t} = R_{0,t} \cdot S_{a,t}\]</span></p>
+<p>For multi-area models, numbers are then apportioned across areas by the unfished spatial distribution <span class="math inline">\(\boldsymbol{\pi}_{a,t}\)</span> (see <a href="#sec-tech-unfished-spatial" class="quarto-xref"><span>Section 28.4</span></a>):</p>
+<p><span class="math display">\[N^0_{k,a,t} = N^0_{a,t} \cdot \pi_{k,a,t}\]</span></p>
+<p>Unfished number-at-age is computed by <code>CalcUnfishedNumber()</code>.</p>
+</section><section id="seasonal-model" class="level3" data-number="28.2.2"><h3 data-number="28.2.2" class="anchored" data-anchor-id="seasonal-model">
+<span class="header-section-number">28.2.2</span> Seasonal model</h3>
+<p>When <code>OM@Seasons &gt; 1</code>, each season has its own recruitment and natural mortality values, so equilibrium numbers-at-age cannot be expressed in closed form. Instead, <code>CalcUnfishedNumber()</code> iterates the seasonal cycle (applying recruitment, mortality, and ageing each season) until the numbers-at-age converge to a stable seasonal pattern. Within each season <span class="math inline">\(s\)</span>, recruitment enters age class 1 and survivors age up one class:</p>
+<p><span class="math display">\[N^{(s)}_1 = R_{0,s}\]</span></p>
+<p><span class="math display">\[N^{(s)}_{a+1} = N^{(s^-)}_a \exp(-M_{a,s})\,(1-\xi_{a,s}), \quad a = 1, \ldots, n_\text{age}-1\]</span></p>
+<p>where <span class="math inline">\(N^{(s^-)}_a\)</span> denotes numbers from the previous season, mortality is split around the spawning event as in <a href="#sec-tech-unfished-survival" class="quarto-xref"><span>Section 28.1</span></a>, and the plus group accumulates survivors beyond the maximum age. The converged <span class="math inline">\(N^{(s)}_a\)</span> are then apportioned across areas as above.</p>
+</section></section><section id="sec-tech-unfished-biomass" class="level2" data-number="28.3"><h2 data-number="28.3" class="anchored" data-anchor-id="sec-tech-unfished-biomass">
+<span class="header-section-number">28.3</span> Biomass and Spawning Quantities</h2>
+<p>All four aggregate quantities are summed over ages and areas from the unfished numbers-at-age. Spawning quantities use <span class="math inline">\(N^{0,\text{SP}}_{a,t}\)</span>, the numbers at the point of spawning within the time step; these are computed using the spawning survival variant (see <a href="#sec-tech-unfished-survival" class="quarto-xref"><span>Section 28.1</span></a>) with <code>SP = TRUE</code> in <code>CalcUnfishedSurvival()</code>.</p>
+<p><span class="math display">\[B^0_t = \sum_a N^0_{a,t}\, \bar{W}_{a,t}\]</span></p>
+<p><span class="math display">\[\mathit{SB}^0_t = \sum_a N^{0,\text{SP}}_{a,t}\, \bar{W}_{a,t}\, \text{mat}_{a,t}\]</span></p>
+<p><span class="math display">\[\mathit{SP}^0_t = \sum_a N^{0,\text{SP}}_{a,t}\, f_{a,t}\]</span></p>
+<p>where <span class="math inline">\(\bar{W}_{a,t}\)</span> is mean weight-at-age, <span class="math inline">\(\text{mat}_{a,t}\)</span> is maturity-at-age, and <span class="math inline">\(f_{a,t}\)</span> is fecundity-at-age (see <a href="tech-life-history.html#sec-tech-fecundity" class="quarto-xref"><span>Section 26.6</span></a>). Spawning production per recruit is:</p>
+<p><span class="math display">\[\phi^0_t = \frac{\mathit{SP}^0_t}{R_{0,t}}\]</span></p>
+<p><span class="math inline">\(\phi^0\)</span> appears in the stock–recruitment parameterisations (see <a href="tech-life-history.html#sec-tech-srr" class="quarto-xref"><span>Section 26.7</span></a>) and in the per-recruit reference point calculations (see <span class="quarto-unresolved-ref">?sec-tech-reference-points</span>).</p>
+<section id="multi-stock-spawning-production" class="level3" data-number="28.3.1"><h3 data-number="28.3.1" class="anchored" data-anchor-id="multi-stock-spawning-production">
+<span class="header-section-number">28.3.1</span> Multi-stock spawning production</h3>
+<p>In multi-stock operating models, a stock’s recruitment may depend on the spawning production of a different stock (e.g.&nbsp;a mixed-sex model where recruitment is driven by female spawning production but the stock being modelled represents males). The <code>SRR@SPFrom</code> slot names the source stock; if set, <code>CalcUnfished_Equilibrium()</code> replaces that stock’s <code>SProduction</code> with the named stock’s value after the standard computation.</p>
+</section></section><section id="sec-tech-unfished-spatial" class="level2" data-number="28.4"><h2 data-number="28.4" class="anchored" data-anchor-id="sec-tech-unfished-spatial">
+<span class="header-section-number">28.4</span> Spatial Distribution</h2>
+<p>When the operating model has more than one area, <code>CalcUnfishedDist()</code> computes the stationary (asymptotic) spatial distribution under unfished conditions from the <code>Spatial@Movement</code> array. The movement array has dimensions <code>Sim × FromArea × ToArea × Age × Year</code>; for each <code>Sim × Age × Year</code> combination the <span class="math inline">\(n_\text{area} \times n_\text{area}\)</span> movement sub-matrix <span class="math inline">\(\mathbf{M}_{a,t}\)</span> is extracted and its stationary distribution <span class="math inline">\(\boldsymbol{\pi}_{a,t}\)</span> is found by <code>CalcAsymDist()</code>:</p>
+<p><span class="math display">\[\boldsymbol{\pi}_{a,t}\,\mathbf{M}_{a,t} = \boldsymbol{\pi}_{a,t}, \quad \sum_k \pi_{k,a,t} = 1\]</span></p>
+<p>The result is stored in <code>Spatial@UnfishedDist</code> with dimensions <code>Sim × Area × Age × Year</code>. For a single-area model all values are 1.</p>
+<p>Spatial dynamics during the historical and projection periods are developed in <a href="tech-historical.html" class="quarto-xref"><span>Chapter 29</span></a> and <a href="tech-projection.html" class="quarto-xref"><span>Chapter 32</span></a>.</p>
+</section><section id="sec-tech-unfished-eq-vs-dyn" class="level2" data-number="28.5"><h2 data-number="28.5" class="anchored" data-anchor-id="sec-tech-unfished-eq-vs-dyn">
+<span class="header-section-number">28.5</span> Equilibrium vs Dynamic Unfished</h2>
+<p>The equilibrium unfished state uses the scheduled values of <span class="math inline">\(R_0\)</span>, <span class="math inline">\(M\)</span>, and growth for each year but does not propagate cohorts forward through time; it computes the steady-state age structure that would arise if those year-specific schedules persisted indefinitely. It is the appropriate reference for biological reference points such as <span class="math inline">\(B_0\)</span> and <span class="math inline">\(\phi^0\)</span>.</p>
+<p>The dynamic unfished state runs the full historical simulation with catchability set to zero, so cohorts propagate forward time step by time step (season by season for seasonal models) with actual recruitment deviations and time-varying biology. It tracks what the stock would have been in each historical time step without fishing.</p>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -766,13 +895,13 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./tech-initialize.html" class="pagination-link" aria-label="Initialize Population Dynamics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span>
+      <a href="./tech-fleet-schedules.html" class="pagination-link" aria-label="Fleet Schedules">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./z-app-acknowledgements.html" class="pagination-link" aria-label="Acknowledgments">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tech-historical.html" class="pagination-link" aria-label="Historical Population Dynamics">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -780,4 +909,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-unfished.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-unfished.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

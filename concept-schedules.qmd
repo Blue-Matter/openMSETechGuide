@@ -7,7 +7,7 @@ library(MSEtool)
 rnorm(5)
 ```
 
-Several subcomponent objects in `openMSE` share a common structure for specifying parameter schedules across simulations and years. This structure applies to the biological subcomponents of `Stock` — `Length`, `Weight`, `NaturalMortality`, `Maturity`, and `Fecundity` — and to the fleet subcomponents `Selectivity` and `Retention`.
+Several subcomponent objects in `openMSE` share a common structure for specifying parameter schedules across simulations and years. This structure applies to the biological subcomponents of `Stock`:`Length`, `Weight`, `NaturalMortality`, `Maturity`, and `Fecundity`, and to the `Fleet` subcomponents `Selectivity` and `Retention`.
 
 Each of these objects has the same three core slots:
 
@@ -15,9 +15,7 @@ Each of these objects has the same three core slots:
 - `Model`: a model function that maps `Pars` to a schedule
 - `MeanAt*`: a `Sim × Age × Year` (or `Sim × Class × Year`) array of the resulting schedule
 
-Understanding how these slots interact is central to using `openMSE` effectively. This chapter describes the two ways to populate a schedule, the accepted input formats for `Pars`, the dimension conventions for `MeanAt*` arrays, and how to supply custom model functions.
-
----
+This chapter describes the two ways to populate a schedule, the accepted input formats for `Pars`, the dimension conventions for `MeanAt*` arrays, and how to supply custom model functions.
 
 ## Two Ways to Specify a Schedule
 
@@ -25,7 +23,7 @@ There are two approaches for specifying a biological or fleet schedule. They are
 
 ### Option 1: Model-based (recommended)
 
-Supply `Pars` as a named list whose element names match the arguments of a built-in model function. The model is resolved automatically by `FindModel()`, which scans the candidate models for the object class and finds the one whose formal argument names match the names in `Pars`. You may also set `Model` explicitly to a character string or a custom R function (see @sec-schedules-custom).
+Supply `Pars` as a named list whose element names match the arguments of a built-in model function. The model is resolved internally by scanning the candidate models for the object class (e.g., `LengthModels`) and finds the one whose formal argument names match the names in `Pars`. You may also set `Model` explicitly to a character string or a custom R function (see @sec-schedules-custom).
 
 ```r
 # Length-at-age specified via von Bertalanffy parameters
@@ -35,7 +33,7 @@ Length(stock) <- Length(
 )
 ```
 
-When model-based, `Pars` are expanded to `Sim × Year` arrays by `Populate()`, the model function is called to produce `MeanAtAge` (or `MeanAtLength`/`MeanAtWeight` for size-based models), and any existing values in `MeanAt*` slots are overwritten.
+When model-based, `Pars` are expanded to `Sim × Year` arrays by `Populate()`, the model function is called to produce `MeanAtAge` (or `MeanAtLength`/`MeanAtWeight` for size-based models), and any existing values in `MeanAt*` slots are overwritten. The mechanics of `Populate()` are covered in @sec-populate.
 
 ### Option 2: Direct array
 
@@ -52,7 +50,6 @@ m_arr <- array(
 NaturalMortality(stock) <- NaturalMortality(MeanAtAge = m_arr)
 ```
 
----
 
 ## Input Formats for `Pars`
 
@@ -68,7 +65,7 @@ Pars = list(M = 0.2)
 
 ### Length-2 bounds vector
 
-Values are sampled independently for each simulation from `Uniform(lower, upper)`, producing inter-simulation uncertainty in the parameter. When `nSim = 1`, the midpoint of the bounds is used:
+Values are sampled independently for each simulation from `Uniform(lower, upper)`, producing inter-simulation uncertainty in the parameter. When `nSim = 1`, the mean of the bounds is used:
 
 ```r
 Pars = list(M = c(0.1, 0.3))   # draws nSim values from U(0.1, 0.3)
@@ -111,8 +108,6 @@ Pars = list(M = 0.2, MSD = 0.1)
 
 This can be combined with any of the above formats for the base parameter. For example, a length-2 bounds vector for `M` with `MSD` produces a schedule where the mean level of $M$ differs across simulations *and* varies randomly within each simulation over time.
 
----
-
 ## `MeanAt*` Array Formats and Dimension Conventions
 
 All `MeanAt*` arrays use named dimensions. The expected dimension names depend on the type of schedule:
@@ -127,31 +122,25 @@ As with `Pars`, only the years at which the schedule *changes* need to be suppli
 
 A plain numeric vector of length `nAge` is also accepted for `MeanAtAge` and is promoted to a `1 × nAge × 1` array automatically.
 
----
-
 ## How `MeanAtLength` and `MeanAtWeight` Relate to `MeanAtAge`
 
 `openMSE` uses age-based accounting internally, so `MeanAtAge` is ultimately what the model requires. `MeanAtLength` and `MeanAtWeight` serve two roles:
 
-1. **Generating size-structured data**: observed length and weight compositions, length-based indices, and similar outputs are produced from the size-indexed schedules.
-2. **Conversion to `MeanAtAge`**: when a schedule is naturally expressed on a size axis (e.g., a length-based maturity ogive or length-based selectivity curve), `MeanAtLength` or `MeanAtWeight` is converted to `MeanAtAge` via the age-length key (`ALK`) or age-weight key (`AWK`).
+1. **Generating size-structured data**: observed length and weight compositions, length-based indices, and similar outputs are produced from the size-based schedules.
+2. **Conversion to `MeanAtAge`**: when a schedule is expressed in terms of size (e.g., a length-based maturity ogive or length-based selectivity curve), `MeanAtLength` or `MeanAtWeight` is converted to `MeanAtAge` via the age-length key (`ALK`) or age-weight key (`AWK`).
 
 The conversion rules are:
 
 - If `MeanAtLength` is populated and `MeanAtAge` is not, `Populate()` converts `MeanAtLength` → `MeanAtAge` via the `ALK`.
 - If `MeanAtWeight` is populated and `MeanAtAge` is not, `Populate()` converts `MeanAtWeight` → `MeanAtAge` via the `AWK`.
 - If `MeanAtAge` is already populated it is **not** overwritten by this conversion.
-- If both `MeanAtLength` and `MeanAtAge` are populated, `MeanAtAge` takes precedence and `MeanAtLength` is used only for size-indexed outputs.
+- If both `MeanAtLength` and `MeanAtAge` are populated, `MeanAtAge` takes precedence and `MeanAtLength` is used only for size-based outputs.
 
 For model-based specifications, whether the model populates `MeanAtAge` directly or via `MeanAtLength` depends on the model function's signature: models that accept a `Length` argument produce `MeanAtLength` first and then convert to `MeanAtAge` via the `ALK`; age-based models populate `MeanAtAge` directly.
 
-The `ALK` is stored in the `Length` subcomponent of the `Stock` object and must therefore be populated before any size-based schedules are converted to age-based ones. `Populate()` handles this ordering automatically when called on a `Stock` or `OM` object.
-
----
-
 ## Model Resolution
 
-When `Pars` is non-empty and `Model` is `NULL`, `FindModel()` is called automatically. It scans the candidate model functions for the object class — for example, all functions registered as `"LengthModel"` for a `Length` object — and finds the one whose formal argument names match the names in `Pars` exactly (excluding auxiliary arguments such as `Ages`, `Length`, and `Weight`, and ignoring any `SD`-suffixed entries used for random walks).
+When `Pars` is non-empty and `Model` is `NULL`, the model internally scans the candidate model functions for the object class — for example, all functions registered as `"LengthModel"` for a `Length` object — and finds the one whose formal argument names match the names in `Pars` exactly (excluding auxiliary arguments such as `Ages`, `Length`, and `Weight`, and ignoring any `SD`-suffixed entries used for random walks).
 
 If no unique match is found, an informative error is thrown directing the user to the relevant `*Models()` function (e.g., `?LengthModels`, `?MaturityModels`).
 
@@ -161,8 +150,6 @@ You may bypass automatic inference by setting `Model` explicitly:
 - **R function**: a custom function whose formal arguments match the names in `Pars`; see @sec-schedules-custom.
 
 If `Model` is already a function object (from a previous call), `FindModel()` returns it unchanged.
-
----
 
 ## Custom Models {#sec-schedules-custom}
 
@@ -176,12 +163,7 @@ For example, the following custom natural mortality function produces an age-dec
 
 ```r
 declining_M <- function(M, Ages) {
-  m_vec <- seq(M, M / 2, length.out = length(Ages))
-  array(
-    m_vec,
-    dim      = c(1, length(Ages), 1),
-    dimnames = list(Sim = 1, Age = Ages, Year = 1)
-  )
+ seq(M, M / 2, length.out = length(Ages))
 }
 
 NaturalMortality(stock) <- NaturalMortality(
@@ -194,14 +176,12 @@ Here `M` is sampled from `U(0.3, 0.5)` across simulations, and `declining_M` map
 
 Custom models follow the same `Pars` input format rules described above, so `M` can be a scalar, a length-2 bounds vector, a length-`nSim` vector, or a `Sim × Year` array. The `Pars` expansion to `Sim × Year` arrays is handled by `Populate()` before the custom function is called, so the function receives a single numeric value for each parameter, not an array.
 
----
-
 ## Summary
 
 | Want to specify... | Use |
 |---|---|
 | A single fixed value for all sims and years | Scalar in `Pars` |
-| Uncertainty across simulations | Length-2 bounds vector in `Pars` |
+| Uniform distribution across simulations | Length-2 bounds vector in `Pars` |
 | Pre-determined per-simulation values | Length-`nSim` vector in `Pars` |
 | A step-change at a known year | `Sim × Year` array in `Pars` |
 | Inter-annual random variation within sims | `<Par>SD` companion entry in `Pars` |

@@ -44,9 +44,9 @@ Landings(myMSE) |> tail()
 SB_SB0(myMSE) |>
   dplyr::filter(Period == 'Projection') |>
   dplyr::group_by(MP) |>
-  dplyr::summarise(Median = median(Value),
-                   Lower = quantile(Value, 0.1),
-                   Upper = quantile(Value, 0.9),
+  dplyr::summarise(Median  = median(Value),
+                   Lower   = quantile(Value, 0.1),
+                   Upper   = quantile(Value, 0.9),
                    .groups = 'drop'
                   )
 
@@ -70,6 +70,7 @@ SB_SB0(myMSE) |>
   ) +
   ggplot2::labs(y = "Spawning Biomass", x = "Year",
                 colour = "MP", fill = "MP") +
+  ggplot2::expand_limits(y=c(0,1)) +                
   ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = c(0, 0.02))) +
   ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0, 0.05)),
                                limits = c(0, NA)) +

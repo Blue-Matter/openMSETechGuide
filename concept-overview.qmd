@@ -1,0 +1,17 @@
+# Operating Model Concepts {#sec-om-concepts}
+
+This part describes how the operating model works — the key concepts, objects, and workflows that sit between the worked examples in [Getting Started](#sec-gettingstarted) and the full mathematical specification in [Technical Details](#sec-techdetails).
+
+The chapters here are intended as conceptual and practical reference: they explain *what* is happening and *how* to configure it, without deriving every equation from first principles. Cross-references to the relevant Technical Details chapters are provided throughout for readers who want the full mathematical treatment.
+
+**Biological and Fleet Schedules** (@sec-schedules) describes how age-structured life-history and fleet parameters vary over time and across simulations, including the distinction between fixed parameters and stochastic draws.
+
+**Populating an Operating Model** (@sec-populate) covers how parameter schedules are sampled from distributions and assembled into the arrays that drive the simulation, including how conditioning data interacts with those draws.
+
+**Running the Simulation** (@sec-simulate-project) describes how `Simulate()` reconstructs historical dynamics and how `Project()` runs the forward MSE loop under candidate management procedures.
+
+**Stock Complexes** (@sec-complexes) explains the complex layer — the grouping of stocks and fleets that defines the unit of management — and when and why a complex differs from a single stock.
+
+**Spatial Structure** (@sec-spatial) describes how fish move among areas and how effort and selectivity vary spatially.
+
+**Reference Points** (@sec-refpoints) explains the reference points computed from the operating model, how to access them, and which are currently implemented.

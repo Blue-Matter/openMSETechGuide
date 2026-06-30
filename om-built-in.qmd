@@ -19,10 +19,11 @@ A `Stock` object defines the biological and demographic characteristics of a fis
 
 See `?Stock` for full documentation of the `Stock` object and its subcomponents.
 
-Two example `Stock` objects are provided, representing species with contrasting life histories:
+Three example `Stock` objects are provided, representing species with contrasting life histories and model configurations:
 
 - **`AlbacoreExStock`**: a relatively long-lived, slow-growing large pelagic species;
-- **`ButterfishExStock`**: a short-lived, fast-growing forage species.
+- **`ButterfishExStock`**: a short-lived, fast-growing forage species;
+- **`SeasonalSpatialExStock`**: a short-lived reef fish with monthly time steps, seasonal recruitment, and age-based movement across three areas.
 
 ### `AlbacoreExStock`
 
@@ -212,6 +213,45 @@ The lower `ProbStaying` values (0.4–0.6) relative to Albacore reflect greater 
 The same broad prior range as `AlbacoreExStock` is used, for the same reasons described above.
 
 ```{r butterfish-create-depletion}
+```
+
+### `SeasonalSpatialExStock`
+
+```{r}
+#| include: false
+knitr::read_chunk("../MSEtool/data-raw/ex-stock-seasonalspatial.R")
+```
+
+`SeasonalSpatialExStock` is a made-up example designed to demonstrate two features not present in the other example stocks: 
+
+1. seasonal recruitment patterns;
+2. age-based movement across spatial areas. 
+
+Unlike the previous two examples, this stock is built in a single `Stock()` constructor call, with all subcomponents passed directly as arguments. This is an alternative to the step-by-step accessor assignment style used above; both approaches produce identical objects. 
+
+The only exception is the spatial distribution arrays, which in this example are constructed separately before being passed to `Spatial()`.
+
+All parameters are fixed single values rather than uniform prior ranges in this example, so the object produces identical dynamics across all simulations (with the exception of the stochastic recruitment deviations).
+
+#### Spatial Distribution Arrays
+
+Three areas represent a linear inshore-to-offshore gradient. The unfished biomass distribution is described by Gaussian curves centred at the start, middle, and end of the lifespan, so that juveniles concentrate in Area 1 (e.g., an inshore lagoon, 15% of habitat), subadults in Area 2 (e.g., mid-shelf reef, 35%), and adults in Area 3 (e.g., outer slope, 50%). 
+
+`FracOther` connects adjacent area pairs freely but provides negligible connectivity between Areas 1 and 3.
+
+```{r seasonalspatial-create-spatial-arrays}
+```
+
+#### Build the Stock
+
+With the spatial arrays already constructed, the complete `Stock` object is generated in a single call. The key features to note are:
+
+- `Ages(MaxAge = 36, Units = 'month')`: age classes run from 0 to 3 years in monthly steps. This stock must be paired with an `OM` with `Seasons = 12`.
+- `NaturalMortality(Pars = list(M = 0.09))`: $M$ is 0.09 *per month* , consistent with ≈1–5% survival to `MaxAge`. Because `Ages@Units = 'month'`, $M$ must be expressed on the same per-time-step basis (see @sec-populate).
+- `SetSeasonalR0()`: distributes annual unfished recruitment across months as a Gaussian pulse peaking in month 6, creating a sharp seasonal spawning pattern.
+- `Spatial()`: the pre-computed `UnfishedDist` and `FracOther` arrays are passed directly, along with area-specific `ProbStaying` and `RelativeSize` values.
+
+```{r seasonalspatial-create-stock}
 ```
 
 ## Example `Fleet` Objects {#sec-examplefleets}
@@ -471,7 +511,7 @@ This section will be updated once example `Imp` objects are developed.
 
 ## Example `OM` Objects {#sec-exampleOM}
 
-Four example `OM` objects are provided, covering the most common configurations of stocks, fleets, and observation programmes. All use the example `Stock` and `Fleet` objects described in @sec-examplestocks and @sec-examplefleets, and the example `Obs` objects described in @sec-exampleobs.
+Five example `OM` objects are provided, covering the most common configurations of stocks, fleets, and observation programmes. All use the example `Stock` and `Fleet` objects described in @sec-examplestocks and @sec-examplefleets, and the example `Obs` objects described in @sec-exampleobs.
 
 Each object is initialised with 8 stochastic simulations (`nSim = 8)`, a 20-year historical period (`nYear = 20)`, and a 30-year projection period (`pYear = 30`).
 
@@ -557,3 +597,16 @@ When stocks are grouped into complexes, `Obs` must be indexed by complex rather 
 As with `MultiStockOM` above, in practice the fleet properties would typically vary over stocks.
 
 See @sec-complexes for more details on stock complexes.
+
+### `SeasonalSpatialOM`
+
+```{r}
+#| include: false
+knitr::read_chunk("../MSEtool/data-raw/ex-om-seasonalspatial.R")
+```
+
+`SeasonalSpatialOM` pairs `SeasonalSpatialExStock` with `DomeExFleet` and `CommercialFleetObs`. It is the only example OM with sub-annual time steps (`Seasons = 12`) and a multi-area spatial model. In all other respects it follows the same single-stock, single-fleet structure as `SingleStockOM`.
+
+```{r seasonalspatial-create-om}
+```
+

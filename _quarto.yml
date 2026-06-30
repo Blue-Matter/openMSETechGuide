@@ -1,6 +1,7 @@
 project:
   type: book
   output-dir: docs
+  post-render: fix-chapter-refs.R
 
 book:
   title: "openMSE Technical Manual"
@@ -16,7 +17,6 @@ book:
 
   chapters:
     - index.qmd 
-    - overview-manual.qmd
     - part: getting-started.qmd
       chapters:
         - overview-openMSE.qmd  
@@ -33,30 +33,30 @@ book:
         - example-mps.qmd    
     - part: developing-oms.qmd
       chapters:
-        - om-built-in.qmd  
+        - om-built-in.qmd 
         - om-import-ss3.qmd
         - om-import-bam.qmd 
         - om-condition-rcm.qmd    
-        - om-octopus.qmd
-    - part: Concepts
+    - part: concept-overview.qmd
       chapters:
-        - concept-schedules.qmd        
+        - concept-schedules.qmd
         - concept-populate.qmd
+        - concept-simulate-project.qmd
         - concept-complexes.qmd
-        - concept-seasonal.qmd
         - concept-spatial.qmd
         - concept-ref-points.qmd
-        - concept-data-obs.qmd
 
-    - part: Technical Details
+    - part: tech-overview.qmd
       chapters:
+        - tech-notation.qmd
         - tech-populate-om.qmd
-        - tech-initialize.qmd
-        - tech-unfished.qmd
-
-        # - hist_overview.qmd
-        # - mp_overview.qmd
-        # - mse_overview.qmd
+        - tech-life-history.qmd
+        - tech-fleet-schedules.qmd
+        - tech-unfished.qmd    
+        - tech-historical.qmd
+        - tech-observations.qmd
+        - tech-reference-points.qmd
+        - tech-projection.qmd
     # - part: walkthrough.qmd
     #   chapters:
     #     - walkthough_hist.qmd
@@ -127,6 +127,7 @@ format:
   html:
     theme: cosmo
     code-link: true
+
 
 
 

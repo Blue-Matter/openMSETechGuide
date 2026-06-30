@@ -1,4 +1,4 @@
-# An Example MSE
+# An Example MSE {#sec-example-mse}
 
 ```{r}
 #| warning: false
@@ -181,7 +181,7 @@ Projection results can also be visualised directly. @fig-mse-biomass shows $SB/S
 #|   the historical period."
 ```
 
-`openMSE` does not currently include built-in example PMs, but these are planned for a future release.
+`openMSE` does not currently include built-in example PMs, but these are planned for a future release. 
 
 For interactive visualization and exploration of MSE results, we recommend [Slick](https://slick.bluematterscience.com/), a web-based application developed for summarizing and communicating MSE output to scientists, managers, and other stakeholders. Slick aprovides an interactive interface for plotting performance metrics, comparing MPs across objectives, and producing presentation-ready figures. It is particularly useful for stakeholder engagement and for the performance trade-off analysis that is central to the MP selection process.
 

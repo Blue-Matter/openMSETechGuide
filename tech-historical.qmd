@@ -1,0 +1,163 @@
+# Historical Population Dynamics {#sec-tech-historical}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+The historical period spans `OM@nYear` years divided into `OM@nYear × OM@Seasons` time steps, each of duration $1/\text{Seasons}$ years. For non-seasonal models (`OM@Seasons = 1`) each time step is one year. Mortality rates (M and F) are expressed per time step. 
+
+The population is first initialised at the start of the historical period, then advanced forward time step by time step. Within each time step, operations are performed in the following order: spatial distribution of effort, fishing mortality, spawning biomass and production, recruitment, survival and ageing, movement, and catch. The simulation index is omitted from equations below; all calculations are performed independently per simulation.
+
+## Initial Conditions {#sec-tech-historical-init}
+
+The population at the first historical time step is constructed from the equilibrium unfished numbers-at-age (see @sec-tech-unfished) scaled by recruitment deviations:
+
+$$N_{a,k,1} = N^0_{a,k,1} \cdot \delta_a$$
+
+where $N^0_{a,k,1}$ is the equilibrium unfished number in area $k$ at age $a$ (see @sec-tech-unfished-spatial), and $\delta_a$ is the recruitment deviation for the cohort that would have been age $a$ at time step 1. For all age classes except the first, $\delta_a$ is drawn from `SRR@RecDevInit`. The deviation for the first age class is taken from the first time step of `SRR@RecDevHist`, which contains log-normal recruitment deviations for all historical time steps.
+
+If the operating model specifies an initial depletion (`Depletion@Initial`), the initial numbers are rescaled so that total biomass or spawning biomass matches the target fraction of $B_0$ or $\mathit{SB}_0$.
+
+## Spatial Distribution of Effort {#sec-tech-historical-effort}
+
+Each fleet distributes its total effort across areas using a three-stage model based on exploitable biomass, within-timestep depletion, and spatial targeting behaviour. Total effort for fleet $f$ in time step $t$ is given by `Effort@Effort[s,t]` for simulation $s$.
+
+### Stage 1: Exploitable Biomass and First-Pass Distribution
+
+For each fleet $f$ and area $k$, exploitable biomass is summed across stocks and ages:
+
+$$\hat{B}_{f,k,t} = \sum_\text{st} q_{\text{st},f,t} \sum_a N_{a,k,t}\, \bar{W}_{a,f,t}\, v_{a,f,k,t}\, r_{a,f,k,t}$$
+
+where $q_{\text{st},f,t}$ is catchability for stock $\text{st}$ by fleet $f$, $v_{a,f,k,t}$ is selectivity, and $r_{a,f,k,t}$ is retention. By default (`UseDensity = TRUE`), $\hat{B}_{f,k,t}$ is divided by the relative area size $s_k$ so that effort is attracted by fish density rather than total abundance in each area, appropriate for non-aggregating species where catchability per unit effort depends on local density, not area-wide biomass. Set `UseDensity = FALSE` for schooling or aggregating species where total biomass in an area drives fleet behaviour regardless of area size. The resulting exploitable biomass (or density) signal gives the initial effort allocation based on the ideal free distribution (IFD):
+
+$$D^{(0)}_{f,k,t} = \frac{\hat{B}_{f,k,t}}{\sum_{k'} \hat{B}_{f,k',t}}$$
+
+Stock-fleet-area combinations where `Closure = 0` contribute zero biomass to $\hat{B}_{f,k,t}$ for that stock, but other open stocks in the same area still contribute and the fleet may still allocate effort there.
+
+### Stage 2: Depletion-Adjusted Utility
+
+Within a time step, fishing progressively depletes local biomass. The depletion-adjusted utility uses an exponential depletion discount:
+
+$$g(\phi) = \frac{1 - \exp(-\phi)}{\phi}$$
+
+where $\phi_{f,k,t}$ is the local fishing pressure on stock $\text{st}$ by fleet $f$ in area $k$. For density-mode fleets:
+
+$$\phi_{\text{st},f,k,t} = \frac{1}{s_k}\left(q_{\text{st},f,t}\, E_{f,t}\, D^{(0)}_{f,k,t} + \sum_{f' \neq f} q_{\text{st},f',t}\, E_{f',t}\, D_{f',k,t-1}\right)$$
+
+The second term accounts for inter-fleet competition: pressure from other fleets is included using their effort distribution from the previous time step as a one-step lag. For biomass-mode fleets the $s_k$ denominator is omitted. The depletion-adjusted utility for fleet $f$ in area $k$ is:
+
+$$U_{f,k,t} = \sum_\text{st} \hat{B}_{\text{st},f,k,t}\, g(\phi_{\text{st},f,k,t})$$
+
+normalised to $\tilde{U}_{f,k,t} = U_{f,k,t} / \sum_{k'} U_{f,k',t}$.
+
+The function $g(\phi)$ is monotone decreasing from $g(0) = 1$ (no depletion) toward zero as $\phi \to \infty$ (complete depletion), representing the fraction of the initial biomass accessible on average over the time step under continuous fishing.
+
+### Stage 3: Softmax Spatial Targeting
+
+Empirical effort distributions depart from the IFD due to imperfect information or habit. A softmax function controls the degree of spatial concentration:
+
+$$D_{f,k,t} = \frac{\exp(\lambda_{f,t}\, \tilde{U}_{f,k,t})}{\sum_{k'} \exp(\lambda_{f,t}\, \tilde{U}_{f,k',t})}$$
+
+where $\lambda_{f,t} \geq 0$ is the spatial targeting parameter (`Effort@Targeting`). At $\lambda = 0$ effort is distributed uniformly across open areas; as $\lambda \to \infty$ all effort concentrates in the single highest-utility area. By construction, $\sum_k D_{f,k,t} = 1$ for each fleet and time step. The final distribution $D_{f,k,t}$ is stored in `Hist@Distribution`.
+
+Users may bypass the three-stage model entirely by supplying effort distributions directly in `Effort@Distribution`. Where values are provided for a given fleet and time step, they are used as-is in place of the computed $D_{f,k,t}$.
+
+::: {.callout-note}
+The current model uses exploitable biomass as the utility signal, implicitly assuming that the value of catch is proportional to vulnerable biomass (i.e., uniform price across stocks and areas) and that costs are uniform across areas. A future version will incorporate stock-specific prices and area-specific costs so that the utility signal reflects expected profit per unit effort.
+:::
+
+## Fishing Mortality {#sec-tech-historical-f}
+
+Area-specific fishing mortality-at-age for each fleet is:
+
+$$F^{\text{int}}_{a,f,k,t} = \min\!\left(\frac{q_{f,t}\, E_{f,t}\, D_{f,k,t}}{s_k},\; F_{\max}\right) \cdot v_{a,f,k,t}$$
+
+for density-mode fleets (`UseDensity = TRUE`); for biomass-mode fleets the $s_k$ denominator is omitted. $F_{\max}$ (`OM@maxF`) is a cap preventing unrealistically large fishing mortalities. Three mortality components are derived per fleet:
+
+- $F^{\text{ret}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot r_{a,f,k,t}$: retained (landed) mortality
+- $F^{\text{dis}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot (1 - r_{a,f,k,t}) \cdot m_{a,f,k,t}$: discarded and dead
+- $F^{\text{dead}}_{a,f,k,t} = F^{\text{ret}}_{a,f,k,t} + F^{\text{dis}}_{a,f,k,t}$: total fishing mortality
+
+where $m_{a,f,k,t}$ is discard mortality-at-age (see @sec-tech-fleet-schedules). Total mortality combining natural and fishing mortality is:
+
+$$Z_{a,k,t} = M_{a,t} + \sum_f F^{\text{dead}}_{a,f,k,t}$$
+
+`Hist` stores `FInteract`, `FDead`, and `FRetain` (apical values; `Sim × Stock × Year × Fleet`) and `FInteractArea`, `FDeadArea`, and `FRetainArea` (age- and area-specific; list by stock, `Sim × Age × Year × Fleet × Area`). The apical value for each fleet is computed by first taking the numbers-weighted average of F across areas at each age, then taking the maximum over ages:
+
+$$F^{\text{apical}}_{f,t} = \max_a \left( \sum_k \frac{N_{a,k,t}}{\sum_{k'} N_{a,k',t}} F^{\text{dead}}_{a,f,k,t} \right)$$
+
+Dead discard mortality is not stored directly as it can be derived as `FDead - FRetain`.
+
+## Spawning Biomass and Production {#sec-tech-historical-spawn}
+
+Numbers at the time of spawning account for mortality up to fraction $\omega$ through the time step:
+
+$$N^{\text{SP}}_{a,k,t} = N_{a,k,t}\,\exp(-Z_{a,k,t}\,\omega)$$
+
+Spawning biomass and production are summed over ages and areas:
+
+$$\mathit{SB}_t = \sum_a \sum_k N^{\text{SP}}_{a,k,t}\,\bar{W}_{a,t}\,\text{mat}_{a,t}, \qquad \mathit{SP}_t = \sum_a \sum_k N^{\text{SP}}_{a,k,t}\,f_{a,t}$$
+
+where $\text{mat}_{a,t}$ is maturity-at-age and $f_{a,t}$ is fecundity-at-age. For multi-stock models with `SRR@SPFrom` set, a stock's spawning production is replaced by that of the named source stock before recruitment is calculated.
+
+## Recruitment {#sec-tech-historical-recruitment}
+
+Expected recruitment is determined by the stock-recruitment relationship (see @sec-tech-srr) evaluated at $\mathit{SP}_t$, then multiplied by a log-normal recruitment deviation $\delta_t$:
+
+$$R_t = \text{SRR}(\mathit{SP}_t)\,\cdot\,\delta_t$$
+
+Recruits enter the model at the first age class (`Ages@Classes[1]`). If `Ages@Classes[1] == 0`, recruitment occurs in the same time step as spawning; otherwise recruits appear after a lag of `Ages@Classes[1] × OM@Seasons` time steps. Recruits are distributed across areas according to the unfished spatial distribution for the first age class (`Spatial@UnfishedDist`).
+
+## Survival, Ageing, and Movement {#sec-tech-historical-number}
+
+Numbers at the next time step are computed by applying total mortality and semelparous post-spawn mortality, then ageing:
+
+$$N_{a+1,k,t+1} = N_{a,k,t}\,\exp(-Z_{a,k,t})\,(1 - \xi_{a,t}), \quad a < n_\text{age}$$
+
+where $\xi_{a,t}$ is semelparous mortality (zero for iteroparous species). The plus group accumulates survivors:
+
+$$N_{n_\text{age},k,t+1} \mathrel{+}= N_{n_\text{age},k,t}\,\exp(-Z_{n_\text{age},k,t})\,(1 - \xi_{n_\text{age},t})$$
+
+After survival and ageing, fish move among areas according to the movement matrix $\mathbf{M}_{a,t}$, where $M_{k,k',a,t}$ is the probability of moving from area $k$ to area $k'$:
+
+$$N_{a,k',t+1} = \sum_k N_{a,k,t+1}\, M_{k,k',a,t}$$
+
+### Movement Matrix Derivation {#sec-tech-movement-derivation}
+
+The movement matrix $\mathbf{M}_{a,t}$ is derived from user-supplied targets for the unfished spatial distribution ($d_k$, `UnfishedDist`) and the probability of remaining in each area ($p_k$, `ProbStaying`). The matrix is fitted so that its stationary distribution reproduces $d_k$ and its diagonal elements equal $p_k$.
+
+**Two-area models.** The system has a closed-form solution. For a two-area model with staying probabilities $p_1$ and $p_2$ on the diagonal, the off-diagonal elements are $1 - p_1$ and $1 - p_2$. The staying probability for area 2 is solved analytically from the target $d_1$ and the supplied $p_1$:
+
+$$p_2 = 1 - \frac{d_1 (1 - p_1)}{1 - d_1}$$
+
+**Multi-area models.** For three or more areas, a closed-form solution does not generally exist. The matrix is instead fitted by minimising a penalty function that penalises deviations from both targets. Off-diagonal movement probabilities are parameterised using the user-supplied relative movement weights (`FracOther`), normalised within each row, and scaled by $1 - p_k$. The penalty function is:
+
+$$\mathcal{L} = \sum_k \left[\frac{\log(\hat{d}_k / d_k)^2}{2\,\sigma_d^2}\right] + \sum_k \left[\frac{(\text{logit}(\hat{p}_k) - \text{logit}(p_k))^2}{2\,\sigma_p^2}\right]$$
+
+where $\hat{d}_k$ is the asymptotic distribution implied by the optimised matrix, $\hat{p}_k$ is the optimised diagonal element, and $\sigma_d$ (`CVDist`, default 0.1) and $\sigma_p$ (`CVStay`, default 1) control the relative weight on each target. Smaller $\sigma_d$ enforces a tighter fit to the distribution target; smaller $\sigma_p$ enforces a tighter fit to the staying probability target. When `FracOther` strongly constrains the direction of movement it may be impossible to satisfy both targets simultaneously, and these parameters determine which takes priority.
+
+The optimisation is performed independently for each simulation, age class, and year (or seasonal timestep).
+
+## Catch {#sec-tech-historical-catch}
+
+Catch-at-age (in numbers) is calculated using the Baranov catch equation, apportioning total deaths among fleets:
+
+$$C^{\text{ret}}_{a,f,k,t} = N_{a,k,t}\,(1 - \exp(-Z_{a,k,t}))\cdot\frac{F^{\text{ret}}_{a,f,k,t}}{Z_{a,k,t}}$$
+
+$$C^{\text{dis}}_{a,f,k,t} = N_{a,k,t}\,(1 - \exp(-Z_{a,k,t}))\cdot\frac{F^{\text{dis}}_{a,f,k,t}}{Z_{a,k,t}}$$
+
+Biomass landings and discards are obtained by multiplying by fleet-specific weight-at-age and summing over ages and areas:
+
+$$\text{Landings}_{f,t} = \sum_a \sum_k C^{\text{ret}}_{a,f,k,t}\,\bar{W}_{a,f,t}$$
+
+$$\text{Discards}_{f,t} = \sum_a \sum_k C^{\text{dis}}_{a,f,k,t}\,\bar{W}_{a,f,t}$$
+
+Landings-at-length and discards-at-length (in numbers) are also computed for each fleet. Let $K_{a,l,f,t}$ be the conditional age-length key: the population age-length key reweighted within each age class by size-specific selectivity for fleet $f$, so that $K_{a,l,f,t}$ gives the probability of a fish of age $a$ being of length $l$ given that it was captured by fleet $f$. Landings-at-length and discards-at-length are then:
+
+$$L_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{ret}}_{a,f,k,t}$$
+
+$$D_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{dis}}_{a,f,k,t}$$
+
+If an age-weight key is available instead of an age-length key, the same approach is applied to give catch-at-weight. Results are stored in `Hist@LandingsAtSize` and `Hist@DiscardsAtSize` as nested lists (by stock, then fleet), each array with dimensions `Sim × Class × Year × Area`. Fleets are stored separately because each may have different size class definitions.

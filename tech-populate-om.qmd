@@ -1,14 +1,93 @@
-# Populating Operating Model
+# Populating the Operating Model {#sec-tech-populate-om}
 
-The first step 
+```{r}
+#| include: false
+library(MSEtool)
+```
 
+Before the simulation can begin, all user-specified parameter distributions must be expanded into fully-dimensioned arrays covering every simulation replicate, age class, and year. This process is called *populating* the operating model, and is handled by `PopulateOM()`, which calls `PopulateStock()` and `PopulateFleet()` in sequence, followed by the observation model. For a conceptual overview of the population process and worked examples, see @sec-populate.
 
+## Simulation Dimensions {#sec-tech-dimensions}
 
-## Populate Stock
+Every array in a populated OM is indexed over some or all of the following dimensions:
 
+| Index | Symbol | Description |
+|-------|--------|-------------|
+| Simulation | $s$ | Stochastic replicate, $s = 1, \ldots, n_\text{sim}$ |
+| Age | $a$ | Age class (years), $a = a_\text{rec}, \ldots, A_\text{max}$ |
+| Year | $t$ | Time step (historical + projection), $t = 1, \ldots, T$ |
+| Area | $r$ | Spatial area, $r = 1, \ldots, R$ |
 
-## Populate Fleet
+: Core array dimensions. {#tbl-dimensions}
 
-## Populate Obs
+The time dimension merges historical and projection years into a single index: $T = n_\text{year} + p_\text{year}$, where $n_\text{year}$ is the number of historical years and $p_\text{year}$ the number of projection years. For seasonal models, each calendar year is divided into $S$ seasons, so each time step represents $1/S$ of a year and the total number of time steps is $T = S \cdot (n_\text{year} + p_\text{year})$.
 
+Age classes are computed from the `Ages` object. The first age class corresponds to the age of recruitment, $a_\text{rec}$, which need not be zero. For a non-seasonal model with annual time steps, $a = a_\text{rec}, a_\text{rec}+1, \ldots, A_\text{max}$ in years. For a seasonal model with $S$ seasons per year, age advances in increments of $1/S$, giving $a = a_\text{rec}, a_\text{rec} + 1/S, \ldots, A_\text{max}$ in years. The `Ages@Classes` slot stores these values after population.
+
+## Sampling Parameter Distributions {#sec-tech-sampling}
+
+Model parameters are specified as distributions rather than fixed values. The input formats accepted by each subcomponent object are described in detail in @sec-schedules. This section focuses on the underlying sampling mechanics. 
+
+A common pattern is a uniform distribution bounded by a minimum and maximum value, from which $n_\text{sim}$ draws are taken:
+
+$$\theta_s \sim \text{Uniform}(\theta_\text{min},\; \theta_\text{max}), \quad s = 1, \ldots, n_\text{sim}$$
+
+When a parameter is fixed (i.e. $\theta_\text{min} = \theta_\text{max}$), all simulations share the same value. Some parameters are instead specified with a mean and coefficient of variation (CV), in which case draws are taken from a log-normal distribution:
+
+$$\theta_s \sim \text{LogNormal}\!\left(\log(\bar\theta) - \tfrac{1}{2}\sigma^2,\; \sigma\right), \quad \sigma = \sqrt{\log(1 + \text{CV}^2)}$$
+
+Random draws are seeded deterministically from `OM@Seed` so that results are reproducible. Each stock and fleet component receives a different offset from the base seed to ensure independence across components while maintaining reproducibility.
+
+## Time-Varying Parameters {#sec-tech-timevarying}
+
+There are two broad approaches to specifying a schedule (see @sec-schedules for the full range of accepted input formats):
+
+**Direct array.** The `MeanAtAge` (or `MeanAtLength`, `MeanAtWeight`) slot of a subcomponent object can be populated directly as a `Sim × Age/Class × Year` array, bypassing the `Pars` model-based approach. As with parameter arrays, the `Year` dimension need only span boundary years (dimnames identify which years are represented), and the `Sim` dimension must be either 1 or exactly $n_\text{sim}$.
+
+**Model-based via `Pars`.** Each element of a `Pars` list is processed into a `Sim × Year` parameter array before being passed to the schedule model. Individual parameters can be:
+
+- *Constant (time-invariant)*: a fixed value or uniform bounds $[\theta_\text{min}, \theta_\text{max}]$ sampled once per simulation (as in @sec-tech-sampling) and held constant across years: $\theta_{s,t} = \theta_s$ for all $t$.
+
+- *Random walk*: if a parameter `Pars$foo` is accompanied by a paired `Pars$fooSD` entry, a mean-preserving log-normal random walk is applied across years:
+
+$$\theta_{s,t} = \theta_s \cdot \frac{\epsilon_{s,t}}{\bar\epsilon_s}, \quad \log\epsilon_{s,t} \sim \mathcal{N}\!\left(-\tfrac{1}{2}\sigma^2,\; \sigma\right)$$
+
+  where $\sigma$ is the value of `Pars$fooSD` and $\bar\epsilon_s = T^{-1}\sum_t \epsilon_{s,t}$ is the within-simulation mean of the deviates (mean-preserving correction). After processing, the `*SD` entry is removed from the parameter list.
+
+- *Pre-built `Sim × Year` array*: supplied directly inside `Pars`, extended to fill any missing simulation or year indices by repeating year boundary values. The `Year` dimension only needs to span the boundary years where the values change (intermediate years are filled by extension; see `?Extend`). The `Sim` dimension must be either 1 (the same value is used for all simulations) or exactly $n_\text{sim}$ (simulation-specific values).
+
+Effort trajectories have an additional input form: a data frame of control points with lower and upper bounds at specified years, between which effort is linearly interpolated (see @sec-tech-fleet-schedules).
+
+## Populate Stock {#sec-tech-populate-stock}
+
+`PopulateStock()` generates all biological arrays for a single stock. It is called once per stock, with the OM's `nYear`, `pYear`, `nSim`, and `Seasons` passed as arguments. The sequence of operations is:
+
+1. Calculate age classes (`Ages@Classes`)
+2. Populate length-at-age (`PopulateLength()`)
+3. Populate weight-at-age (`PopulateWeight()`)
+4. Populate natural mortality (`PopulateNaturalMortality()`)
+5. Populate maturity-at-age (`PopulateMaturity()`)
+6. Populate fecundity-at-age (`PopulateFecundity()`)
+7. Populate stock–recruitment (`PopulateSRR()`)
+8. Populate spatial structure (`PopulateSpatial()`)
+9. Populate initial depletion (`PopulateDepletion()`)
+
+The equations governing each of these steps are described in @sec-tech-life-history. The resulting arrays have dimensions $n_\text{sim} \times n_\text{age} \times T$ unless noted otherwise.
+
+## Populate Fleet {#sec-tech-populate-fleet}
+
+`PopulateFleet()` generates all fishery arrays for a single fleet operating on a given stock. It takes the already-populated `Stock` object as an argument so that fleet schedules can be derived in the same age and size class space. The sequence is:
+
+1. Populate effort across historical years (`PopulateEffort()`)
+2. Populate catchability (`PopulateCatchability()`)
+3. Populate selectivity-at-age (`PopulateSelectivity()`)
+4. Populate retention-at-age (`PopulateRetention()`)
+5. Populate discard mortality (`PopulateDiscardMortality()`)
+6. Populate spatial closures (`PopulateClosure()`)
+
+The equations for each step are described in @sec-tech-fleet-schedules.
+
+## Populate Obs {#sec-tech-populate-obs}
+
+`PopulateObs()` configures the observation model for each fleet–complex combination. Unlike the biological and fishery arrays, observation parameters do not produce age- or year-dimensioned arrays during population. Instead, they set the sampling properties (e.g., error distributions, bias, sample size) used when simulated data are generated in the historical and projection periods.
 

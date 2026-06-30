@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>17&nbsp; Reference Points – openMSE Technical Manual</title>
+<title>21&nbsp; Reference Points – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tech-populate-om.html" rel="next">
+<link href="./tech-overview.html" rel="next">
 <link href="./concept-spatial.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -68,7 +103,32 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -77,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-ref-points.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reference Points</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li><li class="breadcrumb-item"><a href="./concept-ref-points.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,40 +170,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Example Objects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Example MSE</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./overview-data-obs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The <code>Data</code> and <code>Obs</code> Objects</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Developing Operating Models</span></a>
+            <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -151,119 +181,233 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./mps-data-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Management Procedures</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Concepts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operating Model Concepts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-simulate-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./concept-seasonal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a href="./tech-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Technical Details</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-life-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-fleet-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-historical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-reference-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./z-app-acknowledgements.html" class="sidebar-item-text sidebar-link">
@@ -286,13 +430,35 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#reference-landings-removals" id="toc-reference-landings-removals" class="nav-link active" data-scroll-target="#reference-landings-removals"><span class="header-section-number">17.1</span> Reference Landings &amp; Removals</a></li>
-  <li><a href="#maximum-sustainable-yield" id="toc-maximum-sustainable-yield" class="nav-link" data-scroll-target="#maximum-sustainable-yield"><span class="header-section-number">17.2</span> Maximum Sustainable Yield</a></li>
+<li>
+<a href="#msy-reference-points" id="toc-msy-reference-points" class="nav-link active" data-scroll-target="#msy-reference-points"><span class="header-section-number">21.1</span> MSY Reference Points</a>
+  <ul class="collapse">
+<li><a href="#removals-vs-landings" id="toc-removals-vs-landings" class="nav-link" data-scroll-target="#removals-vs-landings"><span class="header-section-number">21.1.1</span> Removals vs Landings</a></li>
+  <li><a href="#multi-stock-complexes" id="toc-multi-stock-complexes" class="nav-link" data-scroll-target="#multi-stock-complexes"><span class="header-section-number">21.1.2</span> Multi-Stock Complexes</a></li>
+  </ul>
+</li>
+  <li><a href="#yield-per-recruit-reference-points" id="toc-yield-per-recruit-reference-points" class="nav-link" data-scroll-target="#yield-per-recruit-reference-points"><span class="header-section-number">21.2</span> Yield-Per-Recruit Reference Points</a></li>
+  <li><a href="#spawning-potential-ratio-reference-points" id="toc-spawning-potential-ratio-reference-points" class="nav-link" data-scroll-target="#spawning-potential-ratio-reference-points"><span class="header-section-number">21.3</span> Spawning Potential Ratio Reference Points</a></li>
+  <li><a href="#reference-yield" id="toc-reference-yield" class="nav-link" data-scroll-target="#reference-yield"><span class="header-section-number">21.4</span> Reference Yield</a></li>
+  <li><a href="#mean-generation-time" id="toc-mean-generation-time" class="nav-link" data-scroll-target="#mean-generation-time"><span class="header-section-number">21.5</span> Mean Generation Time</a></li>
+  <li><a href="#blow" id="toc-blow" class="nav-link" data-scroll-target="#blow"><span class="header-section-number">21.6</span> B<sub>Low</sub></a></li>
+  <li><a href="#per-recruit-curves" id="toc-per-recruit-curves" class="nav-link" data-scroll-target="#per-recruit-curves"><span class="header-section-number">21.7</span> Per-Recruit Curves</a></li>
+  <li><a href="#depletion-and-stock-status" id="toc-depletion-and-stock-status" class="nav-link" data-scroll-target="#depletion-and-stock-status"><span class="header-section-number">21.8</span> Depletion and Stock Status</a></li>
+  <li>
+<a href="#sec-concept-refpoints-seasonal" id="toc-sec-concept-refpoints-seasonal" class="nav-link" data-scroll-target="#sec-concept-refpoints-seasonal"><span class="header-section-number">21.9</span> Seasonal Models</a>
+  <ul class="collapse">
+<li><a href="#annual-reference-points-from-seasonal-dynamics" id="toc-annual-reference-points-from-seasonal-dynamics" class="nav-link" data-scroll-target="#annual-reference-points-from-seasonal-dynamics"><span class="header-section-number">21.9.1</span> Annual reference points from seasonal dynamics</a></li>
+  <li><a href="#cohorts-and-birth-seasons" id="toc-cohorts-and-birth-seasons" class="nav-link" data-scroll-target="#cohorts-and-birth-seasons"><span class="header-section-number">21.9.2</span> Cohorts and birth seasons</a></li>
+  <li><a href="#fecundity-and-spawning-production" id="toc-fecundity-and-spawning-production" class="nav-link" data-scroll-target="#fecundity-and-spawning-production"><span class="header-section-number">21.9.3</span> Fecundity and spawning production</a></li>
+  <li><a href="#interpretation-of-f_textmsy" id="toc-interpretation-of-f_textmsy" class="nav-link" data-scroll-target="#interpretation-of-f_textmsy"><span class="header-section-number">21.9.4</span> Interpretation of <span class="math inline">\(F_\text{MSY}\)</span></a></li>
+  </ul>
+</li>
+  <li><a href="#sec-concept-refpoints-spatial" id="toc-sec-concept-refpoints-spatial" class="nav-link" data-scroll-target="#sec-concept-refpoints-spatial"><span class="header-section-number">21.10</span> Spatial Models</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-ref-points.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-schedules.html">Concepts</a></li><li class="breadcrumb-item"><a href="./concept-ref-points.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reference Points</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-refpoints" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reference Points</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li><li class="breadcrumb-item"><a href="./concept-ref-points.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-refpoints" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></h1>
 </div>
 
 
@@ -306,10 +472,229 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><section id="reference-landings-removals" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="reference-landings-removals">
-<span class="header-section-number">17.1</span> Reference Landings &amp; Removals</h2>
-</section><section id="maximum-sustainable-yield" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="maximum-sustainable-yield">
-<span class="header-section-number">17.2</span> Maximum Sustainable Yield</h2>
+</header><p>Reference points are benchmark values that describe the state of a stock or fishery under specified conditions. They provide the yardstick against which current stock status is measured and against which management strategy performance is evaluated. In <code>openMSE</code>, reference points are calculated from the operating model after the historical dynamics have been run, and are stored in <code>Hist@Reference</code> and can be accessed with <code>Reference(Hist)</code>.</p>
+<p>Two broad categories of reference points are used in openMSE:</p>
+<ul>
+<li>
+<strong>Unfished reference points:</strong> quantities under no fishing, including unfished biomass (<span class="math inline">\(B_0\)</span>), unfished spawning biomass (<span class="math inline">\(SB_0\)</span>), unfished spawning production (<span class="math inline">\(SP_0\)</span>), and unfished recruitment (<span class="math inline">\(R_0\)</span>). These describe the baseline state of the stock and are calculated as part of the unfished equilibrium (see <a href="tech-unfished.html" class="quarto-xref"><span>Chapter 28</span></a>).</li>
+<li>
+<strong>MSY-based reference points:</strong> quantities at or derived from maximum sustainable yield, including <span class="math inline">\(F_\text{MSY}\)</span>, <span class="math inline">\(B_\text{MSY}\)</span>, <span class="math inline">\(SB_\text{MSY}\)</span>, <span class="math inline">\(SP_\text{MSY}\)</span>, <span class="math inline">\(F_{0.1}\)</span>, <span class="math inline">\(F_\text{Max}\)</span>, <span class="math inline">\(F_\text{crash}\)</span>, and associated SPR quantities.</li>
+</ul>
+<p>Additional reference points include the mean generation time (MGT), the reference yield under a fixed-<span class="math inline">\(F\)</span> policy, and <span class="math inline">\(B_\text{Low}\)</span> (a rebuilding-based limit reference point used in DFO Canada’s Precautionary Approach framework).</p>
+<section id="msy-reference-points" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="msy-reference-points">
+<span class="header-section-number">21.1</span> MSY Reference Points</h2>
+<p>MSY reference points are calculated automatically by <code>Simulate()</code> and stored in <code>Hist@Reference@MSY</code>. They can also be recalculated at any time using <code>CalcMSY()</code>, which takes a <code>Hist</code> or <code>OM</code> object and returns a <code>refpointsMSY</code> object.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Hist</span> <span class="op">&lt;-</span> <span class="fu">Simulate</span><span class="op">(</span><span class="va">myOM</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Full reference object</span></span>
+<span><span class="fu">Reference</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Full refpointsMSY object</span></span>
+<span><span class="fu">MSYRefs</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Individual quantities</span></span>
+<span><span class="fu">FMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span>
+<span><span class="fu">BMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span>
+<span><span class="fu">SBMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span>
+<span><span class="fu">MSYLandings</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>By default, reference points are evaluated using parameters from the last historical year. Alternative years can be specified via the <code>Years</code> argument:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reference points at a specific year</span></span>
+<span><span class="fu">CalcMSY</span><span class="op">(</span><span class="va">Hist</span>, Years <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Reference points at multiple years (evaluated independently)</span></span>
+<span><span class="fu">CalcMSY</span><span class="op">(</span><span class="va">Hist</span>, Years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Evaluating reference points at multiple years is useful for examining how <span class="math inline">\(F_\text{MSY}\)</span> or <span class="math inline">\(B_\text{MSY}\)</span> shift as biological or fishery parameters change over time.</p>
+<p><code>CalcMSY()</code> returns a <code>refpointsMSY</code> object with the following slots, all with dimensions <code>Sim × Stock × Year</code>:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Slot</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>FMSY</code></td>
+<td>Apical fishing mortality at MSY</td>
+</tr>
+<tr class="even">
+<td><code>BMSY</code></td>
+<td>Total biomass at MSY</td>
+</tr>
+<tr class="odd">
+<td><code>SBMSY</code></td>
+<td>Spawning biomass at MSY</td>
+</tr>
+<tr class="even">
+<td><code>SPMSY</code></td>
+<td>Spawning production at MSY</td>
+</tr>
+<tr class="odd">
+<td><code>SPRMSY</code></td>
+<td>Spawning potential ratio at MSY</td>
+</tr>
+<tr class="even">
+<td><code>MSYLandings</code></td>
+<td>Landed catch at MSY</td>
+</tr>
+<tr class="odd">
+<td><code>MSYDiscards</code></td>
+<td>Dead discards at MSY</td>
+</tr>
+</tbody>
+</table>
+<section id="removals-vs-landings" class="level3" data-number="21.1.1"><h3 data-number="21.1.1" class="anchored" data-anchor-id="removals-vs-landings">
+<span class="header-section-number">21.1.1</span> Removals vs Landings</h3>
+<p><code>CalcMSY()</code> can maximise either total removals (landings plus dead discards) or landings alone, controlled by the <code>type</code> argument:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CalcMSY</span><span class="op">(</span><span class="va">Hist</span>, type <span class="op">=</span> <span class="st">"Removals"</span><span class="op">)</span>  <span class="co"># default</span></span>
+<span><span class="fu">CalcMSY</span><span class="op">(</span><span class="va">Hist</span>, type <span class="op">=</span> <span class="st">"Landings"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Removals-based MSY finds the <span class="math inline">\(F\)</span> that maximises total fish removed from the population; landings-based MSY finds the <span class="math inline">\(F\)</span> that maximises retained catch. The two diverge when discards are substantial: the <span class="math inline">\(F\)</span> that maximises landings may be lower than the <span class="math inline">\(F\)</span> that maximises total removals, because at high <span class="math inline">\(F\)</span> a greater proportion of removals are discarded fish that contribute to mortality but not to yield.</p>
+</section><section id="multi-stock-complexes" class="level3" data-number="21.1.2"><h3 data-number="21.1.2" class="anchored" data-anchor-id="multi-stock-complexes">
+<span class="header-section-number">21.1.2</span> Multi-Stock Complexes</h3>
+<p>When a stock complex contains more than one stock, <code>CalcMSY()</code> finds the single <span class="math inline">\(F_\text{MSY}\)</span> maximising total yield across all stocks. Stock-level quantities (BMSY, SBMSY, etc.) are then evaluated at this complex-level <span class="math inline">\(F_\text{MSY}\)</span>. See <a href="tech-reference-points.html" class="quarto-xref"><span>Chapter 28</span></a> for details.</p>
+</section></section><section id="yield-per-recruit-reference-points" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="yield-per-recruit-reference-points">
+<span class="header-section-number">21.2</span> Yield-Per-Recruit Reference Points</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(F_\text{Max}\)</span> and <span class="math inline">\(F_{0.1}\)</span> are not yet calculated automatically. Code to compute and store these reference points is under development.</p>
+</div>
+</div>
+<p>Two <span class="math inline">\(F\)</span>-based reference points are derived from the yield-per-recruit (YPR) curve and do not require a stock-recruitment relationship:</p>
+<ul>
+<li>
+<strong><span class="math inline">\(F_\text{Max}\)</span>:</strong> the apical fishing mortality that maximises YPR.</li>
+<li>
+<strong><span class="math inline">\(F_{0.1}\)</span>:</strong> the apical fishing mortality at which the slope of the YPR curve is 10% of its initial slope.</li>
+</ul></section><section id="spawning-potential-ratio-reference-points" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="spawning-potential-ratio-reference-points">
+<span class="header-section-number">21.3</span> Spawning Potential Ratio Reference Points</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(F_\text{crash}\)</span> and <span class="math inline">\(\text{SPR}_\text{crash}\)</span> are not yet calculated automatically. Code to compute and store these reference points is under development.</p>
+</div>
+</div>
+<p>The spawning potential ratio <span class="math inline">\(\text{SPR}(F) = \Phi_F / \Phi_0\)</span> measures the fraction of unfished spawning production per recruit remaining at fishing mortality <span class="math inline">\(F\)</span>. Two SPR-based reference points are computed:</p>
+<ul>
+<li>
+<strong><span class="math inline">\(F_\text{crash}\)</span>:</strong> the fishing mortality at which equilibrium recruitment falls to zero.</li>
+<li>
+<strong><span class="math inline">\(\text{SPR}_\text{crash}\)</span>:</strong> the spawning potential ratio at <span class="math inline">\(F_\text{crash}\)</span>, i.e.&nbsp;the SPR below which equilibrium recruitment is zero.</li>
+</ul></section><section id="reference-yield" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="reference-yield">
+<span class="header-section-number">21.4</span> Reference Yield</h2>
+<p>The reference yield provides a practical benchmark for comparing MP performance. It is the highest yield (landings or removals) achievable under a fixed-<span class="math inline">\(F\)</span> policy over the projection period, accounting for the actual simulated population trajectory and recruitment variability. It is computed separately for landings and removals, stored in <code>Hist@Reference@Landings</code> and <code>Hist@Reference@Removals</code>, and calculated automatically during <code>Simulate()</code> (landings by default; removals optionally).</p>
+<p>For seasonal models, the effort pattern from the last complete historical year (all <span class="math inline">\(S\)</span> seasons) is extracted as the baseline. A single scalar multiplier is then optimised to scale all fleets and all seasons simultaneously, preserving the relative seasonal effort distribution while searching over the overall level of fishing pressure.</p>
+</section><section id="mean-generation-time" class="level2" data-number="21.5"><h2 data-number="21.5" class="anchored" data-anchor-id="mean-generation-time">
+<span class="header-section-number">21.5</span> Mean Generation Time</h2>
+<p>The mean generation time (MGT) is the mean age of a mature female in the population under natural mortality only at unfished equilibrium:</p>
+<p><span class="math display">\[\text{MGT} = \frac{\sum_a a \cdot l_a \cdot m_a}{\sum_a l_a \cdot m_a}\]</span></p>
+<p>where <span class="math inline">\(l_a\)</span> is survivorship to age <span class="math inline">\(a\)</span> under natural mortality only and <span class="math inline">\(m_a\)</span> is maturity-at-age. MGT is used as the time unit for the <span class="math inline">\(B_\text{Low}\)</span> calculation below and is computed by <code>CalcMGT()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">CalcMGT</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># At a specific year</span></span>
+<span><span class="fu">CalcMGT</span><span class="op">(</span><span class="va">Hist</span>, Years <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>MGT is stored in <code>Hist@Reference@MGT</code> and has dimensions <code>Sim × Stock × Year</code>. In seasonal models, age classes are in decimal-year units, so MGT is returned in years regardless of seasonal resolution.</p>
+</section><section id="blow" class="level2" data-number="21.6"><h2 data-number="21.6" class="anchored" data-anchor-id="blow">
+<span class="header-section-number">21.6</span> B<sub>Low</sub>
+</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(B_\text{Low}\)</span> is not calculated by default due to its computational cost. It must be enabled as an argument to <code>Simulate()</code>. Code for this is under development.</p>
+</div>
+</div>
+<p><span class="math inline">\(B_\text{Low}\)</span> is a rebuilding-based limit reference point used in DFO Canada’s Precautionary Approach framework. It is defined as the current spawning biomass below which a population, if it were to recover with zero fishing, could not rebuild to <span class="math inline">\(B_\text{frac} \times SB_\text{MSY}\)</span> within <span class="math inline">\(\text{HZN} \times \text{MGT}\)</span> years. The default values are <span class="math inline">\(B_\text{frac} = 0.5\)</span> and <span class="math inline">\(\text{HZN} = 2\)</span>.</p>
+<p>Conceptually, if current spawning biomass falls below <span class="math inline">\(B_\text{Low}\)</span>, then even with immediate cessation of fishing the stock would require more than two mean generation times to recover to half of <span class="math inline">\(SB_\text{MSY}\)</span>.</p>
+<p><span class="math inline">\(B_\text{Low}\)</span> is stored in <code>Hist@Reference@BLow</code>. Because it requires a forward simulation of the population trajectory, it is computationally expensive and is not calculated by default; it is enabled via an argument to <code>Simulate()</code>.</p>
+</section><section id="per-recruit-curves" class="level2" data-number="21.7"><h2 data-number="21.7" class="anchored" data-anchor-id="per-recruit-curves">
+<span class="header-section-number">21.7</span> Per-Recruit Curves</h2>
+<p>The underlying per-recruit calculations used to derive <span class="math inline">\(F_\text{MSY}\)</span>, <span class="math inline">\(F_{0.1}\)</span>, <span class="math inline">\(F_\text{Max}\)</span>, and <span class="math inline">\(F_\text{crash}\)</span> can be examined directly using <code>CalcPerRecruit()</code> and <code>CalcEquilibrium()</code>. These are useful for understanding yield curves, plotting SPR against <span class="math inline">\(F\)</span>, and diagnosing model behaviour.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">PR</span> <span class="op">&lt;-</span> <span class="fu">CalcPerRecruit</span><span class="op">(</span><span class="va">Hist</span>, apicalF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">Eq</span> <span class="op">&lt;-</span> <span class="fu">CalcEquilibrium</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Both functions accept a <code>Years</code> argument and a <code>Complex</code> argument.</p>
+</section><section id="depletion-and-stock-status" class="level2" data-number="21.8"><h2 data-number="21.8" class="anchored" data-anchor-id="depletion-and-stock-status">
+<span class="header-section-number">21.8</span> Depletion and Stock Status</h2>
+<p>Current stock status is typically expressed as depletion, the ratio of current biomass to a reference level:</p>
+<ul>
+<li>
+<span class="math inline">\(B/B_0\)</span>: current total biomass relative to unfished biomass</li>
+<li>
+<span class="math inline">\(SB/SB_0\)</span>: current spawning biomass relative to unfished spawning biomass</li>
+<li>
+<span class="math inline">\(SP/SP_0\)</span>: current spawning production relative to unfished spawning production</li>
+<li>
+<span class="math inline">\(B/B_\text{MSY}\)</span>: current biomass relative to <span class="math inline">\(B_\text{MSY}\)</span>
+</li>
+<li>
+<span class="math inline">\(F/F_\text{MSY}\)</span>: current fishing mortality relative to <span class="math inline">\(F_\text{MSY}\)</span>
+</li>
+</ul>
+<p>Spawning biomass (<span class="math inline">\(SB\)</span>) and spawning production (<span class="math inline">\(SP\)</span>) measure related but distinct quantities. <span class="math inline">\(SB\)</span> is the biomass of reproductively active fish (maturity-at-age <span class="math inline">\(\times\)</span> weight-at-age <span class="math inline">\(\times\)</span> numbers). <span class="math inline">\(SP\)</span> is fecundity-weighted abundance, the quantity that directly drives the stock-recruitment relationship. When fecundity is proportional to weight, <span class="math inline">\(SB\)</span> and <span class="math inline">\(SP\)</span> are proportional and give the same depletion ratio; they diverge when fecundity is specified independently of weight (e.g.&nbsp;via age-specific egg production).</p>
+<p>Helper functions for extracting these quantities from a <code>Hist</code> or <code>MSE</code> object:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Relative to unfished</span></span>
+<span><span class="fu">B_B0</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>       <span class="co"># total biomass / B0</span></span>
+<span><span class="fu">SB_SB0</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>     <span class="co"># spawning biomass / SB0</span></span>
+<span><span class="fu">SP_SP0</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>     <span class="co"># spawning production / SP0</span></span>
+<span></span>
+<span><span class="co"># Relative to MSY</span></span>
+<span><span class="fu">B_BMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>     <span class="co"># total biomass / BMSY</span></span>
+<span><span class="fu">SB_SBMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>   <span class="co"># spawning biomass / SBMSY</span></span>
+<span><span class="fu">SP_SPMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>   <span class="co"># spawning production / SPMSY</span></span>
+<span><span class="fu">F_FMSY</span><span class="op">(</span><span class="va">Hist</span><span class="op">)</span>     <span class="co"># total apical F (summed over fleets) / FMSY</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>All functions accept a <code>df</code> argument (<code>TRUE</code> (default) returns a data frame; <code>FALSE</code> returns an array).</p>
+</section><section id="sec-concept-refpoints-seasonal" class="level2" data-number="21.9"><h2 data-number="21.9" class="anchored" data-anchor-id="sec-concept-refpoints-seasonal">
+<span class="header-section-number">21.9</span> Seasonal Models</h2>
+<p>Seasonal operating models subdivide each calendar year into <span class="math inline">\(S\)</span> seasons with season-specific biology, mortality, and recruitment. Reference points for seasonal models are expressed on an annual scale and follow the same logic as annual models. The <code>Years</code> argument to <code>CalcMSY()</code>, <code>CalcPerRecruit()</code>, and <code>CalcEquilibrium()</code> should specify complete calendar years (integers); all seasons within each requested year are used automatically.</p>
+<section id="annual-reference-points-from-seasonal-dynamics" class="level3" data-number="21.9.1"><h3 data-number="21.9.1" class="anchored" data-anchor-id="annual-reference-points-from-seasonal-dynamics">
+<span class="header-section-number">21.9.1</span> Annual reference points from seasonal dynamics</h3>
+<p>All reference point quantities are reported as annual values. <span class="math inline">\(B_\text{MSY}\)</span>, <span class="math inline">\(SB_\text{MSY}\)</span>, and <span class="math inline">\(SP_\text{MSY}\)</span> represent equilibrium population state at <span class="math inline">\(F_\text{MSY}\)</span>; MSY is total annual catch across all seasons; SPR is the ratio of fished to unfished annual spawning production per recruit.</p>
+<p>In a seasonal model, biomass fluctuates within the year as seasonal mortality and recruitment pulses occur. The per-recruit framework accounts for this by computing each quantity as a recruitment-weighted average over birth-season cohorts (see <a href="tech-reference-points.html#sec-tech-refpoints-seasonal" class="quarto-xref"><span>Section 28.11</span></a> for the full equations).</p>
+</section><section id="cohorts-and-birth-seasons" class="level3" data-number="21.9.2"><h3 data-number="21.9.2" class="anchored" data-anchor-id="cohorts-and-birth-seasons">
+<span class="header-section-number">21.9.2</span> Cohorts and birth seasons</h3>
+<p>The seasonal recruitment pattern is controlled by <code>SRR@R0</code>: the proportion of annual recruitment entering in season <span class="math inline">\(s_0\)</span> is <span class="math inline">\(\pi_{s_0} = R_{0,s_0} / R_{0,\text{annual}}\)</span>. Per-recruit quantities (spawning production, biomass, yield) are computed for each birth season separately and combined using these <span class="math inline">\(\pi_{s_0}\)</span> weights. Full equations are given in <a href="tech-reference-points.html#sec-tech-refpoints-seasonal" class="quarto-xref"><span>Section 28.11</span></a>.</p>
+<p>Cohorts born in different seasons experience different lifetime mortality and fecundity trajectories, because they encounter each calendar season at different ages. The <span class="math inline">\(\pi_{s_0}\)</span> weighting correctly averages over the full composition of annual recruitment across birth seasons.</p>
+</section><section id="fecundity-and-spawning-production" class="level3" data-number="21.9.3"><h3 data-number="21.9.3" class="anchored" data-anchor-id="fecundity-and-spawning-production">
+<span class="header-section-number">21.9.3</span> Fecundity and spawning production</h3>
+<p><code>AdjustSeasonalFecundity()</code> (called automatically during <code>Simulate()</code>) scales fecundity-at-age by season in proportion to the seasonal recruitment pattern. This means <span class="math inline">\(\Phi_0\)</span> (unfished spawning production per recruit, the sum of fecundity-weighted survival over all ages and seasons) reflects the actual timing and magnitude of spawning across the year, consistent with whatever recruitment seasonality is specified. SPR <span class="math inline">\(= \Phi_F / \Phi_0\)</span> retains its standard interpretation: the fraction of unfished spawning production per recruit remaining at fishing mortality <span class="math inline">\(F\)</span>, regardless of whether spawning is concentrated in one season or distributed across several.</p>
+</section><section id="interpretation-of-f_textmsy" class="level3" data-number="21.9.4"><h3 data-number="21.9.4" class="anchored" data-anchor-id="interpretation-of-f_textmsy">
+<span class="header-section-number">21.9.4</span> Interpretation of <span class="math inline">\(F_\text{MSY}\)</span>
+</h3>
+<p><span class="math inline">\(F_\text{MSY}\)</span> is the annual apical fishing mortality, the sum of instantaneous rates experienced by the most heavily fished age class across all seasons in a year. This is directly comparable to <span class="math inline">\(F_\text{MSY}\)</span> from an annual model. The optimisation scales a peak-season effort scalar, with all other seasons proportional to it via the historical effort pattern; <span class="math inline">\(F_\text{MSY}\)</span> is reported as the corresponding annual total.</p>
+</section></section><section id="sec-concept-refpoints-spatial" class="level2" data-number="21.10"><h2 data-number="21.10" class="anchored" data-anchor-id="sec-concept-refpoints-spatial">
+<span class="header-section-number">21.10</span> Spatial Models</h2>
+<p>For spatially structured models, reference points are currently calculated using spatially-aggregated parameters and should be interpreted as spatial averages. A spatially-explicit equilibrium approach is planned as a future option.</p>
+<p>For full technical details of all reference point calculations, see <a href="tech-reference-points.html" class="quarto-xref"><span>Chapter 28</span></a>.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -713,12 +1098,12 @@ ul.task-list li input[type="checkbox"] {
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./concept-spatial.html" class="pagination-link" aria-label="Spatial Structure">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tech-populate-om.html" class="pagination-link" aria-label="Populating Operating Model">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tech-overview.html" class="pagination-link" aria-label="Technical Details">
+        <span class="nav-page-text">Technical Details</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

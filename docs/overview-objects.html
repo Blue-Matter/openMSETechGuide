@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>4&nbsp; The Operating Model: Classes and Components – openMSE Technical Manual</title>
+<title>3&nbsp; The Operating Model: Classes and Components – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,7 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="site_libs/viz-1.8.2/viz.js"></script><link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="site_libs/grViz-binding-1.0.12/grViz.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -102,7 +104,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./overview-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./overview-objects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,12 +137,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./overview-manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading this Manual</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
@@ -153,25 +149,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-objects.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
   </div>
 </li>
       </ul>
@@ -188,37 +184,37 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
   </div>
 </li>
       </ul>
@@ -235,39 +231,33 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./om-octopus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Build a Seasonal OM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Concepts</span></a>
+            <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operating Model Concepts</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -276,50 +266,38 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Complexes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./concept-seasonal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Seasonal Dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./concept-data-obs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The <code>Data</code> and <code>Obs</code> Objects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a href="./tech-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Technical Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -328,20 +306,56 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Populating Operating Model</span></span></a>
+  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Initialize Population Dynamics</span></span></a>
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-life-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-fleet-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Unfished</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-historical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-reference-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
   </div>
 </li>
       </ul>
@@ -377,47 +391,47 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#om" id="toc-om" class="nav-link active" data-scroll-target="#om"><span class="header-section-number">4.1</span> <code>OM</code></a></li>
+<li><a href="#om" id="toc-om" class="nav-link active" data-scroll-target="#om"><span class="header-section-number">3.1</span> <code>OM</code></a></li>
   <li>
-<a href="#stock" id="toc-stock" class="nav-link" data-scroll-target="#stock"><span class="header-section-number">4.2</span> <code>Stock</code></a>
+<a href="#stock" id="toc-stock" class="nav-link" data-scroll-target="#stock"><span class="header-section-number">3.2</span> <code>Stock</code></a>
   <ul class="collapse">
-<li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">4.2.1</span> <code>Ages</code></a></li>
-  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">4.2.2</span> <code>Length</code></a></li>
-  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">4.2.3</span> <code>Weight</code></a></li>
-  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">4.2.4</span> <code>NaturalMortality</code></a></li>
-  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">4.2.5</span> <code>Maturity</code></a></li>
-  <li><a href="#fecundity-optional" id="toc-fecundity-optional" class="nav-link" data-scroll-target="#fecundity-optional"><span class="header-section-number">4.2.6</span> <code>Fecundity</code> <em>(optional)</em></a></li>
-  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">4.2.7</span> <code>SRR</code></a></li>
-  <li><a href="#spatial-optional" id="toc-spatial-optional" class="nav-link" data-scroll-target="#spatial-optional"><span class="header-section-number">4.2.8</span> <code>Spatial</code> <em>(optional)</em></a></li>
-  <li><a href="#depletion-optional" id="toc-depletion-optional" class="nav-link" data-scroll-target="#depletion-optional"><span class="header-section-number">4.2.9</span> <code>Depletion</code> <em>(optional)</em></a></li>
+<li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">3.2.1</span> <code>Ages</code></a></li>
+  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">3.2.2</span> <code>Length</code></a></li>
+  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">3.2.3</span> <code>Weight</code></a></li>
+  <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">3.2.4</span> <code>NaturalMortality</code></a></li>
+  <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">3.2.5</span> <code>Maturity</code></a></li>
+  <li><a href="#fecundity-optional" id="toc-fecundity-optional" class="nav-link" data-scroll-target="#fecundity-optional"><span class="header-section-number">3.2.6</span> <code>Fecundity</code> <em>(optional)</em></a></li>
+  <li><a href="#srr" id="toc-srr" class="nav-link" data-scroll-target="#srr"><span class="header-section-number">3.2.7</span> <code>SRR</code></a></li>
+  <li><a href="#spatial-optional" id="toc-spatial-optional" class="nav-link" data-scroll-target="#spatial-optional"><span class="header-section-number">3.2.8</span> <code>Spatial</code> <em>(optional)</em></a></li>
+  <li><a href="#depletion-optional" id="toc-depletion-optional" class="nav-link" data-scroll-target="#depletion-optional"><span class="header-section-number">3.2.9</span> <code>Depletion</code> <em>(optional)</em></a></li>
   </ul>
 </li>
   <li>
-<a href="#fleet" id="toc-fleet" class="nav-link" data-scroll-target="#fleet"><span class="header-section-number">4.3</span> <code>Fleet</code></a>
+<a href="#fleet" id="toc-fleet" class="nav-link" data-scroll-target="#fleet"><span class="header-section-number">3.3</span> <code>Fleet</code></a>
   <ul class="collapse">
-<li><a href="#effort" id="toc-effort" class="nav-link" data-scroll-target="#effort"><span class="header-section-number">4.3.1</span> <code>Effort</code></a></li>
-  <li><a href="#catchability" id="toc-catchability" class="nav-link" data-scroll-target="#catchability"><span class="header-section-number">4.3.2</span> <code>Catchability</code></a></li>
-  <li><a href="#selectivity-required" id="toc-selectivity-required" class="nav-link" data-scroll-target="#selectivity-required"><span class="header-section-number">4.3.3</span> <code>Selectivity</code> <em>(required)</em></a></li>
-  <li><a href="#retention-optional" id="toc-retention-optional" class="nav-link" data-scroll-target="#retention-optional"><span class="header-section-number">4.3.4</span> <code>Retention</code> <em>(optional)</em></a></li>
-  <li><a href="#discardmortality-optional" id="toc-discardmortality-optional" class="nav-link" data-scroll-target="#discardmortality-optional"><span class="header-section-number">4.3.5</span> <code>DiscardMortality</code> <em>(optional)</em></a></li>
-  <li><a href="#weightfleet-optional" id="toc-weightfleet-optional" class="nav-link" data-scroll-target="#weightfleet-optional"><span class="header-section-number">4.3.6</span> <code>WeightFleet</code> <em>(optional)</em></a></li>
+<li><a href="#effort" id="toc-effort" class="nav-link" data-scroll-target="#effort"><span class="header-section-number">3.3.1</span> <code>Effort</code></a></li>
+  <li><a href="#catchability" id="toc-catchability" class="nav-link" data-scroll-target="#catchability"><span class="header-section-number">3.3.2</span> <code>Catchability</code></a></li>
+  <li><a href="#selectivity-required" id="toc-selectivity-required" class="nav-link" data-scroll-target="#selectivity-required"><span class="header-section-number">3.3.3</span> <code>Selectivity</code> <em>(required)</em></a></li>
+  <li><a href="#retention-optional" id="toc-retention-optional" class="nav-link" data-scroll-target="#retention-optional"><span class="header-section-number">3.3.4</span> <code>Retention</code> <em>(optional)</em></a></li>
+  <li><a href="#discardmortality-optional" id="toc-discardmortality-optional" class="nav-link" data-scroll-target="#discardmortality-optional"><span class="header-section-number">3.3.5</span> <code>DiscardMortality</code> <em>(optional)</em></a></li>
+  <li><a href="#weightfleet-optional" id="toc-weightfleet-optional" class="nav-link" data-scroll-target="#weightfleet-optional"><span class="header-section-number">3.3.6</span> <code>WeightFleet</code> <em>(optional)</em></a></li>
   </ul>
 </li>
   <li>
-<a href="#obs" id="toc-obs" class="nav-link" data-scroll-target="#obs"><span class="header-section-number">4.4</span> <code>Obs</code></a>
+<a href="#obs" id="toc-obs" class="nav-link" data-scroll-target="#obs"><span class="header-section-number">3.4</span> <code>Obs</code></a>
   <ul class="collapse">
-<li><a href="#catchobs" id="toc-catchobs" class="nav-link" data-scroll-target="#catchobs"><span class="header-section-number">4.4.1</span> <code>CatchObs</code></a></li>
-  <li><a href="#effortobs" id="toc-effortobs" class="nav-link" data-scroll-target="#effortobs"><span class="header-section-number">4.4.2</span> <code>EffortObs</code></a></li>
-  <li><a href="#indicesobs" id="toc-indicesobs" class="nav-link" data-scroll-target="#indicesobs"><span class="header-section-number">4.4.3</span> <code>IndicesObs</code></a></li>
-  <li><a href="#compobs" id="toc-compobs" class="nav-link" data-scroll-target="#compobs"><span class="header-section-number">4.4.4</span> <code>CompObs</code></a></li>
+<li><a href="#catchobs" id="toc-catchobs" class="nav-link" data-scroll-target="#catchobs"><span class="header-section-number">3.4.1</span> <code>CatchObs</code></a></li>
+  <li><a href="#effortobs" id="toc-effortobs" class="nav-link" data-scroll-target="#effortobs"><span class="header-section-number">3.4.2</span> <code>EffortObs</code></a></li>
+  <li><a href="#indicesobs" id="toc-indicesobs" class="nav-link" data-scroll-target="#indicesobs"><span class="header-section-number">3.4.3</span> <code>IndicesObs</code></a></li>
+  <li><a href="#compobs" id="toc-compobs" class="nav-link" data-scroll-target="#compobs"><span class="header-section-number">3.4.4</span> <code>CompObs</code></a></li>
   </ul>
 </li>
-  <li><a href="#imp" id="toc-imp" class="nav-link" data-scroll-target="#imp"><span class="header-section-number">4.5</span> <code>Imp</code></a></li>
+  <li><a href="#imp-optional" id="toc-imp-optional" class="nav-link" data-scroll-target="#imp-optional"><span class="header-section-number">3.5</span> <code>Imp</code> <em>(optional)</em></a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/overview-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./overview-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-primaryobjects" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./overview-objects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-primaryobjects" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></h1>
 </div>
 
 
@@ -432,12 +446,22 @@ window.Quarto = {
 
 
 </header><p><code>openMSE</code> organises all inputs in an <code>OM</code> object, the top-level container that holds all the components needed to run a simulation. The <code>OM</code> object is itself built from a hierarchy of S4 subcomponent objects, each responsible for a distinct aspect of the model.</p>
-<p>Understanding this hierarchy, what each subcomponent represents, what it contains, and how the pieces fit together, is important for building, modifying, and interpreting operating models.</p>
-<p>The primary subcomponents of an <code>OM</code> object are <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values.</p>
-<p>This chapter describes all of these classes and their contents.</p>
-<p>This chapter contains a lot of detail. Readers may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.</p>
-<section id="om" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="om">
-<span class="header-section-number">4.1</span> <code>OM</code>
+<p>Understanding this hierarchy — what each subcomponent represents, what it contains, and how the pieces fit together — is important for building, modifying, and interpreting operating models.</p>
+<p>The primary subcomponents of an <code>OM</code> object are <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values, described in detail in the sections below (<a href="#fig-om-hierarchy" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
+<div class="cell">
+<div id="fig-om-hierarchy" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-om-hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-2d4c5460cda9aa25c832" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-2d4c5460cda9aa25c832">{"x":{"diagram":"\ndigraph OM_components {\n\n  graph [layout = dot, rankdir = TB, bgcolor = white, splines = polyline, nodesep = 0.8, ranksep = 0.8]\n\n  node [fontname = Arial, fontsize = 14, style = filled, shape = rectangle]\n\n  subgraph cluster_om_components {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    stock [label = \"Stock\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    fleet [label = \"Fleet\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    obs   [label = \"Obs\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    imp   [label = \"Imp\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    data  [label = \"Data\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n    stock -> fleet -> obs -> imp -> data [style = invis]\n    { rank = same; stock; fleet; obs; imp; data }\n  }\n\n  om [label = \"OM\", fillcolor = \"#21b0fe\", fontcolor = white]\n\n  stock -> om\n  fleet -> om\n  obs   -> om\n  imp   -> om [style = dashed]\n  data  -> om [style = dashed]\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-om-hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arrows indicate required components; dashed arrows indicate optional components.
+</figcaption></figure>
+</div>
+</div>
+<p>This chapter describes all of these classes and their contents. It contains a lot of detail; readers may find it useful to skim through once to get a sense of the overall structure, then return here as a reference when they need details about a specific object or slot.</p>
+<section id="om" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="om">
+<span class="header-section-number">3.1</span> <code>OM</code>
 </h2>
 <p>An <code>OM</code> object is the top-level operating model. It holds one or more <code>Stock</code> objects and, for each stock, a corresponding set of <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code> objects.</p>
 <p>Key slots:</p>
@@ -465,13 +489,13 @@ window.Quarto = {
 <li>
 <code>Interval</code>: management update interval in projection years. How frequently the management procedure is called to update advice. Default 1 (annual).</li>
 <li>
-<code>Data</code>: a <code>data-class</code> object or named list of <code>data-class</code> objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See <a href="concept-data-obs.html" class="quarto-xref"><span>Chapter 17</span></a> for more details on the <code>Data</code> object and how it interacts with <code>Obs</code> objects.</li>
-</ul></section><section id="stock" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="stock">
-<span class="header-section-number">4.2</span> <code>Stock</code>
+<code>Data</code>: a <code>data-class</code> object or named list of <code>data-class</code> objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See <span class="quarto-unresolved-ref">?sec-object_data</span> for more details on the <code>Data</code> object and how it interacts with <code>Obs</code> objects.</li>
+</ul></section><section id="stock" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="stock">
+<span class="header-section-number">3.2</span> <code>Stock</code>
 </h2>
 <p>A <code>Stock</code> object defines the biological and demographic characteristics of a fish population. It is composed of the following subcomponents:</p>
-<section id="ages" class="level3" data-number="4.2.1"><h3 data-number="4.2.1" class="anchored" data-anchor-id="ages">
-<span class="header-section-number">4.2.1</span> <code>Ages</code>
+<section id="ages" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="ages">
+<span class="header-section-number">3.2.1</span> <code>Ages</code>
 </h3>
 <p>Defines the discrete age structure of the population.</p>
 <p>Key slots:</p>
@@ -486,8 +510,8 @@ window.Quarto = {
 <code>PlusGroup</code>: logical; if <code>TRUE</code>, all fish at or beyond <code>MaxAge</code> are aggregated into a plus-group. (default <code>TRUE</code>).</li>
 <li>
 <code>Classes</code>: vector of age classes, derived automatically from the above. Always in units of <code>year</code>.</li>
-</ul></section><section id="length" class="level3" data-number="4.2.2"><h3 data-number="4.2.2" class="anchored" data-anchor-id="length">
-<span class="header-section-number">4.2.2</span> <code>Length</code>
+</ul></section><section id="length" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="length">
+<span class="header-section-number">3.2.2</span> <code>Length</code>
 </h3>
 <p>Defines the mean length-at-age schedule.</p>
 <p>Key slots:</p>
@@ -505,9 +529,9 @@ window.Quarto = {
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins. If not supplied, bin boundaries are derived automatically from <code>MeanAtAge</code> and <code>CVatAge</code> to span the plausible range of lengths in the population.</li>
 </ul>
-<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on populating <code>Pars</code>, <code>MeanAt*</code>, and <code>CVatAge</code> arrays.</p>
-</section><section id="weight" class="level3" data-number="4.2.3"><h3 data-number="4.2.3" class="anchored" data-anchor-id="weight">
-<span class="header-section-number">4.2.3</span> <code>Weight</code>
+<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for more details on populating <code>Pars</code>, <code>MeanAt*</code>, and <code>CVatAge</code> arrays.</p>
+</section><section id="weight" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="weight">
+<span class="header-section-number">3.2.3</span> <code>Weight</code>
 </h3>
 <p>Defines the mean weight-at-age and weight-at-length schedules.</p>
 <p>Key slots:</p>
@@ -527,9 +551,9 @@ window.Quarto = {
 <p>The <code>AtAge</code> and <code>AtLength</code> schedules are specified either by supplying <code>Pars</code> and <code>Model</code>, or by providing <code>MeanAtAge</code> and/or <code>MeanAtLength</code> directly when <code>Pars</code> is an empty list.</p>
 <p>When model-based, the model function populates either <code>MeanAtAge</code> or <code>MeanAtLength</code> depending on whether the model is age- or length-based. The other array is then back-calculated automatically using the age-length key (<code>ALK</code>) from the <code>Length</code> subcomponent.</p>
 <p>When supplying arrays directly, either or both may be provided, if only one is given, the other is derived from the <code>ALK</code> in the same way.</p>
-<p>This same pattern applies to all subcomponent objects that have <code>MeanAtAge</code> and <code>MeanAtLength</code> slots. See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for full details on input formats and array dimension conventions.</p>
-</section><section id="naturalmortality" class="level3" data-number="4.2.4"><h3 data-number="4.2.4" class="anchored" data-anchor-id="naturalmortality">
-<span class="header-section-number">4.2.4</span> <code>NaturalMortality</code>
+<p>This same pattern applies to all subcomponent objects that have <code>MeanAtAge</code> and <code>MeanAtLength</code> slots. See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for full details on input formats and array dimension conventions.</p>
+</section><section id="naturalmortality" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="naturalmortality">
+<span class="header-section-number">3.2.4</span> <code>NaturalMortality</code>
 </h3>
 <p>Defines the natural mortality schedule, which may vary by age, length, simulation, and year.</p>
 <p>Key slots:</p>
@@ -545,8 +569,8 @@ window.Quarto = {
 <code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of instantaneous natural mortality at length, where the <code>Class</code> dimension is length <code>length(Classes)</code>.</li>
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
-</ul></section><section id="maturity" class="level3" data-number="4.2.5"><h3 data-number="4.2.5" class="anchored" data-anchor-id="maturity">
-<span class="header-section-number">4.2.5</span> <code>Maturity</code>
+</ul></section><section id="maturity" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="maturity">
+<span class="header-section-number">3.2.5</span> <code>Maturity</code>
 </h3>
 <p>Defines the maturity ogive, which may be expressed as a function of age, length, or weight.</p>
 <p>Key slots:</p>
@@ -568,8 +592,8 @@ window.Quarto = {
 <p><strong>Semelparity</strong></p>
 <p>Setting <code>Semelparous</code> to <code>TRUE</code> sets post-spawning mortality equal to the maturity ogive; fully mature fish die after spawning with probability 1, fish on the ascending limb of the ogive die proportionally, and immature fish are unaffected.</p>
 <p>A numeric array may also be supplied directly, allowing post-spawning mortality to be specified independently of the maturity schedule (e.g., to represent a species where only the oldest mature fish are semelparous or there is a lag between spawning and post-spawning mortality).</p>
-</section><section id="fecundity-optional" class="level3" data-number="4.2.6"><h3 data-number="4.2.6" class="anchored" data-anchor-id="fecundity-optional">
-<span class="header-section-number">4.2.6</span> <code>Fecundity</code> <em>(optional)</em>
+</section><section id="fecundity-optional" class="level3" data-number="3.2.6"><h3 data-number="3.2.6" class="anchored" data-anchor-id="fecundity-optional">
+<span class="header-section-number">3.2.6</span> <code>Fecundity</code> <em>(optional)</em>
 </h3>
 <p>Defines egg production per individual as a function of age or length. When omitted, spawning production is set equal to spawning biomass.</p>
 <p>Key slots:</p>
@@ -584,8 +608,8 @@ window.Quarto = {
 <code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of fecundity at length.</li>
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
-</ul></section><section id="srr" class="level3" data-number="4.2.7"><h3 data-number="4.2.7" class="anchored" data-anchor-id="srr">
-<span class="header-section-number">4.2.7</span> <code>SRR</code>
+</ul></section><section id="srr" class="level3" data-number="3.2.7"><h3 data-number="3.2.7" class="anchored" data-anchor-id="srr">
+<span class="header-section-number">3.2.7</span> <code>SRR</code>
 </h3>
 <p>Defines the stock-recruitment relationship and recruitment variability.</p>
 <p>Key slots:</p>
@@ -602,8 +626,8 @@ window.Quarto = {
 <code>AC</code>: lag-1 autocorrelation of recruitment deviations.</li>
 <li>
 <code>SpawnTimeFrac</code>: fraction of the time step elapsed before spawning (0 = start, 1 = end).</li>
-</ul></section><section id="spatial-optional" class="level3" data-number="4.2.8"><h3 data-number="4.2.8" class="anchored" data-anchor-id="spatial-optional">
-<span class="header-section-number">4.2.8</span> <code>Spatial</code> <em>(optional)</em>
+</ul></section><section id="spatial-optional" class="level3" data-number="3.2.8"><h3 data-number="3.2.8" class="anchored" data-anchor-id="spatial-optional">
+<span class="header-section-number">3.2.8</span> <code>Spatial</code> <em>(optional)</em>
 </h3>
 <p>Defines spatial structure and movement dynamics. When omitted, a single well-mixed area is assumed.</p>
 <p>Key slots:</p>
@@ -617,9 +641,9 @@ window.Quarto = {
 <li>
 <code>Movement</code>: <code>Sim × FromArea × ToArea × Age × Year</code> movement probability matrix, with rows summing to 1. Normally derived automatically during <code>Populate()</code> from <code>UnfishedDist</code> and <code>ProbStaying</code>. Can be supplied directly.</li>
 </ul>
-<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 22</span></a> for more details on spatial structure.</p>
-</section><section id="depletion-optional" class="level3" data-number="4.2.9"><h3 data-number="4.2.9" class="anchored" data-anchor-id="depletion-optional">
-<span class="header-section-number">4.2.9</span> <code>Depletion</code> <em>(optional)</em>
+<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 20</span></a> for more details on spatial structure.</p>
+</section><section id="depletion-optional" class="level3" data-number="3.2.9"><h3 data-number="3.2.9" class="anchored" data-anchor-id="depletion-optional">
+<span class="header-section-number">3.2.9</span> <code>Depletion</code> <em>(optional)</em>
 </h3>
 <p>Defines the stock depletion at the start and/or end of the historical period. When omitted, the stock starts unfished and terminal depletion is determined by the fleet effort and catchability.</p>
 <p>Key slots:</p>
@@ -630,12 +654,12 @@ window.Quarto = {
 <code>Final</code>: target depletion at the terminal historical time step, relative to <code>Reference</code>. When specified, fleet catchability is optimised to achieve this level. Typically only used for data-limited cases where terminal depletion is unknown and set to custom ranges.</li>
 <li>
 <code>Reference</code>: reference biomass used to scale depletion (e.g., <code>"B0"</code>, <code>"SB0"</code>).</li>
-</ul></section></section><section id="fleet" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="fleet">
-<span class="header-section-number">4.3</span> <code>Fleet</code>
+</ul></section></section><section id="fleet" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="fleet">
+<span class="header-section-number">3.3</span> <code>Fleet</code>
 </h2>
 <p>A <code>Fleet</code> object defines the exploitation characteristics of a fishing fleet. A stock may be fished by one or more fleets, each with its own <code>Fleet</code> object. It is composed of the following subcomponents:</p>
-<section id="effort" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="effort">
-<span class="header-section-number">4.3.1</span> <code>Effort</code>
+<section id="effort" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="effort">
+<span class="header-section-number">3.3.1</span> <code>Effort</code>
 </h3>
 <p>Defines the historical fishing effort trajectory and its spatial allocation.</p>
 <p>Key slots:</p>
@@ -648,16 +672,16 @@ window.Quarto = {
 <code>Distribution</code>: <code>Sim × Year × Area</code> array of the fraction of total effort allocated to each area, with values summing to 1 across the <code>Area</code> dimension within each simulation and year. Typically calculated internally by the spatial effort allocation algorithm each year based on relative exploitable biomass density and the <code>Targeting</code> parameter. Individual cells can be fixed to specific values by supplying a non-<code>NA</code> numeric, which overrides the internal algorithm for those simulation-year-area combinations while leaving the remainder to be calculated normally.</li>
 <li>
 <code>Targeting</code>: <code>Sim × Year</code> targeting concentration parameter controlling how strongly effort is attracted to high-density areas.</li>
-</ul></section><section id="catchability" class="level3" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="catchability">
-<span class="header-section-number">4.3.2</span> <code>Catchability</code>
+</ul></section><section id="catchability" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="catchability">
+<span class="header-section-number">3.3.2</span> <code>Catchability</code>
 </h3>
 <p>Defines gear efficiency and optional projected-year trends or stochasticity.</p>
 <p>Key slots:</p>
 <ul>
 <li>
 <code>Efficiency</code>: gear efficiency <span class="math inline">\(q\)</span>, which converts effort to instantaneous fishing mortality via <span class="math inline">\(F = q \cdot E\)</span>. May be left empty when <code>Depletion@Final</code> is specified, in which case it is back-calculated internally to match the specified depletion level.</li>
-</ul></section><section id="selectivity-required" class="level3" data-number="4.3.3"><h3 data-number="4.3.3" class="anchored" data-anchor-id="selectivity-required">
-<span class="header-section-number">4.3.3</span> <code>Selectivity</code> <em>(required)</em>
+</ul></section><section id="selectivity-required" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="selectivity-required">
+<span class="header-section-number">3.3.3</span> <code>Selectivity</code> <em>(required)</em>
 </h3>
 <p>Defines the probability of capture as a function of age, length, or weight.</p>
 <p>Key slots:</p>
@@ -676,15 +700,15 @@ window.Quarto = {
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
 </ul>
-<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a> for more details on populating <code>Pars</code> and <code>MeanAt*</code> arrays.</p>
-</section><section id="retention-optional" class="level3" data-number="4.3.4"><h3 data-number="4.3.4" class="anchored" data-anchor-id="retention-optional">
-<span class="header-section-number">4.3.4</span> <code>Retention</code> <em>(optional)</em>
+<p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for more details on populating <code>Pars</code> and <code>MeanAt*</code> arrays.</p>
+</section><section id="retention-optional" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="retention-optional">
+<span class="header-section-number">3.3.4</span> <code>Retention</code> <em>(optional)</em>
 </h3>
 <p>Defines the probability of retention given capture, as a function of age, length, or weight. When omitted, all fish are assumed fully retained. Fish that are selected but not retained are treated as discards, and their fate is determined by <code>DiscardMortality</code>.</p>
 <p>Has the same slot structure as <code>Selectivity</code> (<code>Pars</code>, <code>Model</code>, <code>isRel</code>, <code>MeanAtAge</code>, <code>MeanAtLength</code>, <code>MeanAtWeight</code>); see <code>?RetentionModels</code>.</p>
 <p>Unlike <code>Selectivity</code>, the <code>MeanAtAge</code> array is not required to reach a maximum of 1. Retention models support an optional <code>MaxRet</code> parameter that caps the asymptote below 1, representing situations where even fully-selected fish are not always retained, for example, under a maximum size limit, a trip-level bag limit, or where a proportion of catch is systematically discarded regardless of size.</p>
-</section><section id="discardmortality-optional" class="level3" data-number="4.3.5"><h3 data-number="4.3.5" class="anchored" data-anchor-id="discardmortality-optional">
-<span class="header-section-number">4.3.5</span> <code>DiscardMortality</code> <em>(optional)</em>
+</section><section id="discardmortality-optional" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="discardmortality-optional">
+<span class="header-section-number">3.3.5</span> <code>DiscardMortality</code> <em>(optional)</em>
 </h3>
 <p>Defines the proportion of discarded catch that dies, at age or at length. When omitted, all discarded fish are assumed to survive.</p>
 <p>Key slots:</p>
@@ -695,20 +719,20 @@ window.Quarto = {
 <code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of discard mortality at length.</li>
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
-</ul></section><section id="weightfleet-optional" class="level3" data-number="4.3.6"><h3 data-number="4.3.6" class="anchored" data-anchor-id="weightfleet-optional">
-<span class="header-section-number">4.3.6</span> <code>WeightFleet</code> <em>(optional)</em>
+</ul></section><section id="weightfleet-optional" class="level3" data-number="3.3.6"><h3 data-number="3.3.6" class="anchored" data-anchor-id="weightfleet-optional">
+<span class="header-section-number">3.3.6</span> <code>WeightFleet</code> <em>(optional)</em>
 </h3>
 <p>A <code>Sim × Age × Year</code> array of fleet-specific weight-at-age, used in fleet-level biomass calculations. This slot is relevant when the fleet’s catch has a different weight-at-age schedule from the overall stock.</p>
 <p>When omitted (the default), <code>WeightFleet</code> is set equal to the corresponding stock’s weight-at-age array.</p>
-</section></section><section id="obs" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="obs">
-<span class="header-section-number">4.4</span> <code>Obs</code>
+</section></section><section id="obs" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="obs">
+<span class="header-section-number">3.4</span> <code>Obs</code>
 </h2>
 <p>An <code>Obs</code> object defines the observation model for a fleet, describing how each data type is collected and the magnitude of sampling error and systematic bias. Each fleet has its own <code>Obs</code> object.</p>
 <p>Each slot of <code>Obs</code> is itself a subcomponent object: <code>CatchObs</code>, <code>EffortObs</code>, <code>IndicesObs</code>, or <code>CompObs</code>, that each specify the error structure for that data type.</p>
 <p>All sub-components of an <code>Obs</code> object are optional. If a sub-component (e.g., <code>CatchObs</code>) is not populated, no data of that type will be generated in the model.</p>
-<p>The <code>Obs</code> object interacts closely with <code>Data</code> objects. See <a href="concept-data-obs.html" class="quarto-xref"><span>Chapter 17</span></a> for more details.</p>
-<section id="catchobs" class="level3" data-number="4.4.1"><h3 data-number="4.4.1" class="anchored" data-anchor-id="catchobs">
-<span class="header-section-number">4.4.1</span> <code>CatchObs</code>
+<p>The <code>Obs</code> object interacts closely with <code>Data</code> objects. See <span class="quarto-unresolved-ref">?sec-object_data</span> for more details.</p>
+<section id="catchobs" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="catchobs">
+<span class="header-section-number">3.4.1</span> <code>CatchObs</code>
 </h3>
 <p>Used for <code>Obs@Landings</code> and <code>Obs@Discards</code>. Defines lognormal observation error and multiplicative bias applied to simulated catch.</p>
 <p>Key slots:</p>
@@ -736,12 +760,12 @@ window.Quarto = {
 </li>
 <li><p><code>Error</code>: optional pre-specified <code>[nSim × nYear]</code> lognormal multiplier array. When supplied, <code>Error</code> is used directly and <code>CV</code> is ignored.</p></li>
 <li><p><code>Units</code>: <code>"Biomass"</code> or <code>"Number"</code>. Determines the units of the simulated catch data. Default <code>NULL</code> (treated as <code>"Biomass"</code>). <code>Biomass</code> uses <code>WeightFleet</code> (see above). <code>Number</code> is catch in numbers (same units as the stock’s <code>R0</code>).</p></li>
-</ul></section><section id="effortobs" class="level3" data-number="4.4.2"><h3 data-number="4.4.2" class="anchored" data-anchor-id="effortobs">
-<span class="header-section-number">4.4.2</span> <code>EffortObs</code>
+</ul></section><section id="effortobs" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="effortobs">
+<span class="header-section-number">3.4.2</span> <code>EffortObs</code>
 </h3>
 <p>Used for <code>Obs@Effort</code>. Has the same <code>CV</code>, <code>Bias</code>, and <code>Error</code> slots as <code>CatchObs</code>, applied to simulated fishing effort. See <code>?EffortObs</code>.</p>
-</section><section id="indicesobs" class="level3" data-number="4.4.3"><h3 data-number="4.4.3" class="anchored" data-anchor-id="indicesobs">
-<span class="header-section-number">4.4.3</span> <code>IndicesObs</code>
+</section><section id="indicesobs" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="indicesobs">
+<span class="header-section-number">3.4.3</span> <code>IndicesObs</code>
 </h3>
 <p>Used for <code>Obs@CPUE</code> and <code>Obs@Survey</code>. Defines lognormal observation error on abundance indices, with optional autocorrelation.</p>
 <p>Key slots:</p>
@@ -770,20 +794,20 @@ window.Quarto = {
 </ul>
 <p>A custom <code>Sim × Age × Year</code> array may also be supplied for other selectivity schemes (e.g., surveys).</p>
 </li>
-</ul></section><section id="compobs" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="compobs">
-<span class="header-section-number">4.4.4</span> <code>CompObs</code>
+</ul></section><section id="compobs" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="compobs">
+<span class="header-section-number">3.4.4</span> <code>CompObs</code>
 </h3>
 <p>Used for <code>Obs@LandingsAtAge</code>, <code>Obs@DiscardsAtAge</code>, <code>Obs@LandingsAtSize</code>, and <code>Obs@DiscardsAtSize</code>. Defines the sampling structure for age or length composition data via a Dirichlet-Multinomial model.</p>
 <p>Key slots:</p>
 <ul>
-<li><p><code>SampleSize</code>: nominal number of fish aged or measured per year. Accepts a scalar (constant across all simulations and years), a length-2 vector <code>c(lower, upper)</code> (one value per simulation drawn from <code>Uniform(lower, upper)</code>, held constant across years), or a change-point matrix (see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 11</span></a>). After population, <code>@SampleSize</code> is a named <code>[nSim × nYear]</code> array. Setting <code>SampleSize = NULL</code> suppresses generation of that composition data type entirely.</p></li>
+<li><p><code>SampleSize</code>: nominal number of fish aged or measured per year. Accepts a scalar (constant across all simulations and years), a length-2 vector <code>c(lower, upper)</code> (one value per simulation drawn from <code>Uniform(lower, upper)</code>, held constant across years), or a change-point matrix (see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>). After population, <code>@SampleSize</code> is a named <code>[nSim × nYear]</code> array. Setting <code>SampleSize = NULL</code> suppresses generation of that composition data type entirely.</p></li>
 <li><p><code>ESS</code>: effective sample size. Controls the stochastic variability of the composition draw independently of the nominal <code>SampleSize</code>. Accepts the same input forms as <code>SampleSize</code>; after population it is a named <code>[nSim × nYear]</code> array. Defaults to <code>SampleSize</code> when not specified. Values of <code>ESS &lt; SampleSize</code> produce overdispersion relative to a pure multinomial.</p></li>
 <li><p><code>Theta</code>: Dirichlet-Multinomial dispersion parameter, in <span class="math inline">\((0, 1]\)</span>. Accepts the same input forms as <code>SampleSize</code>; after population it is a named <code>[nSim × nYear]</code> array. <code>Theta = 1</code> (default) recovers a standard multinomial draw. Values approaching 0 produce maximum overdispersion.</p></li>
 <li><p><code>Shift</code>: optional per-bin log-concentration offset, capturing systematic directional bias between observed and predicted compositions. <code>NULL</code> (default) applies no shift. See <code>?CompObs</code> for details.</p></li>
-</ul></section></section><section id="imp" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="imp">
-<span class="header-section-number">4.5</span> <code>Imp</code>
+</ul></section></section><section id="imp-optional" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="imp-optional">
+<span class="header-section-number">3.5</span> <code>Imp</code> <em>(optional)</em>
 </h2>
-<p>An <code>Imp</code> object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model.</p>
+<p>An <code>Imp</code> object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model. When omitted, 100% compliance with management advice is assumed.</p>
 <p>Key slots:</p>
 <ul>
 <li>
@@ -1209,12 +1233,12 @@ Note
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./overview-openMSE.html" class="pagination-link" aria-label="Overview of `openMSE`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./example-objects.html" class="pagination-link" aria-label="Overview of Example Objects">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

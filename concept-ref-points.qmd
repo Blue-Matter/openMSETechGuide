@@ -6,11 +6,205 @@
 #| echo: false
 #| include: false
 library(openMSE)
-rnorm(5)
 ```
 
-## Reference Landings & Removals
+Reference points are benchmark values that describe the state of a stock or fishery under specified conditions. They provide the yardstick against which current stock status is measured and against which management strategy performance is evaluated. In `openMSE`, reference points are calculated from the operating model after the historical dynamics have been run, and are stored in `Hist@Reference` and can be accessed with `Reference(Hist)`.
 
+Two broad categories of reference points are used in openMSE:
 
-## Maximum Sustainable Yield
+- **Unfished reference points:** quantities under no fishing, including unfished biomass ($B_0$), unfished spawning biomass ($SB_0$), unfished spawning production ($SP_0$), and unfished recruitment ($R_0$). These describe the baseline state of the stock and are calculated as part of the unfished equilibrium (see @sec-tech-unfished).
+- **MSY-based reference points:** quantities at or derived from maximum sustainable yield, including $F_\text{MSY}$, $B_\text{MSY}$, $SB_\text{MSY}$, $SP_\text{MSY}$, $F_{0.1}$, $F_\text{Max}$, $F_\text{crash}$, and associated SPR quantities.
 
+Additional reference points include the mean generation time (MGT), the reference yield under a fixed-$F$ policy, and $B_\text{Low}$ (a rebuilding-based limit reference point used in DFO Canada's Precautionary Approach framework).
+
+## MSY Reference Points
+
+MSY reference points are calculated automatically by `Simulate()` and stored in `Hist@Reference@MSY`. They can also be recalculated at any time using `CalcMSY()`, which takes a `Hist` or `OM` object and returns a `refpointsMSY` object.
+
+```{r}
+#| eval: false
+Hist <- Simulate(myOM)
+
+# Full reference object
+Reference(Hist)
+
+# Full refpointsMSY object
+MSYRefs(Hist)
+
+# Individual quantities
+FMSY(Hist)
+BMSY(Hist)
+SBMSY(Hist)
+MSYLandings(Hist)
+```
+
+By default, reference points are evaluated using parameters from the last historical year. Alternative years can be specified via the `Years` argument:
+
+```{r}
+#| eval: false
+# Reference points at a specific year
+CalcMSY(Hist, Years = 2010)
+
+# Reference points at multiple years (evaluated independently)
+CalcMSY(Hist, Years = c(2005, 2010, 2020))
+```
+
+Evaluating reference points at multiple years is useful for examining how $F_\text{MSY}$ or $B_\text{MSY}$ shift as biological or fishery parameters change over time.
+
+`CalcMSY()` returns a `refpointsMSY` object with the following slots, all with dimensions `Sim × Stock × Year`:
+
+| Slot | Description |
+|------|-------------|
+| `FMSY` | Apical fishing mortality at MSY |
+| `BMSY` | Total biomass at MSY |
+| `SBMSY` | Spawning biomass at MSY |
+| `SPMSY` | Spawning production at MSY |
+| `SPRMSY` | Spawning potential ratio at MSY |
+| `MSYLandings` | Landed catch at MSY |
+| `MSYDiscards` | Dead discards at MSY |
+
+### Removals vs Landings
+
+`CalcMSY()` can maximise either total removals (landings plus dead discards) or landings alone, controlled by the `type` argument:
+
+```{r}
+#| eval: false
+CalcMSY(Hist, type = "Removals")  # default
+CalcMSY(Hist, type = "Landings")
+```
+
+Removals-based MSY finds the $F$ that maximises total fish removed from the population; landings-based MSY finds the $F$ that maximises retained catch. The two diverge when discards are substantial: the $F$ that maximises landings may be lower than the $F$ that maximises total removals, because at high $F$ a greater proportion of removals are discarded fish that contribute to mortality but not to yield.
+
+### Multi-Stock Complexes
+
+When a stock complex contains more than one stock, `CalcMSY()` finds the single $F_\text{MSY}$ maximising total yield across all stocks. Stock-level quantities (BMSY, SBMSY, etc.) are then evaluated at this complex-level $F_\text{MSY}$. See @sec-tech-refpoints for details.
+
+## Yield-Per-Recruit Reference Points
+
+::: {.callout-note}
+$F_\text{Max}$ and $F_{0.1}$ are not yet calculated automatically. Code to compute and store these reference points is under development.
+:::
+
+Two $F$-based reference points are derived from the yield-per-recruit (YPR) curve and do not require a stock-recruitment relationship:
+
+- **$F_\text{Max}$:** the apical fishing mortality that maximises YPR.
+- **$F_{0.1}$:** the apical fishing mortality at which the slope of the YPR curve is 10% of its initial slope.
+
+## Spawning Potential Ratio Reference Points
+
+::: {.callout-note}
+$F_\text{crash}$ and $\text{SPR}_\text{crash}$ are not yet calculated automatically. Code to compute and store these reference points is under development.
+:::
+
+The spawning potential ratio $\text{SPR}(F) = \Phi_F / \Phi_0$ measures the fraction of unfished spawning production per recruit remaining at fishing mortality $F$. Two SPR-based reference points are computed:
+
+- **$F_\text{crash}$:** the fishing mortality at which equilibrium recruitment falls to zero.
+- **$\text{SPR}_\text{crash}$:** the spawning potential ratio at $F_\text{crash}$, i.e. the SPR below which equilibrium recruitment is zero.
+
+## Reference Yield
+
+The reference yield provides a practical benchmark for comparing MP performance. It is the highest yield (landings or removals) achievable under a fixed-$F$ policy over the projection period, accounting for the actual simulated population trajectory and recruitment variability. It is computed separately for landings and removals, stored in `Hist@Reference@Landings` and `Hist@Reference@Removals`, and calculated automatically during `Simulate()` (landings by default; removals optionally).
+
+For seasonal models, the effort pattern from the last complete historical year (all $S$ seasons) is extracted as the baseline. A single scalar multiplier is then optimised to scale all fleets and all seasons simultaneously, preserving the relative seasonal effort distribution while searching over the overall level of fishing pressure.
+
+## Mean Generation Time
+
+The mean generation time (MGT) is the mean age of a mature female in the population under natural mortality only at unfished equilibrium:
+
+$$\text{MGT} = \frac{\sum_a a \cdot l_a \cdot m_a}{\sum_a l_a \cdot m_a}$$
+
+where $l_a$ is survivorship to age $a$ under natural mortality only and $m_a$ is maturity-at-age. MGT is used as the time unit for the $B_\text{Low}$ calculation below and is computed by `CalcMGT()`:
+
+```{r}
+#| eval: false
+CalcMGT(Hist)
+
+# At a specific year
+CalcMGT(Hist, Years = 2010)
+```
+
+MGT is stored in `Hist@Reference@MGT` and has dimensions `Sim × Stock × Year`. In seasonal models, age classes are in decimal-year units, so MGT is returned in years regardless of seasonal resolution.
+
+## B~Low~
+
+::: {.callout-note}
+$B_\text{Low}$ is not calculated by default due to its computational cost. It must be enabled as an argument to `Simulate()`. Code for this is under development.
+:::
+
+$B_\text{Low}$ is a rebuilding-based limit reference point used in DFO Canada's Precautionary Approach framework. It is defined as the current spawning biomass below which a population, if it were to recover with zero fishing, could not rebuild to $B_\text{frac} \times SB_\text{MSY}$ within $\text{HZN} \times \text{MGT}$ years. The default values are $B_\text{frac} = 0.5$ and $\text{HZN} = 2$.
+
+Conceptually, if current spawning biomass falls below $B_\text{Low}$, then even with immediate cessation of fishing the stock would require more than two mean generation times to recover to half of $SB_\text{MSY}$.
+
+$B_\text{Low}$ is stored in `Hist@Reference@BLow`. Because it requires a forward simulation of the population trajectory, it is computationally expensive and is not calculated by default; it is enabled via an argument to `Simulate()`.
+
+## Per-Recruit Curves
+
+The underlying per-recruit calculations used to derive $F_\text{MSY}$, $F_{0.1}$, $F_\text{Max}$, and $F_\text{crash}$ can be examined directly using `CalcPerRecruit()` and `CalcEquilibrium()`. These are useful for understanding yield curves, plotting SPR against $F$, and diagnosing model behaviour.
+
+```{r}
+#| eval: false
+PR <- CalcPerRecruit(Hist, apicalF = seq(0, 1, by = 0.05))
+Eq <- CalcEquilibrium(Hist)
+```
+
+Both functions accept a `Years` argument and a `Complex` argument.
+
+## Depletion and Stock Status
+
+Current stock status is typically expressed as depletion, the ratio of current biomass to a reference level:
+
+- $B/B_0$: current total biomass relative to unfished biomass
+- $SB/SB_0$: current spawning biomass relative to unfished spawning biomass
+- $SP/SP_0$: current spawning production relative to unfished spawning production
+- $B/B_\text{MSY}$: current biomass relative to $B_\text{MSY}$
+- $F/F_\text{MSY}$: current fishing mortality relative to $F_\text{MSY}$
+
+Spawning biomass ($SB$) and spawning production ($SP$) measure related but distinct quantities. $SB$ is the biomass of reproductively active fish (maturity-at-age $\times$ weight-at-age $\times$ numbers). $SP$ is fecundity-weighted abundance, the quantity that directly drives the stock-recruitment relationship. When fecundity is proportional to weight, $SB$ and $SP$ are proportional and give the same depletion ratio; they diverge when fecundity is specified independently of weight (e.g. via age-specific egg production).
+
+Helper functions for extracting these quantities from a `Hist` or `MSE` object:
+
+```{r}
+#| eval: false
+# Relative to unfished
+B_B0(Hist)       # total biomass / B0
+SB_SB0(Hist)     # spawning biomass / SB0
+SP_SP0(Hist)     # spawning production / SP0
+
+# Relative to MSY
+B_BMSY(Hist)     # total biomass / BMSY
+SB_SBMSY(Hist)   # spawning biomass / SBMSY
+SP_SPMSY(Hist)   # spawning production / SPMSY
+F_FMSY(Hist)     # total apical F (summed over fleets) / FMSY
+```
+
+All functions accept a `df` argument (`TRUE` (default) returns a data frame; `FALSE` returns an array).
+
+## Seasonal Models {#sec-concept-refpoints-seasonal}
+
+Seasonal operating models subdivide each calendar year into $S$ seasons with season-specific biology, mortality, and recruitment. Reference points for seasonal models are expressed on an annual scale and follow the same logic as annual models. The `Years` argument to `CalcMSY()`, `CalcPerRecruit()`, and `CalcEquilibrium()` should specify complete calendar years (integers); all seasons within each requested year are used automatically.
+
+### Annual reference points from seasonal dynamics
+
+All reference point quantities are reported as annual values. $B_\text{MSY}$, $SB_\text{MSY}$, and $SP_\text{MSY}$ represent equilibrium population state at $F_\text{MSY}$; MSY is total annual catch across all seasons; SPR is the ratio of fished to unfished annual spawning production per recruit.
+
+In a seasonal model, biomass fluctuates within the year as seasonal mortality and recruitment pulses occur. The per-recruit framework accounts for this by computing each quantity as a recruitment-weighted average over birth-season cohorts (see @sec-tech-refpoints-seasonal for the full equations).
+
+### Cohorts and birth seasons
+
+The seasonal recruitment pattern is controlled by `SRR@R0`: the proportion of annual recruitment entering in season $s_0$ is $\pi_{s_0} = R_{0,s_0} / R_{0,\text{annual}}$. Per-recruit quantities (spawning production, biomass, yield) are computed for each birth season separately and combined using these $\pi_{s_0}$ weights. Full equations are given in @sec-tech-refpoints-seasonal.
+
+Cohorts born in different seasons experience different lifetime mortality and fecundity trajectories, because they encounter each calendar season at different ages. The $\pi_{s_0}$ weighting correctly averages over the full composition of annual recruitment across birth seasons.
+
+### Fecundity and spawning production
+
+`AdjustSeasonalFecundity()` (called automatically during `Simulate()`) scales fecundity-at-age by season in proportion to the seasonal recruitment pattern. This means $\Phi_0$ (unfished spawning production per recruit, the sum of fecundity-weighted survival over all ages and seasons) reflects the actual timing and magnitude of spawning across the year, consistent with whatever recruitment seasonality is specified. SPR $= \Phi_F / \Phi_0$ retains its standard interpretation: the fraction of unfished spawning production per recruit remaining at fishing mortality $F$, regardless of whether spawning is concentrated in one season or distributed across several.
+
+### Interpretation of $F_\text{MSY}$
+
+$F_\text{MSY}$ is the annual apical fishing mortality, the sum of instantaneous rates experienced by the most heavily fished age class across all seasons in a year. This is directly comparable to $F_\text{MSY}$ from an annual model. The optimisation scales a peak-season effort scalar, with all other seasons proportional to it via the historical effort pattern; $F_\text{MSY}$ is reported as the corresponding annual total.
+
+## Spatial Models {#sec-concept-refpoints-spatial}
+
+For spatially structured models, reference points are currently calculated using spatially-aggregated parameters and should be interpreted as spatial averages. A spatially-explicit equilibrium approach is planned as a future option.
+
+For full technical details of all reference point calculations, see @sec-tech-refpoints.

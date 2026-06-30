@@ -1,9 +1,21 @@
-# Management Procedures 
+# Management Procedures
 
 ```{r}
 #| echo: false
 #| include: false
-library(MSEtool)
-rnorm(5)
+library(openMSE)
 ```
 
+This part covers management procedures (MPs) — the decision rules that receive data and return management advice within the closed-loop simulation. It describes the data and advice objects that MPs interact with, how to configure the observation model that generates those data, and how to write and test MPs in `openMSE`.
+
+**The Data Object** (@sec-object-data) describes the `Data` class — what it holds, how it is populated from real observations and simulated values, and how MPs access it during a projection.
+
+**Conditioning the Observation Model** (@sec-conditioning-obs) explains how to condition the `Obs` object on real data, what parameters are estimated, and how to inspect and modify the conditioned results.
+
+**Generating Simulated Data** (@sec-generate-data) covers how the observation model generates synthetic data during the historical and projection periods, including the real-data-first logic and how to configure data types for simulation.
+
+**The Advice Object** (@sec-object-advice) describes the `Advice` class — the structured output that MPs return and how it is interpreted by the projection engine.
+
+**Writing Management Procedures** (@sec-management-procedures) explains how to write MPs as R functions with the correct signature, how to register them, and how to test them outside of a full MSE run.
+
+**Example: Built-in MPs** (@sec-example-mps) illustrates a selection of the management procedures included in `MSEtool`, demonstrating how they use the `Data` object and what advice they produce.

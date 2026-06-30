@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Management Strategy Evaluation with openMSE">
+<title>26&nbsp; Historical Population Dynamics – openMSE Technical Manual</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./tech-observations.html" rel="next">
+<link href="./tech-unfished.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-historical.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openMSE_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./images/openMSE_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Technical Manual</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://openMSE.com" title="openMSE" class="quarto-navigation-tool px-1" aria-label="openMSE"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/blue-matter/openMSETechGuide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of <code>openMSE</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An Example MSE</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./mps-data-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management Procedures</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The <code>Data</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning-obs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning <code>Obs</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generate-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Generating Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object-advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The <code>Advice</code> Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./management-procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Management Procedures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-mps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example Management Procedures</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./developing-oms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developing Operating Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-built-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Built-In Examples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-import-ss3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Import OM from SS3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-import-bam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Import OM from BAM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./om-condition-rcm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Condition OM with RCM</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operating Model Concepts</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Specifying Biological and Fleet Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-populate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tech-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technical Details</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-life-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Life History Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-fleet-schedules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Fleet Schedules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-unfished.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-historical.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-reference-points.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./z-app-acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./z-app-changes_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Overview of Major Changes</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#sec-tech-historical-init" id="toc-sec-tech-historical-init" class="nav-link active" data-scroll-target="#sec-tech-historical-init"><span class="header-section-number">26.1</span> Initial Conditions</a></li>
+  <li>
+<a href="#sec-tech-historical-effort" id="toc-sec-tech-historical-effort" class="nav-link" data-scroll-target="#sec-tech-historical-effort"><span class="header-section-number">26.2</span> Spatial Distribution of Effort</a>
+  <ul class="collapse">
+<li><a href="#stage-1-exploitable-biomass-and-first-pass-distribution" id="toc-stage-1-exploitable-biomass-and-first-pass-distribution" class="nav-link" data-scroll-target="#stage-1-exploitable-biomass-and-first-pass-distribution"><span class="header-section-number">26.2.1</span> Stage 1: Exploitable Biomass and First-Pass Distribution</a></li>
+  <li><a href="#stage-2-depletion-adjusted-utility" id="toc-stage-2-depletion-adjusted-utility" class="nav-link" data-scroll-target="#stage-2-depletion-adjusted-utility"><span class="header-section-number">26.2.2</span> Stage 2: Depletion-Adjusted Utility</a></li>
+  <li><a href="#stage-3-softmax-spatial-targeting" id="toc-stage-3-softmax-spatial-targeting" class="nav-link" data-scroll-target="#stage-3-softmax-spatial-targeting"><span class="header-section-number">26.2.3</span> Stage 3: Softmax Spatial Targeting</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-tech-historical-f" id="toc-sec-tech-historical-f" class="nav-link" data-scroll-target="#sec-tech-historical-f"><span class="header-section-number">26.3</span> Fishing Mortality</a></li>
+  <li><a href="#sec-tech-historical-spawn" id="toc-sec-tech-historical-spawn" class="nav-link" data-scroll-target="#sec-tech-historical-spawn"><span class="header-section-number">26.4</span> Spawning Biomass and Production</a></li>
+  <li><a href="#sec-tech-historical-recruitment" id="toc-sec-tech-historical-recruitment" class="nav-link" data-scroll-target="#sec-tech-historical-recruitment"><span class="header-section-number">26.5</span> Recruitment</a></li>
+  <li>
+<a href="#sec-tech-historical-number" id="toc-sec-tech-historical-number" class="nav-link" data-scroll-target="#sec-tech-historical-number"><span class="header-section-number">26.6</span> Survival, Ageing, and Movement</a>
+  <ul class="collapse">
+<li><a href="#sec-tech-movement-derivation" id="toc-sec-tech-movement-derivation" class="nav-link" data-scroll-target="#sec-tech-movement-derivation"><span class="header-section-number">26.6.1</span> Movement Matrix Derivation</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-tech-historical-catch" id="toc-sec-tech-historical-catch" class="nav-link" data-scroll-target="#sec-tech-historical-catch"><span class="header-section-number">26.7</span> Catch</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-historical.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-historical.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-tech-historical" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Historical Population Dynamics</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>The historical period spans <code>OM@nYear</code> years divided into <code>OM@nYear × OM@Seasons</code> time steps, each of duration <span class="math inline">\(1/\text{Seasons}\)</span> years. For non-seasonal models (<code>OM@Seasons = 1</code>) each time step is one year. Mortality rates (M and F) are expressed per time step.</p>
+<p>The population is first initialised at the start of the historical period, then advanced forward time step by time step. Within each time step, operations are performed in the following order: spatial distribution of effort, fishing mortality, spawning biomass and production, recruitment, survival and ageing, movement, and catch. The simulation index is omitted from equations below; all calculations are performed independently per simulation.</p>
+<section id="sec-tech-historical-init" class="level2" data-number="26.1"><h2 data-number="26.1" class="anchored" data-anchor-id="sec-tech-historical-init">
+<span class="header-section-number">26.1</span> Initial Conditions</h2>
+<p>The population at the first historical time step is constructed from the equilibrium unfished numbers-at-age (see <a href="tech-unfished.html" class="quarto-xref"><span>Chapter 28</span></a>) scaled by recruitment deviations:</p>
+<p><span class="math display">\[N_{a,k,1} = N^0_{a,k,1} \cdot \delta_a\]</span></p>
+<p>where <span class="math inline">\(N^0_{a,k,1}\)</span> is the equilibrium unfished number in area <span class="math inline">\(k\)</span> at age <span class="math inline">\(a\)</span> (see <a href="tech-unfished.html#sec-tech-unfished-spatial" class="quarto-xref"><span>Section 28.4</span></a>), and <span class="math inline">\(\delta_a\)</span> is the recruitment deviation for the cohort that would have been age <span class="math inline">\(a\)</span> at time step 1. For all age classes except the first, <span class="math inline">\(\delta_a\)</span> is drawn from <code>SRR@RecDevInit</code>. The deviation for the first age class is taken from the first time step of <code>SRR@RecDevHist</code>, which contains log-normal recruitment deviations for all historical time steps.</p>
+<p>If the operating model specifies an initial depletion (<code>Depletion@Initial</code>), the initial numbers are rescaled so that total biomass or spawning biomass matches the target fraction of <span class="math inline">\(B_0\)</span> or <span class="math inline">\(\mathit{SB}_0\)</span>.</p>
+</section><section id="sec-tech-historical-effort" class="level2" data-number="26.2"><h2 data-number="26.2" class="anchored" data-anchor-id="sec-tech-historical-effort">
+<span class="header-section-number">26.2</span> Spatial Distribution of Effort</h2>
+<p>Each fleet distributes its total effort across areas using a three-stage model based on exploitable biomass, within-timestep depletion, and spatial targeting behaviour. Total effort for fleet <span class="math inline">\(f\)</span> in time step <span class="math inline">\(t\)</span> is given by <code>Effort@Effort[s,t]</code> for simulation <span class="math inline">\(s\)</span>.</p>
+<section id="stage-1-exploitable-biomass-and-first-pass-distribution" class="level3" data-number="26.2.1"><h3 data-number="26.2.1" class="anchored" data-anchor-id="stage-1-exploitable-biomass-and-first-pass-distribution">
+<span class="header-section-number">26.2.1</span> Stage 1: Exploitable Biomass and First-Pass Distribution</h3>
+<p>For each fleet <span class="math inline">\(f\)</span> and area <span class="math inline">\(k\)</span>, exploitable biomass is summed across stocks and ages:</p>
+<p><span class="math display">\[\hat{B}_{f,k,t} = \sum_\text{st} q_{\text{st},f,t} \sum_a N_{a,k,t}\, \bar{W}_{a,f,t}\, v_{a,f,k,t}\, r_{a,f,k,t}\]</span></p>
+<p>where <span class="math inline">\(q_{\text{st},f,t}\)</span> is catchability for stock <span class="math inline">\(\text{st}\)</span> by fleet <span class="math inline">\(f\)</span>, <span class="math inline">\(v_{a,f,k,t}\)</span> is selectivity, and <span class="math inline">\(r_{a,f,k,t}\)</span> is retention. By default (<code>UseDensity = TRUE</code>), <span class="math inline">\(\hat{B}_{f,k,t}\)</span> is divided by the relative area size <span class="math inline">\(s_k\)</span> so that effort is attracted by fish density rather than total abundance in each area, appropriate for non-aggregating species where catchability per unit effort depends on local density, not area-wide biomass. Set <code>UseDensity = FALSE</code> for schooling or aggregating species where total biomass in an area drives fleet behaviour regardless of area size. The resulting exploitable biomass (or density) signal gives the initial effort allocation based on the ideal free distribution (IFD):</p>
+<p><span class="math display">\[D^{(0)}_{f,k,t} = \frac{\hat{B}_{f,k,t}}{\sum_{k'} \hat{B}_{f,k',t}}\]</span></p>
+<p>Stock-fleet-area combinations where <code>Closure = 0</code> contribute zero biomass to <span class="math inline">\(\hat{B}_{f,k,t}\)</span> for that stock, but other open stocks in the same area still contribute and the fleet may still allocate effort there.</p>
+</section><section id="stage-2-depletion-adjusted-utility" class="level3" data-number="26.2.2"><h3 data-number="26.2.2" class="anchored" data-anchor-id="stage-2-depletion-adjusted-utility">
+<span class="header-section-number">26.2.2</span> Stage 2: Depletion-Adjusted Utility</h3>
+<p>Within a time step, fishing progressively depletes local biomass. The depletion-adjusted utility uses an exponential depletion discount:</p>
+<p><span class="math display">\[g(\phi) = \frac{1 - \exp(-\phi)}{\phi}\]</span></p>
+<p>where <span class="math inline">\(\phi_{f,k,t}\)</span> is the local fishing pressure on stock <span class="math inline">\(\text{st}\)</span> by fleet <span class="math inline">\(f\)</span> in area <span class="math inline">\(k\)</span>. For density-mode fleets:</p>
+<p><span class="math display">\[\phi_{\text{st},f,k,t} = \frac{1}{s_k}\left(q_{\text{st},f,t}\, E_{f,t}\, D^{(0)}_{f,k,t} + \sum_{f' \neq f} q_{\text{st},f',t}\, E_{f',t}\, D_{f',k,t-1}\right)\]</span></p>
+<p>The second term accounts for inter-fleet competition: pressure from other fleets is included using their effort distribution from the previous time step as a one-step lag. For biomass-mode fleets the <span class="math inline">\(s_k\)</span> denominator is omitted. The depletion-adjusted utility for fleet <span class="math inline">\(f\)</span> in area <span class="math inline">\(k\)</span> is:</p>
+<p><span class="math display">\[U_{f,k,t} = \sum_\text{st} \hat{B}_{\text{st},f,k,t}\, g(\phi_{\text{st},f,k,t})\]</span></p>
+<p>normalised to <span class="math inline">\(\tilde{U}_{f,k,t} = U_{f,k,t} / \sum_{k'} U_{f,k',t}\)</span>.</p>
+<p>The function <span class="math inline">\(g(\phi)\)</span> is monotone decreasing from <span class="math inline">\(g(0) = 1\)</span> (no depletion) toward zero as <span class="math inline">\(\phi \to \infty\)</span> (complete depletion), representing the fraction of the initial biomass accessible on average over the time step under continuous fishing.</p>
+</section><section id="stage-3-softmax-spatial-targeting" class="level3" data-number="26.2.3"><h3 data-number="26.2.3" class="anchored" data-anchor-id="stage-3-softmax-spatial-targeting">
+<span class="header-section-number">26.2.3</span> Stage 3: Softmax Spatial Targeting</h3>
+<p>Empirical effort distributions depart from the IFD due to imperfect information or habit. A softmax function controls the degree of spatial concentration:</p>
+<p><span class="math display">\[D_{f,k,t} = \frac{\exp(\lambda_{f,t}\, \tilde{U}_{f,k,t})}{\sum_{k'} \exp(\lambda_{f,t}\, \tilde{U}_{f,k',t})}\]</span></p>
+<p>where <span class="math inline">\(\lambda_{f,t} \geq 0\)</span> is the spatial targeting parameter (<code>Effort@Targeting</code>). At <span class="math inline">\(\lambda = 0\)</span> effort is distributed uniformly across open areas; as <span class="math inline">\(\lambda \to \infty\)</span> all effort concentrates in the single highest-utility area. By construction, <span class="math inline">\(\sum_k D_{f,k,t} = 1\)</span> for each fleet and time step. The final distribution <span class="math inline">\(D_{f,k,t}\)</span> is stored in <code>Hist@Distribution</code>.</p>
+<p>Users may bypass the three-stage model entirely by supplying effort distributions directly in <code>Effort@Distribution</code>. Where values are provided for a given fleet and time step, they are used as-is in place of the computed <span class="math inline">\(D_{f,k,t}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The current model uses exploitable biomass as the utility signal, implicitly assuming that the value of catch is proportional to vulnerable biomass (i.e., uniform price across stocks and areas) and that costs are uniform across areas. A future version will incorporate stock-specific prices and area-specific costs so that the utility signal reflects expected profit per unit effort.</p>
+</div>
+</div>
+</section></section><section id="sec-tech-historical-f" class="level2" data-number="26.3"><h2 data-number="26.3" class="anchored" data-anchor-id="sec-tech-historical-f">
+<span class="header-section-number">26.3</span> Fishing Mortality</h2>
+<p>Area-specific fishing mortality-at-age for each fleet is:</p>
+<p><span class="math display">\[F^{\text{int}}_{a,f,k,t} = \min\!\left(\frac{q_{f,t}\, E_{f,t}\, D_{f,k,t}}{s_k},\; F_{\max}\right) \cdot v_{a,f,k,t}\]</span></p>
+<p>for density-mode fleets (<code>UseDensity = TRUE</code>); for biomass-mode fleets the <span class="math inline">\(s_k\)</span> denominator is omitted. <span class="math inline">\(F_{\max}\)</span> (<code>OM@maxF</code>) is a cap preventing unrealistically large fishing mortalities. Three mortality components are derived per fleet:</p>
+<ul>
+<li>
+<span class="math inline">\(F^{\text{ret}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot r_{a,f,k,t}\)</span>: retained (landed) mortality</li>
+<li>
+<span class="math inline">\(F^{\text{dis}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot (1 - r_{a,f,k,t}) \cdot m_{a,f,k,t}\)</span>: discarded and dead</li>
+<li>
+<span class="math inline">\(F^{\text{dead}}_{a,f,k,t} = F^{\text{ret}}_{a,f,k,t} + F^{\text{dis}}_{a,f,k,t}\)</span>: total fishing mortality</li>
+</ul>
+<p>where <span class="math inline">\(m_{a,f,k,t}\)</span> is discard mortality-at-age (see <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>). Total mortality combining natural and fishing mortality is:</p>
+<p><span class="math display">\[Z_{a,k,t} = M_{a,t} + \sum_f F^{\text{dead}}_{a,f,k,t}\]</span></p>
+<p><code>Hist</code> stores <code>FInteract</code>, <code>FDead</code>, and <code>FRetain</code> (apical values; <code>Sim × Stock × Year × Fleet</code>) and <code>FInteractArea</code>, <code>FDeadArea</code>, and <code>FRetainArea</code> (age- and area-specific; list by stock, <code>Sim × Age × Year × Fleet × Area</code>). The apical value for each fleet is computed by first taking the numbers-weighted average of F across areas at each age, then taking the maximum over ages:</p>
+<p><span class="math display">\[F^{\text{apical}}_{f,t} = \max_a \left( \sum_k \frac{N_{a,k,t}}{\sum_{k'} N_{a,k',t}} F^{\text{dead}}_{a,f,k,t} \right)\]</span></p>
+<p>Dead discard mortality is not stored directly as it can be derived as <code>FDead - FRetain</code>.</p>
+</section><section id="sec-tech-historical-spawn" class="level2" data-number="26.4"><h2 data-number="26.4" class="anchored" data-anchor-id="sec-tech-historical-spawn">
+<span class="header-section-number">26.4</span> Spawning Biomass and Production</h2>
+<p>Numbers at the time of spawning account for mortality up to fraction <span class="math inline">\(\omega\)</span> through the time step:</p>
+<p><span class="math display">\[N^{\text{SP}}_{a,k,t} = N_{a,k,t}\,\exp(-Z_{a,k,t}\,\omega)\]</span></p>
+<p>Spawning biomass and production are summed over ages and areas:</p>
+<p><span class="math display">\[\mathit{SB}_t = \sum_a \sum_k N^{\text{SP}}_{a,k,t}\,\bar{W}_{a,t}\,\text{mat}_{a,t}, \qquad \mathit{SP}_t = \sum_a \sum_k N^{\text{SP}}_{a,k,t}\,f_{a,t}\]</span></p>
+<p>where <span class="math inline">\(\text{mat}_{a,t}\)</span> is maturity-at-age and <span class="math inline">\(f_{a,t}\)</span> is fecundity-at-age. For multi-stock models with <code>SRR@SPFrom</code> set, a stock’s spawning production is replaced by that of the named source stock before recruitment is calculated.</p>
+</section><section id="sec-tech-historical-recruitment" class="level2" data-number="26.5"><h2 data-number="26.5" class="anchored" data-anchor-id="sec-tech-historical-recruitment">
+<span class="header-section-number">26.5</span> Recruitment</h2>
+<p>Expected recruitment is determined by the stock-recruitment relationship (see <a href="tech-life-history.html#sec-tech-srr" class="quarto-xref"><span>Section 24.7</span></a>) evaluated at <span class="math inline">\(\mathit{SP}_t\)</span>, then multiplied by a log-normal recruitment deviation <span class="math inline">\(\delta_t\)</span>:</p>
+<p><span class="math display">\[R_t = \text{SRR}(\mathit{SP}_t)\,\cdot\,\delta_t\]</span></p>
+<p>Recruits enter the model at the first age class (<code>Ages@Classes[1]</code>). If <code>Ages@Classes[1] == 0</code>, recruitment occurs in the same time step as spawning; otherwise recruits appear after a lag of <code>Ages@Classes[1] × OM@Seasons</code> time steps. Recruits are distributed across areas according to the unfished spatial distribution for the first age class (<code>Spatial@UnfishedDist</code>).</p>
+</section><section id="sec-tech-historical-number" class="level2" data-number="26.6"><h2 data-number="26.6" class="anchored" data-anchor-id="sec-tech-historical-number">
+<span class="header-section-number">26.6</span> Survival, Ageing, and Movement</h2>
+<p>Numbers at the next time step are computed by applying total mortality and semelparous post-spawn mortality, then ageing:</p>
+<p><span class="math display">\[N_{a+1,k,t+1} = N_{a,k,t}\,\exp(-Z_{a,k,t})\,(1 - \xi_{a,t}), \quad a &lt; n_\text{age}\]</span></p>
+<p>where <span class="math inline">\(\xi_{a,t}\)</span> is semelparous mortality (zero for iteroparous species). The plus group accumulates survivors:</p>
+<p><span class="math display">\[N_{n_\text{age},k,t+1} \mathrel{+}= N_{n_\text{age},k,t}\,\exp(-Z_{n_\text{age},k,t})\,(1 - \xi_{n_\text{age},t})\]</span></p>
+<p>After survival and ageing, fish move among areas according to the movement matrix <span class="math inline">\(\mathbf{M}_{a,t}\)</span>, where <span class="math inline">\(M_{k,k',a,t}\)</span> is the probability of moving from area <span class="math inline">\(k\)</span> to area <span class="math inline">\(k'\)</span>:</p>
+<p><span class="math display">\[N_{a,k',t+1} = \sum_k N_{a,k,t+1}\, M_{k,k',a,t}\]</span></p>
+<section id="sec-tech-movement-derivation" class="level3" data-number="26.6.1"><h3 data-number="26.6.1" class="anchored" data-anchor-id="sec-tech-movement-derivation">
+<span class="header-section-number">26.6.1</span> Movement Matrix Derivation</h3>
+<p>The movement matrix <span class="math inline">\(\mathbf{M}_{a,t}\)</span> is derived from user-supplied targets for the unfished spatial distribution (<span class="math inline">\(d_k\)</span>, <code>UnfishedDist</code>) and the probability of remaining in each area (<span class="math inline">\(p_k\)</span>, <code>ProbStaying</code>). The matrix is fitted so that its stationary distribution reproduces <span class="math inline">\(d_k\)</span> and its diagonal elements equal <span class="math inline">\(p_k\)</span>.</p>
+<p><strong>Two-area models.</strong> The system has a closed-form solution. For a two-area model with staying probabilities <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> on the diagonal, the off-diagonal elements are <span class="math inline">\(1 - p_1\)</span> and <span class="math inline">\(1 - p_2\)</span>. The staying probability for area 2 is solved analytically from the target <span class="math inline">\(d_1\)</span> and the supplied <span class="math inline">\(p_1\)</span>:</p>
+<p><span class="math display">\[p_2 = 1 - \frac{d_1 (1 - p_1)}{1 - d_1}\]</span></p>
+<p><strong>Multi-area models.</strong> For three or more areas, a closed-form solution does not generally exist. The matrix is instead fitted by minimising a penalty function that penalises deviations from both targets. Off-diagonal movement probabilities are parameterised using the user-supplied relative movement weights (<code>FracOther</code>), normalised within each row, and scaled by <span class="math inline">\(1 - p_k\)</span>. The penalty function is:</p>
+<p><span class="math display">\[\mathcal{L} = \sum_k \left[\frac{\log(\hat{d}_k / d_k)^2}{2\,\sigma_d^2}\right] + \sum_k \left[\frac{(\text{logit}(\hat{p}_k) - \text{logit}(p_k))^2}{2\,\sigma_p^2}\right]\]</span></p>
+<p>where <span class="math inline">\(\hat{d}_k\)</span> is the asymptotic distribution implied by the optimised matrix, <span class="math inline">\(\hat{p}_k\)</span> is the optimised diagonal element, and <span class="math inline">\(\sigma_d\)</span> (<code>CVDist</code>, default 0.1) and <span class="math inline">\(\sigma_p\)</span> (<code>CVStay</code>, default 1) control the relative weight on each target. Smaller <span class="math inline">\(\sigma_d\)</span> enforces a tighter fit to the distribution target; smaller <span class="math inline">\(\sigma_p\)</span> enforces a tighter fit to the staying probability target. When <code>FracOther</code> strongly constrains the direction of movement it may be impossible to satisfy both targets simultaneously, and these parameters determine which takes priority.</p>
+<p>The optimisation is performed independently for each simulation, age class, and year (or seasonal timestep).</p>
+</section></section><section id="sec-tech-historical-catch" class="level2" data-number="26.7"><h2 data-number="26.7" class="anchored" data-anchor-id="sec-tech-historical-catch">
+<span class="header-section-number">26.7</span> Catch</h2>
+<p>Catch-at-age (in numbers) is calculated using the Baranov catch equation, apportioning total deaths among fleets:</p>
+<p><span class="math display">\[C^{\text{ret}}_{a,f,k,t} = N_{a,k,t}\,(1 - \exp(-Z_{a,k,t}))\cdot\frac{F^{\text{ret}}_{a,f,k,t}}{Z_{a,k,t}}\]</span></p>
+<p><span class="math display">\[C^{\text{dis}}_{a,f,k,t} = N_{a,k,t}\,(1 - \exp(-Z_{a,k,t}))\cdot\frac{F^{\text{dis}}_{a,f,k,t}}{Z_{a,k,t}}\]</span></p>
+<p>Biomass landings and discards are obtained by multiplying by fleet-specific weight-at-age and summing over ages and areas:</p>
+<p><span class="math display">\[\text{Landings}_{f,t} = \sum_a \sum_k C^{\text{ret}}_{a,f,k,t}\,\bar{W}_{a,f,t}\]</span></p>
+<p><span class="math display">\[\text{Discards}_{f,t} = \sum_a \sum_k C^{\text{dis}}_{a,f,k,t}\,\bar{W}_{a,f,t}\]</span></p>
+<p>Landings-at-length and discards-at-length (in numbers) are also computed for each fleet. Let <span class="math inline">\(K_{a,l,f,t}\)</span> be the conditional age-length key: the population age-length key reweighted within each age class by size-specific selectivity for fleet <span class="math inline">\(f\)</span>, so that <span class="math inline">\(K_{a,l,f,t}\)</span> gives the probability of a fish of age <span class="math inline">\(a\)</span> being of length <span class="math inline">\(l\)</span> given that it was captured by fleet <span class="math inline">\(f\)</span>. Landings-at-length and discards-at-length are then:</p>
+<p><span class="math display">\[L_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{ret}}_{a,f,k,t}\]</span></p>
+<p><span class="math display">\[D_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{dis}}_{a,f,k,t}\]</span></p>
+<p>If an age-weight key is available instead of an age-length key, the same approach is applied to give catch-at-weight. Results are stored in <code>Hist@LandingsAtSize</code> and <code>Hist@DiscardsAtSize</code> as nested lists (by stock, then fleet), each array with dimensions <code>Sim × Class × Year × Area</code>. Fleets are stored separately because each may have different size class definitions.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/docs\.openMSE\.com\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./tech-unfished.html" class="pagination-link" aria-label="Unfished Conditions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Unfished Conditions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./tech-observations.html" class="pagination-link" aria-label="Fishery Data and Observations">
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fishery Data and Observations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-historical.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

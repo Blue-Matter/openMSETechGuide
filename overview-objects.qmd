@@ -1,4 +1,4 @@
-```{r}
+﻿```{r}
 #| echo: false
 #| include: false
 library(MSEtool)
@@ -9,14 +9,52 @@ rnorm(5)
 
 `openMSE` organises all inputs in an `OM` object, the top-level container that holds all the components needed to run a simulation. The `OM` object is itself built from a hierarchy of S4 subcomponent objects, each responsible for a distinct aspect of the model.
 
-Understanding this hierarchy, what each subcomponent represents, what it contains, and how the pieces fit together, is important for building, modifying, and interpreting operating models.
+Understanding this hierarchy — what each subcomponent represents, what it contains, and how the pieces fit together — is important for building, modifying, and interpreting operating models.
 
-The primary subcomponents of an `OM` object are `Stock`, `Fleet`, `Obs`, and `Imp`. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values. 
+The primary subcomponents of an `OM` object are `Stock`, `Fleet`, `Obs`, and `Imp`. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values, described in detail in the sections below (@fig-om-hierarchy).
 
-This chapter describes all of these classes and their contents. 
+```{r}
+#| label: fig-om-hierarchy
+#| fig-cap: "The primary components of an `OM` object. Solid arrows indicate required components; dashed arrows indicate optional components."
+#| echo: false
 
-This chapter contains a lot of detail. Readers may find it useful to skim through it now to get a sense of the overall structure, then work through the following chapters that demonstrate the MSE process and return here as a reference when they need details about a specific object or slot.
+library(DiagrammeR)
 
+grViz("
+digraph OM_components {
+
+  graph [layout = dot, rankdir = TB, bgcolor = white, splines = polyline, nodesep = 0.8, ranksep = 0.8]
+
+  node [fontname = Arial, fontsize = 14, style = filled, shape = rectangle]
+
+  subgraph cluster_om_components {
+    style = filled
+    fillcolor = lightyellow
+    color = lightyellow
+    stock [label = 'Stock',  fillcolor = '#21b0fe', fontcolor = white]
+    fleet [label = 'Fleet',  fillcolor = '#21b0fe', fontcolor = white]
+    obs   [label = 'Obs',    fillcolor = '#21b0fe', fontcolor = white]
+    imp   [label = 'Imp',    fillcolor = '#21b0fe', fontcolor = white]
+    data  [label = 'Data',   fillcolor = '#21b0fe', fontcolor = white]
+
+    stock -> fleet -> obs -> imp -> data [style = invis]
+    { rank = same; stock; fleet; obs; imp; data }
+  }
+
+  om [label = 'OM', fillcolor = '#21b0fe', fontcolor = white]
+
+  stock -> om
+  fleet -> om
+  obs   -> om
+  imp   -> om [style = dashed]
+  data  -> om [style = dashed]
+
+}
+")
+```
+
+This chapter describes all of these classes and their contents. It contains a lot of detail; readers may find it useful to skim through once to get a sense of the overall structure, then return here as a reference when they need details about a specific object or slot.
+ 
 ## `OM`
 
 An `OM` object is the top-level operating model. It holds one or more `Stock` objects and, for each stock, a corresponding set of `Fleet`, `Obs`, and `Imp` objects. 
@@ -34,7 +72,7 @@ Key slots:
 - `Seasons`: number of seasons per year. Default 1 (annual time steps).
 - `Complexes`: a named list defining stock complexes. Groups of stocks whose catch data are reported and managed jointly. Each element is an integer vector of stock indices belonging to that complex. If not specified, each stock is treated as its own complex.
 - `Interval`: management update interval in projection years. How frequently the management procedure is called to update advice. Default 1 (annual).
-- `Data`: a `data-class` object or named list of `data-class` objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See @sec-dataobs for more details on the `Data` object and how it interacts with `Obs` objects.  
+- `Data`: a `data-class` object or named list of `data-class` objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See @sec-object_data for more details on the `Data` object and how it interacts with `Obs` objects.  
 
 ## `Stock`
 
@@ -236,8 +274,8 @@ An `Obs` object defines the observation model for a fleet, describing how each d
 Each slot of `Obs` is itself a subcomponent object: `CatchObs`, `EffortObs`, `IndicesObs`, or `CompObs`, that each specify the error structure for that data type. 
 
 All sub-components of an `Obs` object are optional. If a sub-component (e.g., `CatchObs`) is not populated, no data of that type will be generated in the model. 
-
-The `Obs` object interacts closely with `Data` objects. See @sec-dataobs for more details.
+ 
+The `Obs` object interacts closely with `Data` objects. See @sec-object_data for more details.
 
 ### `CatchObs`
 
@@ -315,9 +353,9 @@ Key slots:
 
 - `Shift`: optional per-bin log-concentration offset, capturing systematic directional bias between observed and predicted compositions. `NULL` (default) applies no shift. See `?CompObs` for details.
 
-## `Imp`
+## `Imp` *(optional)*
 
-An `Imp` object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model. 
+An `Imp` object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model. When omitted, 100% compliance with management advice is assumed. 
 
 Key slots:
 

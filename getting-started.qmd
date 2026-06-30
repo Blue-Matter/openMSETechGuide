@@ -1,3 +1,21 @@
-# Getting Started
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5)
+```
 
-This part ...
+# Getting Started {#sec-gettingstarted}
+
+This part introduces `openMSE` and walks through the core workflow from object construction to a complete management strategy evaluation. No prior familiarity with the package is assumed.
+
+@sec-overview introduces the primary objects and functions, explains how they fit together in the framework, and describes the S4 class system that underpins it.
+ 
+@sec-primaryobjects gives a tour of the key object classes, with descriptions of their main slots and how they relate to each other.
+  
+@sec-exampleobjects provides an overview of the built-in example objects available in `openMSE`.
+
+@sec-example-mse runs a complete MSE using a built-in operating model, covering historical simulation, specifying management procedures, and running forward projections.
+
+
+
