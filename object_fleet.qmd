@@ -1,3 +1,0 @@
-# `Fleet` Object {#sec-object_fleet}
-
-The ...

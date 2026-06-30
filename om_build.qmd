@@ -1,7 +1,0 @@
----
-title: "Building OMs"
-editor: visual
----
-
-
-This process is most often used in data-limited situations, where there is insufficient data or information to use one of the other approaches.

@@ -1,3 +1,0 @@
-# `Simulate` Historical Fishery
-
-`Hist`

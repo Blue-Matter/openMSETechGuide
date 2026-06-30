@@ -1,5 +1,0 @@
-# `Data` Object {#sec-object_data}
-
-The `Data` 
-
-

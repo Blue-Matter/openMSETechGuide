@@ -1,3 +1,0 @@
-# `MSE` Object {#sec-object_mse}
-
-The ...

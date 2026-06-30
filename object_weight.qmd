@@ -1,5 +1,0 @@
-# `Weight` Object {#sec-object_weight}
-
-The 
-
-

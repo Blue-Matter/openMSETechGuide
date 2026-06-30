@@ -1,4 +1,0 @@
-# `SRR` Object {#sec-object_srr}
-
-The ...
-

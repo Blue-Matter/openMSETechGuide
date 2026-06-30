@@ -1,3 +1,0 @@
-# `NaturalMortality` Object {#sec-object_naturalmortality}
-
-The ...

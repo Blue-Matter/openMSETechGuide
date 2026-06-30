@@ -1,3 +1,0 @@
-# `Hist` Object {#sec-object_hist}
-
-The ...

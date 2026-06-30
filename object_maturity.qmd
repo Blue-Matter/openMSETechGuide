@@ -1,4 +1,0 @@
-# `Maturity` Object {#sec-object_maturity}
-
-The ...
-
