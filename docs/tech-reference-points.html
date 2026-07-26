@@ -504,19 +504,6 @@ window.Quarto = {
 <p>For the <strong>Ricker</strong> SRR with steepness <span class="math inline">\(h\)</span>:</p>
 <p><span class="math display">\[\text{RelRec}(\rho) = \rho \cdot \exp\!\Bigl(\kappa \bigl(1 - \rho\bigr)\Bigr)\]</span></p>
 <p>where <span class="math inline">\(\kappa = \log(5h)/(1 - 0.2^{\kappa})\)</span> … [exact steepness parameterisation to be confirmed against the MSEtool SRR implementations and documented here].</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The exact analytical forms of <span class="math inline">\(\text{RelRec}\)</span> for each SRR model (Beverton-Holt, Ricker, hockey-stick) should be confirmed against the MSEtool SRR class implementations and documented here. The BH form above is the standard steepness parameterisation; the Ricker form requires verifying the steepness-to-<span class="math inline">\(\kappa\)</span> mapping used internally.</p>
-</div>
-</div>
 <p>Equilibrium abundance, biomass, and yield follow by multiplying the per-recruit quantities by <span class="math inline">\(R_{eq}(F)\)</span>. Absolute equilibrium quantities across a grid of apical <span class="math inline">\(F\)</span> values are returned by <code>CalcEquilibrium()</code>.</p>
 <p>For multi-stock complexes, when stock <span class="math inline">\(j\)</span> provides the spawning production driving the SRR of stock <span class="math inline">\(i\)</span> (<code>Stock@SRR@SPFrom</code>), the relative recruitment for stock <span class="math inline">\(i\)</span> is evaluated using the SPR of stock <span class="math inline">\(j\)</span>.</p>
 </section></section><section id="sec-tech-refpoints-msy" class="level2" data-number="29.4"><h2 data-number="29.4" class="anchored" data-anchor-id="sec-tech-refpoints-msy">
