@@ -92,10 +92,6 @@ $$\text{RelRec}(\rho) = \rho \cdot \exp\!\Bigl(\kappa \bigl(1 - \rho\bigr)\Bigr)
 
 where $\kappa = \log(5h)/(1 - 0.2^{\kappa})$ ... [exact steepness parameterisation to be confirmed against the MSEtool SRR implementations and documented here].
 
-::: {.callout-note}
-The exact analytical forms of $\text{RelRec}$ for each SRR model (Beverton-Holt, Ricker, hockey-stick) should be confirmed against the MSEtool SRR class implementations and documented here. The BH form above is the standard steepness parameterisation; the Ricker form requires verifying the steepness-to-$\kappa$ mapping used internally.
-:::
-
 Equilibrium abundance, biomass, and yield follow by multiplying the per-recruit quantities by $R_{eq}(F)$. Absolute equilibrium quantities across a grid of apical $F$ values are returned by `CalcEquilibrium()`.
 
 For multi-stock complexes, when stock $j$ provides the spawning production driving the SRR of stock $i$ (`Stock@SRR@SPFrom`), the relative recruitment for stock $i$ is evaluated using the SPR of stock $j$.
