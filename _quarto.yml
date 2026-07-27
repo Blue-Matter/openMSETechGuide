@@ -42,13 +42,13 @@ book:
         - concept-schedules.qmd
         - concept-populate.qmd
         - concept-simulate-project.qmd
+        - concept-advice-implementation.qmd
         - concept-complexes.qmd
         - concept-spatial.qmd
         - concept-ref-points.qmd
 
     - part: tech-overview.qmd
       chapters:
-        - tech-notation.qmd
         - tech-populate-om.qmd
         - tech-life-history.qmd
         - tech-fleet-schedules.qmd
@@ -56,7 +56,10 @@ book:
         - tech-historical.qmd
         - tech-observations.qmd
         - tech-reference-points.qmd
-        - tech-projection.qmd
+        - tech-advice-implementation.qmd
+        - tech-advice-singlestock.qmd
+        - tech-advice-multifleet.qmd
+        - tech-stock-targeting.qmd
   appendices:
     - z-app-acknowledgements.qmd
     - z-app-changes_overview.qmd

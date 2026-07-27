@@ -11,11 +11,11 @@ rnorm(5)
 
 The objects are intended for demonstration and testing purposes only. The biological and exploitation values should not be interpreted as representing real stock assessments or used to inform management advice.
 
-@sec-buildexamples walks through how each object is constructed step by step.
+@sec-om-built-in walks through how each object is constructed step by step.
 
 ## `Stock` Objects
 
-Three `Stock` objects are provided, representing species with contrasting life histories and model configurations. See @sec-examplestocks for full construction details.
+Three example `Stock` objects are provided, representing species with contrasting life histories and model configurations. See @sec-examplestocks for full construction details. 
 
 | Object | Common name | Key characteristics |
 |---|---|---|
@@ -25,8 +25,7 @@ Three `Stock` objects are provided, representing species with contrasting life h
 
 ## `Fleet` Objects
 
-Two `Fleet` objects are provided, representing gear types with contrasting selectivity patterns. See @sec-examplefleets for full
-construction details.
+Two example `Fleet` objects are provided, representing gear types with contrasting selectivity patterns. See @sec-examplefleets for full construction details.
 
 | Object | Selectivity type | Key characteristics |
 |---|---|---|
@@ -35,7 +34,7 @@ construction details.
 
 ## `Obs` Objects
 
-Five `Obs` objects are provided, representing monitoring programs of increasing data richness. See @sec-exampleobs for full construction details.
+Five example `Obs` objects are provided, representing monitoring programs of increasing data richness. See @sec-exampleobs for full construction details.
 
 | Object | Data types |
 |---|---|
@@ -47,14 +46,18 @@ Five `Obs` objects are provided, representing monitoring programs of increasing 
 
 ## `Imp` Objects
 
-::: callout-note
-The `Imp` class is currently a placeholder and is not yet implemented. Example `Imp`
-objects will be added in the future.
-:::
+Four example `Imp` objects are provided, representing different assumptions about how management advice is realised in practice. See @sec-exampleimp for full construction details.
 
-## `OM` Objects
+| Object | Key characteristics |
+|---|---|
+| `FullComplianceImp` | Perfect compliance: TAC and effort advice realised exactly (`Mean = 1`, `SD = 0`); 100% immediate uptake of size regulations. |
+| `OverageImp` | TAC and effort consistently realised 5-25% above advice, with added simulation-to-simulation and year-to-year stochastic variation. |
+| `UnderageImp` | TAC and effort consistently realised 10-30% below advice, with added simulation-to-simulation and year-to-year stochastic variation. |
+| `PartialSizeComplianceImp` | Perfect TAC and effort implementation, but only 60% of the fleet adopts a newly-advised size regulation in the year it changes. |
 
-Five pre-assembled `OM` objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. All are initialised with `nSim = 8`, `nYear = 20`, and `pYear = 30`. See @sec-exampleOM for full construction details.
+## `OM` Objects {#sec-exampleoms}
+
+Five pre-assembled `OM` objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. See @sec-exampleOM for full construction details.
 
 | Object | Stocks | Fleets per stock | Obs program(s) | Notes |
 |---|---|---|---|---|

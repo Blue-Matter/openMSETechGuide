@@ -255,7 +255,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +281,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,12 +315,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -358,8 +358,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -461,7 +479,7 @@ window.Quarto = {
 </section><section id="sec-tech-alk" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="sec-tech-alk">
 <span class="header-section-number">24.3</span> Age–Length and Age–Weight Keys</h2>
 <p>The age–length key (ALK) is a <span class="math inline">\(n_\text{sim} \times n_\text{age} \times n_\text{class} \times T\)</span> array where element <span class="math inline">\(\text{ALK}_{a,k,t}\)</span> gives the probability that an individual of age <span class="math inline">\(a\)</span> in year <span class="math inline">\(t\)</span> falls into size class <span class="math inline">\(k\)</span>. Size classes are indexed by their lower bounds <span class="math inline">\(\ell_1 &lt; \ell_2 &lt; \cdots &lt; \ell_{n_\text{class}}\)</span>, so class <span class="math inline">\(k\)</span> spans the interval <span class="math inline">\([\ell_k, \ell_{k+1})\)</span> and the final class captures all sizes above <span class="math inline">\(\ell_{n_\text{class}}\)</span>.</p>
-<p>The same procedure and functions are used to construct the age–weight key (AWK), stored in <code>Stock@Weight@AWK</code>. The AWK is only built when <code>Weight@CVatAge</code> is specified; it is used to convert weight-based schedules to the age dimension when they cannot be derived from the ALK (e.g.&nbsp;maturity-at-weight or M-at-weight).</p>
+<p>The same procedure and functions are used to construct the age–weight key (AWK), stored in <code>Stock@Weight@AWK</code>. The AWK is only built when <code>Weight@CVatAge</code> is specified, it is used to calculate at-age schedules from weight-based schedules.</p>
 <section id="normal-distribution" class="level3" data-number="24.3.1"><h3 data-number="24.3.1" class="anchored" data-anchor-id="normal-distribution">
 <span class="header-section-number">24.3.1</span> Normal distribution</h3>
 <p>Individual length-at-age is assumed to follow a truncated normal with mean <span class="math inline">\(\bar{L}_{a,t}\)</span> and standard deviation <span class="math inline">\(\sigma_{a,t} = \text{CV}_{a,t} \cdot \bar{L}_{a,t}\)</span>, truncated to the interval <span class="math inline">\([\bar{L}_{a,t} - c\,\sigma_{a,t},\; \bar{L}_{a,t} + c\,\sigma_{a,t}]\)</span> where <span class="math inline">\(c\)</span> is <code>TruncSD</code> (default 2). The CDF of this truncated normal evaluated at size <span class="math inline">\(q\)</span> is</p>
@@ -497,8 +515,9 @@ window.Quarto = {
 <span class="header-section-number">24.4</span> Natural Mortality</h2>
 <p>Natural mortality-at-age is computed by <code>PopulateNaturalMortality()</code>. All values must be in <strong>per-time-step</strong> units matching <code>Ages@Units</code>. Three model families are available:</p>
 <p><strong>Constant M</strong> (<code>MortalityAtAge</code>): <span class="math display">\[M_{a,t} = M_t\]</span></p>
-<p><strong>Lorenzen M-at-length</strong> (<code>LorenzenMortalityLength</code>, converted to age via ALK): <span class="math display">\[M(\ell) = M_\text{ref} \left(\frac{\ell}{L_\text{ref}}\right)^{-0.288}\]</span></p>
-<p><strong>Lorenzen M-at-weight</strong> (<code>LorenzenMortalityWeight</code>, converted to age via ALK): <span class="math display">\[M(w) = M_\text{ref} \left(\frac{w}{W_\text{ref}}\right)^{-0.288}\]</span></p>
+<p><strong>Lorenzen M-at-length</strong> (<code>LorenzenMortalityLength</code>, converted to age via ALK): <span class="math display">\[M(\ell) = M_\text{ref} \left(\frac{\ell}{L_\text{ref}}\right)^{c}\]</span></p>
+<p><strong>Lorenzen M-at-weight</strong> (<code>LorenzenMortalityWeight</code>, converted to age via ALK): <span class="math display">\[M(w) = M_\text{ref} \left(\frac{w}{W_\text{ref}}\right)^{c}\]</span></p>
+<p>where <span class="math inline">\(c\)</span> is the allometric exponent (default <span class="math inline">\(-0.288\)</span>, adjustable).</p>
 <p>The Lorenzen models produce age-varying M that declines with body size. Natural mortality is stored in <code>Stock@NaturalMortality@MeanAtAge</code>.</p>
 </section><section id="sec-tech-maturity" class="level2" data-number="24.5"><h2 data-number="24.5" class="anchored" data-anchor-id="sec-tech-maturity">
 <span class="header-section-number">24.5</span> Maturity-at-Age</h2>
@@ -516,7 +535,7 @@ window.Quarto = {
 <p>Maturity-at-age is stored in <code>Stock@Maturity@MeanAtAge</code>.</p>
 <section id="semelparity" class="level3" data-number="24.5.1"><h3 data-number="24.5.1" class="anchored" data-anchor-id="semelparity">
 <span class="header-section-number">24.5.1</span> Semelparity</h3>
-<p>For semelparous species, mature individuals die after spawning. The <code>Semelparous</code> array in the <code>Maturity</code> object stores the proportion of mature individuals that die post-spawning; for iteroparous species this array is zero.</p>
+<p>For semelparous species, mature individuals die after spawning. The <code>Semelparous</code> array in the <code>Maturity</code> object stores the proportion of mature individuals that die post-spawning. For iteroparous species this array is zero.</p>
 </section></section><section id="sec-tech-fecundity" class="level2" data-number="24.6"><h2 data-number="24.6" class="anchored" data-anchor-id="sec-tech-fecundity">
 <span class="header-section-number">24.6</span> Fecundity-at-Age</h2>
 <p>Fecundity-at-age is computed by <code>PopulateFecundity()</code>. When no model is specified, fecundity defaults to mature body mass:</p>
@@ -546,9 +565,9 @@ window.Quarto = {
 <p><span class="math display">\[R_t = \bar{R}_t \cdot \delta_t\]</span></p>
 <p>where <span class="math inline">\(\bar{R}_t\)</span> is the expected recruitment from the SRR and <span class="math inline">\(\delta_t\)</span> is a log-normal deviation generated by <code>GenRecDevs()</code>. Deviations are drawn from a truncated normal on the log scale:</p>
 <p><span class="math display">\[\log \delta_t \sim \mathcal{N}\!\left(\mu_\delta,\; \sigma_\delta\right), \quad \mu_\delta = -\tfrac{1}{2}\sigma_\delta^2 \cdot \frac{1-\rho}{\sqrt{1-\rho^2}}\]</span></p>
-<p>where <span class="math inline">\(\sigma_\delta\)</span> is <code>SRR@SD</code>, <span class="math inline">\(\rho\)</span> is the autocorrelation coefficient <code>SRR@AC</code>, and the mean adjustment <span class="math inline">\(\mu_\delta\)</span> ensures approximate lognormal bias-correction under autocorrelation. Autocorrelation is applied as a first-order process:</p>
+<p>where <span class="math inline">\(\sigma_\delta\)</span> is <code>SD(SRR)</code>, <span class="math inline">\(\rho\)</span> is the autocorrelation coefficient <code>AC(SRR)</code>, and the mean adjustment <span class="math inline">\(\mu_\delta\)</span> provides lognormal bias-correction under autocorrelation. Autocorrelation is applied as a first-order process:</p>
 <p><span class="math display">\[\log\delta_t = \rho\,\log\delta_{t-1} + \epsilon_t\sqrt{1-\rho^2}, \quad \epsilon_t \sim \mathcal{N}(\mu_\delta, \sigma_\delta)\]</span></p>
-<p>Deviations are truncated at <span class="math inline">\(\pm\,\mathtt{TruncSD} \times \sigma_\delta\)</span> (default <span class="math inline">\(\mathtt{TruncSD} = 2\)</span>) to prevent extreme recruitment events. Separate deviation arrays are generated for the initial age classes (<code>RecDevInit</code>), historical years (<code>RecDevHist</code>), and projection years (<code>RecDevProj</code>). Any of these arrays can be supplied directly by the analyst instead of being generated stochastically.</p>
+<p>Deviations are truncated at <span class="math inline">\(\mu_\delta \pm\,\mathtt{TruncSD} \times \sigma_\delta\)</span> (default <span class="math inline">\(\mathtt{TruncSD} = 2\)</span>) to prevent extreme recruitment events. Separate deviation arrays are generated for the initial age classes (<code>RecDevInit</code>), historical years (<code>RecDevHist</code>), and projection years (<code>RecDevProj</code>). Any of these arrays can be supplied directly by the analyst instead of being generated stochastically.</p>
 <p>For multi-stock operating models, analysts can optionally call <code>GenMultiStockRecDevs()</code> to replace the independently generated projection deviations with correlated deviations drawn from a multivariate AR(1) process, preserving cross-stock covariance estimated from the historical deviations. This is not applied automatically.</p>
 
 

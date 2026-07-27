@@ -1,0 +1,109 @@
+# Implementing Management Advice {#sec-advice-implementation}
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| include: false
+library(openMSE)
+```
+
+Each time step of the projection period (a year unless `OM@Seasons > 1`) `Project()`:
+
+1. Generates that time step's simulated data (subject to the data lag described below);
+2. Calls the MP for new advice, if this is a management time step (see *Management Intervals* below) — otherwise the previous advice carries forward unchanged;
+3. Updates the operating model's fishing dynamics to reflect that advice; and
+4. Advances the population one time step.
+
+This chapter describes how step 3 works.
+
+See @sec-simulate-project for the surrounding `Simulate()`/`Project()` workflow, and [Management Procedures](#sec-mpsdataadvice) for the structure of the `Data` and `Advice` objects passed between steps 1–3.
+
+The full mathematical and mechanical specification of everything in this chapter is given in the [Technical Details](#sec-techdetails) part:
+
+| Model | Chapter |
+|---|---|
+| One complex, one fleet | @sec-tech-advice-singlestock |
+| One complex, multiple fleets | @sec-tech-advice-multifleet |
+| Multiple complexes | @sec-tech-stock-targeting |
+| Everything else (bag limits, management intervals, interim advice, etc) | @sec-tech-advice-implementation |
+
+## Management Intervals and Interim Advice
+
+`Interval(OM)` sets how frequently the management procedures are run and the advice is updated (e.g. `Interval = 3` re-runs the MPs every third year). Management advice remains unchanged in the years between the advice updates.
+
+By default, the MP is first run in the first projection year. Setting `MPStartYear(OM)` to a later calendar year instead creates an interim period: projection years before it are not run through the MP, and advice is taken directly from `InterimAdvice(OM)`, a user-supplied fixed or stochastic TAC/effort trajectory. This is useful when the historical data a model is conditioned on ends well before the candidate MPs will actually take over managing the fishery; for example, an OM conditioned on data to 2024 where the new MPs won't start until 2028. The intervening years are filled in from `InterimAdvice` (e.g. actual catches that took place in those years). See `?OM` for the full `InterimAdvice` data frame format and related arguments.
+
+## From Advice to Effort
+
+An MP's `Advice` can set any combination of total allowable catch (TAC) limits, effort controls, bag limist,  gear changes or retention limits, and area closures. This section covers the catch- and effort- controls (TAC, effort controls, and bag limits); gear changes, retention limits, and area closures are covered in the two sections that follow.
+
+### TAC Control
+
+For a given TAC, the model determines the fishing mortality (and hence the fleet effort) that would produce catch equal to that TAC. This is done by optimization the candidate effort levels for the fleet (or, with multiple fleets, for each fleet simultaneously) until the resulting catch matches the TAC. 
+
+With one fleet, this is a single-variable optimization over that fleet's effort. With multiple fleets sharing the same TAC, a scalar TAC is first allocated across fleets according to `Allocation(OM)` (or an MP can set each fleet's TAC directly), and effort for every fleet is then optimized jointly. 
+
+### Effort Control
+
+An effort control is applied as an absolute value or relative to the last historical year's effort. 
+
+If an MP sets both a TAC and an effort limit for the same fleet in the same year, the effort value acts as a hard ceiling on the effort used in the TAC optimization above; i.e., the fishing effort is determined by whichever control is more limiting.
+
+If a fleet has neither a TAC nor an effort control set for a given time step, its effort is carried forward unchanged from the previous time step. An empty `Advice` object therefore implies a constant-effort policy: fishing continues at whatever level it was already at.
+
+### Bag Limit
+
+A bag limit (fish per trip, per angler or per boat) is a recreational-fishery control that caps what an individual angler or vessel may retain at the fleet's current effort level. 
+
+Under `ClosureMode = "discard"` (default), fishing continues as normal, but any catch above the per-trip limit is discarded (subject to the fleet's usual discard mortality), with retained catch scaled down based on the expected fraction of a trip's catch that would exceed the limit. 
+
+Under `ClosureMode = "stop"`, effort is capped instead, so that aggregate retained catch over the season doesn't exceed the bag-limit-implied allowance.
+
+## Selectivity, Retention, and Discard Mortality
+
+An MP can also change a fleet's gear properties or retention behaviour; for example, a minimum size limit that changes `Retention`, or a gear modification that changes `Selectivity`. Once set, an MP only needs to supply this advice again if it wants to change the schedule again, otherwise it carries forward unchanged. 
+
+## Area Closures
+
+An MP can also close one or more areas to a fleet. This closure is in place for every remaining projection year, unless changed by the MP in a future projection year. 
+
+## Implementation Error
+
+`Imp(OM)` (see @sec-primaryobjects for its structure) describes how the management advice generated by an MP is imperfectly realised in the simulation, on top of the otherwise-deterministic advice application described above.
+
+Interim advice (before `MPStartYear`) is not subject to implementation error, since it represents an already-realised or negotiated outcome rather than a fresh management recommendation.
+
+When `Imp` is left unspecified, the management advice is implemented without error.
+
+### TAC and Effort
+
+Before effort is solved for or applied, the advised TAC or effort value is multiplied by a stochastic error term (`Mean`/`SD`), representing realised catch or effort systematically over- or under-shooting the recommendation.
+
+### Selectivity & Retention
+
+`Compliance` is the fraction of the fleet that adopts a new `Selectivity`/`Retention` regulations at the point it change, with the remainder continuing under the previous schedule. 
+
+## Multiple Complexes Sharing a Fleet
+
+Everything above describes a single complex. When an operating model has more than one complex (i.e., several distinct stocks not pooled together into one complex) and they share one or more fleets, two additional things come into play.
+
+### Coordinated Advice
+
+An ordinary MP (`mp`) is called once per complex in isolation; it never sees another complex's data. A multi-stock MP (`mmp`) is instead called once per simulation, given every complex's `Data` at once, and returns advice for all of them together. This is what allows, for example, a single bag limit pooled across several species caught on the same fleet trip, or any other regulation that depends jointly on more than one complex's status. See @sec-mp-mmp for the `mp`/`mmp` calling conventions.
+
+### Reconciling Competing Advice
+
+If two or more complexes have a TAC or effort limit for a given fleet, those management recommendations can conflict: the fleet cannot simultaneously fish at the exact effort each complex's advice implies on its own. 
+
+`openMSE` treats each complex's advice as a target the fleet's effort is pulled toward, weighted by how strongly the fleet is assumed to reconcile toward that particular complex (specified by `Compliance` for TAC and Effort in the corresponding `Imp` object). 
+
+Low compliance lets a complex's target be overshot freely, while compliance approaching 1 behaves like a hard constraint. The fleet's realised effort is whatever best balances every complex's compliance-weighted target simultaneously. See @sec-tech-stock-targeting for the full reconciliation mechanics.
+
+### Stock Targeting
+
+When a fleet catches more than one stock, how its effort splits across them (its "targeting" weight for each stock) is solved for at every projection time step, jointly with the fleet's effort. 
+
+For a TAC-controlled fleet this happens as part of the effort-solving optimization described above. For an effort-controlled fleet, the fixed effort is split across the fleet's stocks by a separate optimization over targeting weights. 
+
+How strongly that penalty resists change is calibrated from the fleet's own historical targeting behaviour: `FitStockTargeting()` estimates each fleet's mean targeting level and the covariance of year-to-year deviations around it from historical data. See @sec-tech-stock-targeting for the full specification.

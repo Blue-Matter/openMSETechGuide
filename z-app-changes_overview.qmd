@@ -1,5 +1,12 @@
 # Overview of Major Changes {#sec-changes}
 
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+rnorm(5) 
+```
+
 This section is primarily relevant to readers who have been working with `openMSE` in the past and are interested in learning about the technical differences between `openMSE 2.0` and earlier versions of the packages.
 
 The majority of the new developments have occurred in the `MSEtool` package. The most significant changes are the development of new object classes and new accessor and assignment functions related to those objects.
@@ -41,7 +48,7 @@ The new object classes and related functions are described in more detail elsewh
 +-----------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
 | `imp`     | S4 object containing information related to the implementation error for management advice produced by management procedures. | `Imp()` : Create a new `imp`-class object                                                                                                                                                                                   | `Imp`            |
 |           |                                                                                                                               |                                                                                                                                                                                                                             |                  |
-|           | **Note**: Implementation error is currently not implemented in `openMSE 2.0` .                                                | `Imp(OM`): Access an `imp`-class object from an `om`-class object                                                                                                                                                           |                  |
+|           |                                                                                                                               | `Imp(OM`): Access an `imp`-class object from an `om`-class object                                                                                                                                                           |                  |
 |           |                                                                                                                               |                                                                                                                                                                                                                             |                  |
 |           |                                                                                                                               | `Imp(OM) <- Imp()` : Assign an `imp`-class object to an `om`-class object                                                                                                                                                   |                  |
 +-----------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+

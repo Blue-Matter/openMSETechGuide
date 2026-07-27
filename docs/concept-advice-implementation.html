@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>4&nbsp; Overview of Example Objects – openMSE Technical Manual</title>
+<title>19&nbsp; Implementing Management Advice – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./example-mse.html" rel="next">
-<link href="./overview-objects.html" rel="prev">
+<link href="./concept-complexes.html" rel="next">
+<link href="./concept-simulate-project.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -68,32 +68,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+}</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -102,7 +77,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./example-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li><li class="breadcrumb-item"><a href="./concept-advice-implementation.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,11 +114,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
@@ -158,7 +133,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example-objects.html" class="sidebar-item-text sidebar-link active">
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
   </div>
 </li>
@@ -256,11 +231,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conceptual Details</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-schedules.html" class="sidebar-item-text sidebar-link">
@@ -281,7 +256,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
   </div>
 </li>
@@ -413,16 +388,37 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#stock-objects" id="toc-stock-objects" class="nav-link active" data-scroll-target="#stock-objects"><span class="header-section-number">4.1</span> <code>Stock</code> Objects</a></li>
-  <li><a href="#fleet-objects" id="toc-fleet-objects" class="nav-link" data-scroll-target="#fleet-objects"><span class="header-section-number">4.2</span> <code>Fleet</code> Objects</a></li>
-  <li><a href="#obs-objects" id="toc-obs-objects" class="nav-link" data-scroll-target="#obs-objects"><span class="header-section-number">4.3</span> <code>Obs</code> Objects</a></li>
-  <li><a href="#imp-objects" id="toc-imp-objects" class="nav-link" data-scroll-target="#imp-objects"><span class="header-section-number">4.4</span> <code>Imp</code> Objects</a></li>
-  <li><a href="#sec-exampleoms" id="toc-sec-exampleoms" class="nav-link" data-scroll-target="#sec-exampleoms"><span class="header-section-number">4.5</span> <code>OM</code> Objects</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/example-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<li><a href="#management-intervals-and-interim-advice" id="toc-management-intervals-and-interim-advice" class="nav-link active" data-scroll-target="#management-intervals-and-interim-advice"><span class="header-section-number">19.1</span> Management Intervals and Interim Advice</a></li>
+  <li>
+<a href="#from-advice-to-effort" id="toc-from-advice-to-effort" class="nav-link" data-scroll-target="#from-advice-to-effort"><span class="header-section-number">19.2</span> From Advice to Effort</a>
+  <ul class="collapse">
+<li><a href="#tac-control" id="toc-tac-control" class="nav-link" data-scroll-target="#tac-control"><span class="header-section-number">19.2.1</span> TAC Control</a></li>
+  <li><a href="#effort-control" id="toc-effort-control" class="nav-link" data-scroll-target="#effort-control"><span class="header-section-number">19.2.2</span> Effort Control</a></li>
+  <li><a href="#bag-limit" id="toc-bag-limit" class="nav-link" data-scroll-target="#bag-limit"><span class="header-section-number">19.2.3</span> Bag Limit</a></li>
+  </ul>
+</li>
+  <li><a href="#selectivity-retention-and-discard-mortality" id="toc-selectivity-retention-and-discard-mortality" class="nav-link" data-scroll-target="#selectivity-retention-and-discard-mortality"><span class="header-section-number">19.3</span> Selectivity, Retention, and Discard Mortality</a></li>
+  <li><a href="#area-closures" id="toc-area-closures" class="nav-link" data-scroll-target="#area-closures"><span class="header-section-number">19.4</span> Area Closures</a></li>
+  <li>
+<a href="#implementation-error" id="toc-implementation-error" class="nav-link" data-scroll-target="#implementation-error"><span class="header-section-number">19.5</span> Implementation Error</a>
+  <ul class="collapse">
+<li><a href="#tac-and-effort" id="toc-tac-and-effort" class="nav-link" data-scroll-target="#tac-and-effort"><span class="header-section-number">19.5.1</span> TAC and Effort</a></li>
+  <li><a href="#selectivity-retention" id="toc-selectivity-retention" class="nav-link" data-scroll-target="#selectivity-retention"><span class="header-section-number">19.5.2</span> Selectivity &amp; Retention</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#multiple-complexes-sharing-a-fleet" id="toc-multiple-complexes-sharing-a-fleet" class="nav-link" data-scroll-target="#multiple-complexes-sharing-a-fleet"><span class="header-section-number">19.6</span> Multiple Complexes Sharing a Fleet</a>
+  <ul class="collapse">
+<li><a href="#coordinated-advice" id="toc-coordinated-advice" class="nav-link" data-scroll-target="#coordinated-advice"><span class="header-section-number">19.6.1</span> Coordinated Advice</a></li>
+  <li><a href="#reconciling-competing-advice" id="toc-reconciling-competing-advice" class="nav-link" data-scroll-target="#reconciling-competing-advice"><span class="header-section-number">19.6.2</span> Reconciling Competing Advice</a></li>
+  <li><a href="#stock-targeting" id="toc-stock-targeting" class="nav-link" data-scroll-target="#stock-targeting"><span class="header-section-number">19.6.3</span> Stock Targeting</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-advice-implementation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./example-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-exampleobjects" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li><li class="breadcrumb-item"><a href="./concept-advice-implementation.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-advice-implementation" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></h1>
 </div>
 
 
@@ -436,201 +432,101 @@ window.Quarto = {
   
 
 
-</header><p><code>openMSE</code> includes a number of built-in objects that can be used for testing and demonstration. These objects span all four subcomponent types, <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>, along with a set of example <code>OM</code> objects that combine them in configurations of increasing complexity.</p>
-<p>The objects are intended for demonstration and testing purposes only. The biological and exploitation values should not be interpreted as representing real stock assessments or used to inform management advice.</p>
-<p><a href="om-built-in.html" class="quarto-xref"><span>Chapter 12</span></a> walks through how each object is constructed step by step.</p>
-<section id="stock-objects" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="stock-objects">
-<span class="header-section-number">4.1</span> <code>Stock</code> Objects</h2>
-<p>Three example <code>Stock</code> objects are provided, representing species with contrasting life histories and model configurations. See <a href="om-built-in.html#sec-examplestocks" class="quarto-xref"><span>Section 12.1</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Common name</th>
-<th>Key characteristics</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>AlbacoreExStock</code></td>
-<td>Albacore tuna</td>
-<td>Long-lived, slow-growing, low <span class="math inline">\(M\)</span>, low recruitment variability, 2-area</td>
-</tr>
-<tr class="even">
-<td><code>ButterfishExStock</code></td>
-<td>Butterfish</td>
-<td>Short-lived, fast-growing, high <span class="math inline">\(M\)</span>, high recruitment variability, 2-area</td>
-</tr>
-<tr class="odd">
-<td><code>SeasonalSpatialExStock</code></td>
-<td>Reef fish</td>
-<td>Short-lived, monthly time steps, seasonal recruitment pulse, 3-area ontogenetic movement</td>
-</tr>
-</tbody>
-</table></section><section id="fleet-objects" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="fleet-objects">
-<span class="header-section-number">4.2</span> <code>Fleet</code> Objects</h2>
-<p>Two example <code>Fleet</code> objects are provided, representing gear types with contrasting selectivity patterns. See <a href="om-built-in.html#sec-examplefleets" class="quarto-xref"><span>Section 12.2</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Selectivity type</th>
-<th>Key characteristics</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>AsympExFleet</code></td>
-<td>Asymptotic</td>
-<td>Logistic selectivity pattern; effort builds gradually to a plateau</td>
-</tr>
-<tr class="even">
-<td><code>DomeExFleet</code></td>
-<td>Dome-shaped</td>
-<td>Reduced selectivity at largest sizes; slower effort build-up</td>
-</tr>
-</tbody>
-</table></section><section id="obs-objects" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="obs-objects">
-<span class="header-section-number">4.3</span> <code>Obs</code> Objects</h2>
-<p>Five example <code>Obs</code> objects are provided, representing monitoring programs of increasing data richness. See <a href="om-built-in.html#sec-exampleobs" class="quarto-xref"><span>Section 12.3</span></a> for full construction details.</p>
+</header><p>Each time step of the projection period (a year unless <code>OM@Seasons &gt; 1</code>) <code>Project()</code>:</p>
+<ol type="1">
+<li>Generates that time step’s simulated data (subject to the data lag described below);</li>
+<li>Calls the MP for new advice, if this is a management time step (see <em>Management Intervals</em> below) — otherwise the previous advice carries forward unchanged;</li>
+<li>Updates the operating model’s fishing dynamics to reflect that advice; and</li>
+<li>Advances the population one time step.</li>
+</ol>
+<p>This chapter describes how step 3 works.</p>
+<p>See <a href="concept-simulate-project.html" class="quarto-xref"><span>Chapter 18</span></a> for the surrounding <code>Simulate()</code>/<code>Project()</code> workflow, and <a href="mps-data-advice.html">Management Procedures</a> for the structure of the <code>Data</code> and <code>Advice</code> objects passed between steps 1–3.</p>
+<p>The full mathematical and mechanical specification of everything in this chapter is given in the <a href="tech-overview.html">Technical Details</a> part:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th>Object</th>
-<th>Data types</th>
+<th>Model</th>
+<th>Chapter</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>CommercialFleetObs</code></td>
-<td>Landings, discards, effort, CPUE</td>
+<td>One complex, one fleet</td>
+<td><a href="tech-advice-singlestock.html" class="quarto-xref"><span>Chapter 31</span></a></td>
 </tr>
 <tr class="even">
-<td><code>CatchAndSurveyObs</code></td>
-<td>Landings, survey index</td>
+<td>One complex, multiple fleets</td>
+<td><a href="tech-advice-multifleet.html" class="quarto-xref"><span>Chapter 32</span></a></td>
 </tr>
 <tr class="odd">
-<td><code>AgeStructuredObs</code></td>
-<td>Landings, discards, survey index, age compositions (landings and discards)</td>
+<td>Multiple complexes</td>
+<td><a href="tech-stock-targeting.html" class="quarto-xref"><span>Chapter 33</span></a></td>
 </tr>
 <tr class="even">
-<td><code>LengthStructuredObs</code></td>
-<td>Landings, discards, survey index, length compositions (landings and discards)</td>
-</tr>
-<tr class="odd">
-<td><code>DataRichObs</code></td>
-<td>Landings, discards, effort, CPUE, survey index, age and length compositions (landings and discards)</td>
-</tr>
-</tbody>
-</table></section><section id="imp-objects" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="imp-objects">
-<span class="header-section-number">4.4</span> <code>Imp</code> Objects</h2>
-<p>Four example <code>Imp</code> objects are provided, representing different assumptions about how management advice is realised in practice. See <a href="om-built-in.html#sec-exampleimp" class="quarto-xref"><span>Section 12.4</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Key characteristics</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>FullComplianceImp</code></td>
-<td>Perfect compliance: TAC and effort advice realised exactly (<code>Mean = 1</code>, <code>SD = 0</code>); 100% immediate uptake of size regulations.</td>
-</tr>
-<tr class="even">
-<td><code>OverageImp</code></td>
-<td>TAC and effort consistently realised 5-25% above advice, with added simulation-to-simulation and year-to-year stochastic variation.</td>
-</tr>
-<tr class="odd">
-<td><code>UnderageImp</code></td>
-<td>TAC and effort consistently realised 10-30% below advice, with added simulation-to-simulation and year-to-year stochastic variation.</td>
-</tr>
-<tr class="even">
-<td><code>PartialSizeComplianceImp</code></td>
-<td>Perfect TAC and effort implementation, but only 60% of the fleet adopts a newly-advised size regulation in the year it changes.</td>
-</tr>
-</tbody>
-</table></section><section id="sec-exampleoms" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="sec-exampleoms">
-<span class="header-section-number">4.5</span> <code>OM</code> Objects</h2>
-<p>Five pre-assembled <code>OM</code> objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. See <a href="om-built-in.html#sec-exampleOM" class="quarto-xref"><span>Section 12.5</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Stocks</th>
-<th>Fleets per stock</th>
-<th>Obs program(s)</th>
-<th>Notes</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>SingleStockOM</code></td>
-<td><code>AlbacoreExStock</code></td>
-<td><code>AsympExFleet</code></td>
-<td><code>AgeStructuredObs</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>TwoFleetOM</code></td>
-<td><code>AlbacoreExStock</code></td>
-<td>
-<code>AsympExFleet</code>, <code>DomeExFleet</code>
-</td>
-<td>
-<code>AgeStructuredObs</code>, <code>CatchAndSurveyObs</code>
-</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>MultiStockOM</code></td>
-<td>
-<code>AlbacoreExStock</code>, <code>ButterfishExStock</code>
-</td>
-<td>
-<code>AsympExFleet</code>, <code>DomeExFleet</code>
-</td>
-<td>Albacore: <code>AgeStructuredObs</code>, <code>CommercialFleetObs</code>; Butterfish: <code>CatchAndSurveyObs</code>, <code>LengthStructuredObs</code>
-</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>ComplexOM</code></td>
-<td>
-<code>AlbacoreExStock</code>, <code>ButterfishExStock</code> (complex)</td>
-<td><code>AsympExFleet</code></td>
-<td><code>AgeStructuredObs</code></td>
-<td>Stock complex</td>
-</tr>
-<tr class="odd">
-<td><code>SeasonalSpatialOM</code></td>
-<td><code>SeasonalSpatialExStock</code></td>
-<td><code>DomeExFleet</code></td>
-<td><code>CommercialFleetObs</code></td>
-<td>Monthly seasons, 3-area spatial model</td>
+<td>Everything else (bag limits, management intervals, interim advice, etc)</td>
+<td><a href="tech-advice-implementation.html" class="quarto-xref"><span>Chapter 30</span></a></td>
 </tr>
 </tbody>
 </table>
-<p><code>ComplexOM</code> groups both stocks into a single stock complex (<code>StockComplex</code>), meaning fishery data and management advice are handled at the complex level. See <a href="concept-complexes.html" class="quarto-xref"><span>Chapter 20</span></a> for more details on stock complexes.</p>
-<p><code>SeasonalSpatialOM</code> uses <code>Seasons = 12</code> to match the monthly age structure of <code>SeasonalSpatialExStock</code>. It is an example OM with sub-annual time steps and a multi-area ontogenetic spatial model.</p>
+<section id="management-intervals-and-interim-advice" class="level2" data-number="19.1"><h2 data-number="19.1" class="anchored" data-anchor-id="management-intervals-and-interim-advice">
+<span class="header-section-number">19.1</span> Management Intervals and Interim Advice</h2>
+<p><code>Interval(OM)</code> sets how frequently the management procedures are run and the advice is updated (e.g.&nbsp;<code>Interval = 3</code> re-runs the MPs every third year). Management advice remains unchanged in the years between the advice updates.</p>
+<p>By default, the MP is first run in the first projection year. Setting <code>MPStartYear(OM)</code> to a later calendar year instead creates an interim period: projection years before it are not run through the MP, and advice is taken directly from <code>InterimAdvice(OM)</code>, a user-supplied fixed or stochastic TAC/effort trajectory. This is useful when the historical data a model is conditioned on ends well before the candidate MPs will actually take over managing the fishery; for example, an OM conditioned on data to 2024 where the new MPs won’t start until 2028. The intervening years are filled in from <code>InterimAdvice</code> (e.g.&nbsp;actual catches that took place in those years). See <code>?OM</code> for the full <code>InterimAdvice</code> data frame format and related arguments.</p>
+</section><section id="from-advice-to-effort" class="level2" data-number="19.2"><h2 data-number="19.2" class="anchored" data-anchor-id="from-advice-to-effort">
+<span class="header-section-number">19.2</span> From Advice to Effort</h2>
+<p>An MP’s <code>Advice</code> can set any combination of total allowable catch (TAC) limits, effort controls, bag limist, gear changes or retention limits, and area closures. This section covers the catch- and effort- controls (TAC, effort controls, and bag limits); gear changes, retention limits, and area closures are covered in the two sections that follow.</p>
+<section id="tac-control" class="level3" data-number="19.2.1"><h3 data-number="19.2.1" class="anchored" data-anchor-id="tac-control">
+<span class="header-section-number">19.2.1</span> TAC Control</h3>
+<p>For a given TAC, the model determines the fishing mortality (and hence the fleet effort) that would produce catch equal to that TAC. This is done by optimization the candidate effort levels for the fleet (or, with multiple fleets, for each fleet simultaneously) until the resulting catch matches the TAC.</p>
+<p>With one fleet, this is a single-variable optimization over that fleet’s effort. With multiple fleets sharing the same TAC, a scalar TAC is first allocated across fleets according to <code>Allocation(OM)</code> (or an MP can set each fleet’s TAC directly), and effort for every fleet is then optimized jointly.</p>
+</section><section id="effort-control" class="level3" data-number="19.2.2"><h3 data-number="19.2.2" class="anchored" data-anchor-id="effort-control">
+<span class="header-section-number">19.2.2</span> Effort Control</h3>
+<p>An effort control is applied as an absolute value or relative to the last historical year’s effort.</p>
+<p>If an MP sets both a TAC and an effort limit for the same fleet in the same year, the effort value acts as a hard ceiling on the effort used in the TAC optimization above; i.e., the fishing effort is determined by whichever control is more limiting.</p>
+<p>If a fleet has neither a TAC nor an effort control set for a given time step, its effort is carried forward unchanged from the previous time step. An empty <code>Advice</code> object therefore implies a constant-effort policy: fishing continues at whatever level it was already at.</p>
+</section><section id="bag-limit" class="level3" data-number="19.2.3"><h3 data-number="19.2.3" class="anchored" data-anchor-id="bag-limit">
+<span class="header-section-number">19.2.3</span> Bag Limit</h3>
+<p>A bag limit (fish per trip, per angler or per boat) is a recreational-fishery control that caps what an individual angler or vessel may retain at the fleet’s current effort level.</p>
+<p>Under <code>ClosureMode = "discard"</code> (default), fishing continues as normal, but any catch above the per-trip limit is discarded (subject to the fleet’s usual discard mortality), with retained catch scaled down based on the expected fraction of a trip’s catch that would exceed the limit.</p>
+<p>Under <code>ClosureMode = "stop"</code>, effort is capped instead, so that aggregate retained catch over the season doesn’t exceed the bag-limit-implied allowance.</p>
+</section></section><section id="selectivity-retention-and-discard-mortality" class="level2" data-number="19.3"><h2 data-number="19.3" class="anchored" data-anchor-id="selectivity-retention-and-discard-mortality">
+<span class="header-section-number">19.3</span> Selectivity, Retention, and Discard Mortality</h2>
+<p>An MP can also change a fleet’s gear properties or retention behaviour; for example, a minimum size limit that changes <code>Retention</code>, or a gear modification that changes <code>Selectivity</code>. Once set, an MP only needs to supply this advice again if it wants to change the schedule again, otherwise it carries forward unchanged.</p>
+</section><section id="area-closures" class="level2" data-number="19.4"><h2 data-number="19.4" class="anchored" data-anchor-id="area-closures">
+<span class="header-section-number">19.4</span> Area Closures</h2>
+<p>An MP can also close one or more areas to a fleet. This closure is in place for every remaining projection year, unless changed by the MP in a future projection year.</p>
+</section><section id="implementation-error" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="implementation-error">
+<span class="header-section-number">19.5</span> Implementation Error</h2>
+<p><code>Imp(OM)</code> (see <a href="overview-objects.html" class="quarto-xref"><span>Chapter 3</span></a> for its structure) describes how the management advice generated by an MP is imperfectly realised in the simulation, on top of the otherwise-deterministic advice application described above.</p>
+<p>Interim advice (before <code>MPStartYear</code>) is not subject to implementation error, since it represents an already-realised or negotiated outcome rather than a fresh management recommendation.</p>
+<p>When <code>Imp</code> is left unspecified, the management advice is implemented without error.</p>
+<section id="tac-and-effort" class="level3" data-number="19.5.1"><h3 data-number="19.5.1" class="anchored" data-anchor-id="tac-and-effort">
+<span class="header-section-number">19.5.1</span> TAC and Effort</h3>
+<p>Before effort is solved for or applied, the advised TAC or effort value is multiplied by a stochastic error term (<code>Mean</code>/<code>SD</code>), representing realised catch or effort systematically over- or under-shooting the recommendation.</p>
+</section><section id="selectivity-retention" class="level3" data-number="19.5.2"><h3 data-number="19.5.2" class="anchored" data-anchor-id="selectivity-retention">
+<span class="header-section-number">19.5.2</span> Selectivity &amp; Retention</h3>
+<p><code>Compliance</code> is the fraction of the fleet that adopts a new <code>Selectivity</code>/<code>Retention</code> regulations at the point it change, with the remainder continuing under the previous schedule.</p>
+</section></section><section id="multiple-complexes-sharing-a-fleet" class="level2" data-number="19.6"><h2 data-number="19.6" class="anchored" data-anchor-id="multiple-complexes-sharing-a-fleet">
+<span class="header-section-number">19.6</span> Multiple Complexes Sharing a Fleet</h2>
+<p>Everything above describes a single complex. When an operating model has more than one complex (i.e., several distinct stocks not pooled together into one complex) and they share one or more fleets, two additional things come into play.</p>
+<section id="coordinated-advice" class="level3" data-number="19.6.1"><h3 data-number="19.6.1" class="anchored" data-anchor-id="coordinated-advice">
+<span class="header-section-number">19.6.1</span> Coordinated Advice</h3>
+<p>An ordinary MP (<code>mp</code>) is called once per complex in isolation; it never sees another complex’s data. A multi-stock MP (<code>mmp</code>) is instead called once per simulation, given every complex’s <code>Data</code> at once, and returns advice for all of them together. This is what allows, for example, a single bag limit pooled across several species caught on the same fleet trip, or any other regulation that depends jointly on more than one complex’s status. See <a href="management-procedures.html#sec-mp-mmp" class="quarto-xref"><span>Section 10.1</span></a> for the <code>mp</code>/<code>mmp</code> calling conventions.</p>
+</section><section id="reconciling-competing-advice" class="level3" data-number="19.6.2"><h3 data-number="19.6.2" class="anchored" data-anchor-id="reconciling-competing-advice">
+<span class="header-section-number">19.6.2</span> Reconciling Competing Advice</h3>
+<p>If two or more complexes have a TAC or effort limit for a given fleet, those management recommendations can conflict: the fleet cannot simultaneously fish at the exact effort each complex’s advice implies on its own.</p>
+<p><code>openMSE</code> treats each complex’s advice as a target the fleet’s effort is pulled toward, weighted by how strongly the fleet is assumed to reconcile toward that particular complex (specified by <code>Compliance</code> for TAC and Effort in the corresponding <code>Imp</code> object).</p>
+<p>Low compliance lets a complex’s target be overshot freely, while compliance approaching 1 behaves like a hard constraint. The fleet’s realised effort is whatever best balances every complex’s compliance-weighted target simultaneously. See <a href="tech-stock-targeting.html" class="quarto-xref"><span>Chapter 33</span></a> for the full reconciliation mechanics.</p>
+</section><section id="stock-targeting" class="level3" data-number="19.6.3"><h3 data-number="19.6.3" class="anchored" data-anchor-id="stock-targeting">
+<span class="header-section-number">19.6.3</span> Stock Targeting</h3>
+<p>When a fleet catches more than one stock, how its effort splits across them (its “targeting” weight for each stock) is solved for at every projection time step, jointly with the fleet’s effort.</p>
+<p>For a TAC-controlled fleet this happens as part of the effort-solving optimization described above. For an effort-controlled fleet, the fixed effort is split across the fleet’s stocks by a separate optimization over targeting weights.</p>
+<p>How strongly that penalty resists change is calibrated from the fleet’s own historical targeting behaviour: <code>FitStockTargeting()</code> estimates each fleet’s mean targeting level and the covariance of year-to-year deviations around it from historical data. See <a href="tech-stock-targeting.html" class="quarto-xref"><span>Chapter 33</span></a> for the full specification.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1030,13 +926,13 @@ window.Quarto = {
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./overview-objects.html" class="pagination-link" aria-label="The Operating Model: Classes and Components">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span>
+      <a href="./concept-simulate-project.html" class="pagination-link" aria-label="Running the Simulation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./example-mse.html" class="pagination-link" aria-label="An Example MSE">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An Example MSE</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./concept-complexes.html" class="pagination-link" aria-label="Stock Complexes">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1044,4 +940,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/example-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-advice-implementation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

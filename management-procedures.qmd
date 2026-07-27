@@ -6,3 +6,14 @@
 library(MSEtool)
 rnorm(5)
 ```
+
+## Single-Stock and Multi-Stock MPs (`mp` vs `mmp`) {#sec-mp-mmp}
+
+`openMSE` supports two calling conventions for management procedure functions, distinguished by the class assigned to the MP function object:
+
+| | `mp` (ordinary MP) | `mmp` (multi-stock MP) |
+|---|---|---|
+| Called | Once per stock/complex, per simulation | Once per simulation, across all stocks/complexes together |
+| Input | A single `Data` object | A named list of `Data` objects, one per stock/complex |
+| Output | A single `Advice` object | A named list of `Advice` objects (optionally with an aggregate bag limit) |
+

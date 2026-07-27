@@ -9,8 +9,8 @@ rnorm(5)
 
 Unfished conditions provide the baseline reference against which stock status and biological reference points are measured. Two unfished states are computed:
 
-- **Equilibrium** (`Hist@Unfished@Equilibrium`): the steady-state population produced by `R0`, current natural mortality, and (for seasonal models) the seasonal pattern of recruitment, with no fishing. Computed analytically or by iteration.
-- **Dynamic** (`Hist@Unfished@Dynamic`): the population trajectory that would have occurred over the historical period had fishing never taken place (i.e.\ catchability set to zero). Accounts for time-varying biology.
+- **Equilibrium** (`Hist@Unfished@Equilibrium`): the steady-state population produced by `R0`, current natural mortality, and (for seasonal models) the seasonal pattern of recruitment, with no fishing. 
+- **Dynamic** (`Hist@Unfished@Dynamic`): the population trajectory that would have occurred over the historical period had fishing never taken place (i.e.\ catchability set to zero). 
 
 Both states are stored in a `popdynamics` object and are computed by `CalcUnfished_Equilibrium()` and `CalcUnfished_Dynamic()` respectively. `Number` is a list of length `nStock`, each element an array with dimensions `Sim × Age × Year × Area`. `Biomass`, `SBiomass`, and `SProduction` are arrays with dimensions `Sim × Stock × Year` (summed over ages and areas).
 
@@ -18,7 +18,7 @@ Both states are stored in a `popdynamics` object and are computed by `CalcUnfish
 
 Cumulative survival from recruitment to age $a$ is computed by `CalcSurvival()`. Two variants are produced: survival to age $a$ (used for numbers-at-age) and survival to the spawning event at fraction $\omega$ through the age-$a$ time step (`SpawnTimeFrac`; used for spawning biomass and production). When $\omega = 0$ (the default) the two are identical.
 
-For an annual model, end-of-step survival is:
+For an annual model, survivorship-at-age is:
 
 $$S_{a,t} = \begin{cases}
 \exp\!\bigl(-M_{1,t}\,\omega\bigr) & a = 1 \\[6pt]
@@ -30,8 +30,6 @@ where $M_{a,t}$ is natural mortality-at-age and $\xi_{a,t}$ is semelparous post-
 For the plus group (when `Ages@PlusGroup = TRUE`), the plus-group age class accumulates fish that survive beyond the maximum discrete age. The survival is adjusted to account for the ongoing geometric series of survivors:
 
 $$S_{n_\text{age},t} \;\leftarrow\; \frac{S_{n_\text{age},t}}{1 - \exp(-M_{n_\text{age},t})}$$
-
-When `SpawnTimeFrac = 0` (spawning at the start of each step, the default) the formula reduces to the familiar discrete Leslie-matrix survival $S_{a,t} = \exp(-\sum_{i=1}^{a-1} M_{i,t})$ for iteroparous species.
 
 ## Unfished Number-at-Age {#sec-tech-unfished-number}
 
@@ -51,7 +49,7 @@ Unfished number-at-age is computed by `CalcUnfishedNumber()`.
 
 ### Seasonal model
 
-When `OM@Seasons > 1`, each season has its own recruitment and natural mortality values, so equilibrium numbers-at-age cannot be expressed in closed form. Instead, `CalcUnfishedNumber()` iterates the seasonal cycle (applying recruitment, mortality, and ageing each season) until the numbers-at-age converge to a stable seasonal pattern. Within each season $s$, recruitment enters age class 1 and survivors age up one class:
+When `OM@Seasons > 1`, each season has its own recruitment and natural mortality values, so equilibrium numbers-at-age cannot be expressed in closed form. Instead, `CalcUnfishedNumber()` iterates the seasonal cycle (applying recruitment, mortality, and ageing each season) until the numbers-at-age converge to a stable seasonal pattern. Within each season $s$, recruitment enters the first age class and survivors age up one class:
 
 $$N^{(s)}_1 = R_{0,s}$$
 
@@ -69,11 +67,11 @@ $$\mathit{SB}^0_t = \sum_a N^{0,\text{SP}}_{a,t}\, \bar{W}_{a,t}\, \text{mat}_{a
 
 $$\mathit{SP}^0_t = \sum_a N^{0,\text{SP}}_{a,t}\, f_{a,t}$$
 
-where $\bar{W}_{a,t}$ is mean weight-at-age, $\text{mat}_{a,t}$ is maturity-at-age, and $f_{a,t}$ is fecundity-at-age (see @sec-tech-fecundity). Spawning production per recruit is:
+where $\bar{W}_{a,t}$ is mean weight-at-age, $\text{mat}_{a,t}$ is maturity-at-age, and $f_{a,t}$ is fecundity-at-age (see @sec-tech-fecundity). Unfished spawning production per recruit is:
 
 $$\phi^0_t = \frac{\mathit{SP}^0_t}{R_{0,t}}$$
 
-$\phi^0$ appears in the stock–recruitment parameterisations (see @sec-tech-srr) and in the per-recruit reference point calculations (see @sec-tech-reference-points).
+$\phi^0$ appears in the stock–recruitment parameterisations (see @sec-tech-srr) and in the per-recruit reference point calculations (see @sec-tech-refpoints).
 
 ### Multi-stock spawning production
 
@@ -87,7 +85,7 @@ $$\boldsymbol{\pi}_{a,t}\,\mathbf{M}_{a,t} = \boldsymbol{\pi}_{a,t}, \quad \sum_
 
 The result is stored in `Spatial@UnfishedDist` with dimensions `Sim × Area × Age × Year`. For a single-area model all values are 1.
 
-Spatial dynamics during the historical and projection periods are developed in @sec-tech-historical and @sec-tech-projection.
+Spatial dynamics during the historical period are developed in @sec-tech-historical.
 
 ## Equilibrium vs Dynamic Unfished {#sec-tech-unfished-eq-vs-dyn}
 

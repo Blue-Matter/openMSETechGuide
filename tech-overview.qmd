@@ -1,8 +1,6 @@
 # Technical Details {#sec-techdetails}
 
-This part gives the full mathematical specification of the `openMSE` modeling framework. Each chapter derives the equations governing one component of the model, defines notation, and documents the assumptions. Cross-references to the relevant conceptual chapters in [Operating Model Concepts](#sec-om-concepts) are provided for readers who want the higher-level description first.
-
-@sec-tech-notation defines the index sets, dimensions, and mathematical conventions used throughout the Technical Details chapters. **This chapter is not complete**.
+This part gives the full mathematical specification of the `openMSE` modeling framework. Each chapter derives the equations governing one component of the model, defines notation, and documents the assumptions. Cross-references to the relevant conceptual chapters in [Conceptual Details](#sec-om-concepts) are provided for readers who want the higher-level description first.
 
 @sec-tech-populate-om describes how parameter arrays are constructed from the input objects, including how stochastic draws are taken and how conditioning data are incorporated.
 
@@ -18,4 +16,10 @@ This part gives the full mathematical specification of the `openMSE` modeling fr
 
 @sec-tech-refpoints gives the full specification of MSY and auxiliary reference point calculations, including the per-recruit framework, fleet allocation, equilibrium recruitment, and seasonal and spatial considerations.
 
-@sec-tech-projection specifies the forward simulation used during the MSE projection period, including how management advice is applied and how data are generated each time step. **This chapter is not complete**.
+@sec-tech-advice-implementation covers the processes common to every operating model structure: management intervals, the data lag before an MP sees new data, resolving `TAC`/`Effort` values before solving, direct effort advice, and bag-limit regulations.
+
+@sec-tech-advice-singlestock covers the effort-solving mechanics for a single complex with one fleet.
+
+@sec-tech-advice-multifleet covers the effort-solving mechanics for a single complex with multiple fleets, including TAC allocation across fleets.
+
+@sec-tech-stock-targeting covers the multi-complex case. **This chapter is a placeholder, to be completed in a future release.**

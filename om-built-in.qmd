@@ -25,7 +25,7 @@ Three example `Stock` objects are provided, representing species with contrastin
 - **`ButterfishExStock`**: a short-lived, fast-growing forage species;
 - **`SeasonalSpatialExStock`**: a short-lived reef fish with monthly time steps, seasonal recruitment, and age-based movement across three areas.
 
-### `AlbacoreExStock` 
+### `AlbacoreExStock`  
 
 ```{r}
 #| include: false
@@ -322,20 +322,20 @@ With `isRel = TRUE`, the `L5` and `LFS` values are interpreted as multiples of $
 
 In practice, users would typically specify selectivity in absolute length units tailored to the specific stock being modelled. The pairing between a fleet and a stock occurs when the fleet is added to an `OM` object; see @sec-exampleOM for details.
 
-See `?Selectivity` and `?SelectivityModels` for full documentation and available model families.
+See `?Selectivity` and `?SelectivityModels` for full documentation and available model families. 
 
 ```{r asymp-selectivity}
 
 ```
 
-The code block below demonstrates the resulting selectivity schedules when this `Selectivity` object is paird with the `AlbacoreExStock` stock object.
+The code block below demonstrates the resulting selectivity schedules when this `Selectivity` object is paired with the `AlbacoreExStock` stock object.
 
-It first manually populates the `Maturity` and `Selectivity` objects for `AlbacoreExStock` and `AsympExFleet` respectively, then plots the resulting at-age and at-length schedules. Populating these objects expands the parameter inputs (the bounds vectors specified in the constructor calls above) into the full `Sim × Age × Year` and `Sim × Class × Year` arrays, sampling one value per simulation (here `nSim = 5`) from each uniform range.
+It first builds a small `OM` combining `AlbacoreExStock` and `AsympExFleet` (with `nSim = 5` to keep the figure legible), then uses `PlotSelectivity()` and `PlotMaturity()` — part of `openMSE`'s built-in family of schedule-plotting functions, see `?plot_schedule` — to show the resulting curves at both length and age.
 
-In normal use this happens automatically when `Populate()` is called on the `OM` object; it is done explicitly here for illustration only. See @sec-populate for a full description of the population process.
+In normal use, populating an `OM` happens automatically when `Populate()` is called; it is done explicitly here for illustration only. See @sec-populate for a full description of the population process.
 
 ```{r fig-asymp-selectivity}
-#| fig-cap: "Selectivity (blue) and maturity (coral) schedules for `AsympExFleet` paired with `AlbacoreExStock`, shown at length (left) and age (right). Each line represents one simulation replicate; the spread reflects uncertainty in the growth and maturity parameters sampled across simulations. Length-based parameters (`L5`, `LFS`) are specified relative to $L_{50}$ of the paired stock (`isRel = TRUE`), so the position of the selectivity curve varies across simulations in proportion to the sampled maturity schedule."
+#| fig-cap: "Selectivity (top row) and maturity (bottom row) schedules for `AsympExFleet` paired with `AlbacoreExStock`, shown at length (left) and age (right), produced by `PlotSelectivity()` and `PlotMaturity()`."
 ```
 
 #### Optional Subcomponents
@@ -380,7 +380,7 @@ See `?SelectivityModels` for more details on `DoubleNormal` and other supported 
 
 ```{r fig-dome-selectivity}
 #| echo: false
-#| fig-cap: "Selectivity (blue) and maturity (coral) schedules for `DomeExFleet` paired with `AlbacoreExStock`, shown at length (left) and age (right). Each line represents one simulation replicate; the spread reflects uncertainty in the growth and maturity parameters sampled across simulations. Length-based parameters (`L5`, `LFS`) are specified relative to $L_{50}$ of the paired stock (`isRel = TRUE`), so the position of the selectivity curve varies across simulations in proportion to the sampled maturity schedule."
+#| fig-cap: "Selectivity (top row) and maturity (bottom row) schedules for `DomeExFleet` paired with `AlbacoreExStock`, shown at length (left) and age (right), produced by `PlotSelectivity()` and `PlotMaturity()`."
 ```
 
 ## Example `Obs` Objects {#sec-exampleobs}
@@ -389,7 +389,7 @@ An `Obs` object defines the observation model for a fleet and its corresponding 
 
 See `?Obs` for full documentation. See `?CatchObs`, `?IndicesObs`, and `?CompObs` for documentation of the subcomponent constructors.
 
-The `Obs` object interacts closely with the corresponding `Data` object. See @sec-dataobs for more details.
+The `Obs` object interacts closely with the corresponding `Data` object. See @sec-objectdata for the `Data` object's structure and @sec-obsdataconditioning for how the two interact.
 
 Five example `Obs` objects are provided, representing monitoring programmes of increasing data richness:
 
@@ -398,30 +398,6 @@ Five example `Obs` objects are provided, representing monitoring programmes of i
 - **`AgeStructuredObs`**: landings, discards, a survey index, and age composition samples from both landings and discards.
 - **`LengthStructuredObs`**: landings, discards, a survey index, and length composition samples from both landings and discards.
 - **`DataRichObs`**: all data types ares generated: landings, discards, effort, CPUE, survey, and both age and length compositions for landings and discards.
-
-### Observation Error Parameters
-
-Before describing the individual objects, it is useful to understand the parameters common to all observation subcomponents.
-
-**`CatchObs`** (used for `Landings` and `Discards`) takes two main parameters:
-
-- `CV`: coefficient of variation of lognormal observation error on catch. Accepts a scalar (same CV for all simulations), a length-2 vector `c(lower, upper)` (a unique CV per simulation is drawn from `Uniform(lower, upper)`), or a length-`nSim` array (used directly). After population, `@CV` is a named `[nSim]` vector and `@Error` becomes a named `[nSim × nYear]` lognormal array.
-
-- `Bias`: multiplicative observation bias on the natural scale. `NULL` defaults to 1 (unbiased). A length-`nSim` vector is used directly as one bias per simulation. Any other scalar input is treated as the CV of a lognormal from which `nSim` bias values are drawn — e.g. `Bias = 0.1` draws biases centred at 1 with CV of 10%. After population, `@Bias` is a named `[nSim]` array of positive multipliers.
-
-**`EffortObs`** (used for `Effort`) takes the same `CV` and `Bias` parameters as `CatchObs`.
-
-**`IndicesObs`** (used for `CPUE` and `Survey`) takes:
-
-- `CV`: coefficient of variation of lognormal index observation error.
-- `AC`: lag-1 autocorrelation of index residuals, reflecting persistent deviations in survey catchability or other sources of correlated index error.
-- `Selectivity`: how the simulated population is aggregated to produce the index. `"Biomass"` applies flat selectivity (total biomass); `"SBiomass"` uses maturity-at-age as selectivity (equivalent to a spawning biomass index). For CPUE indices, the corresponding fleet selectivity is used automatically when `Selectivity` is `NULL`.
-
-**`CompObs`** (used for all composition slots) takes:
-
-- `SampleSize`: nominal number of fish aged or measured per year. A length-2 vector draws a unique value per simulation from `Uniform(lower, upper)`. Setting `SampleSize = NULL` suppresses composition data generation entirely.
-- `ESS`: effective sample size, which controls stochastic variability in the composition draw independently of `SampleSize`. Values of `ESS < SampleSize` produce overdispersion relative to a pure multinomial — typical of age or length compositions that contain correlated sampling error.
-- `Theta`: Dirichlet-Multinomial dispersion parameter in $(0, 1]$. `Theta = 1` recovers a standard multinomial draw; values approaching 0 produce maximum overdispersion.
 
 ### `CommercialFleetObs`
 
@@ -501,13 +477,74 @@ knitr::read_chunk("../MSEtool/data-raw/ex-obs-data-rich.R")
 
 Observation errors throughout are tighter than in the other example objects: landings CV of 3–8%, effort CV of 2–5%, and survey CV of 8–15% with very low autocorrelation (AC 0–0.1). The survey uses `Selectivity = "SBiomass"` as an index of spawning biomass, while the CPUE index uses fleet selectivity automatically. Composition sample sizes are the largest of all example objects, with ESS values approaching the nominal sample sizes, reflecting high-quality age and length data.
 
-## Example `Imp` Objects
+## Example `Imp` Objects {#sec-exampleimp}
 
-::: callout-note
-The `Imp` class is currently a placeholder and is not yet implemented.
+An `Imp` object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model.
 
-This section will be updated once example `Imp` objects are developed.
-:::
+See `?Imp` for full documentation, and `?ImpSlot` for documentation of the underlying `TAC`/`Effort`/`Size` subcomponent.
+
+Four example `Imp` objects are provided, representing different assumptions about how management advice is realised in practice:
+
+- **`FullComplianceImp`**: TAC and effort advice are realised exactly, and size regulations are adopted immediately by the whole fleet.
+- **`OverageImp`**: TAC and effort are consistently realised above advice.
+- **`UnderageImp`**: TAC and effort are consistently realised below advice.
+- **`PartialSizeComplianceImp`**: TAC and effort are implemented perfectly, but only part of the fleet adopts a newly-advised size regulation.
+
+### `FullComplianceImp`
+
+```{r}
+#| include: false
+knitr::read_chunk("../MSEtool/data-raw/ex-imp-full-compliance.R")
+```
+
+`FullComplianceImp` represents perfect implementation of management advice: TAC and effort recommendations are realised exactly, and any size-based regulation is adopted immediately by the entire fleet.
+
+```{r full-compliance-create-imp}
+```
+
+Because this is behaviourally identical to leaving `Imp` unspecified on an `OM` object, `FullComplianceImp` simply makes that default explicit. It is the `Imp` object assigned to every other built-in example `OM` (e.g., `SingleStockOM`, `TwoFleetOM`).
+
+### `OverageImp`
+
+```{r}
+#| include: false
+knitr::read_chunk("../MSEtool/data-raw/ex-imp-overage.R")
+```
+
+`OverageImp` represents a fleet that consistently realises more catch and effort than advised, e.g. under-reporting, unrecorded discards landed elsewhere, or effort creep beyond the recommended level.
+
+```{r overage-create-imp}
+```
+
+TAC and effort are realised on average 5-25% above the advised level (`Mean` 1.05-1.25), with additional simulation-to-simulation and year-to-year stochastic variation (`SD` 0.05-0.15). `Size` is left empty: this example isolates TAC/effort overage.
+
+### `UnderageImp`
+
+```{r}
+#| include: false
+knitr::read_chunk("../MSEtool/data-raw/ex-imp-underage.R")
+```
+
+`UnderageImp` represents a fleet that consistently realises less catch and effort than advised, e.g. quota left unfilled because the fishery isn't profitable enough to fully prosecute, or an effort target that isn't reached due to weather, capacity, or market constraints.
+
+```{r underage-create-imp}
+```
+
+TAC and effort are realised on average 10-30% below the advised level (`Mean` 0.7-0.9), with the same `SD` range as `OverageImp`. `Size` is left empty.
+
+### `PartialSizeComplianceImp`
+
+```{r}
+#| include: false
+knitr::read_chunk("../MSEtool/data-raw/ex-imp-partial-size-compliance.R")
+```
+
+`PartialSizeComplianceImp` isolates partial fleet adoption of a size-based regulation, while TAC and effort advice are still implemented perfectly.
+
+```{r partial-size-compliance-create-imp}
+```
+
+`TAC` and `Effort` use `Mean = 1`, `SD = 0`, as in `FullComplianceImp`. Only 60% of the fleet adopts a newly-advised size regulation in the year it changes (`Compliance = 0.6`); the remaining 40% continues fishing under the previous Retention/Selectivity curve.
 
 ## Example `OM` Objects {#sec-exampleOM}
 

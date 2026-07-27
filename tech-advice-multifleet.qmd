@@ -1,0 +1,29 @@
+# Implementing Advice: One Complex, Multiple Fleets {#sec-tech-advice-multifleet}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+This chapter covers a single complex (one stock, or several pooled under one joint TAC/Effort) fished by more than one fleet, so a single TAC or Effort value must be allocated or jointly solved across fleets. 
+
+If your model has only one fleet, the simpler procedure in @sec-tech-advice-singlestock applies instead. If it has more than one complex, see @sec-tech-stock-targeting for how effort is reconciled across complexes. 
+
+`TAC` and `Effort` values are first resolved and pre-processed as described in @sec-tech-advice-resolve (carry-forward, implementation error, the TAC/Effort ceiling interaction).
+
+## TAC Allocation Across Fleets {#sec-tech-advice-multifleet-allocation}
+
+A scalar (stock/complex-total) `TAC` is allocated across fleets using `OM@Allocation`. An MP can instead set `Advice@TAC` as a length-`nFleet` vector to specify each fleet's TAC directly, bypassing `OM@Allocation` entirely.
+
+## Solving for Effort {#sec-tech-advice-multifleet-solve}
+
+The model solves jointly for every active fleet's effort (a fleet is "active" if its allocated TAC is positive) on the log scale:
+
+1. **Diagonal Newton-Raphson**: each fleet's effort is updated using only its own diagonal sensitivity,
+   $$\log E_f^{(k+1)} = \log E_f^{(k)} + \operatorname{clamp}\!\left(\frac{r_f^{(k)}}{J_{ff}^{(k)} \cdot E_f^{(k)}},\, \pm\log_{10}\right), \qquad r_f = \text{TAC}_f - C_f(E)$$
+   with the diagonal Jacobian $J_{ff}$ estimated by finite difference.
+2. **Full-Jacobian fallback**: whenever the diagonal step fails to reduce the total squared residual across active fleets, a full Newton step is taken instead, estimating the complete cross-fleet Jacobian (capturing how one fleet's effort affects another's realised catch through shared vulnerable biomass) and solving the resulting linear system jointly.
+3. **BFGS fallback** (`stats::optim()`): used only if neither Newton-Raphson variant converges or saturates within `maxIter` (default 100) iterations.
+
+**Saturation**: a fleet is declared saturated (its TAC treated as unachievable) when its effort reaches 99% of the hard ceiling `maxEffort` with a persistently positive residual, or when neither the diagonal nor full-Jacobian step improves the fit. In this case the fleet with the largest unresolved residual is considered saturated. Saturated fleets are frozen at their current effort and excluded from further iterations, so one severely depleted stock/fleet combination cannot prevent convergence for the other fleets. Fleets with no TAC constraint at all keep their previous effort (subject to any `Effort`-advice ceiling from @sec-tech-advice-resolve).

@@ -103,32 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+}</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -137,7 +112,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li><li class="breadcrumb-item"><a href="./concept-populate.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li><li class="breadcrumb-item"><a href="./concept-populate.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -290,7 +265,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -316,20 +291,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,12 +325,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -393,8 +368,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -431,12 +424,12 @@ window.Quarto = {
    
   <ul>
 <li><a href="#populate" id="toc-populate" class="nav-link active" data-scroll-target="#populate"><span class="header-section-number">17.1</span> <code>Populate()</code></a></li>
-  <li><a href="#digest-based-caching" id="toc-digest-based-caching" class="nav-link" data-scroll-target="#digest-based-caching"><span class="header-section-number">17.2</span> Digest-based Caching</a></li>
+  <li><a href="#using-populate" id="toc-using-populate" class="nav-link" data-scroll-target="#using-populate"><span class="header-section-number">17.2</span> Using <code>Populate</code></a></li>
   <li><a href="#seeding-and-reproducibility" id="toc-seeding-and-reproducibility" class="nav-link" data-scroll-target="#seeding-and-reproducibility"><span class="header-section-number">17.3</span> Seeding and Reproducibility</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-populate.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li><li class="breadcrumb-item"><a href="./concept-populate.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li><li class="breadcrumb-item"><a href="./concept-populate.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-populate" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populating an Operating Model</span></span></h1>
 </div>
 
@@ -451,12 +444,13 @@ window.Quarto = {
   
 
 
-</header><p>Building an operating model in <code>openMSE</code> is a two-stage process. First, the user constructs the <code>OM</code> object and its sub-components by specifying parameter values as described in <a href="overview-objects.html" class="quarto-xref"><span>Chapter 3</span></a> and <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>. Second, the <code>Populate()</code> function expands these compact inputs into the full arrays (e.g., <code>Sim × Age × Year</code>), sampling stochastic values, resolving model functions, building derived quantities, and checking the <code>OM</code> for internal consistency.</p>
+</header><p>Building an operating model in <code>openMSE</code> is a two-stage process. First, the user constructs the <code>OM</code> object and its sub-components by specifying parameter values as described in <a href="overview-objects.html" class="quarto-xref"><span>Chapter 3</span></a> and <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>. Second, the <code>Populate()</code> function expands these compact inputs into the full arrays (e.g., <code>Sim × Age × Year</code>), samples any stochastic values, resolves model functions, builds derived quantities, and and checks the <code>OM</code> for internal consistency.</p>
 <p>In normal use, <code>Populate()</code> is called automatically when running <code>Simulate()</code>, so most users will not need to call it directly. It can be useful, however, for inspecting what a set of parameter values produces before assembling a full operating model.</p>
 <section id="populate" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="populate">
 <span class="header-section-number">17.1</span> <code>Populate()</code>
 </h2>
 <p><code>Populate()</code> is a generic dispatcher. It inspects the class of the object passed to it and calls the appropriate class-specific population function:</p>
+<div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Populate a full operating model</span></span>
 <span><span class="va">OM</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">OM</span><span class="op">)</span></span>
 <span></span>
@@ -465,7 +459,8 @@ window.Quarto = {
 <span></span>
 <span><span class="co"># Populate a fleet using an already-populated stock</span></span>
 <span><span class="va">Fleet</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">Fleet</span>, Stock <span class="op">=</span> <span class="va">Stock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The class-specific functions called by <code>Populate()</code> are:</p>
+</div>
+<p>The primary class-specific functions called by <code>Populate()</code> are:</p>
 <ul>
 <li><code>PopulateOM()</code></li>
 <li><code>PopulateStock()</code></li>
@@ -474,15 +469,46 @@ window.Quarto = {
 <li><code>PopulateImp()</code></li>
 </ul>
 <p>These functions in turn call the population functions for their individual subcomponents (<code>PopulateLength()</code>, <code>PopulateSelectivity()</code>, etc.). See <code>?PopulateOM</code> and related help pages for more information.</p>
-<p>Although <code>Populate()</code> doesn’t need to be called directly, individual objects can be populated independently. This is sometimes useful for inspecting what a set of parameter values produces before assembling a full operating model:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Inspect the length-at-age schedule produced by a set of parameters</span></span>
-<span><span class="va">stock</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">AlbacoreExStock</span>, nSim <span class="op">=</span> <span class="fl">100</span>, nYear <span class="op">=</span> <span class="fl">30</span>, pYear <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="fu">Length</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When populating a <code>Fleet</code> independently, the paired <code>Stock</code> object must be provided so that quantities such as <span class="math inline">\(L_{50}\)</span> (required by <code>isRel = TRUE</code> selectivity) and the <code>ALK</code> (required for size-to-age conversions) are available:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fleet</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">AsympExFleet</span>, Stock <span class="op">=</span> <span class="va">stock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="digest-based-caching" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="digest-based-caching">
-<span class="header-section-number">17.2</span> Digest-based Caching</h2>
-<p>Population is potentially expensive for large operating models with many simulations, stocks, and fleets. To avoid unnecessary recomputation, <code>Populate()</code> uses a digest-based caching mechanism. Before populating any object, it computes a hash of the object’s current contents and the key arguments passed to the population function (e.g., <code>nSim</code>, <code>nYear</code>, <code>seed</code>). If the hash matches a stored digest from a previous population call and <code>force = FALSE</code>, the object is returned unchanged.</p>
+</section><section id="using-populate" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="using-populate">
+<span class="header-section-number">17.2</span> Using <code>Populate</code>
+</h2>
+<p>Although <code>Populate()</code> doesn’t need to be called directly, individual objects can be populated independently. This is sometimes useful for inspecting what a set of parameter values produces before assembling a full operating model, for example inspecting the length-at-age schedule produced by a set of parameters:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stock</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">AlbacoreExStock</span>, nSim <span class="op">=</span> <span class="fl">100</span>, nYear <span class="op">=</span> <span class="fl">30</span>, pYear <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu">Length</span><span class="op">(</span><span class="va">stock</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Year = 1997
+
+   Age
+Sim        0        1        2        3        4        5        6         7
+  1 30.09642 46.06443 59.31781 70.31804 79.44818 87.02615 93.31583  98.53623
+  2 27.83775 43.20068 56.05402 66.80770 75.80472 83.33204 89.62973  94.89867
+  3 28.12018 43.40423 56.35658 67.33295 76.63479 84.51756 91.19776  96.85884
+  4 27.41332 42.58525 55.46988 66.41205 75.70459 83.59620 90.29809  95.98961
+  5 36.76521 53.00307 66.17223 76.85262 85.51458 92.53956 98.23693 102.85758
+  6 32.76818 49.89364 63.74051 74.93647 83.98902 91.30850 97.22671 102.01190
+   Age
+Sim        8        9       10       11       12       13       14       15
+  1 102.8691 106.4654 109.4503 111.9278 113.9841 115.6908 117.1073 118.2831
+  2  99.3069 102.9950 106.0807 108.6623 110.8222 112.6292 114.1411 115.4060
+  3 101.6563 105.7218 109.1672 112.0869 114.5612 116.6580 118.4349 119.9408
+  4 100.8231 104.9279 108.4138 111.3742 113.8883 116.0234 117.8366 119.3765
+  5 106.6050 109.6442 112.1091 114.1081 115.7293 117.0442 118.1106 118.9754
+  6 105.8810 109.0094 111.5388 113.5840 115.2377 116.5748 117.6559 118.5300
+   Age
+Sim       16       17       18       19       20
+  1 119.2589 120.0689 120.7411 121.2991 121.7622
+  2 116.4643 117.3497 118.0904 118.7102 119.2287
+  3 121.2169 122.2983 123.2148 123.9914 124.6496
+  4 120.6842 121.7947 122.7379 123.5388 124.2190
+  5 119.6768 120.2456 120.7070 121.0811 121.3846
+  6 119.2368 119.8083 120.2703 120.6439 120.9460</code></pre>
+</div>
+</div>
+<p>When populating a <code>Fleet</code> object, the paired <code>Stock</code> object must be provided so that quantities such as the length structure (e.g., the age-length key required for size-to-age conversions) are available:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fleet</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">AsympExFleet</span>, Stock <span class="op">=</span> <span class="va">stock</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section><section id="seeding-and-reproducibility" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="seeding-and-reproducibility">
 <span class="header-section-number">17.3</span> Seeding and Reproducibility</h2>
 <p>Each subcomponent population function receives its own integer seed, derived by incrementing the base seed stored in <code>OM@Seed</code>. This ensures that:</p>
@@ -491,8 +517,8 @@ window.Quarto = {
 <li>Population of one subcomponent does not affect the random state of another.</li>
 <li>All sub-objects (e.g., <code>Stock</code>, <code>Fleet</code>, etc) receive distinct seeds, so stochastic variation in one component is independent of another even when the same parameter ranges are specified.</li>
 </ul>
-<p>To change the stochastic realisation of an operating model without changing any parameter values, update <code>OM@Seed</code> and call <code>Populate()</code> again:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seed</span><span class="op">(</span><span class="va">OM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
+<p>To change the stochastic realisation of an operating model, update <code>OM@Seed</code> and call <code>Populate()</code> again:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Seed</span><span class="op">(</span><span class="va">OM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
 <span><span class="va">OM</span> <span class="op">&lt;-</span> <span class="fu">Populate</span><span class="op">(</span><span class="va">OM</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 

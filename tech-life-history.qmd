@@ -51,7 +51,7 @@ The default and most common approach is weight-at-mean-length. Weight-at-age is 
 
 The age–length key (ALK) is a $n_\text{sim} \times n_\text{age} \times n_\text{class} \times T$ array where element $\text{ALK}_{a,k,t}$ gives the probability that an individual of age $a$ in year $t$ falls into size class $k$. Size classes are indexed by their lower bounds $\ell_1 < \ell_2 < \cdots < \ell_{n_\text{class}}$, so class $k$ spans the interval $[\ell_k, \ell_{k+1})$ and the final class captures all sizes above $\ell_{n_\text{class}}$.
 
-The same procedure and functions are used to construct the age–weight key (AWK), stored in `Stock@Weight@AWK`. The AWK is only built when `Weight@CVatAge` is specified; it is used to convert weight-based schedules to the age dimension when they cannot be derived from the ALK (e.g.\ maturity-at-weight or M-at-weight).
+The same procedure and functions are used to construct the age–weight key (AWK), stored in `Stock@Weight@AWK`. The AWK is only built when `Weight@CVatAge` is specified, it is used to calculate at-age schedules from weight-based schedules. 
 
 ### Normal distribution
 
@@ -109,10 +109,12 @@ Natural mortality-at-age is computed by `PopulateNaturalMortality()`. All values
 $$M_{a,t} = M_t$$
 
 **Lorenzen M-at-length** (`LorenzenMortalityLength`, converted to age via ALK):
-$$M(\ell) = M_\text{ref} \left(\frac{\ell}{L_\text{ref}}\right)^{-0.288}$$
+$$M(\ell) = M_\text{ref} \left(\frac{\ell}{L_\text{ref}}\right)^{c}$$
 
 **Lorenzen M-at-weight** (`LorenzenMortalityWeight`, converted to age via ALK):
-$$M(w) = M_\text{ref} \left(\frac{w}{W_\text{ref}}\right)^{-0.288}$$
+$$M(w) = M_\text{ref} \left(\frac{w}{W_\text{ref}}\right)^{c}$$
+
+where $c$ is the allometric exponent (default $-0.288$, adjustable).
 
 The Lorenzen models produce age-varying M that declines with body size. Natural mortality is stored in `Stock@NaturalMortality@MeanAtAge`.
 
@@ -132,7 +134,7 @@ Maturity-at-age is stored in `Stock@Maturity@MeanAtAge`.
 
 ### Semelparity
 
-For semelparous species, mature individuals die after spawning. The `Semelparous` array in the `Maturity` object stores the proportion of mature individuals that die post-spawning; for iteroparous species this array is zero.
+For semelparous species, mature individuals die after spawning. The `Semelparous` array in the `Maturity` object stores the proportion of mature individuals that die post-spawning. For iteroparous species this array is zero.
 
 ## Fecundity-at-Age {#sec-tech-fecundity}
 
@@ -177,10 +179,10 @@ where $\bar{R}_t$ is the expected recruitment from the SRR and $\delta_t$ is a l
 
 $$\log \delta_t \sim \mathcal{N}\!\left(\mu_\delta,\; \sigma_\delta\right), \quad \mu_\delta = -\tfrac{1}{2}\sigma_\delta^2 \cdot \frac{1-\rho}{\sqrt{1-\rho^2}}$$
 
-where $\sigma_\delta$ is `SRR@SD`, $\rho$ is the autocorrelation coefficient `SRR@AC`, and the mean adjustment $\mu_\delta$ ensures approximate lognormal bias-correction under autocorrelation. Autocorrelation is applied as a first-order process:
+where $\sigma_\delta$ is `SD(SRR)`, $\rho$ is the autocorrelation coefficient `AC(SRR)`, and the mean adjustment $\mu_\delta$ provides lognormal bias-correction under autocorrelation. Autocorrelation is applied as a first-order process:
 
 $$\log\delta_t = \rho\,\log\delta_{t-1} + \epsilon_t\sqrt{1-\rho^2}, \quad \epsilon_t \sim \mathcal{N}(\mu_\delta, \sigma_\delta)$$
 
-Deviations are truncated at $\pm\,\mathtt{TruncSD} \times \sigma_\delta$ (default $\mathtt{TruncSD} = 2$) to prevent extreme recruitment events. Separate deviation arrays are generated for the initial age classes (`RecDevInit`), historical years (`RecDevHist`), and projection years (`RecDevProj`). Any of these arrays can be supplied directly by the analyst instead of being generated stochastically.
+Deviations are truncated at $\mu_\delta \pm\,\mathtt{TruncSD} \times \sigma_\delta$ (default $\mathtt{TruncSD} = 2$) to prevent extreme recruitment events. Separate deviation arrays are generated for the initial age classes (`RecDevInit`), historical years (`RecDevHist`), and projection years (`RecDevProj`). Any of these arrays can be supplied directly by the analyst instead of being generated stochastically.
 
 For multi-stock operating models, analysts can optionally call `GenMultiStockRecDevs()` to replace the independently generated projection deviations with correlated deviations drawn from a multivariate AR(1) process, preserving cross-stock covariance estimated from the historical deviations. This is not applied automatically.

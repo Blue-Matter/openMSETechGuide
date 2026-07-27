@@ -1,7 +1,0 @@
-# Notation and Indices {#sec-tech-notation}
-
-```{r}
-#| echo: false
-#| include: false
-library(MSEtool)
-```

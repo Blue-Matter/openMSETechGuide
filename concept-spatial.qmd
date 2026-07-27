@@ -7,7 +7,7 @@ library(MSEtool)
 rnorm(5)
 ```
 
-`openMSE` supports spatially structured operating models with an arbitrary number of discrete areas. Fish move between areas according to a movement probability matrix, and fishing effort can be distributed across areas either dynamically or according to a fixed allocation (see @sec-spatial-effort). Management can be applied differentially by area through spatial closures, area-specific selectivity and retention, and area-specific discard mortality.
+`openMSE` supports spatially structured operating models with an arbitrary number of areas. Fish move between areas according to a movement probability matrix, and fishing effort can be distributed across areas either dynamically or according to a fixed allocation (see @sec-spatial-effort). Management can be applied differentially by area through spatial closures, and area-specific selectivity and retention.
  
 The `Spatial` subcomponent of a `Stock` object defines the spatial structure. It is optional; if omitted the model assumes a single well-mixed area with no spatial dynamics.
 
@@ -17,8 +17,8 @@ This chapter describes the available approaches for specifying spatial structure
 
 For a non-spatial model, simply omit the `Spatial` subcomponent entirely. `Populate()` will create a default single-area structure automatically:
 
-```r
-# No Spatial subcomponent — single well-mixed area assumed
+```{r}
+# No Spatial subcomponent: single well-mixed area assumed
 stock <- Stock(Name = "My Stock")
 # Spatial(stock) is NULL; Populate() will assign a single-area default
 ```
@@ -27,7 +27,12 @@ stock <- Stock(Name = "My Stock")
 
 Two-area models are a common spatial configuration. They require three inputs: the unfished biomass distribution across areas, the probability of remaining in an area, and the relative size of each area.
 
-```r
+For two-area models, `UnfishedDist` and `RelativeSize` each specify Area 1 only; the corresponding Area 2 values are derived as `1 - x`. Similarly, `ProbStaying` specifies Area 1 only; the Area 2 staying probability is solved internally so that the asymptotic movement equilibrium reproduces the target `UnfishedDist`.
+
+Each parameter accepts a scalar (constant across all simulations), a length-2 bounds vector (sampled from `Uniform(lower, upper)` independently for each simulation), or a full `Sim × Area × Age × Year` array:
+
+```{r}
+# Stochastic samples from uniform distribution
 Spatial(stock) <- Spatial(
   UnfishedDist = c(0.2, 0.4),   # fraction of unfished biomass in Area 1
   ProbStaying  = c(0.6, 0.8),   # probability of staying in Area 1
@@ -35,11 +40,7 @@ Spatial(stock) <- Spatial(
 )
 ```
 
-For two-area models, `UnfishedDist` and `RelativeSize` each specify Area 1 only; the corresponding Area 2 values are derived as `1 - x`. Similarly, `ProbStaying` specifies Area 1 only; the Area 2 staying probability is solved internally so that the asymptotic movement equilibrium reproduces the target `UnfishedDist`.
-
-Each parameter accepts a scalar (constant across all simulations), a length-2 bounds vector (sampled from `Uniform(lower, upper)` independently for each simulation), or a full `Sim × Area × Age × Year` array:
-
-```r
+```{r}
 # Fixed — same across all simulations
 Spatial(stock) <- Spatial(
   UnfishedDist = 0.3,
@@ -54,15 +55,27 @@ Spatial(stock) <- Spatial(
 
 Three options are available:
 
-**Fixed proportion**: a scalar or bounds vector giving the fraction of total habitat in Area 1 (Area 2 = `1 - RelativeSize`):
+### Fixed proportion
 
-```r
-RelativeSize = 0.4    # Area 1 is 40% of total habitat
+For two-area models, a scalar or bounds vector gives the fraction of total habitat in Area 1, with Area 2 taken as `1 - RelativeSize`:
+
+```{r}
+# Area 1 is 40% of total habitat
+RelativeSize = 0.4   
 ```
 
-**Equal density**: setting `RelativeSize = "EqualDensity"` sets each area's relative size equal to its mean unfished biomass share across ages and years. This ensures that unfished biomass density is equal across areas:
+For models with three or more areas, this shortcut doesn't apply; `RelativeSize` must instead be supplied as a vector of length `nArea` giving every area's share directly, summing to 1:
 
-```r
+```{r}
+# Areas 1-3 are 10%, 40%, 50% of total habitat
+RelativeSize = c(0.1, 0.4, 0.5)   
+```
+
+### Equal density
+
+Setting `RelativeSize = "EqualDensity"` sets each area's relative size equal to its mean unfished biomass share across ages and years. This ensures that unfished biomass density is equal across areas, regardless of the number of areas:
+
+```{r}
 Spatial(stock) <- Spatial(
   UnfishedDist = 0.3,
   ProbStaying  = 0.7,
@@ -70,7 +83,9 @@ Spatial(stock) <- Spatial(
 )
 ```
 
-**Equal size**: when `RelativeSize` is omitted (`NULL`), all areas are assumed equal in size (`1 / nArea` each).
+### Equal size
+
+When `RelativeSize` is omitted (`NULL`), all areas are assumed equal in size (`1 / nArea` each), whatever the number of areas.
 
 ## How the Movement Matrix is Derived
 
@@ -79,13 +94,13 @@ When `UnfishedDist` and `ProbStaying` are supplied, `Populate()` derives the mov
 1. The asymptotic distribution implied by the movement matrix matches the target `UnfishedDist`.
 2. The diagonal elements match the target `ProbStaying`.
 
-For two-area models this system has a closed-form solution. For models with three or more areas, a penalty-based optimisation is used (see @sec-spatial-multiarea).
+For two-area models this system has a closed-form solution. For models with three or more areas, a penalty-based optimisation is used (see @sec-spatial-multiarea). The full mathematical specification of both cases is given in @sec-tech-movement-derivation.
 
-The resulting `Movement` array has dimensions `Sim × FromArea × ToArea × Age × Year`. Row `[i, ]` gives the probabilities of moving from area `i` to each other area, and rows sum to 1. See @sec-tech-historical-number for the full mathematical treatment of movement in the population dynamics.
+The resulting `Movement` array has dimensions `Sim × FromArea × ToArea × Age × Year`. Row `[i, ]` gives the probabilities of moving from area `i` to each other area, and rows sum to 1. See @sec-tech-historical-number for how the resulting movement matrix is applied within the historical population dynamics.
 
 ## Age-Varying Movement
 
-Movement rates can vary by age by supplying `UnfishedDist` and/or `ProbStaying` as arrays with an `Age` dimension. The movement matrix is then fitted independently for each age class.
+Movement rates can vary by age by supplying `UnfishedDist` and/or `ProbStaying` as arrays with an `Age` dimension. A separate movement matrix is fitted for each age class: the matrix for age `a` is fit so that applying it to age `a`'s target unfished distribution reproduces age `a + 1`'s target distribution, chaining the age-specific matrices so the full age-specific distribution profile is realised as fish age through the model. The plus group, and any model where `UnfishedDist` doesn't vary by age, fits to the matrix's own asymptotic distribution instead, since the same matrix is reapplied every time step.
 
 An example application is ontogenetic habitat shift, where juveniles and adults occupy different areas:
 
@@ -112,7 +127,7 @@ Spatial(stock) <- Spatial(
 
 Models with three or more areas require `UnfishedDist` to be supplied as an array summing to 1 across the `Area` dimension, and additionally require `FracOther` to guide the movement optimisation.
 
-`FracOther` is a `Sim × FromArea × ToArea` array (optionally extended with `Age` and `Year` dimensions) where off-diagonal element `[i, j]` gives the relative probability of moving from area `i` to area `j`. Diagonal elements must be `NA` as the staying probability is taken from `ProbStaying`. The values in `FracOther` need not sum to 1; they are normalised internally.
+`FracOther` is a `Sim × FromArea × ToArea` array (optionally extended with `Age` and `Year` dimensions) where off-diagonal element `[i, j]` gives the relative probability of moving from area `i` to area `j`. Diagonal elements must be `NA` as the staying probability is taken from `ProbStaying`. The values in `FracOther` should sum to 1, but are normalised internally so it is not essential.
 
 ```r
 nArea <- 3
@@ -164,19 +179,4 @@ When `Distribution` is not specified, effort is allocated dynamically each year 
 
 Users can fix effort to a specific spatial allocation by supplying `Distribution` as a `Sim × Year × Area` array, bypassing the dynamic allocation algorithm entirely. Any cells set to a non-`NA` value are treated as fixed overrides and are not modified.
 
-See `?Effort` for full documentation of `Distribution` and `Targeting`, and @sec-tech-historical-effort for the mathematical specification of the spatial effort allocation algorithm. Area-specific selectivity, retention, and discard mortality are documented in @sec-tech-fleet-schedules.
-
----
-
-## Summary
-
-| Scenario | Approach |
-|---|---|
-| No spatial structure | Omit `Spatial` entirely |
-| Two areas, constant movement | Scalar `UnfishedDist`, `ProbStaying`, `RelativeSize` |
-| Two areas, uncertain movement | Length-2 bounds vectors for each parameter |
-| Two areas, age-varying movement | `Sim × Area × Age` array for `UnfishedDist` |
-| Three or more areas | Array `UnfishedDist` + `FracOther` |
-| Known movement matrix | Supply `Movement` directly |
-| Equal biomass density across areas | `RelativeSize = "EqualDensity"` |
-
+See `?Effort` for full documentation of `Distribution` and `Targeting`, and @sec-tech-historical-effort for the mathematical specification of the spatial effort allocation algorithm. 

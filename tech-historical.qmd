@@ -6,9 +6,9 @@
 library(MSEtool)
 ```
 
-The historical period spans `OM@nYear` years divided into `OM@nYear × OM@Seasons` time steps, each of duration $1/\text{Seasons}$ years. For non-seasonal models (`OM@Seasons = 1`) each time step is one year. Mortality rates (M and F) are expressed per time step. 
+The historical period spans `OM@nYear` years divided into `OM@nYear × OM@Seasons` time steps, each of duration $1/\text{Seasons}$ years. For non-seasonal models (`OM@Seasons = 1`) each time step is one year. Mortality rates (M and F) are expressed in the same units as the time step. 
 
-The population is first initialised at the start of the historical period, then advanced forward time step by time step. Within each time step, operations are performed in the following order: spatial distribution of effort, fishing mortality, spawning biomass and production, recruitment, survival and ageing, movement, and catch. The simulation index is omitted from equations below; all calculations are performed independently per simulation.
+The simulation index is omitted from equations below; all calculations are performed independently per simulation.
 
 ## Initial Conditions {#sec-tech-historical-init}
 
@@ -30,7 +30,11 @@ For each fleet $f$ and area $k$, exploitable biomass is summed across stocks and
 
 $$\hat{B}_{f,k,t} = \sum_\text{st} q_{\text{st},f,t} \sum_a N_{a,k,t}\, \bar{W}_{a,f,t}\, v_{a,f,k,t}\, r_{a,f,k,t}$$
 
-where $q_{\text{st},f,t}$ is catchability for stock $\text{st}$ by fleet $f$, $v_{a,f,k,t}$ is selectivity, and $r_{a,f,k,t}$ is retention. By default (`UseDensity = TRUE`), $\hat{B}_{f,k,t}$ is divided by the relative area size $s_k$ so that effort is attracted by fish density rather than total abundance in each area, appropriate for non-aggregating species where catchability per unit effort depends on local density, not area-wide biomass. Set `UseDensity = FALSE` for schooling or aggregating species where total biomass in an area drives fleet behaviour regardless of area size. The resulting exploitable biomass (or density) signal gives the initial effort allocation based on the ideal free distribution (IFD):
+where $q_{\text{st},f,t}$ is catchability for stock $\text{st}$ by fleet $f$, $v_{a,f,k,t}$ is selectivity, and $r_{a,f,k,t}$ is retention. 
+
+By default (`Effort@Mode = "Density"`), $\hat{B}_{f,k,t}$ is divided by the relative area size $s_k$ so that effort is attracted by fish density rather than total abundance in each area, appropriate for non-aggregating species where catchability per unit effort depends on local density, not area-wide biomass. Set `Effort@Mode = "Biomass"` for schooling or aggregating species where total biomass in an area drives fleet behaviour regardless of area size.
+
+The resulting exploitable biomass (or density) signal gives the initial effort allocation based on the ideal free distribution (IFD):
 
 $$D^{(0)}_{f,k,t} = \frac{\hat{B}_{f,k,t}}{\sum_{k'} \hat{B}_{f,k',t}}$$
 
@@ -46,7 +50,9 @@ where $\phi_{f,k,t}$ is the local fishing pressure on stock $\text{st}$ by fleet
 
 $$\phi_{\text{st},f,k,t} = \frac{1}{s_k}\left(q_{\text{st},f,t}\, E_{f,t}\, D^{(0)}_{f,k,t} + \sum_{f' \neq f} q_{\text{st},f',t}\, E_{f',t}\, D_{f',k,t-1}\right)$$
 
-The second term accounts for inter-fleet competition: pressure from other fleets is included using their effort distribution from the previous time step as a one-step lag. For biomass-mode fleets the $s_k$ denominator is omitted. The depletion-adjusted utility for fleet $f$ in area $k$ is:
+The second term accounts for inter-fleet competition: pressure from other fleets is included using their effort distribution from the previous time step as a one-step lag. For biomass-mode fleets the $s_k$ denominator is omitted. 
+
+The depletion-adjusted utility for fleet $f$ in area $k$ is:
 
 $$U_{f,k,t} = \sum_\text{st} \hat{B}_{\text{st},f,k,t}\, g(\phi_{\text{st},f,k,t})$$
 
@@ -65,7 +71,9 @@ where $\lambda_{f,t} \geq 0$ is the spatial targeting parameter (`Effort@Targeti
 Users may bypass the three-stage model entirely by supplying effort distributions directly in `Effort@Distribution`. Where values are provided for a given fleet and time step, they are used as-is in place of the computed $D_{f,k,t}$.
 
 ::: {.callout-note}
-The current model uses exploitable biomass as the utility signal, implicitly assuming that the value of catch is proportional to vulnerable biomass (i.e., uniform price across stocks and areas) and that costs are uniform across areas. A future version will incorporate stock-specific prices and area-specific costs so that the utility signal reflects expected profit per unit effort.
+## Bio-economic Model
+
+The current model uses exploitable biomass as the utility signal, implicitly assuming that the value of catch is proportional to vulnerable biomass (i.e., uniform price across stocks) and that costs are uniform across areas. A future version will incorporate stock-specific prices and area-specific costs so that the utility signal reflects expected profit per unit effort as part of the bio-economic model development.
 :::
 
 ## Fishing Mortality {#sec-tech-historical-f}
@@ -74,17 +82,19 @@ Area-specific fishing mortality-at-age for each fleet is:
 
 $$F^{\text{int}}_{a,f,k,t} = \min\!\left(\frac{q_{f,t}\, E_{f,t}\, D_{f,k,t}}{s_k},\; F_{\max}\right) \cdot v_{a,f,k,t}$$
 
-for density-mode fleets (`UseDensity = TRUE`); for biomass-mode fleets the $s_k$ denominator is omitted. $F_{\max}$ (`OM@maxF`) is a cap preventing unrealistically large fishing mortalities. Three mortality components are derived per fleet:
+for density-mode fleets (`Effort@Mode = "Density"`). For biomass-mode fleets (`Effort@Mode = "Biomass"`) the $s_k$ denominator is omitted. $F_{\max}$ (`OM@maxF`) is a cap preventing unrealistically large fishing mortalities. Three mortality components are derived per fleet:
 
-- $F^{\text{ret}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot r_{a,f,k,t}$: retained (landed) mortality
-- $F^{\text{dis}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot (1 - r_{a,f,k,t}) \cdot m_{a,f,k,t}$: discarded and dead
-- $F^{\text{dead}}_{a,f,k,t} = F^{\text{ret}}_{a,f,k,t} + F^{\text{dis}}_{a,f,k,t}$: total fishing mortality
+1. $F^{\text{ret}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot r_{a,f,k,t}$: retained (landed) mortality
+2. $F^{\text{dis}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot (1 - r_{a,f,k,t}) \cdot m_{a,f,k,t}$: discarded and dead
+3. $F^{\text{dead}}_{a,f,k,t} = F^{\text{ret}}_{a,f,k,t} + F^{\text{dis}}_{a,f,k,t}$: total fishing mortality
 
-where $m_{a,f,k,t}$ is discard mortality-at-age (see @sec-tech-fleet-schedules). Total mortality combining natural and fishing mortality is:
+where $m_{a,f,k,t}$ is discard mortality-at-age (see @sec-tech-fleet-schedules). 
+
+Total mortality combining natural and fishing mortality is:
 
 $$Z_{a,k,t} = M_{a,t} + \sum_f F^{\text{dead}}_{a,f,k,t}$$
 
-`Hist` stores `FInteract`, `FDead`, and `FRetain` (apical values; `Sim × Stock × Year × Fleet`) and `FInteractArea`, `FDeadArea`, and `FRetainArea` (age- and area-specific; list by stock, `Sim × Age × Year × Fleet × Area`). The apical value for each fleet is computed by first taking the numbers-weighted average of F across areas at each age, then taking the maximum over ages:
+The apical value for each fleet is computed by first taking the numbers-weighted average of F across areas at each age, then taking the maximum over ages:
 
 $$F^{\text{apical}}_{f,t} = \max_a \left( \sum_k \frac{N_{a,k,t}}{\sum_{k'} N_{a,k',t}} F^{\text{dead}}_{a,f,k,t} \right)$$
 
@@ -124,15 +134,19 @@ After survival and ageing, fish move among areas according to the movement matri
 
 $$N_{a,k',t+1} = \sum_k N_{a,k,t+1}\, M_{k,k',a,t}$$
 
-### Movement Matrix Derivation {#sec-tech-movement-derivation}
+## Movement Matrix Derivation {#sec-tech-movement-derivation}
 
 The movement matrix $\mathbf{M}_{a,t}$ is derived from user-supplied targets for the unfished spatial distribution ($d_k$, `UnfishedDist`) and the probability of remaining in each area ($p_k$, `ProbStaying`). The matrix is fitted so that its stationary distribution reproduces $d_k$ and its diagonal elements equal $p_k$.
 
-**Two-area models.** The system has a closed-form solution. For a two-area model with staying probabilities $p_1$ and $p_2$ on the diagonal, the off-diagonal elements are $1 - p_1$ and $1 - p_2$. The staying probability for area 2 is solved analytically from the target $d_1$ and the supplied $p_1$:
+### Two-area models
+
+For a two-area model with staying probabilities $p_1$ and $p_2$ on the diagonal, the off-diagonal elements are $1 - p_1$ and $1 - p_2$. The staying probability for area 2 is solved analytically from the target $d_1$ and the supplied $p_1$:
 
 $$p_2 = 1 - \frac{d_1 (1 - p_1)}{1 - d_1}$$
 
-**Multi-area models.** For three or more areas, a closed-form solution does not generally exist. The matrix is instead fitted by minimising a penalty function that penalises deviations from both targets. Off-diagonal movement probabilities are parameterised using the user-supplied relative movement weights (`FracOther`), normalised within each row, and scaled by $1 - p_k$. The penalty function is:
+### Multi-area models
+
+For three or more areas, a closed-form solution does not generally exist. The matrix is instead fitted by minimising a penalty function that penalises deviations from both targets. Off-diagonal movement probabilities are parameterised using the user-supplied relative movement weights (`FracOther`), normalised within each row, and scaled by $1 - p_k$. The penalty function is:
 
 $$\mathcal{L} = \sum_k \left[\frac{\log(\hat{d}_k / d_k)^2}{2\,\sigma_d^2}\right] + \sum_k \left[\frac{(\text{logit}(\hat{p}_k) - \text{logit}(p_k))^2}{2\,\sigma_p^2}\right]$$
 
@@ -160,4 +174,4 @@ $$L_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{ret}}_{a,f,k,t}$$
 
 $$D_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{dis}}_{a,f,k,t}$$
 
-If an age-weight key is available instead of an age-length key, the same approach is applied to give catch-at-weight. Results are stored in `Hist@LandingsAtSize` and `Hist@DiscardsAtSize` as nested lists (by stock, then fleet), each array with dimensions `Sim × Class × Year × Area`. Fleets are stored separately because each may have different size class definitions.
+If an age-weight key is available instead of an age-length key, the same approach is applied to give catch-at-weight. Results are stored in `Hist@LandingsAtSize` and `Hist@DiscardsAtSize` as nested lists (by stock, then fleet), each array with dimensions `Sim × Class × Year × Area`. 

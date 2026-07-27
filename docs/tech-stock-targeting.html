@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>4&nbsp; Overview of Example Objects – openMSE Technical Manual</title>
+<title>33&nbsp; Stock Targeting – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./example-mse.html" rel="next">
-<link href="./overview-objects.html" rel="prev">
+<link href="./z-app-acknowledgements.html" rel="next">
+<link href="./tech-advice-multifleet.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -68,32 +68,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+}</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -102,7 +77,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./example-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-stock-targeting.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,11 +114,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview-openMSE.html" class="sidebar-item-text sidebar-link">
@@ -158,7 +133,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example-objects.html" class="sidebar-item-text sidebar-link active">
+  <a href="./example-objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></a>
   </div>
 </li>
@@ -309,11 +284,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./tech-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Technical Details</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
@@ -376,7 +351,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
@@ -409,20 +384,12 @@ window.Quarto = {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-<li><a href="#stock-objects" id="toc-stock-objects" class="nav-link active" data-scroll-target="#stock-objects"><span class="header-section-number">4.1</span> <code>Stock</code> Objects</a></li>
-  <li><a href="#fleet-objects" id="toc-fleet-objects" class="nav-link" data-scroll-target="#fleet-objects"><span class="header-section-number">4.2</span> <code>Fleet</code> Objects</a></li>
-  <li><a href="#obs-objects" id="toc-obs-objects" class="nav-link" data-scroll-target="#obs-objects"><span class="header-section-number">4.3</span> <code>Obs</code> Objects</a></li>
-  <li><a href="#imp-objects" id="toc-imp-objects" class="nav-link" data-scroll-target="#imp-objects"><span class="header-section-number">4.4</span> <code>Imp</code> Objects</a></li>
-  <li><a href="#sec-exampleoms" id="toc-sec-exampleoms" class="nav-link" data-scroll-target="#sec-exampleoms"><span class="header-section-number">4.5</span> <code>OM</code> Objects</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/example-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./example-objects.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-exampleobjects" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Overview of Example Objects</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tech-overview.html">Technical Details</a></li><li class="breadcrumb-item"><a href="./tech-stock-targeting.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-tech-stock-targeting" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></h1>
 </div>
 
 
@@ -436,201 +403,28 @@ window.Quarto = {
   
 
 
-</header><p><code>openMSE</code> includes a number of built-in objects that can be used for testing and demonstration. These objects span all four subcomponent types, <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>, along with a set of example <code>OM</code> objects that combine them in configurations of increasing complexity.</p>
-<p>The objects are intended for demonstration and testing purposes only. The biological and exploitation values should not be interpreted as representing real stock assessments or used to inform management advice.</p>
-<p><a href="om-built-in.html" class="quarto-xref"><span>Chapter 12</span></a> walks through how each object is constructed step by step.</p>
-<section id="stock-objects" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="stock-objects">
-<span class="header-section-number">4.1</span> <code>Stock</code> Objects</h2>
-<p>Three example <code>Stock</code> objects are provided, representing species with contrasting life histories and model configurations. See <a href="om-built-in.html#sec-examplestocks" class="quarto-xref"><span>Section 12.1</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Common name</th>
-<th>Key characteristics</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>AlbacoreExStock</code></td>
-<td>Albacore tuna</td>
-<td>Long-lived, slow-growing, low <span class="math inline">\(M\)</span>, low recruitment variability, 2-area</td>
-</tr>
-<tr class="even">
-<td><code>ButterfishExStock</code></td>
-<td>Butterfish</td>
-<td>Short-lived, fast-growing, high <span class="math inline">\(M\)</span>, high recruitment variability, 2-area</td>
-</tr>
-<tr class="odd">
-<td><code>SeasonalSpatialExStock</code></td>
-<td>Reef fish</td>
-<td>Short-lived, monthly time steps, seasonal recruitment pulse, 3-area ontogenetic movement</td>
-</tr>
-</tbody>
-</table></section><section id="fleet-objects" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="fleet-objects">
-<span class="header-section-number">4.2</span> <code>Fleet</code> Objects</h2>
-<p>Two example <code>Fleet</code> objects are provided, representing gear types with contrasting selectivity patterns. See <a href="om-built-in.html#sec-examplefleets" class="quarto-xref"><span>Section 12.2</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Selectivity type</th>
-<th>Key characteristics</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>AsympExFleet</code></td>
-<td>Asymptotic</td>
-<td>Logistic selectivity pattern; effort builds gradually to a plateau</td>
-</tr>
-<tr class="even">
-<td><code>DomeExFleet</code></td>
-<td>Dome-shaped</td>
-<td>Reduced selectivity at largest sizes; slower effort build-up</td>
-</tr>
-</tbody>
-</table></section><section id="obs-objects" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="obs-objects">
-<span class="header-section-number">4.3</span> <code>Obs</code> Objects</h2>
-<p>Five example <code>Obs</code> objects are provided, representing monitoring programs of increasing data richness. See <a href="om-built-in.html#sec-exampleobs" class="quarto-xref"><span>Section 12.3</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Data types</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>CommercialFleetObs</code></td>
-<td>Landings, discards, effort, CPUE</td>
-</tr>
-<tr class="even">
-<td><code>CatchAndSurveyObs</code></td>
-<td>Landings, survey index</td>
-</tr>
-<tr class="odd">
-<td><code>AgeStructuredObs</code></td>
-<td>Landings, discards, survey index, age compositions (landings and discards)</td>
-</tr>
-<tr class="even">
-<td><code>LengthStructuredObs</code></td>
-<td>Landings, discards, survey index, length compositions (landings and discards)</td>
-</tr>
-<tr class="odd">
-<td><code>DataRichObs</code></td>
-<td>Landings, discards, effort, CPUE, survey index, age and length compositions (landings and discards)</td>
-</tr>
-</tbody>
-</table></section><section id="imp-objects" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="imp-objects">
-<span class="header-section-number">4.4</span> <code>Imp</code> Objects</h2>
-<p>Four example <code>Imp</code> objects are provided, representing different assumptions about how management advice is realised in practice. See <a href="om-built-in.html#sec-exampleimp" class="quarto-xref"><span>Section 12.4</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Key characteristics</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>FullComplianceImp</code></td>
-<td>Perfect compliance: TAC and effort advice realised exactly (<code>Mean = 1</code>, <code>SD = 0</code>); 100% immediate uptake of size regulations.</td>
-</tr>
-<tr class="even">
-<td><code>OverageImp</code></td>
-<td>TAC and effort consistently realised 5-25% above advice, with added simulation-to-simulation and year-to-year stochastic variation.</td>
-</tr>
-<tr class="odd">
-<td><code>UnderageImp</code></td>
-<td>TAC and effort consistently realised 10-30% below advice, with added simulation-to-simulation and year-to-year stochastic variation.</td>
-</tr>
-<tr class="even">
-<td><code>PartialSizeComplianceImp</code></td>
-<td>Perfect TAC and effort implementation, but only 60% of the fleet adopts a newly-advised size regulation in the year it changes.</td>
-</tr>
-</tbody>
-</table></section><section id="sec-exampleoms" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="sec-exampleoms">
-<span class="header-section-number">4.5</span> <code>OM</code> Objects</h2>
-<p>Five pre-assembled <code>OM</code> objects combine the example stocks, fleets, and observation programs in configurations of increasing complexity. See <a href="om-built-in.html#sec-exampleOM" class="quarto-xref"><span>Section 12.5</span></a> for full construction details.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead><tr class="header">
-<th>Object</th>
-<th>Stocks</th>
-<th>Fleets per stock</th>
-<th>Obs program(s)</th>
-<th>Notes</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>SingleStockOM</code></td>
-<td><code>AlbacoreExStock</code></td>
-<td><code>AsympExFleet</code></td>
-<td><code>AgeStructuredObs</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>TwoFleetOM</code></td>
-<td><code>AlbacoreExStock</code></td>
-<td>
-<code>AsympExFleet</code>, <code>DomeExFleet</code>
-</td>
-<td>
-<code>AgeStructuredObs</code>, <code>CatchAndSurveyObs</code>
-</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>MultiStockOM</code></td>
-<td>
-<code>AlbacoreExStock</code>, <code>ButterfishExStock</code>
-</td>
-<td>
-<code>AsympExFleet</code>, <code>DomeExFleet</code>
-</td>
-<td>Albacore: <code>AgeStructuredObs</code>, <code>CommercialFleetObs</code>; Butterfish: <code>CatchAndSurveyObs</code>, <code>LengthStructuredObs</code>
-</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>ComplexOM</code></td>
-<td>
-<code>AlbacoreExStock</code>, <code>ButterfishExStock</code> (complex)</td>
-<td><code>AsympExFleet</code></td>
-<td><code>AgeStructuredObs</code></td>
-<td>Stock complex</td>
-</tr>
-<tr class="odd">
-<td><code>SeasonalSpatialOM</code></td>
-<td><code>SeasonalSpatialExStock</code></td>
-<td><code>DomeExFleet</code></td>
-<td><code>CommercialFleetObs</code></td>
-<td>Monthly seasons, 3-area spatial model</td>
-</tr>
-</tbody>
-</table>
-<p><code>ComplexOM</code> groups both stocks into a single stock complex (<code>StockComplex</code>), meaning fishery data and management advice are handled at the complex level. See <a href="concept-complexes.html" class="quarto-xref"><span>Chapter 20</span></a> for more details on stock complexes.</p>
-<p><code>SeasonalSpatialOM</code> uses <code>Seasons = 12</code> to match the monthly age structure of <code>SeasonalSpatialExStock</code>. It is an example OM with sub-annual time steps and a multi-area ontogenetic spatial model.</p>
+</header><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter is a placeholder for a future release covering multi-stock/multi-complex operating models, where more than one complex shares one or more fleets. It will cover:</p>
+<ul>
+<li>How historical stock targeting is estimated from data (<code>.FitStockTargeting()</code>) and used to generate stochastic historical/projection targeting trajectories (<code>.GenerateStockTargeting()</code>).</li>
+<li>How fleet-specific targeting weights are jointly solved with effort during <code>Project()</code> when TAC or Effort advice is set for multiple complexes sharing a fleet, including cross-complex reconciliation and aggregate (pooled) bag limits.</li>
+</ul>
+<p>For the current single-stock documentation of how management advice is implemented, see <a href="tech-advice-implementation.html" class="quarto-xref"><span>Chapter 30</span></a>, <a href="tech-advice-singlestock.html" class="quarto-xref"><span>Chapter 31</span></a>, and <a href="tech-advice-multifleet.html" class="quarto-xref"><span>Chapter 32</span></a>.</p>
+</div>
+</div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1030,13 +824,13 @@ window.Quarto = {
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./overview-objects.html" class="pagination-link" aria-label="The Operating Model: Classes and Components">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Operating Model: Classes and Components</span></span>
+      <a href="./tech-advice-multifleet.html" class="pagination-link" aria-label="Implementing Advice: One Complex, Multiple Fleets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./example-mse.html" class="pagination-link" aria-label="An Example MSE">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An Example MSE</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./z-app-acknowledgements.html" class="pagination-link" aria-label="Acknowledgments">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1044,4 +838,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/example-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-stock-targeting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

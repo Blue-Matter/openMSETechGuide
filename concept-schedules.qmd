@@ -50,7 +50,6 @@ m_arr <- array(
 NaturalMortality(stock) <- NaturalMortality(MeanAtAge = m_arr)
 ```
 
-
 ## Input Formats for `Pars`
 
 Each element of `Pars` may be supplied in any of the following forms. All are converted internally to `Sim × Year` arrays by `Populate()` before the model function is called.
@@ -71,7 +70,7 @@ Values are sampled independently for each simulation from `Uniform(lower, upper)
 Pars = list(M = c(0.1, 0.3))   # draws nSim values from U(0.1, 0.3)
 ```
 
-This is the most common format for reflecting parameter uncertainty in an operating model, and is used throughout the built-in example objects.
+This is a common format for reflecting parameter uncertainty in an operating model, and is used throughout the built-in example objects.
 
 ### Length-`nSim` vector
 
@@ -140,7 +139,7 @@ For model-based specifications, whether the model populates `MeanAtAge` directly
 
 ## Model Resolution
 
-When `Pars` is non-empty and `Model` is `NULL`, the model internally scans the candidate model functions for the object class — for example, all functions registered as `"LengthModel"` for a `Length` object — and finds the one whose formal argument names match the names in `Pars` exactly (excluding auxiliary arguments such as `Ages`, `Length`, and `Weight`, and ignoring any `SD`-suffixed entries used for random walks).
+When `Pars` is non-empty and `Model` is `NULL`, the model internally scans the candidate model functions for the object class (for example, all functions registered as class `"LengthModel"` for a `Length` object) and finds the one whose formal argument names match the names in `Pars` exactly (excluding auxiliary arguments such as `Ages`, `Length`, and `Weight`, and ignoring any `SD`-suffixed entries used for random walks).
 
 If no unique match is found, an informative error is thrown directing the user to the relevant `*Models()` function (e.g., `?LengthModels`, `?MaturityModels`).
 
@@ -149,15 +148,13 @@ You may bypass automatic inference by setting `Model` explicitly:
 - **Character string**: the name of a built-in model (must exist as an exported function of the appropriate class).
 - **R function**: a custom function whose formal arguments match the names in `Pars`; see @sec-schedules-custom.
 
-If `Model` is already a function object (from a previous call), `FindModel()` returns it unchanged.
-
 ## Custom Models {#sec-schedules-custom}
 
-Any R function can be used as a model by passing it to `Model`. The function must:
+Any appropriately constructed R function can be used as a model by passing it to `Model`. The function must:
 
 - accept arguments whose names match the elements of `Pars`;
 - accept any required auxiliary arguments (`Ages`, `Length`, `Weight`, etc.) as appropriate for the schedule type;
-- return a named array with dimensions `Sim × Age × Year` (for age-based outputs) or `Sim × Class × Year` (for size-based outputs).
+- return a named array with dimensions `Sim × Age × Year` (for age-based outputs) or `Sim × Class × Year` (for size-based outputs), or any of the other supported formats described above.
 
 For example, the following custom natural mortality function produces an age-declining $M$ schedule:
 
@@ -176,14 +173,4 @@ Here `M` is sampled from `U(0.3, 0.5)` across simulations, and `declining_M` map
 
 Custom models follow the same `Pars` input format rules described above, so `M` can be a scalar, a length-2 bounds vector, a length-`nSim` vector, or a `Sim × Year` array. The `Pars` expansion to `Sim × Year` arrays is handled by `Populate()` before the custom function is called, so the function receives a single numeric value for each parameter, not an array.
 
-## Summary
-
-| Want to specify... | Use |
-|---|---|
-| A single fixed value for all sims and years | Scalar in `Pars` |
-| Uniform distribution across simulations | Length-2 bounds vector in `Pars` |
-| Pre-determined per-simulation values | Length-`nSim` vector in `Pars` |
-| A step-change at a known year | `Sim × Year` array in `Pars` |
-| Inter-annual random variation within sims | `<Par>SD` companion entry in `Pars` |
-| A fully custom schedule | Direct `MeanAt*` array, or `Pars` + custom `Model` function |
 

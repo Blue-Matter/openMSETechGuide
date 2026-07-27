@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tech-projection.html" rel="next">
+<link href="./tech-advice-implementation.html" rel="next">
 <link href="./tech-observations.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -255,7 +255,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +281,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,12 +315,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -358,8 +358,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -416,7 +434,14 @@ window.Quarto = {
 <li><a href="#multi-stock-complexes" id="toc-multi-stock-complexes" class="nav-link" data-scroll-target="#multi-stock-complexes"><span class="header-section-number">29.4.1</span> Multi-Stock Complexes</a></li>
   </ul>
 </li>
-  <li><a href="#sec-tech-refpoints-ypr" id="toc-sec-tech-refpoints-ypr" class="nav-link" data-scroll-target="#sec-tech-refpoints-ypr"><span class="header-section-number">29.5</span> Yield-Per-Recruit Reference Points</a></li>
+  <li>
+<a href="#sec-tech-refpoints-ypr" id="toc-sec-tech-refpoints-ypr" class="nav-link" data-scroll-target="#sec-tech-refpoints-ypr"><span class="header-section-number">29.5</span> Per-Recruit and Replacement-Line Reference Points</a>
+  <ul class="collapse">
+<li><a href="#f_textmax-and-f_0.1" id="toc-f_textmax-and-f_0.1" class="nav-link" data-scroll-target="#f_textmax-and-f_0.1"><span class="header-section-number">29.5.1</span> <span class="math inline">\(F_\text{Max}\)</span> and <span class="math inline">\(F_{0.1}\)</span></a></li>
+  <li><a href="#f_xtextspr" id="toc-f_xtextspr" class="nav-link" data-scroll-target="#f_xtextspr"><span class="header-section-number">29.5.2</span> <span class="math inline">\(F_{x\%\text{SPR}}\)</span></a></li>
+  <li><a href="#f_textmed" id="toc-f_textmed" class="nav-link" data-scroll-target="#f_textmed"><span class="header-section-number">29.5.3</span> <span class="math inline">\(F_\text{Med}\)</span></a></li>
+  </ul>
+</li>
   <li><a href="#sec-tech-refpoints-spr" id="toc-sec-tech-refpoints-spr" class="nav-link" data-scroll-target="#sec-tech-refpoints-spr"><span class="header-section-number">29.6</span> SPR-Based Reference Points</a></li>
   <li><a href="#sec-tech-refpoints-refyield" id="toc-sec-tech-refpoints-refyield" class="nav-link" data-scroll-target="#sec-tech-refpoints-refyield"><span class="header-section-number">29.7</span> Reference Yield</a></li>
   <li><a href="#sec-tech-refpoints-mgt" id="toc-sec-tech-refpoints-mgt" class="nav-link" data-scroll-target="#sec-tech-refpoints-mgt"><span class="header-section-number">29.8</span> Mean Generation Time</a></li>
@@ -432,7 +457,6 @@ window.Quarto = {
   <li><a href="#sec-tech-refpoints-seasonal-yield" id="toc-sec-tech-refpoints-seasonal-yield" class="nav-link" data-scroll-target="#sec-tech-refpoints-seasonal-yield"><span class="header-section-number">29.11.5</span> Annual yield per recruit</a></li>
   <li><a href="#sec-tech-refpoints-seasonal-fleet" id="toc-sec-tech-refpoints-seasonal-fleet" class="nav-link" data-scroll-target="#sec-tech-refpoints-seasonal-fleet"><span class="header-section-number">29.11.6</span> Seasonal fleet allocation</a></li>
   <li><a href="#msy-optimisation-and-reporting" id="toc-msy-optimisation-and-reporting" class="nav-link" data-scroll-target="#msy-optimisation-and-reporting"><span class="header-section-number">29.11.7</span> MSY optimisation and reporting</a></li>
-  <li><a href="#sec-tech-refpoints-seasonal-refyield" id="toc-sec-tech-refpoints-seasonal-refyield" class="nav-link" data-scroll-target="#sec-tech-refpoints-seasonal-refyield"><span class="header-section-number">29.11.8</span> Reference yield in seasonal models</a></li>
   </ul>
 </li>
   <li><a href="#sec-tech-refpoints-spatial" id="toc-sec-tech-refpoints-spatial" class="nav-link" data-scroll-target="#sec-tech-refpoints-spatial"><span class="header-section-number">29.12</span> Spatial Structure</a></li>
@@ -454,8 +478,8 @@ window.Quarto = {
   
 
 
-</header><p>This chapter gives the full mathematical specification of how reference points are calculated in openMSE. For a conceptual overview see <a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 21</span></a>.</p>
-<p>Reference points are calculated per stock complex (see <a href="concept-complexes.html" class="quarto-xref"><span>Chapter 19</span></a>) using a per-recruit framework combined with the stock-recruitment relationship. Results are stored in <code>Hist@Reference</code> and accessed via <code>Reference(Hist)</code>.</p>
+</header><p>This chapter gives the full mathematical specification of how reference points are calculated in openMSE. For a conceptual overview see <a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 22</span></a>.</p>
+<p>Reference points are calculated per stock complex (see <a href="concept-complexes.html" class="quarto-xref"><span>Chapter 20</span></a>) using a per-recruit framework combined with the stock-recruitment relationship. Results are stored in <code>Hist@Reference</code> and accessed via <code>Reference(Hist)</code>.</p>
 <section id="sec-tech-refpoints-perrecruit" class="level2" data-number="29.1"><h2 data-number="29.1" class="anchored" data-anchor-id="sec-tech-refpoints-perrecruit">
 <span class="header-section-number">29.1</span> Per-Recruit Framework</h2>
 <p>The per-recruit framework tracks the expected number, biomass, and spawning production of a single recruit as it ages under specified mortality conditions.</p>
@@ -499,11 +523,13 @@ window.Quarto = {
 <p>For standard stock-recruitment models this can be solved analytically for <span class="math inline">\(R_{eq}\)</span> as a function of <span class="math inline">\(\Phi_F\)</span> (or equivalently of <span class="math inline">\(\text{SPR} = \Phi_F / \Phi_0\)</span>). The result can always be written as</p>
 <p><span class="math display">\[R_{eq}(F) = R_0 \cdot \text{RelRec}\!\bigl(\text{SPR}(F)\bigr)\]</span></p>
 <p>where <span class="math inline">\(\text{RelRec}(\text{SPR}) = R_{eq}/R_0\)</span> is a dimensionless function of SPR only. By construction <span class="math inline">\(\text{RelRec}(1) = 1\)</span> (unfished) and <span class="math inline">\(\text{RelRec}(0) = 0\)</span> (recruitment collapses when spawning production is eliminated). The shape of <span class="math inline">\(\text{RelRec}\)</span> between these limits is determined by the SRR steepness and functional form.</p>
-<p>For the <strong>Beverton-Holt</strong> SRR with steepness <span class="math inline">\(h\)</span>:</p>
-<p><span class="math display">\[\text{RelRec}(\rho) = \frac{4h\rho - (1-h)}{(5h-1)\rho}, \qquad \rho = \frac{\Phi_F}{\Phi_0}\]</span></p>
-<p>For the <strong>Ricker</strong> SRR with steepness <span class="math inline">\(h\)</span>:</p>
-<p><span class="math display">\[\text{RelRec}(\rho) = \rho \cdot \exp\!\Bigl(\kappa \bigl(1 - \rho\bigr)\Bigr)\]</span></p>
-<p>where <span class="math inline">\(\kappa = \log(5h)/(1 - 0.2^{\kappa})\)</span> … [exact steepness parameterisation to be confirmed against the MSEtool SRR implementations and documented here].</p>
+<p>Both models express <span class="math inline">\(\text{RelRec}\)</span> in terms of the compensation ratio <span class="math inline">\(CR\)</span> (recruits per spawner at the origin implied by steepness), floored at zero to rule out negative recruitment:</p>
+<p>For the Beverton-Holt SRR with steepness <span class="math inline">\(h\)</span>:</p>
+<p><span class="math display">\[\text{RelRec}(\rho) = \max\!\left(0,\; \frac{CR\cdot\rho - 1}{(CR-1)\,\rho}\right), \qquad CR = \frac{4h}{1-h}, \qquad \rho = \frac{\Phi_F}{\Phi_0}\]</span></p>
+<p>For the Ricker SRR with steepness <span class="math inline">\(h\)</span>:</p>
+<p><span class="math display">\[\text{RelRec}(\rho) = \max\!\left(0,\; \frac{\log(CR\cdot\rho)}{\log(CR)}\right), \qquad CR = (5h)^{1.25}\]</span></p>
+<p>For the Hockey-Stick SRR with hinge point <span class="math inline">\(S_\text{hinge}\)</span> (a fraction of <span class="math inline">\(S_0\)</span>, <code>Shinge</code>), equilibrium recruitment is a step function of SPR rather than a smooth curve:</p>
+<p><span class="math display">\[\text{RelRec}(\rho) = \begin{cases} 1 &amp; \rho \geq S_\text{hinge} \\ 0 &amp; \rho &lt; S_\text{hinge} \end{cases}\]</span></p>
 <p>Equilibrium abundance, biomass, and yield follow by multiplying the per-recruit quantities by <span class="math inline">\(R_{eq}(F)\)</span>. Absolute equilibrium quantities across a grid of apical <span class="math inline">\(F\)</span> values are returned by <code>CalcEquilibrium()</code>.</p>
 <p>For multi-stock complexes, when stock <span class="math inline">\(j\)</span> provides the spawning production driving the SRR of stock <span class="math inline">\(i\)</span> (<code>Stock@SRR@SPFrom</code>), the relative recruitment for stock <span class="math inline">\(i\)</span> is evaluated using the SPR of stock <span class="math inline">\(j\)</span>.</p>
 </section></section><section id="sec-tech-refpoints-msy" class="level2" data-number="29.4"><h2 data-number="29.4" class="anchored" data-anchor-id="sec-tech-refpoints-msy">
@@ -553,110 +579,62 @@ window.Quarto = {
 <span class="header-section-number">29.4.1</span> Multi-Stock Complexes</h3>
 <p>For complexes with more than one stock, the optimisation finds the single apical <span class="math inline">\(F\)</span> maximising total yield across all stocks, with fleet allocation as above. Stock-level quantities (BMSY, SBMSY, etc.) are then evaluated at the complex-level <span class="math inline">\(F_{\text{MSY}}\)</span>, which will generally differ from the single-stock optimum for any individual stock.</p>
 </section></section><section id="sec-tech-refpoints-ypr" class="level2" data-number="29.5"><h2 data-number="29.5" class="anchored" data-anchor-id="sec-tech-refpoints-ypr">
-<span class="header-section-number">29.5</span> Yield-Per-Recruit Reference Points</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(F_\text{Max}\)</span> and <span class="math inline">\(F_{0.1}\)</span> are not yet calculated automatically. Code to compute and store these reference points is under development.</p>
-</div>
-</div>
-<p><span class="math inline">\(F_\text{Max}\)</span> is the apical fishing mortality that maximises yield per recruit:</p>
-<p><span class="math display">\[F_\text{Max} = \arg\max_{F &gt; 0} \; \sum_f Y_f^{PR}(F)\]</span></p>
-<p><span class="math inline">\(F_{0.1}\)</span> is the apical <span class="math inline">\(F\)</span> at which the slope of the YPR curve is 10% of its value at <span class="math inline">\(F = 0\)</span>:</p>
-<p><span class="math display">\[\left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F = F_{0.1}} = 0.1 \cdot \left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F = 0}\]</span></p>
-<p>Neither reference point requires a stock-recruitment relationship.</p>
-</section><section id="sec-tech-refpoints-spr" class="level2" data-number="29.6"><h2 data-number="29.6" class="anchored" data-anchor-id="sec-tech-refpoints-spr">
+<span class="header-section-number">29.5</span> Per-Recruit and Replacement-Line Reference Points</h2>
+<p><code>CalcRefPoints()</code> computes <span class="math inline">\(F_{0.1}\)</span>, <span class="math inline">\(F_\text{Max}\)</span>, <span class="math inline">\(F_{x\%\text{SPR}}\)</span>, <span class="math inline">\(F_\text{Med}\)</span>, <span class="math inline">\(F_\text{crash}\)</span>, and <span class="math inline">\(\text{SPR}_\text{crash}\)</span>, storing them in <code>Hist@Reference@F01</code>, <code>@FMax</code>, <code>@FSPR</code>, <code>@FMed</code>, <code>@FCrash</code>, and <code>@SPRcrash</code>. It is called automatically by <code>Simulate()</code> (<code>SimControl(RefPoints = TRUE)</code>, the default).</p>
+<p>All six quantities are evaluated on a common log-spaced grid of <code>nF</code> apical <span class="math inline">\(F\)</span> values (default 100) spanning approximately 0 to <code>OM@maxF</code>, using a single call to <code>CalcPerRecruit()</code> over the grid rather than re-optimising per reference point.</p>
+<section id="f_textmax-and-f_0.1" class="level3" data-number="29.5.1"><h3 data-number="29.5.1" class="anchored" data-anchor-id="f_textmax-and-f_0.1">
+<span class="header-section-number">29.5.1</span> <span class="math inline">\(F_\text{Max}\)</span> and <span class="math inline">\(F_{0.1}\)</span>
+</h3>
+<p><span class="math inline">\(F_\text{Max}\)</span> is the grid point maximising yield per recruit:</p>
+<p><span class="math display">\[F_\text{Max} = \arg\max_{F \in \text{grid}} \; \sum_f Y_f^{PR}(F)\]</span></p>
+<p>For asymptotic selectivity, yield per recruit has no interior maximum and increases monotonically with <span class="math inline">\(F\)</span>; in that case <span class="math inline">\(F_\text{Max}\)</span> is reported as the upper end of the grid (<code>OM@maxF</code>) rather than left undefined.</p>
+<p><span class="math inline">\(F_{0.1}\)</span> is the apical <span class="math inline">\(F\)</span> at which the slope of the YPR curve is 10% of the slope at the first grid interval:</p>
+<p><span class="math display">\[\left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F = F_{0.1}} = 0.1 \cdot \left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F \to 0}\]</span></p>
+<p>found by computing the discrete slope between consecutive grid points and linearly interpolating to the target slope. Neither <span class="math inline">\(F_\text{Max}\)</span> nor <span class="math inline">\(F_{0.1}\)</span> requires a stock-recruitment relationship.</p>
+</section><section id="f_xtextspr" class="level3" data-number="29.5.2"><h3 data-number="29.5.2" class="anchored" data-anchor-id="f_xtextspr">
+<span class="header-section-number">29.5.2</span> <span class="math inline">\(F_{x\%\text{SPR}}\)</span>
+</h3>
+<p>For each target in <code>SPRTarget</code> (default <code>c(0.3, 0.4, 0.5)</code>), <span class="math inline">\(F_{x\%\text{SPR}}\)</span> is the apical <span class="math inline">\(F\)</span> at which <span class="math inline">\(\text{SPR}(F)\)</span> equals that target, found by linear interpolation of <span class="math inline">\(\text{SPR}(F)\)</span> over the grid. Results are stored with an additional <code>Target</code> dimension, one value per requested target.</p>
+</section><section id="f_textmed" class="level3" data-number="29.5.3"><h3 data-number="29.5.3" class="anchored" data-anchor-id="f_textmed">
+<span class="header-section-number">29.5.3</span> <span class="math inline">\(F_\text{Med}\)</span>
+</h3>
+<p><span class="math inline">\(F_\text{Med}\)</span> is the apical <span class="math inline">\(F\)</span> at which the per-recruit replacement line equals the median historical recruits-per-spawner ratio. For each stock, the historical ratio of recruits (numbers at the first age class) to spawning biomass is computed for every historical year, and its median across years gives the target. <span class="math inline">\(F_\text{Med}\)</span> is then the <span class="math inline">\(F\)</span> at which <span class="math inline">\(1/\Phi_F\)</span> equals that target, found by interpolation over the grid.</p>
+</section></section><section id="sec-tech-refpoints-spr" class="level2" data-number="29.6"><h2 data-number="29.6" class="anchored" data-anchor-id="sec-tech-refpoints-spr">
 <span class="header-section-number">29.6</span> SPR-Based Reference Points</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(F_\text{crash}\)</span> and <span class="math inline">\(\text{SPR}_\text{crash}\)</span> are not yet calculated automatically. Code to compute and store these reference points is under development.</p>
-</div>
-</div>
-<p><span class="math inline">\(F_\text{crash}\)</span> is the fishing mortality at which equilibrium recruitment falls to zero, and <span class="math inline">\(\text{SPR}_\text{crash} = \text{SPR}(F_\text{crash})\)</span> is the corresponding spawning potential ratio. The existence and value of <span class="math inline">\(F_\text{crash}\)</span> depend on the SRR.</p>
-<p>For the <strong>Beverton-Holt</strong> SRR, equilibrium recruitment approaches zero asymptotically as <span class="math inline">\(F \to \infty\)</span>. There is no finite <span class="math inline">\(F_\text{crash}\)</span>; by convention <span class="math inline">\(\text{SPR}_\text{crash} = 0\)</span>.</p>
-<p>For the <strong>Ricker</strong> SRR, the critical condition is that each unit of spawning production produces exactly one recruit, i.e.&nbsp;the per-capita productivity at low density <span class="math inline">\(\alpha\)</span> satisfies <span class="math inline">\(\alpha \cdot \Phi_F = 1\)</span>. The analytical result is:</p>
-<p><span class="math display">\[\Phi_{F_\text{crash}} = \frac{1}{\alpha} \qquad \Longrightarrow \qquad \text{SPR}_\text{crash} = \frac{1}{\alpha \cdot \Phi_0}\]</span></p>
-<p>where <span class="math inline">\(\alpha\)</span> is recoverable from the steepness <span class="math inline">\(h\)</span> and <span class="math inline">\(\Phi_0\)</span> via the standard Ricker steepness parameterisation.</p>
-<p>For the <strong>hockey-stick</strong> SRR, <span class="math inline">\(F_\text{crash}\)</span> corresponds to the SPR at which the linear segment of the SRR intersects zero recruitment; the exact value follows from the slope and breakpoint parameters.</p>
-</section><section id="sec-tech-refpoints-refyield" class="level2" data-number="29.7"><h2 data-number="29.7" class="anchored" data-anchor-id="sec-tech-refpoints-refyield">
+<p><span class="math inline">\(F_\text{crash}\)</span> and <span class="math inline">\(\text{SPR}_\text{crash} = \text{SPR}(F_\text{crash})\)</span> are the apical <span class="math inline">\(F\)</span> (and corresponding SPR) at which the per-recruit replacement line <span class="math inline">\(1/\Phi_F\)</span> crosses a compensation-ratio threshold <span class="math inline">\(\alpha\)</span> derived from stock-recruitment steepness. They are only defined for Beverton Holt and Ricker stock-recruitment models; other models return <code>NA</code>.</p>
+<p><span class="math inline">\(\alpha\)</span> is the compensation ratio <span class="math inline">\(CR\)</span> divided by a fixed reference unfished spawning-per-recruit <span class="math inline">\(\Phi_0^{\text{ref}}\)</span>, evaluated at the first historical year rather than the reference year used elsewhere, matching how the SRR’s fixed <span class="math inline">\(\alpha\)</span>/<span class="math inline">\(\beta\)</span> parameters were originally calibrated:</p>
+<p><span class="math display">\[\alpha = \frac{CR}{\Phi_0^{\text{ref}}}, \qquad CR = \begin{cases} \dfrac{4h}{1-h} &amp; \text{BevertonHolt} \\[4pt] (5h)^{1.25} &amp; \text{Ricker} \end{cases}\]</span></p>
+<p><span class="math inline">\(F_\text{crash}\)</span> is found by interpolating <span class="math inline">\(1/\Phi_F\)</span> against <span class="math inline">\(\alpha\)</span> over the same <span class="math inline">\(F\)</span> grid used for <span class="math inline">\(F_\text{Max}\)</span> and <span class="math inline">\(F_{0.1}\)</span>:</p>
+<ul>
+<li>If <span class="math inline">\(1/\Phi_F \geq \alpha\)</span> across the entire grid (the stock is already unable to replace itself even at the lowest grid <span class="math inline">\(F\)</span>), <span class="math inline">\(F_\text{crash} = 0\)</span> and <span class="math inline">\(\text{SPR}_\text{crash} = 1\)</span>.</li>
+<li>If <span class="math inline">\(1/\Phi_F \leq \alpha\)</span> across the entire grid (replacement is never exceeded within the searched range), <span class="math inline">\(F_\text{crash}\)</span> is reported at the upper grid bound and <span class="math inline">\(\text{SPR}_\text{crash}\)</span> is extrapolated (floored at 0.01).</li>
+<li>Otherwise, both are found by linear interpolation at the point where <span class="math inline">\(1/\Phi_F\)</span> crosses <span class="math inline">\(\alpha\)</span>.</li>
+</ul></section><section id="sec-tech-refpoints-refyield" class="level2" data-number="29.7"><h2 data-number="29.7" class="anchored" data-anchor-id="sec-tech-refpoints-refyield">
 <span class="header-section-number">29.7</span> Reference Yield</h2>
-<p>The reference yield is a simulation-based yield benchmark: the highest yield achievable under a fixed effort policy over the projection period. It is calculated separately for landings and removals by <code>CalcRefYield()</code> and stored in <code>Hist@Reference@Landings</code> and <code>Hist@Reference@Removals</code>. It is not calculated by default; enable it via <code>Simulate(DoRefLandings = TRUE)</code>.</p>
+<p>The reference yield is a simulation-based yield benchmark: the highest yield achievable under a fixed effort policy over the projection period.</p>
 <p>For each simulation, a log-scalar <span class="math inline">\(\lambda\)</span> is applied uniformly to the effort from the last complete historical year:</p>
 <p><span class="math display">\[E_{f,t}^{\text{proj}} = E_{f,t_0} \cdot e^{\lambda}\]</span></p>
-<p>The scaled effort is held constant across the projection period and the population is projected forward using the standard population dynamics equations. The mean yield over the last <span class="math inline">\(n_\text{avg}\)</span> calendar years of the projection is recorded (default <span class="math inline">\(n_\text{avg} = 5\)</span>). The <span class="math inline">\(\lambda\)</span> that maximises this mean yield is found by one-dimensional optimisation:</p>
+<p>The scaled effort is held constant across the projection period and the population is projected forward using the standard population dynamics equations. The mean yield over the last <span class="math inline">\(n_\text{avg}\)</span> calendar years of the projection is recorded (default <span class="math inline">\(n_\text{avg} = 5\)</span>, <code>OM@Control$RefYield$lastnTS</code>; internally converted to time steps via <code>OM@Seasons</code> so seasonal models average whole years). The <span class="math inline">\(\lambda\)</span> that maximises this mean yield is found by one-dimensional optimisation:</p>
 <p><span class="math display">\[\lambda^* = \arg\max_\lambda \; \overline{Y}(\lambda)\]</span></p>
-<p>and the resulting maximum mean yield is the reference yield. For seasonal models, effort is extracted for all <span class="math inline">\(S\)</span> seasons of the last historical year and tiled across the projection, preserving the seasonal effort distribution (see <a href="#sec-tech-refpoints-seasonal-refyield" class="quarto-xref"><span>Section 29.11.8</span></a>).</p>
+<p>and the resulting maximum mean yield is the reference yield. For seasonal models, effort is extracted for all <span class="math inline">\(S\)</span> seasons of the last historical year and tiled across the projection, preserving the seasonal effort distribution (see <a href="#sec-tech-refpoints-seasonal" class="quarto-xref"><span>Section 29.11</span></a>).</p>
 </section><section id="sec-tech-refpoints-mgt" class="level2" data-number="29.8"><h2 data-number="29.8" class="anchored" data-anchor-id="sec-tech-refpoints-mgt">
 <span class="header-section-number">29.8</span> Mean Generation Time</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>CalcMGT()</code> exists but is not yet called automatically during <code>Simulate()</code>. It should be added to the default computation sequence.</p>
-</div>
-</div>
-<p>MGT is computed by <code>CalcMGT()</code> and stored in <code>Hist@Reference@MGT</code>:</p>
+<p>MGT is computed by <code>CalcMGT()</code> and stored in <code>Hist@Reference@MGT</code>. It is calculated automatically by <code>Simulate()</code> (<code>SimControl(MGT = TRUE)</code>, the default):</p>
 <p><span class="math display">\[\text{MGT} = \frac{\sum_a a \cdot l_a \cdot m_a}{\sum_a l_a \cdot m_a}\]</span></p>
 <p>where <span class="math inline">\(l_a\)</span> is survivorship to age <span class="math inline">\(a\)</span> under natural mortality only, with <span class="math inline">\(l_1 = 1\)</span> and <span class="math inline">\(l_{a+1} = l_a \cdot \exp(-M_a)\)</span>, and <span class="math inline">\(m_a\)</span> is maturity-at-age. Ages <span class="math inline">\(a\)</span> are in years; for seasonal models they are in decimal-year units so MGT is returned in years regardless of seasonal resolution.</p>
 </section><section id="sec-tech-refpoints-blow" class="level2" data-number="29.9"><h2 data-number="29.9" class="anchored" data-anchor-id="sec-tech-refpoints-blow">
 <span class="header-section-number">29.9</span> <span class="math inline">\(B_\text{Low}\)</span>
 </h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(B_\text{Low}\)</span> is not calculated by default due to its computational cost. It must be enabled as an argument to <code>Simulate()</code>. Code for this is under development.</p>
-</div>
-</div>
-<p><span class="math inline">\(B_\text{Low}\)</span> is a rebuilding-based limit reference point used in DFO Canada’s Precautionary Approach framework. It is the largest current spawning biomass <span class="math inline">\(SB_{\text{now}}\)</span> from which the population, projected forward under zero fishing, fails to reach <span class="math inline">\(B_\text{frac} \times SB_\text{MSY}\)</span> within <span class="math inline">\(\text{HZN} \times \text{MGT}\)</span> years:</p>
-<p><span class="math display">\[B_\text{Low} = \sup\Bigl\{SB_{\text{now}} : \max_{t \leq \text{HZN} \times \text{MGT}} SB_t\bigl(SB_{\text{now}},\, F=0\bigr) &lt; B_\text{frac} \cdot SB_\text{MSY}\Bigr\}\]</span></p>
-<p>Default values are <span class="math inline">\(B_\text{frac} = 0.5\)</span> and <span class="math inline">\(\text{HZN} = 2\)</span>. The projection uses the operating model’s stock-recruitment relationship and biological parameters from the terminal historical year. <span class="math inline">\(B_\text{Low}\)</span> is stored in <code>Hist@Reference@BLow</code>.</p>
+<p><span class="math inline">\(B_\text{Low}\)</span> is a rebuilding-based limit reference point used in DFO Canada’s Precautionary Approach framework, computed by <code>CalcBLow()</code> and stored in <code>Hist@Reference@BLow</code>. For each simulation and stock, numbers-at-age in the last historical year are scaled by a factor <span class="math inline">\(k\)</span> and projected forward under zero fishing effort (a fixed zero-effort MP passed to <code>Project()</code>) for <span class="math inline">\(\text{round}(\text{HZN} \times \text{MGT})\)</span> years. <span class="math inline">\(k\)</span> is found by one-dimensional optimisation so that the projected spawning biomass at the end of that horizon equals the target:</p>
+<p><span class="math display">\[k^* = \arg\min_{k} \; \Bigl(\log SB_{\text{HZN}\times\text{MGT}}(k) - \log(B_\text{frac} \cdot SB_\text{MSY})\Bigr)^2\]</span></p>
+<p><span class="math display">\[B_\text{Low} = k^* \cdot SB_{\text{now}}\]</span></p>
+<p>Default values are <span class="math inline">\(B_\text{frac} = 0.5\)</span> and <span class="math inline">\(\text{HZN} = 2\)</span>. <code>SB_MSY</code> is taken from <code>Hist@Reference@MSY</code> (computed via <code>CalcMSY()</code> if not already present) and <code>MGT</code> from <code>CalcMGT()</code>. The rebuilding horizon is capped at the number of available projection years, with a warning, if it would otherwise exceed them.</p>
 </section><section id="sec-tech-refpoints-depletion" class="level2" data-number="29.10"><h2 data-number="29.10" class="anchored" data-anchor-id="sec-tech-refpoints-depletion">
 <span class="header-section-number">29.10</span> Depletion and Stock Status</h2>
-<p>Current stock status relative to unfished and MSY reference levels is expressed as ratios of historical biomass, spawning biomass, spawning production, or fishing mortality to their respective reference values. These ratios have dimensions <code>Sim × Stock × Year</code> and are accessible via the helper functions listed in <a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 21</span></a>. Unfished reference values (<span class="math inline">\(B_0\)</span>, <span class="math inline">\(SB_0\)</span>, <span class="math inline">\(SP_0\)</span>) come from <code>Hist@Unfished</code>; MSY-based reference values (<span class="math inline">\(B_\text{MSY}\)</span>, <span class="math inline">\(SB_\text{MSY}\)</span>, <span class="math inline">\(SP_\text{MSY}\)</span>, <span class="math inline">\(F_\text{MSY}\)</span>) come from <code>Hist@Reference@MSY</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For seasonal models, the depletion accessor functions (<code>B_BMSY()</code>, <code>SB_SBMSY()</code>, <code>SP_SPMSY()</code>, etc.) return ratios where the numerator is historical biomass at seasonal time-step resolution while the denominator (<span class="math inline">\(B_\text{MSY}\)</span> etc.) is a mean-seasonal-snapshot annual quantity. This temporal mismatch means the ratios fluctuate within a year at seasonal frequency rather than varying only between years. The accessor functions should aggregate historical biomass to calendar-year means before computing the ratio. This is not yet implemented.</p>
-</div>
-</div>
+<p>Current stock status relative to unfished and MSY reference levels is expressed as ratios of historical biomass, spawning biomass, spawning production, or fishing mortality to their respective reference values. These ratios have dimensions <code>Sim × Stock × Year</code> and are accessible via the helper functions listed in <a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 22</span></a>. Unfished reference values (<span class="math inline">\(B_0\)</span>, <span class="math inline">\(SB_0\)</span>, <span class="math inline">\(SP_0\)</span>) come from <code>Hist@Unfished</code>; MSY-based reference values (<span class="math inline">\(B_\text{MSY}\)</span>, <span class="math inline">\(SB_\text{MSY}\)</span>, <span class="math inline">\(SP_\text{MSY}\)</span>, <span class="math inline">\(F_\text{MSY}\)</span>) come from <code>Hist@Reference@MSY</code>.</p>
 </section><section id="sec-tech-refpoints-seasonal" class="level2" data-number="29.11"><h2 data-number="29.11" class="anchored" data-anchor-id="sec-tech-refpoints-seasonal">
 <span class="header-section-number">29.11</span> Seasonal Models</h2>
-<p>When <code>OM@Seasons &gt; 1</code>, age classes correspond to season-steps rather than annual years and the per-recruit calculation must track cohorts through the full seasonal cycle. All reference point quantities are returned on an annual scale. For a conceptual overview see <a href="concept-ref-points.html#sec-concept-refpoints-seasonal" class="quarto-xref"><span>Section 21.9</span></a>.</p>
+<p>When <code>OM@Seasons &gt; 1</code>, age classes correspond to season-steps rather than annual years and the per-recruit calculation must track cohorts through the full seasonal cycle. All reference point quantities are returned on an annual scale. For a conceptual overview see <a href="concept-ref-points.html#sec-concept-refpoints-seasonal" class="quarto-xref"><span>Section 22.8</span></a>.</p>
 <section id="notation" class="level3" data-number="29.11.1"><h3 data-number="29.11.1" class="anchored" data-anchor-id="notation">
 <span class="header-section-number">29.11.1</span> Notation</h3>
 <table class="caption-top table">
@@ -714,19 +692,6 @@ Note
 <p>where <span class="math inline">\(\gamma_{a,s}\)</span> is semelparous post-spawning mortality in season <span class="math inline">\(s\)</span> (zero for iteroparous species). The unfished variants <span class="math inline">\(N_{a,s_0}^{PR,0}\)</span> and <span class="math inline">\(N_{a,s_0}^{PR,0,SP}\)</span> are obtained by setting <span class="math inline">\(F = 0\)</span> (i.e., <span class="math inline">\(Z_{a,s} = M_{a,s}\)</span>).</p>
 <p>For the plus group, the current implementation applies a single-season correction using the mortality in the season the cohort occupies at the maximum age class:</p>
 <p><span class="math display">\[N_{n_\text{age},s_0}^{PR} \;\leftarrow\; \frac{N_{n_\text{age},s_0}^{PR}}{1 - \exp(-Z_{n_\text{age},\,\sigma(n_\text{age},s_0)})}\]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is an approximation. The correct denominator for a seasonal model should use the annual mortality of the plus-group cohort cycling through all <span class="math inline">\(S\)</span> seasons: <span class="math inline">\(1 - \exp(-\sum_{s=1}^{S} Z_{n_\text{age},s})\)</span>. The current single-season correction underestimates the denominator by a factor of approximately <span class="math inline">\(S\)</span>, leading to overestimation of plus-group abundance. This will be addressed in a future update.</p>
-</div>
-</div>
 <p>Spawning-time numbers <span class="math inline">\(N_{a,s_0}^{PR,SP}\)</span> are computed with the same recurrence but using <span class="math inline">\(Z^{\text{SP}}_{a,s} = Z_{a,s}\cdot\omega\)</span> for the initial step and <span class="math inline">\(Z_{a-1,s}(1-\omega) + Z_{a,s}\,\omega\)</span> for subsequent steps, as in <a href="#sec-tech-refpoints-perrecruit" class="quarto-xref"><span>Section 29.1</span></a>.</p>
 </section><section id="sec-tech-refpoints-seasonal-agg" class="level3" data-number="29.11.4"><h3 data-number="29.11.4" class="anchored" data-anchor-id="sec-tech-refpoints-seasonal-agg">
 <span class="header-section-number">29.11.4</span> Annual per-recruit aggregation</h3>
@@ -735,9 +700,9 @@ Note
 <p><span class="math display">\[\Phi_F = \sum_{s_0=1}^{S} \pi_{s_0} \sum_{a=1}^{n_\text{age}} N_{a,s_0}^{PR,F,SP} \cdot \psi_{a,\,\sigma(a,s_0)}\]</span></p>
 <p><span class="math display">\[\text{SPR}(F) = \frac{\Phi_F}{\Phi_0}\]</span></p>
 <p><code>AdjustSeasonalFecundity()</code> scales <span class="math inline">\(\psi_{a,s}\)</span> by season in proportion to the seasonal recruitment pattern <span class="math inline">\(\pi_{s_0}\)</span>, so that <span class="math inline">\(\Phi_0\)</span> and <span class="math inline">\(\Phi_F\)</span> measure annual spawning production per recruit weighted by the timing and magnitude of spawning. Seasons where <span class="math inline">\(\pi_{s_0} = 0\)</span> have <span class="math inline">\(\psi_{a,s} = 0\)</span>; otherwise fecundity is scaled toward seasons of higher recruitment.</p>
-<p>Annual biomass per recruit is:</p>
-<p><span class="math display">\[B^{PR} = \frac{1}{S}\sum_{s_0=1}^{S} \pi_{s_0} \sum_a N_{a,s_0}^{PR,F} \cdot \bar{w}_{a,\,\sigma(a,s_0)}\]</span></p>
-<p>The <span class="math inline">\(1/S\)</span> factor converts the cohort-weighted sum to a mean seasonal snapshot biomass, directly comparable to start-of-year biomass in an annual model. The same correction applies to spawning biomass per recruit <span class="math inline">\(SB^{PR}\)</span> (using <span class="math inline">\(\bar{w}_{a,s} \cdot \text{mat}_{a,s}\)</span>). Annual spawning production <span class="math inline">\(\Phi_F\)</span> and yield <span class="math inline">\(Y^{PR}\)</span> are flow quantities that sum correctly over seasons without this correction.</p>
+<p>Unlike <span class="math inline">\(\Phi_0\)</span>, <span class="math inline">\(\Phi_F\)</span>, and yield, which are flow quantities summed over a cohort’s full lifetime, biomass and spawning biomass are stock quantities reported as a snapshot at one point in the year. Rather than averaging over all <span class="math inline">\(S\)</span> within-year snapshots, <span class="math inline">\(B^{PR}\)</span> and <span class="math inline">\(SB^{PR}\)</span> are a cross-sectional snapshot at one or more reference season(s) <code>OM@RefSeason</code>: for each reference season <span class="math inline">\(s_\text{ref}\)</span>, the age classes that each birth-season cohort currently occupies at <span class="math inline">\(s_\text{ref}\)</span> are summed, weighted by that cohort’s recruitment fraction <span class="math inline">\(\pi_{s_0}\)</span>:</p>
+<p><span class="math display">\[B^{PR} = \sum_{s_0=1}^{S} \pi_{s_0} \sum_{a:\, \sigma(a,s_0) = s_\text{ref}} N_{a,s_0}^{PR,F} \cdot \bar{w}_{a,s_\text{ref}}\]</span></p>
+<p>with <span class="math inline">\(SB^{PR}\)</span> computed identically but weighting by <span class="math inline">\(\bar{w}_{a,s_\text{ref}} \cdot \text{mat}_{a,s_\text{ref}}\)</span> instead. When <code>RefSeason</code> is <code>NULL</code> (the default), the reference season(s) are auto-detected per simulation as the season(s) in which fecundity (or maturity, if fecundity isn’t set) is nonzero (i.e.&nbsp;the spawning season(s)) falling back to an equal weighting across all seasons if none is detected. If more than one reference season applies, <span class="math inline">\(B^{PR}\)</span> and <span class="math inline">\(SB^{PR}\)</span> are averaged equally across them.</p>
 </section><section id="sec-tech-refpoints-seasonal-yield" class="level3" data-number="29.11.5"><h3 data-number="29.11.5" class="anchored" data-anchor-id="sec-tech-refpoints-seasonal-yield">
 <span class="header-section-number">29.11.5</span> Annual yield per recruit</h3>
 <p>Annual removals per recruit (summed over fleets <span class="math inline">\(f\)</span>):</p>
@@ -753,54 +718,12 @@ Note
 </section><section id="msy-optimisation-and-reporting" class="level3" data-number="29.11.7"><h3 data-number="29.11.7" class="anchored" data-anchor-id="msy-optimisation-and-reporting">
 <span class="header-section-number">29.11.7</span> MSY optimisation and reporting</h3>
 <p>The optimisation and equilibrium recruitment steps are identical to the annual case (<a href="#sec-tech-refpoints-msy" class="quarto-xref"><span>Section 29.4</span></a>, <a href="#sec-tech-refpoints-rec" class="quarto-xref"><span>Section 29.3</span></a>), operating on the annually-aggregated per-recruit quantities above. The optimisation searches over the peak-season scalar; <span class="math inline">\(F_\text{MSY}\)</span> is then expressed as the annual apical fishing mortality (sum of seasonal instantaneous rates at the apical age), directly comparable to <span class="math inline">\(F_\text{MSY}\)</span> from an annual model.</p>
-<p>Reported quantities at <span class="math inline">\(F_\text{MSY}\)</span>:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 47%">
-<col style="width: 52%">
-</colgroup>
-<thead><tr class="header">
-<th>Quantity</th>
-<th>Definition</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(F_\text{MSY}\)</span></td>
-<td>Annual apical <span class="math inline">\(F\)</span>; sum of instantaneous rates at the apical age across all seasons</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(B_\text{MSY}\)</span></td>
-<td>Mean seasonal snapshot total biomass at MSY <span class="math inline">\(= R_{eq} \cdot B^{PR}\)</span>
-</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(SB_\text{MSY}\)</span></td>
-<td>Mean seasonal snapshot spawning biomass at MSY <span class="math inline">\(= R_{eq} \cdot SB^{PR}\)</span>
-</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(SP_\text{MSY}\)</span></td>
-<td>Annual spawning production at MSY <span class="math inline">\(= R_{eq} \cdot \Phi_{F_\text{MSY}}\)</span>
-</td>
-</tr>
-<tr class="odd">
-<td>MSY</td>
-<td>Annual yield <span class="math inline">\(= R_{eq} \cdot Y^{PR}\)</span>
-</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\text{SPR}_\text{MSY}\)</span></td>
-<td><span class="math inline">\(\Phi_{F_\text{MSY}} / \Phi_0\)</span></td>
-</tr>
-</tbody>
-</table></section><section id="sec-tech-refpoints-seasonal-refyield" class="level3" data-number="29.11.8"><h3 data-number="29.11.8" class="anchored" data-anchor-id="sec-tech-refpoints-seasonal-refyield">
-<span class="header-section-number">29.11.8</span> Reference yield in seasonal models</h3>
-<p><code>CalcRefYield()</code> extracts the full effort pattern from the last complete historical year (all <span class="math inline">\(S\)</span> seasons) as the baseline. The scalar <span class="math inline">\(e^\lambda\)</span> is applied to all fleets and seasons simultaneously, preserving the relative seasonal effort distribution. The scaled pattern is then tiled across the projection period so the seasonal effort cycle repeats each year.</p>
+<p>The same peak-season-scalar optimisation and annual-apical-<span class="math inline">\(F\)</span> reporting applies to <span class="math inline">\(F_{0.1}\)</span>, <span class="math inline">\(F_\text{Max}\)</span>, <span class="math inline">\(F_{x\%\text{SPR}}\)</span>, and <span class="math inline">\(F_\text{crash}\)</span> (<a href="#sec-tech-refpoints-ypr" class="quarto-xref"><span>Section 29.5</span></a>, <a href="#sec-tech-refpoints-spr" class="quarto-xref"><span>Section 29.6</span></a>), since all four are evaluated over the same annually-aggregated per-recruit grid used for <span class="math inline">\(F_\text{MSY}\)</span>.</p>
 </section></section><section id="sec-tech-refpoints-spatial" class="level2" data-number="29.12"><h2 data-number="29.12" class="anchored" data-anchor-id="sec-tech-refpoints-spatial">
 <span class="header-section-number">29.12</span> Spatial Structure</h2>
 <p>The per-recruit framework tracks a single cohort through time without spatial structure. When a stock occupies multiple areas with movement, the <span class="math inline">\(F\)</span> experienced by a cohort depends on which area it occupies at each time step, which a scalar per-recruit calculation cannot resolve.</p>
 <p>In the current implementation, parameters used for reference point calculations (M, selectivity, weight, catchability) do not vary spatially. Reference points for spatially structured models should therefore be interpreted as population-level averages and used cautiously when effort or closures are strongly area-specific.</p>
-<p>A spatially-explicit equilibrium approach — iterating the full spatial dynamics to equilibrium at each candidate <span class="math inline">\(F\)</span> — is planned as a user-controlled option via <code>OM@Control</code>.</p>
+<p>A spatially-explicit equilibrium approach, iterating the full spatial dynamics to equilibrium at each candidate <span class="math inline">\(F\)</span>, is planned as a user-controlled option via <code>OM@Control</code>.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1208,8 +1131,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tech-projection.html" class="pagination-link" aria-label="Forward Projections">
-        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tech-advice-implementation.html" class="pagination-link" aria-label="Implementing Management Advice">
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

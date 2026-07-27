@@ -255,7 +255,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +281,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,12 +315,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -358,8 +358,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,13 +425,15 @@ window.Quarto = {
   <li><a href="#sec-tech-historical-f" id="toc-sec-tech-historical-f" class="nav-link" data-scroll-target="#sec-tech-historical-f"><span class="header-section-number">27.3</span> Fishing Mortality</a></li>
   <li><a href="#sec-tech-historical-spawn" id="toc-sec-tech-historical-spawn" class="nav-link" data-scroll-target="#sec-tech-historical-spawn"><span class="header-section-number">27.4</span> Spawning Biomass and Production</a></li>
   <li><a href="#sec-tech-historical-recruitment" id="toc-sec-tech-historical-recruitment" class="nav-link" data-scroll-target="#sec-tech-historical-recruitment"><span class="header-section-number">27.5</span> Recruitment</a></li>
+  <li><a href="#sec-tech-historical-number" id="toc-sec-tech-historical-number" class="nav-link" data-scroll-target="#sec-tech-historical-number"><span class="header-section-number">27.6</span> Survival, Ageing, and Movement</a></li>
   <li>
-<a href="#sec-tech-historical-number" id="toc-sec-tech-historical-number" class="nav-link" data-scroll-target="#sec-tech-historical-number"><span class="header-section-number">27.6</span> Survival, Ageing, and Movement</a>
+<a href="#sec-tech-movement-derivation" id="toc-sec-tech-movement-derivation" class="nav-link" data-scroll-target="#sec-tech-movement-derivation"><span class="header-section-number">27.7</span> Movement Matrix Derivation</a>
   <ul class="collapse">
-<li><a href="#sec-tech-movement-derivation" id="toc-sec-tech-movement-derivation" class="nav-link" data-scroll-target="#sec-tech-movement-derivation"><span class="header-section-number">27.6.1</span> Movement Matrix Derivation</a></li>
+<li><a href="#two-area-models" id="toc-two-area-models" class="nav-link" data-scroll-target="#two-area-models"><span class="header-section-number">27.7.1</span> Two-area models</a></li>
+  <li><a href="#multi-area-models" id="toc-multi-area-models" class="nav-link" data-scroll-target="#multi-area-models"><span class="header-section-number">27.7.2</span> Multi-area models</a></li>
   </ul>
 </li>
-  <li><a href="#sec-tech-historical-catch" id="toc-sec-tech-historical-catch" class="nav-link" data-scroll-target="#sec-tech-historical-catch"><span class="header-section-number">27.7</span> Catch</a></li>
+  <li><a href="#sec-tech-historical-catch" id="toc-sec-tech-historical-catch" class="nav-link" data-scroll-target="#sec-tech-historical-catch"><span class="header-section-number">27.8</span> Catch</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-historical.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -432,8 +452,8 @@ window.Quarto = {
   
 
 
-</header><p>The historical period spans <code>OM@nYear</code> years divided into <code>OM@nYear × OM@Seasons</code> time steps, each of duration <span class="math inline">\(1/\text{Seasons}\)</span> years. For non-seasonal models (<code>OM@Seasons = 1</code>) each time step is one year. Mortality rates (M and F) are expressed per time step.</p>
-<p>The population is first initialised at the start of the historical period, then advanced forward time step by time step. Within each time step, operations are performed in the following order: spatial distribution of effort, fishing mortality, spawning biomass and production, recruitment, survival and ageing, movement, and catch. The simulation index is omitted from equations below; all calculations are performed independently per simulation.</p>
+</header><p>The historical period spans <code>OM@nYear</code> years divided into <code>OM@nYear × OM@Seasons</code> time steps, each of duration <span class="math inline">\(1/\text{Seasons}\)</span> years. For non-seasonal models (<code>OM@Seasons = 1</code>) each time step is one year. Mortality rates (M and F) are expressed in the same units as the time step.</p>
+<p>The simulation index is omitted from equations below; all calculations are performed independently per simulation.</p>
 <section id="sec-tech-historical-init" class="level2" data-number="27.1"><h2 data-number="27.1" class="anchored" data-anchor-id="sec-tech-historical-init">
 <span class="header-section-number">27.1</span> Initial Conditions</h2>
 <p>The population at the first historical time step is constructed from the equilibrium unfished numbers-at-age (see <a href="tech-unfished.html" class="quarto-xref"><span>Chapter 26</span></a>) scaled by recruitment deviations:</p>
@@ -447,7 +467,9 @@ window.Quarto = {
 <span class="header-section-number">27.2.1</span> Stage 1: Exploitable Biomass and First-Pass Distribution</h3>
 <p>For each fleet <span class="math inline">\(f\)</span> and area <span class="math inline">\(k\)</span>, exploitable biomass is summed across stocks and ages:</p>
 <p><span class="math display">\[\hat{B}_{f,k,t} = \sum_\text{st} q_{\text{st},f,t} \sum_a N_{a,k,t}\, \bar{W}_{a,f,t}\, v_{a,f,k,t}\, r_{a,f,k,t}\]</span></p>
-<p>where <span class="math inline">\(q_{\text{st},f,t}\)</span> is catchability for stock <span class="math inline">\(\text{st}\)</span> by fleet <span class="math inline">\(f\)</span>, <span class="math inline">\(v_{a,f,k,t}\)</span> is selectivity, and <span class="math inline">\(r_{a,f,k,t}\)</span> is retention. By default (<code>UseDensity = TRUE</code>), <span class="math inline">\(\hat{B}_{f,k,t}\)</span> is divided by the relative area size <span class="math inline">\(s_k\)</span> so that effort is attracted by fish density rather than total abundance in each area, appropriate for non-aggregating species where catchability per unit effort depends on local density, not area-wide biomass. Set <code>UseDensity = FALSE</code> for schooling or aggregating species where total biomass in an area drives fleet behaviour regardless of area size. The resulting exploitable biomass (or density) signal gives the initial effort allocation based on the ideal free distribution (IFD):</p>
+<p>where <span class="math inline">\(q_{\text{st},f,t}\)</span> is catchability for stock <span class="math inline">\(\text{st}\)</span> by fleet <span class="math inline">\(f\)</span>, <span class="math inline">\(v_{a,f,k,t}\)</span> is selectivity, and <span class="math inline">\(r_{a,f,k,t}\)</span> is retention.</p>
+<p>By default (<code>Effort@Mode = "Density"</code>), <span class="math inline">\(\hat{B}_{f,k,t}\)</span> is divided by the relative area size <span class="math inline">\(s_k\)</span> so that effort is attracted by fish density rather than total abundance in each area, appropriate for non-aggregating species where catchability per unit effort depends on local density, not area-wide biomass. Set <code>Effort@Mode = "Biomass"</code> for schooling or aggregating species where total biomass in an area drives fleet behaviour regardless of area size.</p>
+<p>The resulting exploitable biomass (or density) signal gives the initial effort allocation based on the ideal free distribution (IFD):</p>
 <p><span class="math display">\[D^{(0)}_{f,k,t} = \frac{\hat{B}_{f,k,t}}{\sum_{k'} \hat{B}_{f,k',t}}\]</span></p>
 <p>Stock-fleet-area combinations where <code>Closure = 0</code> contribute zero biomass to <span class="math inline">\(\hat{B}_{f,k,t}\)</span> for that stock, but other open stocks in the same area still contribute and the fleet may still allocate effort there.</p>
 </section><section id="stage-2-depletion-adjusted-utility" class="level3" data-number="27.2.2"><h3 data-number="27.2.2" class="anchored" data-anchor-id="stage-2-depletion-adjusted-utility">
@@ -456,7 +478,8 @@ window.Quarto = {
 <p><span class="math display">\[g(\phi) = \frac{1 - \exp(-\phi)}{\phi}\]</span></p>
 <p>where <span class="math inline">\(\phi_{f,k,t}\)</span> is the local fishing pressure on stock <span class="math inline">\(\text{st}\)</span> by fleet <span class="math inline">\(f\)</span> in area <span class="math inline">\(k\)</span>. For density-mode fleets:</p>
 <p><span class="math display">\[\phi_{\text{st},f,k,t} = \frac{1}{s_k}\left(q_{\text{st},f,t}\, E_{f,t}\, D^{(0)}_{f,k,t} + \sum_{f' \neq f} q_{\text{st},f',t}\, E_{f',t}\, D_{f',k,t-1}\right)\]</span></p>
-<p>The second term accounts for inter-fleet competition: pressure from other fleets is included using their effort distribution from the previous time step as a one-step lag. For biomass-mode fleets the <span class="math inline">\(s_k\)</span> denominator is omitted. The depletion-adjusted utility for fleet <span class="math inline">\(f\)</span> in area <span class="math inline">\(k\)</span> is:</p>
+<p>The second term accounts for inter-fleet competition: pressure from other fleets is included using their effort distribution from the previous time step as a one-step lag. For biomass-mode fleets the <span class="math inline">\(s_k\)</span> denominator is omitted.</p>
+<p>The depletion-adjusted utility for fleet <span class="math inline">\(f\)</span> in area <span class="math inline">\(k\)</span> is:</p>
 <p><span class="math display">\[U_{f,k,t} = \sum_\text{st} \hat{B}_{\text{st},f,k,t}\, g(\phi_{\text{st},f,k,t})\]</span></p>
 <p>normalised to <span class="math inline">\(\tilde{U}_{f,k,t} = U_{f,k,t} / \sum_{k'} U_{f,k',t}\)</span>.</p>
 <p>The function <span class="math inline">\(g(\phi)\)</span> is monotone decreasing from <span class="math inline">\(g(0) = 1\)</span> (no depletion) toward zero as <span class="math inline">\(\phi \to \infty\)</span> (complete depletion), representing the fraction of the initial biomass accessible on average over the time step under continuous fishing.</p>
@@ -472,29 +495,30 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Bio-economic Model
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The current model uses exploitable biomass as the utility signal, implicitly assuming that the value of catch is proportional to vulnerable biomass (i.e., uniform price across stocks and areas) and that costs are uniform across areas. A future version will incorporate stock-specific prices and area-specific costs so that the utility signal reflects expected profit per unit effort.</p>
+<p>The current model uses exploitable biomass as the utility signal, implicitly assuming that the value of catch is proportional to vulnerable biomass (i.e., uniform price across stocks) and that costs are uniform across areas. A future version will incorporate stock-specific prices and area-specific costs so that the utility signal reflects expected profit per unit effort as part of the bio-economic model development.</p>
 </div>
 </div>
 </section></section><section id="sec-tech-historical-f" class="level2" data-number="27.3"><h2 data-number="27.3" class="anchored" data-anchor-id="sec-tech-historical-f">
 <span class="header-section-number">27.3</span> Fishing Mortality</h2>
 <p>Area-specific fishing mortality-at-age for each fleet is:</p>
 <p><span class="math display">\[F^{\text{int}}_{a,f,k,t} = \min\!\left(\frac{q_{f,t}\, E_{f,t}\, D_{f,k,t}}{s_k},\; F_{\max}\right) \cdot v_{a,f,k,t}\]</span></p>
-<p>for density-mode fleets (<code>UseDensity = TRUE</code>); for biomass-mode fleets the <span class="math inline">\(s_k\)</span> denominator is omitted. <span class="math inline">\(F_{\max}\)</span> (<code>OM@maxF</code>) is a cap preventing unrealistically large fishing mortalities. Three mortality components are derived per fleet:</p>
-<ul>
+<p>for density-mode fleets (<code>Effort@Mode = "Density"</code>). For biomass-mode fleets (<code>Effort@Mode = "Biomass"</code>) the <span class="math inline">\(s_k\)</span> denominator is omitted. <span class="math inline">\(F_{\max}\)</span> (<code>OM@maxF</code>) is a cap preventing unrealistically large fishing mortalities. Three mortality components are derived per fleet:</p>
+<ol type="1">
 <li>
 <span class="math inline">\(F^{\text{ret}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot r_{a,f,k,t}\)</span>: retained (landed) mortality</li>
 <li>
 <span class="math inline">\(F^{\text{dis}}_{a,f,k,t} = F^{\text{int}}_{a,f,k,t} \cdot (1 - r_{a,f,k,t}) \cdot m_{a,f,k,t}\)</span>: discarded and dead</li>
 <li>
 <span class="math inline">\(F^{\text{dead}}_{a,f,k,t} = F^{\text{ret}}_{a,f,k,t} + F^{\text{dis}}_{a,f,k,t}\)</span>: total fishing mortality</li>
-</ul>
-<p>where <span class="math inline">\(m_{a,f,k,t}\)</span> is discard mortality-at-age (see <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>). Total mortality combining natural and fishing mortality is:</p>
+</ol>
+<p>where <span class="math inline">\(m_{a,f,k,t}\)</span> is discard mortality-at-age (see <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>).</p>
+<p>Total mortality combining natural and fishing mortality is:</p>
 <p><span class="math display">\[Z_{a,k,t} = M_{a,t} + \sum_f F^{\text{dead}}_{a,f,k,t}\]</span></p>
-<p><code>Hist</code> stores <code>FInteract</code>, <code>FDead</code>, and <code>FRetain</code> (apical values; <code>Sim × Stock × Year × Fleet</code>) and <code>FInteractArea</code>, <code>FDeadArea</code>, and <code>FRetainArea</code> (age- and area-specific; list by stock, <code>Sim × Age × Year × Fleet × Area</code>). The apical value for each fleet is computed by first taking the numbers-weighted average of F across areas at each age, then taking the maximum over ages:</p>
+<p>The apical value for each fleet is computed by first taking the numbers-weighted average of F across areas at each age, then taking the maximum over ages:</p>
 <p><span class="math display">\[F^{\text{apical}}_{f,t} = \max_a \left( \sum_k \frac{N_{a,k,t}}{\sum_{k'} N_{a,k',t}} F^{\text{dead}}_{a,f,k,t} \right)\]</span></p>
 <p>Dead discard mortality is not stored directly as it can be derived as <code>FDead - FRetain</code>.</p>
 </section><section id="sec-tech-historical-spawn" class="level2" data-number="27.4"><h2 data-number="27.4" class="anchored" data-anchor-id="sec-tech-historical-spawn">
@@ -517,17 +541,21 @@ Note
 <p><span class="math display">\[N_{n_\text{age},k,t+1} \mathrel{+}= N_{n_\text{age},k,t}\,\exp(-Z_{n_\text{age},k,t})\,(1 - \xi_{n_\text{age},t})\]</span></p>
 <p>After survival and ageing, fish move among areas according to the movement matrix <span class="math inline">\(\mathbf{M}_{a,t}\)</span>, where <span class="math inline">\(M_{k,k',a,t}\)</span> is the probability of moving from area <span class="math inline">\(k\)</span> to area <span class="math inline">\(k'\)</span>:</p>
 <p><span class="math display">\[N_{a,k',t+1} = \sum_k N_{a,k,t+1}\, M_{k,k',a,t}\]</span></p>
-<section id="sec-tech-movement-derivation" class="level3" data-number="27.6.1"><h3 data-number="27.6.1" class="anchored" data-anchor-id="sec-tech-movement-derivation">
-<span class="header-section-number">27.6.1</span> Movement Matrix Derivation</h3>
+</section><section id="sec-tech-movement-derivation" class="level2" data-number="27.7"><h2 data-number="27.7" class="anchored" data-anchor-id="sec-tech-movement-derivation">
+<span class="header-section-number">27.7</span> Movement Matrix Derivation</h2>
 <p>The movement matrix <span class="math inline">\(\mathbf{M}_{a,t}\)</span> is derived from user-supplied targets for the unfished spatial distribution (<span class="math inline">\(d_k\)</span>, <code>UnfishedDist</code>) and the probability of remaining in each area (<span class="math inline">\(p_k\)</span>, <code>ProbStaying</code>). The matrix is fitted so that its stationary distribution reproduces <span class="math inline">\(d_k\)</span> and its diagonal elements equal <span class="math inline">\(p_k\)</span>.</p>
-<p><strong>Two-area models.</strong> The system has a closed-form solution. For a two-area model with staying probabilities <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> on the diagonal, the off-diagonal elements are <span class="math inline">\(1 - p_1\)</span> and <span class="math inline">\(1 - p_2\)</span>. The staying probability for area 2 is solved analytically from the target <span class="math inline">\(d_1\)</span> and the supplied <span class="math inline">\(p_1\)</span>:</p>
+<section id="two-area-models" class="level3" data-number="27.7.1"><h3 data-number="27.7.1" class="anchored" data-anchor-id="two-area-models">
+<span class="header-section-number">27.7.1</span> Two-area models</h3>
+<p>For a two-area model with staying probabilities <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> on the diagonal, the off-diagonal elements are <span class="math inline">\(1 - p_1\)</span> and <span class="math inline">\(1 - p_2\)</span>. The staying probability for area 2 is solved analytically from the target <span class="math inline">\(d_1\)</span> and the supplied <span class="math inline">\(p_1\)</span>:</p>
 <p><span class="math display">\[p_2 = 1 - \frac{d_1 (1 - p_1)}{1 - d_1}\]</span></p>
-<p><strong>Multi-area models.</strong> For three or more areas, a closed-form solution does not generally exist. The matrix is instead fitted by minimising a penalty function that penalises deviations from both targets. Off-diagonal movement probabilities are parameterised using the user-supplied relative movement weights (<code>FracOther</code>), normalised within each row, and scaled by <span class="math inline">\(1 - p_k\)</span>. The penalty function is:</p>
+</section><section id="multi-area-models" class="level3" data-number="27.7.2"><h3 data-number="27.7.2" class="anchored" data-anchor-id="multi-area-models">
+<span class="header-section-number">27.7.2</span> Multi-area models</h3>
+<p>For three or more areas, a closed-form solution does not generally exist. The matrix is instead fitted by minimising a penalty function that penalises deviations from both targets. Off-diagonal movement probabilities are parameterised using the user-supplied relative movement weights (<code>FracOther</code>), normalised within each row, and scaled by <span class="math inline">\(1 - p_k\)</span>. The penalty function is:</p>
 <p><span class="math display">\[\mathcal{L} = \sum_k \left[\frac{\log(\hat{d}_k / d_k)^2}{2\,\sigma_d^2}\right] + \sum_k \left[\frac{(\text{logit}(\hat{p}_k) - \text{logit}(p_k))^2}{2\,\sigma_p^2}\right]\]</span></p>
 <p>where <span class="math inline">\(\hat{d}_k\)</span> is the asymptotic distribution implied by the optimised matrix, <span class="math inline">\(\hat{p}_k\)</span> is the optimised diagonal element, and <span class="math inline">\(\sigma_d\)</span> (<code>CVDist</code>, default 0.1) and <span class="math inline">\(\sigma_p\)</span> (<code>CVStay</code>, default 1) control the relative weight on each target. Smaller <span class="math inline">\(\sigma_d\)</span> enforces a tighter fit to the distribution target; smaller <span class="math inline">\(\sigma_p\)</span> enforces a tighter fit to the staying probability target. When <code>FracOther</code> strongly constrains the direction of movement it may be impossible to satisfy both targets simultaneously, and these parameters determine which takes priority.</p>
 <p>The optimisation is performed independently for each simulation, age class, and year (or seasonal timestep).</p>
-</section></section><section id="sec-tech-historical-catch" class="level2" data-number="27.7"><h2 data-number="27.7" class="anchored" data-anchor-id="sec-tech-historical-catch">
-<span class="header-section-number">27.7</span> Catch</h2>
+</section></section><section id="sec-tech-historical-catch" class="level2" data-number="27.8"><h2 data-number="27.8" class="anchored" data-anchor-id="sec-tech-historical-catch">
+<span class="header-section-number">27.8</span> Catch</h2>
 <p>Catch-at-age (in numbers) is calculated using the Baranov catch equation, apportioning total deaths among fleets:</p>
 <p><span class="math display">\[C^{\text{ret}}_{a,f,k,t} = N_{a,k,t}\,(1 - \exp(-Z_{a,k,t}))\cdot\frac{F^{\text{ret}}_{a,f,k,t}}{Z_{a,k,t}}\]</span></p>
 <p><span class="math display">\[C^{\text{dis}}_{a,f,k,t} = N_{a,k,t}\,(1 - \exp(-Z_{a,k,t}))\cdot\frac{F^{\text{dis}}_{a,f,k,t}}{Z_{a,k,t}}\]</span></p>
@@ -537,7 +565,7 @@ Note
 <p>Landings-at-length and discards-at-length (in numbers) are also computed for each fleet. Let <span class="math inline">\(K_{a,l,f,t}\)</span> be the conditional age-length key: the population age-length key reweighted within each age class by size-specific selectivity for fleet <span class="math inline">\(f\)</span>, so that <span class="math inline">\(K_{a,l,f,t}\)</span> gives the probability of a fish of age <span class="math inline">\(a\)</span> being of length <span class="math inline">\(l\)</span> given that it was captured by fleet <span class="math inline">\(f\)</span>. Landings-at-length and discards-at-length are then:</p>
 <p><span class="math display">\[L_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{ret}}_{a,f,k,t}\]</span></p>
 <p><span class="math display">\[D_{l,f,t} = \sum_a \sum_k K_{a,l,f,t}\, C^{\text{dis}}_{a,f,k,t}\]</span></p>
-<p>If an age-weight key is available instead of an age-length key, the same approach is applied to give catch-at-weight. Results are stored in <code>Hist@LandingsAtSize</code> and <code>Hist@DiscardsAtSize</code> as nested lists (by stock, then fleet), each array with dimensions <code>Sim × Class × Year × Area</code>. Fleets are stored separately because each may have different size class definitions.</p>
+<p>If an age-weight key is available instead of an age-length key, the same approach is applied to give catch-at-weight. Results are stored in <code>Hist@LandingsAtSize</code> and <code>Hist@DiscardsAtSize</code> as nested lists (by stock, then fleet), each array with dimensions <code>Sim × Class × Year × Area</code>.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

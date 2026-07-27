@@ -1,0 +1,16 @@
+# Stock Targeting {#sec-tech-stock-targeting}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+::: {.callout-note}
+This chapter is a placeholder for a future release covering multi-stock/multi-complex operating models, where more than one complex shares one or more fleets. It will cover:
+
+- How historical stock targeting is estimated from data (`.FitStockTargeting()`) and used to generate stochastic historical/projection targeting trajectories (`.GenerateStockTargeting()`).
+- How fleet-specific targeting weights are jointly solved with effort during `Project()` when TAC or Effort advice is set for multiple complexes sharing a fleet, including cross-complex reconciliation and aggregate (pooled) bag limits.
+
+For the current single-stock documentation of how management advice is implemented, see @sec-tech-advice-implementation, @sec-tech-advice-singlestock, and @sec-tech-advice-multifleet.
+:::

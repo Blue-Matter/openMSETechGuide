@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Management Strategy Evaluation with openMSE">
-<title>Operating Model Concepts – openMSE Technical Manual</title>
+<title>Conceptual Details – openMSE Technical Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -230,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -256,20 +256,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -284,12 +290,6 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -333,8 +333,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,7 +389,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-om-concepts" class="quarto-section-identifier">Operating Model Concepts</span></h1>
+<h1 class="title"><span id="sec-om-concepts" class="quarto-section-identifier">Conceptual Details</span></h1>
 </div>
 
 
@@ -389,9 +407,10 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> describes the common structure used to specify biological and fleet schedules, including the two ways to populate a schedule, the accepted input formats for parameters, and how to supply custom model functions.</p>
 <p><a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a> describes the <code>Populate()</code> function, which expands the compact parameter inputs in an <code>OM</code> object into the full arrays used in the simulation.</p>
 <p><a href="concept-simulate-project.html" class="quarto-xref"><span>Chapter 18</span></a> describes how <code>Simulate()</code> reconstructs historical dynamics and how <code>Project()</code> runs the forward projections for the closed-loop simulation testing of the candidate management procedures.</p>
-<p><a href="concept-complexes.html" class="quarto-xref"><span>Chapter 19</span></a> explains the concept of stock complexes: the grouping of stocks that share a single observation model and management action, and when and why a complex differs from a single stock.</p>
-<p><a href="concept-spatial.html" class="quarto-xref"><span>Chapter 20</span></a> describes the <code>Spatial</code> subcomponent of a <code>Stock</code> object, covering how to specify movement between areas, from simple two-area models through to multi-area models with age-varying movement, and how fishing effort is allocated spatially.</p>
-<p><a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 21</span></a> explains the reference points computed from the operating model, including unfished and MSY-based quantities, how to access them, and additional considerations for seasonal and spatial models.</p>
+<p><a href="concept-advice-implementation.html" class="quarto-xref"><span>Chapter 19</span></a> describes how an MP’s advice is translated into simulated fishing effort and gear changes each management year, and the role of implementation error and compliance (<code>Imp</code>) in that process.</p>
+<p><a href="concept-complexes.html" class="quarto-xref"><span>Chapter 20</span></a> explains the concept of stock complexes: the grouping of stocks that share a single observation model and management action, and when and why a complex differs from a single stock.</p>
+<p><a href="concept-spatial.html" class="quarto-xref"><span>Chapter 21</span></a> describes the <code>Spatial</code> subcomponent of a <code>Stock</code> object, covering how to specify movement between areas, from simple two-area models through to multi-area models with age-varying movement, and how fishing effort is allocated spatially.</p>
+<p><a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 22</span></a> explains the reference points computed from the operating model, including unfished and MSY-based quantities, how to access them, and additional considerations for seasonal and spatial models.</p>
 
 
 

@@ -6,7 +6,7 @@
 library(MSEtool)
 ```
 
-Building an operating model in `openMSE` is a two-stage process. First, the user constructs the `OM` object and its sub-components by specifying parameter values as described in @sec-primaryobjects and @sec-schedules. Second, the `Populate()` function expands these compact inputs into the full arrays (e.g., `Sim × Age × Year`), sampling stochastic values, resolving model functions, building derived quantities, and checking the `OM` for internal consistency.
+Building an operating model in `openMSE` is a two-stage process. First, the user constructs the `OM` object and its sub-components by specifying parameter values as described in @sec-primaryobjects and @sec-schedules. Second, the `Populate()` function expands these compact inputs into the full arrays (e.g., `Sim × Age × Year`), samples any stochastic values, resolves model functions, builds derived quantities, and and checks the `OM` for internal consistency.
 
 In normal use, `Populate()` is called automatically when running `Simulate()`, so most users will not need to call it directly. It can be useful, however, for inspecting what a set of parameter values produces before assembling a full operating model.
 
@@ -14,7 +14,9 @@ In normal use, `Populate()` is called automatically when running `Simulate()`, s
 
 `Populate()` is a generic dispatcher. It inspects the class of the object passed to it and calls the appropriate class-specific population function:
 
-```r
+```{r}
+#| eval: false
+
 # Populate a full operating model
 OM <- Populate(OM)
 
@@ -25,7 +27,7 @@ Stock <- Populate(Stock, nSim = 100, nYear = 40, pYear = 30)
 Fleet <- Populate(Fleet, Stock = Stock)
 ```
 
-The class-specific functions called by `Populate()` are: 
+The primary class-specific functions called by `Populate()` are: 
 
 - `PopulateOM()`
 - `PopulateStock()`
@@ -35,23 +37,21 @@ The class-specific functions called by `Populate()` are:
 
 These functions in turn call the population functions for their individual subcomponents (`PopulateLength()`, `PopulateSelectivity()`, etc.). See `?PopulateOM` and related help pages for more information.
 
-Although `Populate()` doesn't need to be called directly, individual objects can be populated independently. This is sometimes useful for inspecting what a set of parameter values produces before assembling a full operating model:
+## Using `Populate`
 
-```r
-# Inspect the length-at-age schedule produced by a set of parameters
+Although `Populate()` doesn't need to be called directly, individual objects can be populated independently. This is sometimes useful for inspecting what a set of parameter values produces before assembling a full operating model, for example inspecting the length-at-age schedule produced by a set of parameters:
+
+```{r}
 stock <- Populate(AlbacoreExStock, nSim = 100, nYear = 30, pYear = 20)
-Length(stock) |> MeanAtAge()
+Length(stock) |> MeanAtAge() |> head()
 ```
 
-When populating a `Fleet` independently, the paired `Stock` object must be provided so that quantities such as $L_{50}$ (required by `isRel = TRUE` selectivity) and the `ALK` (required for size-to-age conversions) are available:
+When populating a `Fleet` object, the paired `Stock` object must be provided so that quantities such as the length structure (e.g., the age-length key required for size-to-age conversions) are available: 
 
-```r
+```{r}
+#| eval: false
 fleet <- Populate(AsympExFleet, Stock = stock)
 ```
-
-## Digest-based Caching
-
-Population is potentially expensive for large operating models with many simulations, stocks, and fleets. To avoid unnecessary recomputation, `Populate()` uses a digest-based caching mechanism. Before populating any object, it computes a hash of the object's current contents and the key arguments passed to the population function (e.g., `nSim`, `nYear`, `seed`). If the hash matches a stored digest from a previous population call and `force = FALSE`, the object is returned unchanged.
 
 ## Seeding and Reproducibility
 
@@ -61,7 +61,7 @@ Each subcomponent population function receives its own integer seed, derived by 
 - Population of one subcomponent does not affect the random state of another.
 - All sub-objects (e.g., `Stock`, `Fleet`, etc) receive distinct seeds, so stochastic variation in one component is independent of another even when the same parameter ranges are specified.
 
-To change the stochastic realisation of an operating model without changing any parameter values, update `OM@Seed` and call `Populate()` again:
+To change the stochastic realisation of an operating model, update `OM@Seed` and call `Populate()` again:
 
 ```r
 Seed(OM) <- 42

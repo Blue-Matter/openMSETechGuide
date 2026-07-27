@@ -1,4 +1,4 @@
-# Operating Model Concepts {#sec-om-concepts}
+# Conceptual Details {#sec-om-concepts}
 
 ```{r}
 #| warning: false
@@ -15,6 +15,8 @@ This part describes how the operating model works: the key concepts, objects, an
 @sec-populate describes the `Populate()` function, which expands the compact parameter inputs in an `OM` object into the full arrays used in the simulation.
 
 @sec-simulate-project describes how `Simulate()` reconstructs historical dynamics and how `Project()` runs the forward projections for the closed-loop simulation testing of the candidate management procedures.
+
+@sec-advice-implementation describes how an MP's advice is translated into simulated fishing effort and gear changes each management year, and the role of implementation error and compliance (`Imp`) in that process.
 
 @sec-complexes explains the concept of stock complexes: the grouping of stocks that share a single observation model and management action, and when and why a complex differs from a single stock.
 

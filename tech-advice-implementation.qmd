@@ -1,0 +1,94 @@
+# Implementing Management Advice {#sec-tech-advice-implementation}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+This chapter gives the mathematical and mechanical specification of how the `Advice` object returned by a management procedure (MP) is used to update the population dynamics during `Project()`. For the conceptual overview of `Simulate()`/`Project()` see @sec-simulate-project; for `Data` and `Advice` object structure see [Management Procedures](#sec-mpsdataadvice). 
+
+Everything in this chapter applies regardless of how many stocks, complexes, or fleets an operating model has. How a `TAC` or `Effort` value is actually converted into simulated fishing effort, however, depends on that structure. Use the table below to go straight to the chapter relevant to your model.
+
+## Which Chapter Do I Need? {#sec-tech-advice-navigation}
+
+| Your model | Effort-solving mechanics | Chapter |
+|---|---|---|
+| One complex (any number of stocks pooled under one joint TAC/Effort), one fleet | Direct root-finding: solve for the single fleet's effort that hits the TAC | @sec-tech-advice-singlestock |
+| One complex, multiple fleets sharing that complex's TAC | TAC allocation across fleets, then joint Newton-Raphson/BFGS solving | @sec-tech-advice-multifleet |
+| Multiple complexes sharing one or more fleets (a true multi-stock OM) | Cross-complex reconciliation and fleet-specific stock-targeting weights | @sec-tech-stock-targeting |
+
+The rest of this chapter describes processes that are identical across all three cases.
+
+## Management Intervals and Interim Years {#sec-tech-advice-intervals}
+
+`Interval(OM)` sets how often an MP is run:
+
+$$\text{ManagementYears} = \{ Y_1, Y_{1+\text{Interval}}, Y_{1+2\cdot\text{Interval}}, \ldots \}$$
+
+In a non-management year, the previous year's `Advice` is used. 
+
+## Data Passed to the MP {#sec-tech-advice-datayear}
+
+The `Data` object an MP receives is not necessarily built from the most recently completed year. 
+
+$$\text{DataYear} = \text{YearsAll}\bigl[\,n_{\text{Years}} - \text{DataLag} \times \text{Seasons}\,\bigr]$$
+
+where `DataLag` (`OM@DataLag`) is in whole years and `Seasons` is the number of within-year time steps. `DataTrim()` truncates the simulated `Data` object to this year before the MP sees it, reflecting reporting/processing delays between when data are collected and when they are available to inform management.
+
+## Resolving TAC and Effort Values Before Solving {#sec-tech-advice-resolve}
+
+`TAC` and `Effort` values are resolved and pre-processed the same way before any effort-solving takes place:
+
+- If an MP leaves `TAC`/`Effort` unset this year, the previous year's resolved value is reused (@sec-tech-advice-intervals).
+- Implementation error is applied multiplicatively.
+- If `Effort` advice was *also* set this year for the same complex, the resolved `Effort` value acts as a hard ceiling on the TAC-solving effort for that fleet.
+- A scalar (stock-total) `TAC` with more than one fleet is allocated across fleets using `OM@Allocation` (see @sec-tech-advice-multifleet).
+
+When `TAC` is returned by `Advice`, the model must solve for the fishing effort that would result in catches matching this TAC. How that root-finding problem is solved depends on the OM structure — see @sec-tech-advice-navigation.
+
+## Direct Effort Advice {#sec-tech-advice-effort}
+
+When an MP sets `Effort` directly (rather than a TAC to be solved for), it is applied per complex,  A scalar `Effort` is expanded to all fleets; `EffType` (`"Rel"`, relative to the last historical year's effort, or `"Abs"`, absolute). Then implementation error is applied to the effort recommendation and the population dynamics calculated with the resulting effort values.
+
+This is the effort-application procedure for an OM with a single complex. Where multiple complexes set `Effort` for the same fleet, an additional reconciliation step applies; see @sec-tech-stock-targeting.
+
+## Bag-Limit Regulations {#sec-tech-advice-baglimit}
+
+Bag limits (`Advice@BagLimit`, in fish per trip) are a management method distinct from TAC/Effort controls. Rather than a stock-wide catch or effort target, they cap what an individual angler or vessel may retain per trip. Two parameters govern enforcement:
+
+**1. `LimitType`**: 
+
+  - `"angler"` (default): the limit applies per angler, so the effective vessel-level cap is $\text{BagLimit} \times \text{AnglerPerTrip}$;
+  - `"boat"`, applied directly per vessel trip.
+
+**2. `ClosureMode`**: `"discard"` (default) or `"stop"`, described below.
+
+Trip count for a fleet/stock is $T_f = E_f$ if `Fleet@Effort@Units == "trips"`, otherwise $T_f = \text{TripsScalar} \times E_f$.
+
+### `ClosureMode = "discard"` {#sec-tech-advice-baglimit-discard}
+
+The regulation does not stop fishing. Excess catch above the limit is discarded (subject to the fleet's `DiscardMortality`). 
+
+Per-trip retained catch is modelled as negative binomially distributed, $X \sim \text{NegBin}(\mu, \theta)$, with mean $\mu_f = C_f^{\text{ret}} / T_f$ (retained numbers per trip at the current effort) and dispersion $\theta$ (`Fleet@Effort@Theta`). 
+
+The expected excess above the cap $B_{\text{cap}} = \text{BagLimit} \times (\text{AnglerPerTrip if angler-based})$ is
+
+$$
+\mathbb{E}[\max(X - B_{\text{cap}}, 0)] = \sum_{x = \lceil B_{\text{cap}}\rceil + 1}^{x_{\max}} (x - B_{\text{cap}}) \cdot \Pr(X = x)
+$$
+
+evaluated by truncated summation up to the $99.99$th percentile of the negative binomial. The realised fraction of unconstrained catch actually retained is then
+
+$$\rho_f = \frac{\mathbb{E}[\min(X, B_{\text{cap}})]}{\mu_f} = \min\!\Bigl(\max\bigl(\tfrac{\mu_f - \mathbb{E}[\max(X-B_{\text{cap}},0)]}{\mu_f},\, 0\bigr),\, 1\Bigr)$$
+
+The fleet/stock's retention-at-age and retention-at-length arrays are then scaled by $\rho_f$ for the current year, proportionally reducing landings while preserving the age/size shape of retention. $\rho_f$ is recomputed every year the bag limit is active (even if the `BagLimit` value itself is unchanged), because $\mu_f$ moves with current stock abundance under a fixed regulation.
+
+### `ClosureMode = "stop"` {#sec-tech-advice-baglimit-stop}
+
+Rather than discarding excess catch, effort is capped so that aggregate retained catch does not exceed the bag-limit-implied seasonal allowance. In this mode, the model finds effort $E_f \leq E_f^{\text{curr}}$ (the effort already resolved by the TAC/Effort steps above) such that
+
+$$\text{RetainedNumbers}_f(E_f) = B_{\text{cap}} \times T_f(E_f^{\text{curr}})$$
+
+This covers a bag limit set on a single stock's own `Advice` object. Pooling a bag limit across several stocks for one fleet (`AggregateBagLimit()`, `mmp`-class MPs only) is described in @sec-tech-stock-targeting.
+

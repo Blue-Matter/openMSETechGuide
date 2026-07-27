@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./tech-life-history.html" rel="next">
-<link href="./tech-notation.html" rel="prev">
+<link href="./tech-overview.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -255,7 +255,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +281,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,12 +315,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -358,8 +358,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -398,9 +416,6 @@ window.Quarto = {
 <li><a href="#sec-tech-dimensions" id="toc-sec-tech-dimensions" class="nav-link active" data-scroll-target="#sec-tech-dimensions"><span class="header-section-number">23.1</span> Simulation Dimensions</a></li>
   <li><a href="#sec-tech-sampling" id="toc-sec-tech-sampling" class="nav-link" data-scroll-target="#sec-tech-sampling"><span class="header-section-number">23.2</span> Sampling Parameter Distributions</a></li>
   <li><a href="#sec-tech-timevarying" id="toc-sec-tech-timevarying" class="nav-link" data-scroll-target="#sec-tech-timevarying"><span class="header-section-number">23.3</span> Time-Varying Parameters</a></li>
-  <li><a href="#sec-tech-populate-stock" id="toc-sec-tech-populate-stock" class="nav-link" data-scroll-target="#sec-tech-populate-stock"><span class="header-section-number">23.4</span> Populate Stock</a></li>
-  <li><a href="#sec-tech-populate-fleet" id="toc-sec-tech-populate-fleet" class="nav-link" data-scroll-target="#sec-tech-populate-fleet"><span class="header-section-number">23.5</span> Populate Fleet</a></li>
-  <li><a href="#sec-tech-populate-obs" id="toc-sec-tech-populate-obs" class="nav-link" data-scroll-target="#sec-tech-populate-obs"><span class="header-section-number">23.6</span> Populate Obs</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/tech-populate-om.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -419,7 +434,8 @@ window.Quarto = {
   
 
 
-</header><p>Before the simulation can begin, all user-specified parameter distributions must be expanded into fully-dimensioned arrays covering every simulation replicate, age class, and year. This process is called <em>populating</em> the operating model, and is handled by <code>PopulateOM()</code>, which calls <code>PopulateStock()</code> and <code>PopulateFleet()</code> in sequence, followed by the observation model. For a conceptual overview of the population process and worked examples, see <a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
+</header><p>Before the simulation can begin, all user-specified parameter distributions must be expanded into fully-dimensioned arrays covering every simulation replicate, age class, and year. This process is called <em>populating</em> the operating model, and is handled by <code>PopulateOM()</code>, which calls <code>PopulateStock()</code> and <code>PopulateFleet()</code> in sequence, followed by the observation model.</p>
+<p>For a conceptual overview of the population process and worked examples, see <a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
 <section id="sec-tech-dimensions" class="level2" data-number="23.1"><h2 data-number="23.1" class="anchored" data-anchor-id="sec-tech-dimensions">
 <span class="header-section-number">23.1</span> Simulation Dimensions</h2>
 <p>Every array in a populated OM is indexed over some or all of the following dimensions:</p>
@@ -469,61 +485,31 @@ Table&nbsp;23.1: Core array dimensions.
 </figure>
 </div>
 <p>The time dimension merges historical and projection years into a single index: <span class="math inline">\(T = n_\text{year} + p_\text{year}\)</span>, where <span class="math inline">\(n_\text{year}\)</span> is the number of historical years and <span class="math inline">\(p_\text{year}\)</span> the number of projection years. For seasonal models, each calendar year is divided into <span class="math inline">\(S\)</span> seasons, so each time step represents <span class="math inline">\(1/S\)</span> of a year and the total number of time steps is <span class="math inline">\(T = S \cdot (n_\text{year} + p_\text{year})\)</span>.</p>
-<p>Age classes are computed from the <code>Ages</code> object. The first age class corresponds to the age of recruitment, <span class="math inline">\(a_\text{rec}\)</span>, which need not be zero. For a non-seasonal model with annual time steps, <span class="math inline">\(a = a_\text{rec}, a_\text{rec}+1, \ldots, A_\text{max}\)</span> in years. For a seasonal model with <span class="math inline">\(S\)</span> seasons per year, age advances in increments of <span class="math inline">\(1/S\)</span>, giving <span class="math inline">\(a = a_\text{rec}, a_\text{rec} + 1/S, \ldots, A_\text{max}\)</span> in years. The <code>Ages@Classes</code> slot stores these values after population.</p>
+<p>Age classes are computed from the <code>Ages</code> object. The first age class corresponds to the age of recruitment, <span class="math inline">\(a_\text{rec}\)</span>, which need not be zero. For a non-seasonal model with annual time steps, <span class="math inline">\(a = a_\text{rec}, a_\text{rec}+1, \ldots, A_\text{max}\)</span> in years. For a seasonal model with <span class="math inline">\(S\)</span> seasons per year, age advances in increments of <span class="math inline">\(1/S\)</span>, giving <span class="math inline">\(a = a_\text{rec}, a_\text{rec} + 1/S, \ldots, A_\text{max}\)</span> in years. The <code>Classes</code> slot in the <code>Ages</code> object stores these values.</p>
 </section><section id="sec-tech-sampling" class="level2" data-number="23.2"><h2 data-number="23.2" class="anchored" data-anchor-id="sec-tech-sampling">
 <span class="header-section-number">23.2</span> Sampling Parameter Distributions</h2>
-<p>Model parameters are specified as distributions rather than fixed values. The input formats accepted by each subcomponent object are described in detail in <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>. This section focuses on the underlying sampling mechanics.</p>
+<p>Model parameters are often specified as distributions rather than fixed values. The input formats accepted by each subcomponent object are described in detail in <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>. This section focuses on the underlying sampling mechanics.</p>
 <p>A common pattern is a uniform distribution bounded by a minimum and maximum value, from which <span class="math inline">\(n_\text{sim}\)</span> draws are taken:</p>
 <p><span class="math display">\[\theta_s \sim \text{Uniform}(\theta_\text{min},\; \theta_\text{max}), \quad s = 1, \ldots, n_\text{sim}\]</span></p>
-<p>When a parameter is fixed (i.e.&nbsp;<span class="math inline">\(\theta_\text{min} = \theta_\text{max}\)</span>), all simulations share the same value. Some parameters are instead specified with a mean and coefficient of variation (CV), in which case draws are taken from a log-normal distribution:</p>
+<p>When a parameter is fixed (i.e.&nbsp;<span class="math inline">\(\theta_\text{min} = \theta_\text{max}\)</span>), all simulations share the same value.</p>
+<p>Some parameters are instead specified with a mean and coefficient of variation (CV), in which case draws are taken from a log-normal distribution:</p>
 <p><span class="math display">\[\theta_s \sim \text{LogNormal}\!\left(\log(\bar\theta) - \tfrac{1}{2}\sigma^2,\; \sigma\right), \quad \sigma = \sqrt{\log(1 + \text{CV}^2)}\]</span></p>
-<p>Random draws are seeded deterministically from <code>OM@Seed</code> so that results are reproducible. Each stock and fleet component receives a different offset from the base seed to ensure independence across components while maintaining reproducibility.</p>
+<p>Random draws are seeded deterministically from <code>Seed(OM)</code> so that results are reproducible.</p>
 </section><section id="sec-tech-timevarying" class="level2" data-number="23.3"><h2 data-number="23.3" class="anchored" data-anchor-id="sec-tech-timevarying">
 <span class="header-section-number">23.3</span> Time-Varying Parameters</h2>
 <p>There are two broad approaches to specifying a schedule (see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for the full range of accepted input formats):</p>
-<p><strong>Direct array.</strong> The <code>MeanAtAge</code> (or <code>MeanAtLength</code>, <code>MeanAtWeight</code>) slot of a subcomponent object can be populated directly as a <code>Sim × Age/Class × Year</code> array, bypassing the <code>Pars</code> model-based approach. As with parameter arrays, the <code>Year</code> dimension need only span boundary years (dimnames identify which years are represented), and the <code>Sim</code> dimension must be either 1 or exactly <span class="math inline">\(n_\text{sim}\)</span>.</p>
-<p><strong>Model-based via <code>Pars</code>.</strong> Each element of a <code>Pars</code> list is processed into a <code>Sim × Year</code> parameter array before being passed to the schedule model. Individual parameters can be:</p>
+<p><strong>1. Direct array.</strong> The <code>MeanAtAge</code> (or <code>MeanAtLength</code>, <code>MeanAtWeight</code>) slot of a subcomponent object can be populated directly as a <code>Sim × Age/Class × Year</code> array, bypassing the <code>Pars</code> model-based approach. As with parameter arrays, the <code>Year</code> dimension need only span boundary years (dimnames identify which years are represented), and the <code>Sim</code> dimension must be either 1 or exactly <span class="math inline">\(n_\text{sim}\)</span>.</p>
+<p><strong>2. Model-based via <code>Pars</code>.</strong> Each element of a <code>Pars</code> list is processed into a <code>Sim × Year</code> parameter array before being passed to the schedule model. Individual parameters can be:</p>
 <ul>
 <li><p><em>Constant (time-invariant)</em>: a fixed value or uniform bounds <span class="math inline">\([\theta_\text{min}, \theta_\text{max}]\)</span> sampled once per simulation (as in <a href="#sec-tech-sampling" class="quarto-xref"><span>Section 23.2</span></a>) and held constant across years: <span class="math inline">\(\theta_{s,t} = \theta_s\)</span> for all <span class="math inline">\(t\)</span>.</p></li>
-<li><p><em>Random walk</em>: if a parameter <code>Pars$foo</code> is accompanied by a paired <code>Pars$fooSD</code> entry, a mean-preserving log-normal random walk is applied across years:</p></li>
-</ul>
+<li>
+<p><em>Random walk</em>: if a parameter <code>Pars$foo</code> is accompanied by a paired <code>Pars$fooSD</code> entry, a mean-preserving log-normal random walk is applied across years:</p>
 <p><span class="math display">\[\theta_{s,t} = \theta_s \cdot \frac{\epsilon_{s,t}}{\bar\epsilon_s}, \quad \log\epsilon_{s,t} \sim \mathcal{N}\!\left(-\tfrac{1}{2}\sigma^2,\; \sigma\right)\]</span></p>
 <p>where <span class="math inline">\(\sigma\)</span> is the value of <code>Pars$fooSD</code> and <span class="math inline">\(\bar\epsilon_s = T^{-1}\sum_t \epsilon_{s,t}\)</span> is the within-simulation mean of the deviates (mean-preserving correction). After processing, the <code>*SD</code> entry is removed from the parameter list.</p>
-<ul>
-<li>
-<em>Pre-built <code>Sim × Year</code> array</em>: supplied directly inside <code>Pars</code>, extended to fill any missing simulation or year indices by repeating year boundary values. The <code>Year</code> dimension only needs to span the boundary years where the values change (intermediate years are filled by extension; see <code>?Extend</code>). The <code>Sim</code> dimension must be either 1 (the same value is used for all simulations) or exactly <span class="math inline">\(n_\text{sim}\)</span> (simulation-specific values).</li>
+</li>
+<li><p><em>Pre-built <code>Sim × Year</code> array</em>: supplied directly inside <code>Pars</code>, extended to fill any missing simulation or year indices by repeating year boundary values. The <code>Year</code> dimension only needs to span the boundary years where the values change (intermediate years are filled by extension; see <code>?Extend</code>). The <code>Sim</code> dimension must be either 1 (the same value is used for all simulations) or exactly <span class="math inline">\(n_\text{sim}\)</span> (simulation-specific values).</p></li>
 </ul>
 <p>Effort trajectories have an additional input form: a data frame of control points with lower and upper bounds at specified years, between which effort is linearly interpolated (see <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>).</p>
-</section><section id="sec-tech-populate-stock" class="level2" data-number="23.4"><h2 data-number="23.4" class="anchored" data-anchor-id="sec-tech-populate-stock">
-<span class="header-section-number">23.4</span> Populate Stock</h2>
-<p><code>PopulateStock()</code> generates all biological arrays for a single stock. It is called once per stock, with the OM’s <code>nYear</code>, <code>pYear</code>, <code>nSim</code>, and <code>Seasons</code> passed as arguments. The sequence of operations is:</p>
-<ol type="1">
-<li>Calculate age classes (<code>Ages@Classes</code>)</li>
-<li>Populate length-at-age (<code>PopulateLength()</code>)</li>
-<li>Populate weight-at-age (<code>PopulateWeight()</code>)</li>
-<li>Populate natural mortality (<code>PopulateNaturalMortality()</code>)</li>
-<li>Populate maturity-at-age (<code>PopulateMaturity()</code>)</li>
-<li>Populate fecundity-at-age (<code>PopulateFecundity()</code>)</li>
-<li>Populate stock–recruitment (<code>PopulateSRR()</code>)</li>
-<li>Populate spatial structure (<code>PopulateSpatial()</code>)</li>
-<li>Populate initial depletion (<code>PopulateDepletion()</code>)</li>
-</ol>
-<p>The equations governing each of these steps are described in <a href="tech-life-history.html" class="quarto-xref"><span>Chapter 24</span></a>. The resulting arrays have dimensions <span class="math inline">\(n_\text{sim} \times n_\text{age} \times T\)</span> unless noted otherwise.</p>
-</section><section id="sec-tech-populate-fleet" class="level2" data-number="23.5"><h2 data-number="23.5" class="anchored" data-anchor-id="sec-tech-populate-fleet">
-<span class="header-section-number">23.5</span> Populate Fleet</h2>
-<p><code>PopulateFleet()</code> generates all fishery arrays for a single fleet operating on a given stock. It takes the already-populated <code>Stock</code> object as an argument so that fleet schedules can be derived in the same age and size class space. The sequence is:</p>
-<ol type="1">
-<li>Populate effort across historical years (<code>PopulateEffort()</code>)</li>
-<li>Populate catchability (<code>PopulateCatchability()</code>)</li>
-<li>Populate selectivity-at-age (<code>PopulateSelectivity()</code>)</li>
-<li>Populate retention-at-age (<code>PopulateRetention()</code>)</li>
-<li>Populate discard mortality (<code>PopulateDiscardMortality()</code>)</li>
-<li>Populate spatial closures (<code>PopulateClosure()</code>)</li>
-</ol>
-<p>The equations for each step are described in <a href="tech-fleet-schedules.html" class="quarto-xref"><span>Chapter 25</span></a>.</p>
-</section><section id="sec-tech-populate-obs" class="level2" data-number="23.6"><h2 data-number="23.6" class="anchored" data-anchor-id="sec-tech-populate-obs">
-<span class="header-section-number">23.6</span> Populate Obs</h2>
-<p><code>PopulateObs()</code> configures the observation model for each fleet–complex combination. Unlike the biological and fishery arrays, observation parameters do not produce age- or year-dimensioned arrays during population. Instead, they set the sampling properties (e.g., error distributions, bias, sample size) used when simulated data are generated in the historical and projection periods.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -926,8 +912,8 @@ Table&nbsp;23.1: Core array dimensions.
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./tech-notation.html" class="pagination-link" aria-label="Notation and Indices">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span>
+      <a href="./tech-overview.html" class="pagination-link" aria-label="Technical Details">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Technical Details</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

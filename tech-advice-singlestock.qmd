@@ -1,0 +1,20 @@
+# Implementing Advice: One Complex, One Fleet {#sec-tech-advice-singlestock}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+```
+
+This chapter covers the simplest case: a single complex (whether it contains one stock or several pooled under one joint TAC/Effort) fished by a single fleet, so there is no allocation across fleets and no reconciliation across complexes to worry about. 
+
+If your model has more than one fleet, see @sec-tech-advice-multifleet. If it has more than one complex, see @sec-tech-stock-targeting. 
+
+## Solving for Effort {#sec-tech-advice-singlestock-solve}
+
+The models solves for the fleet's effort on the log scale, using `stats::optimize()` over the log-effort multiplier:
+
+1. **Achievability check**: an automatic bracket search first determines whether the TAC can be reached at all within a hard effort ceiling `maxEffort` (or a lower per-fleet ceiling from `Effort` advice, @sec-tech-advice-resolve). Starting from a small bracket, the search expands outward (multiplying the bracket bound by 10 each step) until catch at the upper bound meets or exceeds the TAC.
+2. **Root-finding**: if the TAC is achievable, `stats::optimize()` minimises $(C(E) - \text{TAC})^2$ over the bracketed log-effort range to find the effort that hits it.
+3. **Saturation**: if the TAC is not achievable within the ceiling (e.g. the stock is too depleted to support the requested catch at any feasible effort), effort is left at its ceiling-capped baseline, and the fleet is treated as saturated for this year.
+

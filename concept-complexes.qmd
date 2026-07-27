@@ -6,7 +6,9 @@
 library(openMSE)
 ```
 
-In `openMSE`, every stock belongs to a stock complex. When each stock is managed independently, no complex configuration is needed. Multi-stock complexes are used when two or more stocks cannot be distinguished in the data: for example, males and females modelled as separate stocks, or two species landed together in a mixed fishery where catch cannot be attributed to either species individually. In these cases the stocks share a single combined data stream and receive a single joint management action such as a total allowable catch that applies to the complex as a whole.
+In `openMSE`, every stock belongs to a stock complex. When each stock is managed independently, no complex configuration is needed (i.e., each stock is its own complex). 
+
+Multi-stock complexes are used when two or more stocks cannot be distinguished in the data: for example, males and females modelled as separate stocks, or two species landed together in a mixed fishery where catch cannot be attributed to either species individually. In these cases the stocks share a single combined data object and receive a single joint management action such as a total allowable catch that applies to the complex as a whole.
 
 The key consequences of grouping stocks into a complex are:
 
@@ -14,8 +16,6 @@ The key consequences of grouping stocks into a complex are:
 - **Combined data**: fishery observations (catch, indices, compositions) are aggregated across all stocks in the complex before being passed to the MP. The MP sees one `Data` object per complex.
 - **Joint management advice**: the MP returns a single management action for the complex, which is then applied across the stocks within it.
 - **Joint reference points**: $F_\text{MSY}$ is the single apical fishing mortality maximising total yield across all stocks in the complex (see @sec-refpoints).
-
-Note that fleets remain stock-specific; each fleet has its own selectivity, retention, and effort schedule defined independently for each stock. Complexes operate above the fleet level, determining how data and advice are aggregated.
 
 ## The `Complexes` Slot
 
@@ -34,42 +34,33 @@ OM(
 
 Here both stocks (indices 1 and 2) are assigned to a single complex named `"StockComplex"`. The `Obs` object is indexed by complex and fleet, so a single observation model applies to the aggregated data for the whole complex.
 
+`Complexes` assigns every stock in the OM to exactly one complex. With four stocks, for example, valid configurations include four complexes of one stock each, one complex of four, or anything in between, such as two stocks combined into one complex with the other two left as their own independent complexes. 
+
 When `Complexes` is not specified, `openMSE` sets a default automatically:
 
 - If the `OM` contains a single stock, that stock forms its own complex.
 - If the `OM` has a single `Data` object for multiple stocks, all stocks are placed in one complex.
 - Otherwise, each stock is treated as its own independent complex.
 
+The `MultiStockOM` example has two stocks, each its own complex: 
+
 ```{r}
-#| eval: false
-# Inspect the complexes defined in an OM or Hist object
-Complexes(myOM)
-Complexes(Hist)
+#| eval: true
+Complexes(MultiStockOM) 
+
+Complexes(Populate(MultiStockOM, silent = TRUE))
 ```
 
-## Multi-Stock vs Multi-Complex
-
-It is important to distinguish between a multi-stock, multi-complex OM and a multi-stock, single-complex OM:
-
-- **Multi-stock, multi-complex**: each stock is managed independently, with its own `Obs`, its own `Data` object, and its own management advice. This is the default when `Complexes` is not specified.
-- **Multi-stock, single complex**: all stocks share one `Obs`, their data are aggregated into one `Data` object, and management advice is applied jointly. This requires explicitly setting `Complexes`.
-
-The `MultiStockOM` example has two stocks each in their own complex; `ComplexOM` has two stocks in a single shared complex.
+`ComplexOM` has the same two stocks combined into a single complex:
 
 ```{r}
-#| eval: false
-# Two stocks, each managed separately (two complexes)
-Complexes(MultiStockOM) # NULL
-
-Complexes(Populate(MultiStockOM)) # list length 2
-
-# Two stocks managed jointly (one complex)
+#| eval: true
 Complexes(ComplexOM)
 ```
 
 ## Stock-Recruitment Linkages
 
-By default each stock's recruitment is driven by its own spawning production. The `SPFrom` slot of `Stock@SRR` can designate a different stock as the source of spawning output used to determine recruitment. The most common case is a sex-structured model where female spawning biomass drives recruitment for both sexes. `SPFrom` operates at the OM level and can reference any stock regardless of which complex it belongs to.
+By default each stock's recruitment is driven by its own spawning production. The `SPFrom` slot of `Stock@SRR` can designate a different stock as the source of spawning output used to determine recruitment. The most common case is a sex-structured model where female spawning production drives recruitment for both sexes. 
 
 ## Reference Points
 

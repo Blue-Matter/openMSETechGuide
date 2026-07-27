@@ -52,29 +52,24 @@ SB_SB0(myMSE) |>
 
 ## ---- fig-mse-biomass ----
 
-SB_SB0(myMSE) |>
-  dplyr::group_by(MP, Stock, Year, Period) |>
-  dplyr::summarise(
-    Med  = median(Value),
-    Lo   = quantile(Value, 0.1),
-    Hi   = quantile(Value, 0.9),
-    .groups = "drop"
-  ) |>
-  ggplot2::ggplot(ggplot2::aes(x = Year, colour = MP, fill = MP)) +
-  ggplot2::geom_ribbon(ggplot2::aes(ymin = Lo, ymax = Hi), alpha = 0.2,
-                       colour = NA) +
-  ggplot2::geom_line(ggplot2::aes(y = Med)) +
-  ggplot2::geom_vline(
-    ggplot2::aes(xintercept = max(Year[Period == "Historical"])),
-    linetype = "dashed", colour = "grey40"
-  ) +
-  ggplot2::labs(y = "Spawning Biomass", x = "Year",
-                colour = "MP", fill = "MP") +
-  ggplot2::expand_limits(y=c(0,1)) +                
-  ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = c(0, 0.02))) +
-  ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0, 0.05)),
-                               limits = c(0, NA)) +
-  ggplot2::theme_bw() +
-  ggplot2::theme(legend.position = "bottom")
+PlotSBiomass(myMSE, relative = "B0", probs = c(0.1, 0.9))
 
+
+## ---- pm-examples ----
+
+sbsbmsy <- PM_SBSBMSY(myMSE)
+ffmsy   <- PM_FFMSY(myMSE)
+
+dplyr::bind_rows(
+  Array2DF(sbsbmsy@Mean) |> dplyr::mutate(PM = 'P(SB > SBMSY)'),
+  Array2DF(ffmsy@Mean)   |> dplyr::mutate(PM = 'P(F < FMSY)')
+) |> dplyr::select('PM', 'Stock', 'MP', 'Value')
+
+## ---- pm-yield ----
+
+yield <- PM_Yield(myMSE)
+
+Array2DF(yield@Stat) |>
+  dplyr::group_by(Stock, MP) |>
+  dplyr::summarise(Mean_Yield = mean(Value), .groups = 'drop')
 

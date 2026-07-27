@@ -105,32 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="site_libs/viz-1.8.2/viz.js"></script><link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="site_libs/grViz-binding-1.0.12/grViz.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+<script src="site_libs/grViz-binding-1.0.12/grViz.js"></script>
 </head>
 <body class="nav-sidebar floating slimcontent quarto-light">
 
@@ -292,7 +267,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -318,20 +293,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,12 +327,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -395,8 +370,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -478,8 +471,8 @@ window.Quarto = {
 <div class="cell">
 <div id="fig-flowchart" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-172a617a36a3c5f0f727" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-172a617a36a3c5f0f727">{"x":{"diagram":"\ndigraph MSE {\n\n  graph [layout = dot, rankdir = TB, bgcolor = white, splines = polyline, nodesep = 0.8, ranksep = 0.8]\n\n  node [fontname = Arial, fontsize = 14, style = filled, shape = rectangle]\n\n  subgraph cluster_om_components {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    stock [label = \"Stock\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    fleet [label = \"Fleet\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    obs   [label = \"Obs\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    imp   [label = \"Imp\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    data  [label = \"Data\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n    stock -> fleet -> obs -> imp -> data [style = invis]\n    { rank = same; stock; fleet; obs; imp; data }\n  }\n\n  om      [label = \"OM\",       fillcolor = \"#21b0fe\", fontcolor = white]\n  sim     [label = \"Simulate\", fillcolor = \"#fed700\", fontcolor = black]\n  hist    [label = \"Hist\",     fillcolor = \"#21b0fe\", fontcolor = white]\n  project [label = \"Project\",  fillcolor = \"#fed700\", fontcolor = black]\n  mse     [label = \"MSE\",      fillcolor = \"#21b0fe\", fontcolor = white]\n  data2   [label = \"Data \n(Projected)\", fillcolor = \"#21b0fe\", fontcolor = white]\n  mp      [label = \"MP\",       fillcolor = \"#fed700\", fontcolor = black]\n  advice  [label = \"Advice\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n  { rank = same; project; advice }\n  { rank = same; hist;    data2 }\n  { rank = same; hist;     mp    }\n  { rank = same; mse }\n\n  # OM component edges\n  stock -> om\n  fleet -> om\n  obs   -> om\n  imp   -> om [style = dashed]\n  data  -> om [style = dashed]\n\n  # Main spine\n  om      -> sim\n  sim     -> hist\n  hist    -> project\n  project -> mse\n\n  # Closed loop\n  project -> data2  [constraint = false]\n  data2   -> mp     [constraint = true]\n  data    -> mp     [style = dashed, constraint = false]\n  mp      -> advice [constraint = true]\n  advice  -> project [constraint = false]\n\n  subgraph cluster_closed_loop {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    data2; mp; advice\n  }\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-65af9b915eac660ebbbd" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-65af9b915eac660ebbbd">{"x":{"diagram":"\ndigraph MSE {\n\n  graph [layout = dot, rankdir = TB, bgcolor = white, splines = polyline, nodesep = 0.8, ranksep = 0.8]\n\n  node [fontname = Arial, fontsize = 14, style = filled, shape = rectangle]\n\n  subgraph cluster_om_components {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    stock [label = \"Stock\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    fleet [label = \"Fleet\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    obs   [label = \"Obs\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    imp   [label = \"Imp\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    data  [label = \"Data\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n    stock -> fleet -> obs -> imp -> data [style = invis]\n    { rank = same; stock; fleet; obs; imp; data }\n  }\n\n  om      [label = \"OM\",       fillcolor = \"#21b0fe\", fontcolor = white]\n  sim     [label = \"Simulate\", fillcolor = \"#fed700\", fontcolor = black]\n  hist    [label = \"Hist\",     fillcolor = \"#21b0fe\", fontcolor = white]\n  project [label = \"Project\",  fillcolor = \"#fed700\", fontcolor = black]\n  mse     [label = \"MSE\",      fillcolor = \"#21b0fe\", fontcolor = white]\n  data2   [label = \"Data \n(Projected)\", fillcolor = \"#21b0fe\", fontcolor = white]\n  mp      [label = \"MP\",       fillcolor = \"#fed700\", fontcolor = black]\n  advice  [label = \"Advice\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n  { rank = same; project; advice }\n  { rank = same; hist;    data2 }\n  { rank = same; hist;     mp    }\n  { rank = same; mse }\n\n  # OM component edges\n  stock -> om\n  fleet -> om\n  obs   -> om\n  imp   -> om [style = dashed]\n  data  -> om [style = dashed]\n\n  # Main spine\n  om      -> sim\n  sim     -> hist\n  hist    -> project\n  project -> mse\n\n  # Closed loop\n  project -> data2  [constraint = false]\n  data2   -> mp     [constraint = true]\n  data    -> mp     [style = dashed, constraint = false]\n  mp      -> advice [constraint = true]\n  advice  -> project [constraint = false]\n\n  subgraph cluster_closed_loop {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    data2; mp; advice\n  }\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: An overview of the primary objects and functions used in the MSE process. Solid arrows indicate the main workflow; dashed arrows indicate optional inputs. Note that <code>Data</code> appears twice: as an optional input to the <code>OM</code> (containing observed historical data) and as a dynamically updated object within the closed-loop projection (containing data generated by the <code>Obs</code> model for use by <code>MP</code> functions).
@@ -488,24 +481,43 @@ Figure&nbsp;2.1: An overview of the primary objects and functions used in the MS
 </div>
 <section id="historical-and-projection-periods" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="historical-and-projection-periods">
 <span class="header-section-number">2.1.1</span> Historical and Projection Periods</h3>
-<p>The MSE process is divided into two periods.</p>
-<p>The <strong>Historical</strong> period spans from the start of the fishery to the present day (or the most recent year of available data). <code>Simulate</code> reconstructs the population and fishery dynamics over this period, conditioning the model on any observed data and producing the <code>Hist</code> object that serves as the starting point for forward projections.</p>
-<p>The <strong>Projection</strong> period begins from the terminal historical year and extends forward over a user-specified number of projection years. <code>Project</code> runs the closed-loop simulation over this period, applying each MP in turn and recording the resulting population and fishery dynamics in the <code>MSE</code> object. MP performance is evaluated over the projection period, making its length an important design choice: it should be long enough to capture the stock’s response to management under the range of uncertainty represented in the OM, and should encompass any time horizons specified in the management objectives (e.g., “probability recovered above <span class="math inline">\(B_{MSY}\)</span> within 10 years”).</p>
-</section><section id="the-om-object" class="level3" data-number="2.1.2"><h3 data-number="2.1.2" class="anchored" data-anchor-id="the-om-object">
+<p>The MSE process is divided into two periods:</p>
+<ol type="1">
+<li><p>The <strong>Historical</strong> period spans from the start of the modelling period (often the beginning of the fishing activity) to the present day (or the most recent year of available data). <code>Simulate</code> reconstructs the population and fishery dynamics over this period, conditioning the model on any observed data, and produces the <code>Hist</code> object that serves as the starting point for forward projections.</p></li>
+<li><p>The <strong>Projection</strong> period begins from the terminal historical year and extends forward over a user-specified number of projection years (i.e., <code>pYear(OM)</code>). <code>Project</code> runs the closed-loop simulation over this period, applying each MP in turn and recording the resulting population and fishery dynamics in the <code>MSE</code> object.</p></li>
+</ol></section><section id="the-om-object" class="level3" data-number="2.1.2"><h3 data-number="2.1.2" class="anchored" data-anchor-id="the-om-object">
 <span class="header-section-number">2.1.2</span> The <code>OM</code> Object</h3>
-<p>An Operating Model (<code>OM</code>) represents one hypothesis of the stock and fishery system. It is the central object in <code>openMSE</code> and is constructed from three required subcomponents and two optional ones:</p>
+<p>An Operating Model (<code>OM</code>) represents one hypothesis of the stock and fishery system. It is the central object in <code>openMSE</code> and is constructed from two required subcomponents and three optional ones:</p>
 <ol type="1">
 <li>
 <code>Stock</code>: biological and demographic characteristics of the stock(s).</li>
 <li>
 <code>Fleet</code>: exploitation characteristics of the fishing fleet(s).</li>
 <li>
-<code>Obs</code>: the observation error model, describing how fishery data are collected and how much error and bias they contain.</li>
+<code>Obs</code> <em>(optional; see note below)</em> : the observation error model, describing how fishery data are collected and how much error and bias they contain.</li>
 <li>
 <code>Imp</code> <em>(optional)</em>: the implementation error model, describing how management advice is imperfectly applied. When omitted, 100% compliance is assumed.</li>
 <li>
 <code>Data</code> <em>(optional)</em>: real observed historical data from the fishery. When provided, it is used as the historical fishery data and to condition the <code>Obs</code> model so that simulated observations in the projection period match the statistical properties of the historical data.</li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Obs</code> is technically optional, but some source of observation error is needed to generate the data that MPs rely on. Either:</p>
+<ul>
+<li>condition <code>Obs</code> from <code>OM@Data</code>: in which case only the slots present in <code>Data</code> are conditioned, and data are simulated for the projection period accordingly; or</li>
+<li>specify <code>Obs</code> directly: any slots specified here that are <em>not</em> present in <code>OM@Data</code> will have data simulated for both the historical and projection periods.</li>
+</ul>
+<p>If both <code>OM@Data</code> and <code>Obs</code> are empty, the model will still run, but no data will be available to MPs.</p>
+</div>
+</div>
 <p>See <a href="overview-objects.html" class="quarto-xref"><span>Chapter 3</span></a> for full details on the <code>OM</code> object and its subcomponents.</p>
 </section><section id="simulate-and-the-hist-object" class="level3" data-number="2.1.3"><h3 data-number="2.1.3" class="anchored" data-anchor-id="simulate-and-the-hist-object">
 <span class="header-section-number">2.1.3</span> <code>Simulate</code> and the <code>Hist</code> Object</h3>
@@ -519,25 +531,26 @@ Figure&nbsp;2.1: An overview of the primary objects and functions used in the MS
 <p>The resulting <code>Hist</code> object contains the complete historical simulation output, including population dynamics, fishery dynamics, reference points, and the historical <code>Data</code> object ready to be passed to MP functions.</p>
 </section><section id="the-data-object" class="level3" data-number="2.1.4"><h3 data-number="2.1.4" class="anchored" data-anchor-id="the-data-object">
 <span class="header-section-number">2.1.4</span> The <code>Data</code> Object</h3>
-<p><code>Data</code> objects serve two distinct roles in <code>openMSE</code>.</p>
-<p><strong>As an input to the <code>OM</code></strong>: an optional <code>Data</code> object containing real observed historical data can be attached to the <code>OM</code>. This data is used directly as the historical fishery data and to condition the observation model (see above).</p>
-<p><strong>As the argument to MP functions</strong>: during the projection period, a <code>Data</code> object is updated at each management interval with the latest simulated observations generated by the <code>OM</code> and the <code>Obs</code> model. This is the object that MP functions receive and use to generate advice. It contains both the historical observations (either real or simulated) and the model-generated observations accumulated over the projection period to date.</p>
-</section><section id="management-procedures-and-the-advice-object" class="level3" data-number="2.1.5"><h3 data-number="2.1.5" class="anchored" data-anchor-id="management-procedures-and-the-advice-object">
+<p><code>Data</code> objects serve two distinct roles in <code>openMSE</code>:</p>
+<ol type="1">
+<li><p><strong>An input to the <code>OM</code></strong>: one or more optional <code>Data</code> objects containing real observed historical data can be attached to the <code>OM</code>. This data is used directly as the historical fishery data and to condition the observation model (see above).</p></li>
+<li><p><strong>The primary input to MP functions</strong>: during the projection period, a <code>Data</code> object is updated at each management interval with the latest simulated observations generated by the <code>OM</code> and the <code>Obs</code> model. This is the object that MP functions receive and use to generate advice. It contains both the historical observations (either real or simulated) and the model-generated observations accumulated over the projection period to date.</p></li>
+</ol></section><section id="management-procedures-and-the-advice-object" class="level3" data-number="2.1.5"><h3 data-number="2.1.5" class="anchored" data-anchor-id="management-procedures-and-the-advice-object">
 <span class="header-section-number">2.1.5</span> Management Procedures and the <code>Advice</code> Object</h3>
 <p>A Management Procedure (MP) is a set of rules that takes fishery data as input and returns management advice.</p>
 <p>In <code>openMSE</code>, MPs are R functions of class <code>"mp"</code> that accept a <code>Data</code> object and return an <code>Advice</code> object. The <code>Advice</code> object can specify any combination of:</p>
-<ul>
+<ol type="1">
 <li>catch limits (TAC), expressed as total removals or landings only in either biomass or numbers;</li>
 <li>effort controls, as absolute or relative effort by fleet;</li>
 <li>age- or size-based selectivity and retention adjustments;</li>
 <li>discard mortality rates;</li>
 <li>spatial closures.</li>
-</ul>
+</ol>
 <p>Regulations can be specified at the stock or stock-complex level, and either applied uniformly across all fleets or set individually by fleet.</p>
 <p>At each management interval in the projection period, the <code>Data</code> object is updated with new simulated observations, passed to the MP function, and the returned <code>Advice</code> is applied to the population. This cycle — simulate observations, generate advice, implement regulations, advance the population and fishery dynamics — repeats at every management interval for every MP being evaluated.</p>
 </section><section id="project-and-the-mse-object" class="level3" data-number="2.1.6"><h3 data-number="2.1.6" class="anchored" data-anchor-id="project-and-the-mse-object">
 <span class="header-section-number">2.1.6</span> <code>Project</code> and the <code>MSE</code> Object</h3>
-<p><code>Project</code> runs the closed-loop simulation across the projection period for all specified MPs, returning an <code>MSE</code> object. At its core, <code>Project</code> is the engine of the MSE: it repeatedly generates simulated observations, applies each MP to those observations, implements the resulting advice in the operating model, and advances the population forward, for every management interval and every simulation replicate.</p>
+<p><code>Project</code> runs the closed-loop simulation across the projection period for all specified MPs and returns an <code>MSE</code> object. It repeatedly generates simulated observations, applies each MP to those observations, implements the resulting advice in the operating model, and advances the population forward, for every management interval and every simulation replicate.</p>
 <p>The <code>MSE</code> object contains the full fishery dynamics from both the historical period (carried over from <code>Hist</code>) and the projection period, indexed by MP.</p>
 <p>Quantities extracted from the <code>MSE</code> object can be used to calculate performance metrics, and results can be compared across MPs, simulations, stocks, fleets, and time.</p>
 </section></section><section id="sec-assignmentfunctions" class="level2 page-columns page-full" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="sec-assignmentfunctions">

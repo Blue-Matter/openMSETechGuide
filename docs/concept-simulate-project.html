@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./concept-complexes.html" rel="next">
+<link href="./concept-advice-implementation.html" rel="next">
 <link href="./concept-populate.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -103,7 +103,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -112,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li><li class="breadcrumb-item"><a href="./concept-simulate-project.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li><li class="breadcrumb-item"><a href="./concept-simulate-project.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -265,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -291,20 +316,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -319,12 +350,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -368,8 +393,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,11 +450,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#simulate" id="toc-simulate" class="nav-link active" data-scroll-target="#simulate"><span class="header-section-number">18.1</span> <code>Simulate()</code></a></li>
   <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">18.2</span> <code>Project()</code></a></li>
-  <li><a href="#relationship-to-other-concepts" id="toc-relationship-to-other-concepts" class="nav-link" data-scroll-target="#relationship-to-other-concepts"><span class="header-section-number">18.3</span> Relationship to other concepts</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/concept-simulate-project.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Operating Model Concepts</a></li><li class="breadcrumb-item"><a href="./concept-simulate-project.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-overview.html">Conceptual Details</a></li><li class="breadcrumb-item"><a href="./concept-simulate-project.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-simulate-project" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Running the Simulation</span></span></h1>
 </div>
 
@@ -426,27 +468,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Once an operating model has been built and populated (<a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a>), two functions carry it through the rest of the MSE workflow: <code>Simulate()</code> reconstructs historical dynamics and conditions the model on the past, and <code>Project()</code> runs the management strategy evaluation forward in time under one or more candidate management procedures.</p>
+</header><p>Once an operating model has been built, two functions carry it through the rest of the MSE workflow:</p>
+<ol type="1">
+<li>
+<strong><code>Simulate()</code></strong>: reconstructs historical dynamics and conditions the model on the past;</li>
+<li>
+<strong><code>Project()</code></strong>: runs the management strategy evaluation forward in time under one or more candidate management procedures.</li>
+</ol>
 <section id="simulate" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="simulate">
 <span class="header-section-number">18.1</span> <code>Simulate()</code>
 </h2>
-<p><code>Simulate()</code> takes a populated <code>OM</code> and returns a <code>Hist</code> object. Internally it: (1) computes the unfished equilibrium and, if requested, the dynamic (year-varying) unfished trajectory; (2) runs the age-structured population forward through the historical period, applying fleet-specific fishing mortality, to produce the true historical time series of abundance, biomass, and catch; (3) calculates reference points (SPR0, MSY-based reference points); and (4) applies observation error to the true dynamics to generate the historical <code>Data</code> object used by management procedures.</p>
+<p><code>Simulate()</code> takes an <code>OM</code> object and returns a <code>Hist</code> object.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Hist</span> <span class="op">&lt;-</span> <span class="fu">Simulate</span><span class="op">(</span><span class="va">OM</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Key arguments control which optional calculations are performed — <code>DoDynamicUnfished</code>, <code>DoMSYRefs</code>, <code>DoConditionObs</code>, and <code>DoGenerateData</code> — each of which can be disabled to speed up runs where the corresponding output is not needed. See <a href="tech-historical.html" class="quarto-xref"><span>Chapter 27</span></a> for the full mathematical specification of the historical dynamics.</p>
+<p>Internally, it works through the following stages, in order:</p>
+<ol type="1">
+<li>Populates the <code>OM</code> object if needed (see <a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a>).</li>
+<li>Initializes the <code>Hist</code> object from the populated <code>OM</code> and calculates the unfished equilibrium population.</li>
+<li>If <code>Depletion@Final</code> is specified on the stock, optimizes catchability so that simulated terminal depletion matches the target (see <a href="om-built-in.html#sec-exampledepletion" class="quarto-xref"><span>Section 12.1.1.9</span></a>).</li>
+<li>Optionally calculates the dynamic unfished population dynamics.</li>
+<li>Runs the age-structured population and fishery dynamics forward through the historical period, applying fleet-specific fishing mortality, to produce the true historical time series of abundance, biomass, and catch.</li>
+<li>Calculates reference points: the unfished spawning per recruit (always), and optionally MSY-based reference points, other <span class="math inline">\(F\)</span>-based reference points (<span class="math inline">\(F_{0.1}\)</span>, <span class="math inline">\(F_\text{Max}\)</span>, <span class="math inline">\(F_\text{crash}\)</span>, etc.), mean generation time, and the rebuilding-based <span class="math inline">\(B_\text{Low}\)</span> limit reference point. See <a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 22</span></a>.</li>
+<li>Optionally calculates a fixed-<span class="math inline">\(F\)</span>-policy reference yield, for landings and/or total removals.</li>
+<li>Conditions the <code>Obs</code> model on historical fishery data and/or generates simulated historical data from it, producing the historical <code>Data</code> object used by management procedures. See <a href="mps-data-advice.html">Management Procedures</a> and <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a>.</li>
+</ol>
+<p>Several of these stages are optional, either because they’re not always relevant (e.g.&nbsp;the dynamic unfished trajectory) or because they’re computationally expensive relative to the value they add in every run (e.g.&nbsp;<span class="math inline">\(B_\text{Low}\)</span>). Which stages run is controlled by the <code>control</code> argument, a named list constructed by <code>SimControl()</code>, for example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Hist</span> <span class="op">&lt;-</span> <span class="fu">Simulate</span><span class="op">(</span><span class="va">OM</span>, </span>
+<span>                 control <span class="op">=</span> <span class="fu">SimControl</span><span class="op">(</span>RefLandings <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                                      GenerateData <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>
+<code>SimControl()</code> argument</th>
+<th>Default</th>
+<th>Controls</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>DynamicUnfished</code></td>
+<td><code>TRUE</code></td>
+<td>Stage 4 above</td>
+</tr>
+<tr class="even">
+<td><code>MSYRefs</code></td>
+<td><code>TRUE</code></td>
+<td>MSY-based reference points (stage 5)</td>
+</tr>
+<tr class="odd">
+<td><code>RefPoints</code></td>
+<td><code>TRUE</code></td>
+<td>
+<span class="math inline">\(F_{0.1}\)</span>/<span class="math inline">\(F_\text{Max}\)</span>/<span class="math inline">\(F_\text{crash}\)</span>-type reference points (stage 6)</td>
+</tr>
+<tr class="even">
+<td><code>MGT</code></td>
+<td><code>TRUE</code></td>
+<td>Mean generation time (stage 6); negligible cost</td>
+</tr>
+<tr class="odd">
+<td><code>BLow</code></td>
+<td><code>FALSE</code></td>
+<td>
+<span class="math inline">\(B_\text{Low}\)</span> (stage 6); substantially more expensive than the other reference points</td>
+</tr>
+<tr class="even">
+<td>
+<code>RefLandings</code>, <code>RefRemovals</code>
+</td>
+<td>
+<code>FALSE</code>, <code>FALSE</code>
+</td>
+<td>Reference yield based on landings and/or total removals (stage 6)</td>
+</tr>
+<tr class="odd">
+<td><code>ConditionObs</code></td>
+<td><code>TRUE</code></td>
+<td>Conditioning the <code>Obs</code> model on historical data (stage 8)</td>
+</tr>
+<tr class="even">
+<td><code>GenerateData</code></td>
+<td><code>TRUE</code></td>
+<td>Generating simulated historical data (stage 8)</td>
+</tr>
+</tbody>
+</table>
+<p>See <code>?SimControl</code> for full documentation of each argument, and <a href="tech-historical.html" class="quarto-xref"><span>Chapter 27</span></a> for the full mathematical specification of the historical dynamics.</p>
 </section><section id="project" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="project">
 <span class="header-section-number">18.2</span> <code>Project()</code>
 </h2>
-<p><code>Project()</code> takes the <code>Hist</code> object and a vector of management procedure (MP) names, and returns an <code>MSE</code> object. For each MP, it loops over every projection year, repeating four steps: generate the current year’s observed data, apply the MP to produce advice (e.g.&nbsp;a TAC or effort level), update the operating model’s fishing parameters to reflect that advice, and advance the population dynamics one year forward.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">MSE</span> <span class="op">&lt;-</span> <span class="fu">Project</span><span class="op">(</span><span class="va">Hist</span>, MPs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FMSYref"</span>, <span class="st">"CurrentEffort"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Because every MP is run against the same historical conditioning, differences in outcomes across MPs in the resulting <code>MSE</code> object reflect differences in management strategy rather than differences in the underlying biology or fishery history. See <a href="tech-projection.html" class="quarto-xref"><span>Chapter 30</span></a> for the full mathematical specification of the projection dynamics, and <span class="quarto-unresolved-ref">?sec-mpsdataadvice</span> for how <code>Data</code> and <code>Advice</code> objects are structured.</p>
-</section><section id="relationship-to-other-concepts" class="level2" data-number="18.3"><h2 data-number="18.3" class="anchored" data-anchor-id="relationship-to-other-concepts">
-<span class="header-section-number">18.3</span> Relationship to other concepts</h2>
-<ul>
-<li>
-<code>Simulate()</code> and <code>Project()</code> both rely on the conditioned arrays produced by <code>Populate()</code> (<a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a>).</li>
-<li>Reference points calculated during <code>Simulate()</code> (<a href="concept-ref-points.html" class="quarto-xref"><span>Chapter 21</span></a>) provide the benchmarks against which <code>Project()</code> outcomes are evaluated.</li>
-<li>The observation model conditioning that occurs inside <code>Simulate()</code> is described in detail in <span class="quarto-unresolved-ref">?sec-mpsdataadvice</span>.</li>
-</ul>
+<p><code>Project()</code> takes the <code>Hist</code> object and a vector of management procedure (MP) names, and returns an <code>MSE</code> object.</p>
+<p>For each MP, <code>Project</code> loops over every projection time step (typically year) and:</p>
+<ol type="1">
+<li>generates that time step’s simulated data;</li>
+<li>calls the MP for new advice on management years (or carrying forward the previous advice otherwise);</li>
+<li>updates the operating model’s fishing dynamics to reflect that advice;</li>
+<li>advances the population one time step.</li>
+</ol>
+<p>See <a href="concept-advice-implementation.html" class="quarto-xref"><span>Chapter 19</span></a> for how that advice-application step works.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">MSE</span> <span class="op">&lt;-</span> <span class="fu">Project</span><span class="op">(</span><span class="va">Hist</span>, MPs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CurrentEffort"</span>, <span class="st">"CurrentCatch"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because every MP is run against the same historical conditioning, differences in outcomes across MPs in the resulting <code>MSE</code> object reflect differences in management strategy rather than differences in the underlying biology or fishery history. See <a href="mps-data-advice.html">Management Procedures</a> for how <code>Data</code> and <code>Advice</code> objects are structured.</p>
+<p>Translating an MP’s advice (a TAC or effort level) into simulated fishing effort, and how implementation error and gradual compliance factor into that, is described conceptually in <a href="concept-advice-implementation.html" class="quarto-xref"><span>Chapter 19</span></a>, with the full mathematical specification in <a href="tech-advice-implementation.html" class="quarto-xref"><span>Chapter 30</span></a> split by model structure so you can go straight to the case that applies to you:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Your model</th>
+<th>Chapter</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>One complex, one fleet</td>
+<td><a href="tech-advice-singlestock.html" class="quarto-xref"><span>Chapter 31</span></a></td>
+</tr>
+<tr class="even">
+<td>One complex, multiple fleets</td>
+<td><a href="tech-advice-multifleet.html" class="quarto-xref"><span>Chapter 32</span></a></td>
+</tr>
+<tr class="odd">
+<td>Multiple complexes (a multi-stock OM)</td>
+<td><a href="tech-stock-targeting.html" class="quarto-xref"><span>Chapter 33</span></a></td>
+</tr>
+</tbody>
+</table>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -854,8 +999,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./concept-complexes.html" class="pagination-link" aria-label="Stock Complexes">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./concept-advice-implementation.html" class="pagination-link" aria-label="Implementing Management Advice">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

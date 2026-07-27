@@ -290,7 +290,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -316,20 +316,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,12 +350,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -393,8 +393,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -448,15 +466,22 @@ window.Quarto = {
   <li>
 <a href="#sec-exampleobs" id="toc-sec-exampleobs" class="nav-link" data-scroll-target="#sec-exampleobs"><span class="header-section-number">12.3</span> Example <code>Obs</code> Objects</a>
   <ul class="collapse">
-<li><a href="#observation-error-parameters" id="toc-observation-error-parameters" class="nav-link" data-scroll-target="#observation-error-parameters"><span class="header-section-number">12.3.1</span> Observation Error Parameters</a></li>
-  <li><a href="#commercialfleetobs" id="toc-commercialfleetobs" class="nav-link" data-scroll-target="#commercialfleetobs"><span class="header-section-number">12.3.2</span> <code>CommercialFleetObs</code></a></li>
-  <li><a href="#catchandsurveyobs" id="toc-catchandsurveyobs" class="nav-link" data-scroll-target="#catchandsurveyobs"><span class="header-section-number">12.3.3</span> <code>CatchAndSurveyObs</code></a></li>
-  <li><a href="#agestructuredobs" id="toc-agestructuredobs" class="nav-link" data-scroll-target="#agestructuredobs"><span class="header-section-number">12.3.4</span> <code>AgeStructuredObs</code></a></li>
-  <li><a href="#lengthstructuredobs" id="toc-lengthstructuredobs" class="nav-link" data-scroll-target="#lengthstructuredobs"><span class="header-section-number">12.3.5</span> <code>LengthStructuredObs</code></a></li>
-  <li><a href="#datarichobs" id="toc-datarichobs" class="nav-link" data-scroll-target="#datarichobs"><span class="header-section-number">12.3.6</span> <code>DataRichObs</code></a></li>
+<li><a href="#commercialfleetobs" id="toc-commercialfleetobs" class="nav-link" data-scroll-target="#commercialfleetobs"><span class="header-section-number">12.3.1</span> <code>CommercialFleetObs</code></a></li>
+  <li><a href="#catchandsurveyobs" id="toc-catchandsurveyobs" class="nav-link" data-scroll-target="#catchandsurveyobs"><span class="header-section-number">12.3.2</span> <code>CatchAndSurveyObs</code></a></li>
+  <li><a href="#agestructuredobs" id="toc-agestructuredobs" class="nav-link" data-scroll-target="#agestructuredobs"><span class="header-section-number">12.3.3</span> <code>AgeStructuredObs</code></a></li>
+  <li><a href="#lengthstructuredobs" id="toc-lengthstructuredobs" class="nav-link" data-scroll-target="#lengthstructuredobs"><span class="header-section-number">12.3.4</span> <code>LengthStructuredObs</code></a></li>
+  <li><a href="#datarichobs" id="toc-datarichobs" class="nav-link" data-scroll-target="#datarichobs"><span class="header-section-number">12.3.5</span> <code>DataRichObs</code></a></li>
   </ul>
 </li>
-  <li><a href="#example-imp-objects" id="toc-example-imp-objects" class="nav-link" data-scroll-target="#example-imp-objects"><span class="header-section-number">12.4</span> Example <code>Imp</code> Objects</a></li>
+  <li>
+<a href="#sec-exampleimp" id="toc-sec-exampleimp" class="nav-link" data-scroll-target="#sec-exampleimp"><span class="header-section-number">12.4</span> Example <code>Imp</code> Objects</a>
+  <ul class="collapse">
+<li><a href="#fullcomplianceimp" id="toc-fullcomplianceimp" class="nav-link" data-scroll-target="#fullcomplianceimp"><span class="header-section-number">12.4.1</span> <code>FullComplianceImp</code></a></li>
+  <li><a href="#overageimp" id="toc-overageimp" class="nav-link" data-scroll-target="#overageimp"><span class="header-section-number">12.4.2</span> <code>OverageImp</code></a></li>
+  <li><a href="#underageimp" id="toc-underageimp" class="nav-link" data-scroll-target="#underageimp"><span class="header-section-number">12.4.3</span> <code>UnderageImp</code></a></li>
+  <li><a href="#partialsizecomplianceimp" id="toc-partialsizecomplianceimp" class="nav-link" data-scroll-target="#partialsizecomplianceimp"><span class="header-section-number">12.4.4</span> <code>PartialSizeComplianceImp</code></a></li>
+  </ul>
+</li>
   <li>
 <a href="#sec-exampleOM" id="toc-sec-exampleOM" class="nav-link" data-scroll-target="#sec-exampleOM"><span class="header-section-number">12.5</span> Example <code>OM</code> Objects</a>
   <ul class="collapse">
@@ -534,7 +559,8 @@ window.Quarto = {
 <span>                  K    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.22</span><span class="op">)</span>,</span>
 <span>                  t0   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.86</span>, <span class="op">-</span><span class="fl">1.41</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  Model    <span class="op">=</span> <span class="st">"vonBert"</span>,</span>
-<span>  CVatAge  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
+<span>  CVatAge  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span>,</span>
+<span>  Units    <span class="op">=</span> <span class="st">"cm"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="weight-at-age" class="level4" data-number="12.1.1.4"><h4 data-number="12.1.1.4" class="anchored" data-anchor-id="weight-at-age">
@@ -545,7 +571,8 @@ window.Quarto = {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">1.34E-05</span>,</span>
-<span>              beta  <span class="op">=</span> <span class="fl">3.106</span><span class="op">)</span></span>
+<span>              beta  <span class="op">=</span> <span class="fl">3.106</span><span class="op">)</span>,</span>
+<span>  Units <span class="op">=</span> <span class="st">'kg'</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="natural-mortality" class="level4" data-number="12.1.1.5"><h4 data-number="12.1.1.5" class="anchored" data-anchor-id="natural-mortality">
@@ -578,10 +605,11 @@ window.Quarto = {
 <p>See <code>?SRR</code> and <code>?SRRModels</code> for more details on the <code>SRR</code> object and supported models.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">SRR</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">SRR</span><span class="op">(</span></span>
-<span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.85</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  R0   <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  SD   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
-<span>  AC   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span></span>
+<span>  Pars  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.85</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  R0    <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  SD    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
+<span>  AC    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span>,</span>
+<span>  Units <span class="op">=</span> <span class="fl">1000</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="spatial-structure" class="level4" data-number="12.1.1.8"><h4 data-number="12.1.1.8" class="anchored" data-anchor-id="spatial-structure">
@@ -637,7 +665,8 @@ window.Quarto = {
 <span>                  K    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.24</span><span class="op">)</span>,</span>
 <span>                  t0   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.032</span>, <span class="op">-</span><span class="fl">0.028</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  Model    <span class="op">=</span> <span class="st">"vonBert"</span>,</span>
-<span>  CVatAge  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span></span>
+<span>  CVatAge  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.15</span><span class="op">)</span>,</span>
+<span>  Units    <span class="op">=</span> <span class="st">"cm"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="weight-at-age-1" class="level4" data-number="12.1.2.4"><h4 data-number="12.1.2.4" class="anchored" data-anchor-id="weight-at-age-1">
@@ -646,7 +675,8 @@ window.Quarto = {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Weight</span><span class="op">(</span><span class="va">ButterfishExStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">Weight</span><span class="op">(</span></span>
 <span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">1.59e-05</span>,</span>
-<span>              beta  <span class="op">=</span> <span class="fl">3.1</span><span class="op">)</span></span>
+<span>              beta  <span class="op">=</span> <span class="fl">3.1</span><span class="op">)</span>,</span>
+<span>  Units <span class="op">=</span> <span class="st">'kg'</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="natural-mortality-1" class="level4" data-number="12.1.2.5"><h4 data-number="12.1.2.5" class="anchored" data-anchor-id="natural-mortality-1">
@@ -671,10 +701,11 @@ window.Quarto = {
 <p>Recruitment variability is considerably higher than for Albacore (<code>SD</code> of 0.7–1.1 versus 0.15–0.3), consistent with the volatile year-class dynamics typical of short-lived forage species.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">SRR</span><span class="op">(</span><span class="va">ButterfishExStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">SRR</span><span class="op">(</span></span>
-<span>  Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  R0   <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  SD   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">1.1</span><span class="op">)</span>,</span>
-<span>  AC   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span></span>
+<span>  Pars  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  R0    <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  SD    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">1.1</span><span class="op">)</span>,</span>
+<span>  AC    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span>,</span>
+<span>  Units <span class="op">=</span> <span class="fl">1000</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="spatial-structure-1" class="level4" data-number="12.1.2.8"><h4 data-number="12.1.2.8" class="anchored" data-anchor-id="spatial-structure-1">
@@ -771,11 +802,13 @@ window.Quarto = {
 <span></span>
 <span>  Length <span class="op">=</span> <span class="fu">Length</span><span class="op">(</span></span>
 <span>    Pars    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Linf <span class="op">=</span> <span class="fl">30</span>, K <span class="op">=</span> <span class="fl">0.8</span>, t0 <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>,</span>
-<span>    CVatAge <span class="op">=</span> <span class="fl">0.1</span></span>
+<span>    CVatAge <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>    Units   <span class="op">=</span> <span class="st">"cm"</span></span>
 <span>  <span class="op">)</span>,</span>
 <span></span>
 <span>  Weight <span class="op">=</span> <span class="fu">Weight</span><span class="op">(</span></span>
-<span>    Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">1e-5</span>, beta <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span>    Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">1e-5</span>, beta <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    Units <span class="op">=</span> <span class="st">'kg'</span></span>
 <span>  <span class="op">)</span>,</span>
 <span></span>
 <span>  NaturalMortality <span class="op">=</span> <span class="fu">NaturalMortality</span><span class="op">(</span></span>
@@ -787,13 +820,14 @@ window.Quarto = {
 <span>  <span class="op">)</span>,</span>
 <span></span>
 <span>  SRR <span class="op">=</span> <span class="fu">SRR</span><span class="op">(</span></span>
-<span>    Pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span>,</span>
-<span>    R0   <span class="op">=</span> <span class="fu">SetSeasonalR0</span><span class="op">(</span>AnnualR0   <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>    Pars  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span>,</span>
+<span>    R0    <span class="op">=</span> <span class="fu">SetSeasonalR0</span><span class="op">(</span>AnnualR0   <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>                         Seasons    <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>                         PeakSeason <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>                         Sigma      <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>,</span>
-<span>    SD   <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span>    AC   <span class="op">=</span> <span class="fl">0.3</span></span>
+<span>    SD    <span class="op">=</span> <span class="fl">0.4</span>,</span>
+<span>    AC    <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>    Units <span class="op">=</span> <span class="fl">1000</span></span>
 <span>  <span class="op">)</span>,</span>
 <span></span>
 <span>  Spatial <span class="op">=</span> <span class="fu">Spatial</span><span class="op">(</span></span>
@@ -897,93 +931,26 @@ Figure&nbsp;12.1: Ten stochastic historical effort trajectories for <code>AsympE
 <span>  isRel <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The code block below demonstrates the resulting selectivity schedules when this <code>Selectivity</code> object is paird with the <code>AlbacoreExStock</code> stock object.</p>
-<p>It first manually populates the <code>Maturity</code> and <code>Selectivity</code> objects for <code>AlbacoreExStock</code> and <code>AsympExFleet</code> respectively, then plots the resulting at-age and at-length schedules. Populating these objects expands the parameter inputs (the bounds vectors specified in the constructor calls above) into the full <code>Sim × Age × Year</code> and <code>Sim × Class × Year</code> arrays, sampling one value per simulation (here <code>nSim = 5</code>) from each uniform range.</p>
-<p>In normal use this happens automatically when <code>Populate()</code> is called on the <code>OM</code> object; it is done explicitly here for illustration only. See <a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a> for a full description of the population process.</p>
+<p>The code block below demonstrates the resulting selectivity schedules when this <code>Selectivity</code> object is paired with the <code>AlbacoreExStock</code> stock object.</p>
+<p>It first builds a small <code>OM</code> combining <code>AlbacoreExStock</code> and <code>AsympExFleet</code> (with <code>nSim = 5</code> to keep the figure legible), then uses <code>PlotSelectivity()</code> and <code>PlotMaturity()</code> — part of <code>openMSE</code>’s built-in family of schedule-plotting functions, see <code>?plot_schedule</code> — to show the resulting curves at both length and age.</p>
+<p>In normal use, populating an <code>OM</code> happens automatically when <code>Populate()</code> is called; it is done explicitly here for illustration only. See <a href="concept-populate.html" class="quarto-xref"><span>Chapter 17</span></a> for a full description of the population process.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Populate Maturity and Selectivity objects </span></span>
-<span><span class="co"># (Length and Weight objects are populated internally)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">asympOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span>Stock <span class="op">=</span> <span class="va">AlbacoreExStock</span>, Fleet <span class="op">=</span> <span class="va">AsympExFleet</span>, nSim <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">Maturity</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">PopulateMaturity</span><span class="op">(</span></span>
-<span>  Maturity <span class="op">=</span> <span class="fu">Maturity</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span>,</span>
-<span>  Ages     <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span>,</span>
-<span>  Length   <span class="op">=</span> <span class="fu">Length</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span>,</span>
-<span>  Weight   <span class="op">=</span> <span class="fu">Weight</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Selectivity</span> <span class="op">&lt;-</span> <span class="fu">PopulateSelectivity</span><span class="op">(</span></span>
-<span>  Selectivity <span class="op">=</span> <span class="fu">Selectivity</span><span class="op">(</span><span class="va">AsympExFleet</span><span class="op">)</span>,</span>
-<span>  Ages        <span class="op">=</span> <span class="fu">Ages</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span>,</span>
-<span>  Length      <span class="op">=</span> <span class="fu">Length</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span>,</span>
-<span>  Weight      <span class="op">=</span> <span class="fu">Weight</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span>,</span>
-<span>  Maturity    <span class="op">=</span> <span class="fu">Maturity</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Build combined data frames </span></span>
-<span><span class="va">sel_age</span> <span class="op">&lt;-</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="va">Selectivity</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Array2DF</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Schedule <span class="op">=</span> <span class="st">"Selectivity"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">mat_age</span> <span class="op">&lt;-</span> <span class="fu">MeanAtAge</span><span class="op">(</span><span class="fu">Maturity</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Array2DF</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Schedule <span class="op">=</span> <span class="st">"Maturity"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sel_len</span> <span class="op">&lt;-</span> <span class="fu">MeanAtLength</span><span class="op">(</span><span class="va">Selectivity</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Array2DF</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Schedule <span class="op">=</span> <span class="st">"Selectivity"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">mat_len</span> <span class="op">&lt;-</span> <span class="fu">MeanAtLength</span><span class="op">(</span><span class="fu">Maturity</span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">Array2DF</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Schedule <span class="op">=</span> <span class="st">"Maturity"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_age</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">sel_age</span>, <span class="va">mat_age</span><span class="op">)</span> </span>
-<span><span class="va">df_len</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">sel_len</span>, <span class="va">mat_len</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># Plot schedules</span></span>
-<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Selectivity"</span> <span class="op">=</span> <span class="st">"steelblue"</span>, <span class="st">"Maturity"</span> <span class="op">=</span> <span class="st">"coral"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">p_len</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_len</span>,</span>
-<span>                         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>,</span>
-<span>                                      y <span class="op">=</span> <span class="va">Value</span>, </span>
-<span>                                      colour <span class="op">=</span> <span class="va">Schedule</span>, </span>
-<span>                                      group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html">interaction</a></span><span class="op">(</span><span class="va">Sim</span>, <span class="va">Schedule</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">cols</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Length (cm)"</span>, y <span class="op">=</span> <span class="st">'Probability'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
-<span>    expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
-<span>    expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">p_age</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_age</span>,</span>
-<span>                         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Age</span>,</span>
-<span>                                      y <span class="op">=</span> <span class="va">Value</span>, </span>
-<span>                                      colour <span class="op">=</span> <span class="va">Schedule</span>, </span>
-<span>                                      group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html">interaction</a></span><span class="op">(</span><span class="va">Sim</span>, <span class="va">Schedule</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">cols</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Age"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
-<span>    expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
-<span>    expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span>, </span>
-<span>                 legend.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                 axis.text.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">wrap_plots</a></span><span class="op">(</span><span class="va">p_len</span>, <span class="va">p_age</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">wrap_plots</a></span><span class="op">(</span></span>
+<span>  <span class="fu">PlotSelectivity</span><span class="op">(</span><span class="va">asympOM</span>, x <span class="op">=</span> <span class="st">"Length"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">PlotSelectivity</span><span class="op">(</span><span class="va">asympOM</span>, x <span class="op">=</span> <span class="st">"Age"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">PlotMaturity</span><span class="op">(</span><span class="va">asympOM</span>, x <span class="op">=</span> <span class="st">"Length"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">PlotMaturity</span><span class="op">(</span><span class="va">asympOM</span>, x <span class="op">=</span> <span class="st">"Age"</span><span class="op">)</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">2</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-asymp-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-asymp-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="om-built-in_files/figure-html/fig-asymp-selectivity-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-asymp-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.2: Selectivity (blue) and maturity (coral) schedules for <code>AsympExFleet</code> paired with <code>AlbacoreExStock</code>, shown at length (left) and age (right). Each line represents one simulation replicate; the spread reflects uncertainty in the growth and maturity parameters sampled across simulations. Length-based parameters (<code>L5</code>, <code>LFS</code>) are specified relative to <span class="math inline">\(L_{50}\)</span> of the paired stock (<code>isRel = TRUE</code>), so the position of the selectivity curve varies across simulations in proportion to the sampled maturity schedule.
+Figure&nbsp;12.2: Selectivity (top row) and maturity (bottom row) schedules for <code>AsympExFleet</code> paired with <code>AlbacoreExStock</code>, shown at length (left) and age (right), produced by <code>PlotSelectivity()</code> and <code>PlotMaturity()</code>.
 </figcaption></figure>
 </div>
 </div>
@@ -1037,7 +1004,7 @@ Figure&nbsp;12.2: Selectivity (blue) and maturity (coral) schedules for <code>As
 <img src="om-built-in_files/figure-html/fig-dome-selectivity-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dome-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>DomeExFleet</code> paired with <code>AlbacoreExStock</code>, shown at length (left) and age (right). Each line represents one simulation replicate; the spread reflects uncertainty in the growth and maturity parameters sampled across simulations. Length-based parameters (<code>L5</code>, <code>LFS</code>) are specified relative to <span class="math inline">\(L_{50}\)</span> of the paired stock (<code>isRel = TRUE</code>), so the position of the selectivity curve varies across simulations in proportion to the sampled maturity schedule.
+Figure&nbsp;12.3: Selectivity (top row) and maturity (bottom row) schedules for <code>DomeExFleet</code> paired with <code>AlbacoreExStock</code>, shown at length (left) and age (right), produced by <code>PlotSelectivity()</code> and <code>PlotMaturity()</code>.
 </figcaption></figure>
 </div>
 </div>
@@ -1046,7 +1013,7 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <span class="header-section-number">12.3</span> Example <code>Obs</code> Objects</h2>
 <p>An <code>Obs</code> object defines the observation model for a fleet and its corresponding stock or stock complex. It describes the structure of sampling error and systematic bias for each data type. Each fleet object has its own <code>Obs</code> object.</p>
 <p>See <code>?Obs</code> for full documentation. See <code>?CatchObs</code>, <code>?IndicesObs</code>, and <code>?CompObs</code> for documentation of the subcomponent constructors.</p>
-<p>The <code>Obs</code> object interacts closely with the corresponding <code>Data</code> object. See <span class="quarto-unresolved-ref">?sec-dataobs</span> for more details.</p>
+<p>The <code>Obs</code> object interacts closely with the corresponding <code>Data</code> object. See <a href="object-data.html" class="quarto-xref"><span>Chapter 6</span></a> for the <code>Data</code> object’s structure and <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a> for how the two interact.</p>
 <p>Five example <code>Obs</code> objects are provided, representing monitoring programmes of increasing data richness:</p>
 <ul>
 <li>
@@ -1060,34 +1027,8 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <li>
 <strong><code>DataRichObs</code></strong>: all data types ares generated: landings, discards, effort, CPUE, survey, and both age and length compositions for landings and discards.</li>
 </ul>
-<section id="observation-error-parameters" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="observation-error-parameters">
-<span class="header-section-number">12.3.1</span> Observation Error Parameters</h3>
-<p>Before describing the individual objects, it is useful to understand the parameters common to all observation subcomponents.</p>
-<p><strong><code>CatchObs</code></strong> (used for <code>Landings</code> and <code>Discards</code>) takes two main parameters:</p>
-<ul>
-<li><p><code>CV</code>: coefficient of variation of lognormal observation error on catch. Accepts a scalar (same CV for all simulations), a length-2 vector <code>c(lower, upper)</code> (a unique CV per simulation is drawn from <code>Uniform(lower, upper)</code>), or a length-<code>nSim</code> array (used directly). After population, <code>@CV</code> is a named <code>[nSim]</code> vector and <code>@Error</code> becomes a named <code>[nSim × nYear]</code> lognormal array.</p></li>
-<li><p><code>Bias</code>: multiplicative observation bias on the natural scale. <code>NULL</code> defaults to 1 (unbiased). A length-<code>nSim</code> vector is used directly as one bias per simulation. Any other scalar input is treated as the CV of a lognormal from which <code>nSim</code> bias values are drawn — e.g.&nbsp;<code>Bias = 0.1</code> draws biases centred at 1 with CV of 10%. After population, <code>@Bias</code> is a named <code>[nSim]</code> array of positive multipliers.</p></li>
-</ul>
-<p><strong><code>EffortObs</code></strong> (used for <code>Effort</code>) takes the same <code>CV</code> and <code>Bias</code> parameters as <code>CatchObs</code>.</p>
-<p><strong><code>IndicesObs</code></strong> (used for <code>CPUE</code> and <code>Survey</code>) takes:</p>
-<ul>
-<li>
-<code>CV</code>: coefficient of variation of lognormal index observation error.</li>
-<li>
-<code>AC</code>: lag-1 autocorrelation of index residuals, reflecting persistent deviations in survey catchability or other sources of correlated index error.</li>
-<li>
-<code>Selectivity</code>: how the simulated population is aggregated to produce the index. <code>"Biomass"</code> applies flat selectivity (total biomass); <code>"SBiomass"</code> uses maturity-at-age as selectivity (equivalent to a spawning biomass index). For CPUE indices, the corresponding fleet selectivity is used automatically when <code>Selectivity</code> is <code>NULL</code>.</li>
-</ul>
-<p><strong><code>CompObs</code></strong> (used for all composition slots) takes:</p>
-<ul>
-<li>
-<code>SampleSize</code>: nominal number of fish aged or measured per year. A length-2 vector draws a unique value per simulation from <code>Uniform(lower, upper)</code>. Setting <code>SampleSize = NULL</code> suppresses composition data generation entirely.</li>
-<li>
-<code>ESS</code>: effective sample size, which controls stochastic variability in the composition draw independently of <code>SampleSize</code>. Values of <code>ESS &lt; SampleSize</code> produce overdispersion relative to a pure multinomial — typical of age or length compositions that contain correlated sampling error.</li>
-<li>
-<code>Theta</code>: Dirichlet-Multinomial dispersion parameter in <span class="math inline">\((0, 1]\)</span>. <code>Theta = 1</code> recovers a standard multinomial draw; values approaching 0 produce maximum overdispersion.</li>
-</ul></section><section id="commercialfleetobs" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="commercialfleetobs">
-<span class="header-section-number">12.3.2</span> <code>CommercialFleetObs</code>
+<section id="commercialfleetobs" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="commercialfleetobs">
+<span class="header-section-number">12.3.1</span> <code>CommercialFleetObs</code>
 </h3>
 <p><code>CommercialFleetObs</code> represents a commercial fleet monitoring programme that produces records of total landings &amp; discards, fishing effort, and an index of vulnerable abundance. Landings and discards are observed with moderate error and some positive bias in landings (reflecting potential over-reporting or high-grading), effort is recorded with low error, and a CPUE index is available.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1128,8 +1069,8 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Landings CV of 5–15% and a bias range of 1.0–1.15 reflect moderately reliable catch reporting with a tendency toward slight overestimation. Discard CV of 20–40% and a wide bias range of 0.8–1.2 reflect the greater uncertainty typical of discard estimation. The CPUE index has CV of 15–25% and moderate autocorrelation (AC 0–0.3).</p>
-</section><section id="catchandsurveyobs" class="level3" data-number="12.3.3"><h3 data-number="12.3.3" class="anchored" data-anchor-id="catchandsurveyobs">
-<span class="header-section-number">12.3.3</span> <code>CatchAndSurveyObs</code>
+</section><section id="catchandsurveyobs" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="catchandsurveyobs">
+<span class="header-section-number">12.3.2</span> <code>CatchAndSurveyObs</code>
 </h3>
 <p><code>CatchAndSurveyObs</code> represents a minimal data scenario: only landed catch and a fishery-independent survey index are available.</p>
 <div class="cell">
@@ -1147,8 +1088,8 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The survey uses <code>Selectivity = "Biomass"</code>, meaning it is treated as a total biomass index with flat selectivity across ages. Landings CV of 10–25% and a downward bias range of 0.8–1.0 reflect the possibility of underreporting.</p>
-</section><section id="agestructuredobs" class="level3" data-number="12.3.4"><h3 data-number="12.3.4" class="anchored" data-anchor-id="agestructuredobs">
-<span class="header-section-number">12.3.4</span> <code>AgeStructuredObs</code>
+</section><section id="agestructuredobs" class="level3" data-number="12.3.3"><h3 data-number="12.3.3" class="anchored" data-anchor-id="agestructuredobs">
+<span class="header-section-number">12.3.3</span> <code>AgeStructuredObs</code>
 </h3>
 <p><code>AgeStructuredObs</code> represents a data-moderate programme with age-structured biological sampling. In addition to landings and discards, a fishery-independent survey and age composition samples from both the landed and discarded catch are available.</p>
 <div class="cell">
@@ -1183,8 +1124,8 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The survey uses <code>Selectivity = "SBiomass"</code>, treating it as a spawning biomass index. Age compositions are sampled with <code>SampleSize</code> of 200–400 (landings) and 100–200 (discards), with effective sample sizes of 50–100 and 30–80 respectively. <code>Theta</code> values of 0.4–1.0 allow for additional Dirichlet-Multinomial overdispersion.</p>
-</section><section id="lengthstructuredobs" class="level3" data-number="12.3.5"><h3 data-number="12.3.5" class="anchored" data-anchor-id="lengthstructuredobs">
-<span class="header-section-number">12.3.5</span> <code>LengthStructuredObs</code>
+</section><section id="lengthstructuredobs" class="level3" data-number="12.3.4"><h3 data-number="12.3.4" class="anchored" data-anchor-id="lengthstructuredobs">
+<span class="header-section-number">12.3.4</span> <code>LengthStructuredObs</code>
 </h3>
 <p><code>LengthStructuredObs</code> is structured analogously to <code>AgeStructuredObs</code>, but with length composition samples in place of age compositions. This reflects monitoring programmes where length measurement is feasible but ageing is not.</p>
 <div class="cell">
@@ -1219,8 +1160,8 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Length composition sample sizes are somewhat larger than the age-structured equivalents (300–600 for landings), consistent with the lower cost of length measurement relative to ageing.</p>
-</section><section id="datarichobs" class="level3" data-number="12.3.6"><h3 data-number="12.3.6" class="anchored" data-anchor-id="datarichobs">
-<span class="header-section-number">12.3.6</span> <code>DataRichObs</code>
+</section><section id="datarichobs" class="level3" data-number="12.3.5"><h3 data-number="12.3.5" class="anchored" data-anchor-id="datarichobs">
+<span class="header-section-number">12.3.5</span> <code>DataRichObs</code>
 </h3>
 <p><code>DataRichObs</code> represents a comprehensive data-rich monitoring programme, combining all available data types: landings, discards, effort, a CPUE index, a fishery-independent survey, and both age and length compositions for landings and discards.</p>
 <div class="cell">
@@ -1277,23 +1218,72 @@ Figure&nbsp;12.3: Selectivity (blue) and maturity (coral) schedules for <code>Do
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Observation errors throughout are tighter than in the other example objects: landings CV of 3–8%, effort CV of 2–5%, and survey CV of 8–15% with very low autocorrelation (AC 0–0.1). The survey uses <code>Selectivity = "SBiomass"</code> as an index of spawning biomass, while the CPUE index uses fleet selectivity automatically. Composition sample sizes are the largest of all example objects, with ESS values approaching the nominal sample sizes, reflecting high-quality age and length data.</p>
-</section></section><section id="example-imp-objects" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="example-imp-objects">
+</section></section><section id="sec-exampleimp" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="sec-exampleimp">
 <span class="header-section-number">12.4</span> Example <code>Imp</code> Objects</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>An <code>Imp</code> object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model.</p>
+<p>See <code>?Imp</code> for full documentation, and <code>?ImpSlot</code> for documentation of the underlying <code>TAC</code>/<code>Effort</code>/<code>Size</code> subcomponent.</p>
+<p>Four example <code>Imp</code> objects are provided, representing different assumptions about how management advice is realised in practice:</p>
+<ul>
+<li>
+<strong><code>FullComplianceImp</code></strong>: TAC and effort advice are realised exactly, and size regulations are adopted immediately by the whole fleet.</li>
+<li>
+<strong><code>OverageImp</code></strong>: TAC and effort are consistently realised above advice.</li>
+<li>
+<strong><code>UnderageImp</code></strong>: TAC and effort are consistently realised below advice.</li>
+<li>
+<strong><code>PartialSizeComplianceImp</code></strong>: TAC and effort are implemented perfectly, but only part of the fleet adopts a newly-advised size regulation.</li>
+</ul>
+<section id="fullcomplianceimp" class="level3" data-number="12.4.1"><h3 data-number="12.4.1" class="anchored" data-anchor-id="fullcomplianceimp">
+<span class="header-section-number">12.4.1</span> <code>FullComplianceImp</code>
+</h3>
+<p><code>FullComplianceImp</code> represents perfect implementation of management advice: TAC and effort recommendations are realised exactly, and any size-based regulation is adopted immediately by the entire fleet.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FullComplianceImp</span> <span class="op">&lt;-</span> <span class="fu">Imp</span><span class="op">(</span></span>
+<span>  Name   <span class="op">=</span> <span class="st">"FullComplianceImp"</span>,</span>
+<span>  TAC    <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fl">1</span>, SD <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  Effort <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fl">1</span>, SD <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  Size   <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Compliance <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<p>Because this is behaviourally identical to leaving <code>Imp</code> unspecified on an <code>OM</code> object, <code>FullComplianceImp</code> simply makes that default explicit. It is the <code>Imp</code> object assigned to every other built-in example <code>OM</code> (e.g., <code>SingleStockOM</code>, <code>TwoFleetOM</code>).</p>
+</section><section id="overageimp" class="level3" data-number="12.4.2"><h3 data-number="12.4.2" class="anchored" data-anchor-id="overageimp">
+<span class="header-section-number">12.4.2</span> <code>OverageImp</code>
+</h3>
+<p><code>OverageImp</code> represents a fleet that consistently realises more catch and effort than advised, e.g.&nbsp;under-reporting, unrecorded discards landed elsewhere, or effort creep beyond the recommended level.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">OverageImp</span> <span class="op">&lt;-</span> <span class="fu">Imp</span><span class="op">(</span></span>
+<span>  Name   <span class="op">=</span> <span class="st">"OverageImp"</span>,</span>
+<span>  TAC    <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.05</span>, <span class="fl">1.25</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Effort <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.05</span>, <span class="fl">1.25</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>TAC and effort are realised on average 5-25% above the advised level (<code>Mean</code> 1.05-1.25), with additional simulation-to-simulation and year-to-year stochastic variation (<code>SD</code> 0.05-0.15). <code>Size</code> is left empty: this example isolates TAC/effort overage.</p>
+</section><section id="underageimp" class="level3" data-number="12.4.3"><h3 data-number="12.4.3" class="anchored" data-anchor-id="underageimp">
+<span class="header-section-number">12.4.3</span> <code>UnderageImp</code>
+</h3>
+<p><code>UnderageImp</code> represents a fleet that consistently realises less catch and effort than advised, e.g.&nbsp;quota left unfilled because the fishery isn’t profitable enough to fully prosecute, or an effort target that isn’t reached due to weather, capacity, or market constraints.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">UnderageImp</span> <span class="op">&lt;-</span> <span class="fu">Imp</span><span class="op">(</span></span>
+<span>  Name   <span class="op">=</span> <span class="st">"UnderageImp"</span>,</span>
+<span>  TAC    <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.9</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Effort <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.9</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>The <code>Imp</code> class is currently a placeholder and is not yet implemented.</p>
-<p>This section will be updated once example <code>Imp</code> objects are developed.</p>
+<p>TAC and effort are realised on average 10-30% below the advised level (<code>Mean</code> 0.7-0.9), with the same <code>SD</code> range as <code>OverageImp</code>. <code>Size</code> is left empty.</p>
+</section><section id="partialsizecomplianceimp" class="level3" data-number="12.4.4"><h3 data-number="12.4.4" class="anchored" data-anchor-id="partialsizecomplianceimp">
+<span class="header-section-number">12.4.4</span> <code>PartialSizeComplianceImp</code>
+</h3>
+<p><code>PartialSizeComplianceImp</code> isolates partial fleet adoption of a size-based regulation, while TAC and effort advice are still implemented perfectly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">PartialSizeComplianceImp</span> <span class="op">&lt;-</span> <span class="fu">Imp</span><span class="op">(</span></span>
+<span>  Name   <span class="op">=</span> <span class="st">"PartialSizeComplianceImp"</span>,</span>
+<span>  TAC    <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fl">1</span>, SD <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  Effort <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Mean <span class="op">=</span> <span class="fl">1</span>, SD <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  Size   <span class="op">=</span> <span class="fu">ImpSlot</span><span class="op">(</span>Compliance <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</section><section id="sec-exampleOM" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="sec-exampleOM">
+<p><code>TAC</code> and <code>Effort</code> use <code>Mean = 1</code>, <code>SD = 0</code>, as in <code>FullComplianceImp</code>. Only 60% of the fleet adopts a newly-advised size regulation in the year it changes (<code>Compliance = 0.6</code>); the remaining 40% continues fishing under the previous Retention/Selectivity curve.</p>
+</section></section><section id="sec-exampleOM" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="sec-exampleOM">
 <span class="header-section-number">12.5</span> Example <code>OM</code> Objects</h2>
 <p>Five example <code>OM</code> objects are provided, covering the most common configurations of stocks, fleets, and observation programmes. All use the example <code>Stock</code> and <code>Fleet</code> objects described in <a href="#sec-examplestocks" class="quarto-xref"><span>Section 12.1</span></a> and <a href="#sec-examplefleets" class="quarto-xref"><span>Section 12.2</span></a>, and the example <code>Obs</code> objects described in <a href="#sec-exampleobs" class="quarto-xref"><span>Section 12.3</span></a>.</p>
 <p>Each object is initialised with 8 stochastic simulations (<code>nSim = 8)</code>, a 20-year historical period (<code>nYear = 20)</code>, and a 30-year projection period (<code>pYear = 30</code>).</p>
@@ -1303,28 +1293,31 @@ Note
 <p>The simplest configuration: one stock and one fleet.</p>
 <p><code>AlbacoreExStock</code> is fished by <code>AsympExFleet</code> with age-structured data collection (<code>AgeStructuredObs</code>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SingleStockOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SingleStockOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
 <span>  Name   <span class="op">=</span> <span class="st">"Single Stock - Single Fleet"</span>,</span>
 <span>  nSim   <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  nYear  <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  pYear  <span class="op">=</span> <span class="fl">30</span>,</span>
 <span>  Stock  <span class="op">=</span> <span class="va">AlbacoreExStock</span>,</span>
 <span>  Fleet  <span class="op">=</span> <span class="va">AsympExFleet</span>,</span>
-<span>  Obs    <span class="op">=</span> <span class="va">AgeStructuredObs</span></span>
+<span>  Obs    <span class="op">=</span> <span class="va">AgeStructuredObs</span>,</span>
+<span>  Imp    <span class="op">=</span> <span class="va">FullComplianceImp</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>When a single <code>Stock</code>, <code>Fleet</code>, or <code>Obs</code> object is assigned without a list wrapper, <code>openMSE</code> treats it as a single-stock, single-fleet model.</p>
 <p>Alternatively, the <code>Stock</code>, <code>Fleet</code>, and <code>Obs</code> objects could also be assigned with assignment functions, either directly as the objects:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Stock</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">AlbacoreExStock</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Stock</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">AlbacoreExStock</span></span>
 <span><span class="fu">Fleet</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">AsympExFleet</span></span>
-<span><span class="fu">Obs</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span>   <span class="op">&lt;-</span> <span class="va">AgeStructuredObs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">Obs</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span>   <span class="op">&lt;-</span> <span class="va">AgeStructuredObs</span></span>
+<span><span class="fu">Imp</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span>   <span class="op">&lt;-</span> <span class="va">FullComplianceImp</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>or explictly as lists and nested lists that represent the final structure:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Stock</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Stock</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AlbacoreExStock</span><span class="op">)</span></span>
 <span><span class="fu">Fleet</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AsympExFleet</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">Obs</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AgeStructuredObs</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">Obs</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AgeStructuredObs</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">Imp</span><span class="op">(</span><span class="va">SingleStockOM</span><span class="op">)</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">FullComplianceImp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="twofleetom" class="level3" data-number="12.5.2"><h3 data-number="12.5.2" class="anchored" data-anchor-id="twofleetom">
 <span class="header-section-number">12.5.2</span> <code>TwoFleetOM</code>
@@ -1332,7 +1325,7 @@ Note
 <p>One stock fished by two fleets with different selectivity profiles and data collection programs.</p>
 <p><code>AlbacoreExStock</code> is fished by <code>AsympExFleet</code> (with <code>AgeStructuredObs</code>) and <code>DomeExFleet</code> (with <code>CatchAndSurveyObs</code>), representing a scenario where the dome-selected fleet has only catch and survey data available.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">TwoFleetOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">TwoFleetOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
 <span>  Name   <span class="op">=</span> <span class="st">"Single Stock - Two Fleets"</span>,</span>
 <span>  nSim   <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  nYear  <span class="op">=</span> <span class="fl">20</span>,</span>
@@ -1343,7 +1336,8 @@ Note
 <span>  <span class="op">)</span>,</span>
 <span>  Obs    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AgeStructuredObs</span>, <span class="va">CatchAndSurveyObs</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  Imp    <span class="op">=</span> <span class="va">FullComplianceImp</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For a single stock with multiple fleets, <code>Fleet</code> and <code>Obs</code> are supplied as nested lists with one outer element per stock and one inner element per fleet: <code>Fleet[[stock]][[fleet]]</code>. The outer list must always be present even for a single stock.</p>
@@ -1353,7 +1347,7 @@ Note
 <p>Two stocks each fished by two fleets, with different observation programmes per stock-fleet combination.</p>
 <p><code>AlbacoreExStock</code> is fished by both <code>AsympExFleet</code> (with <code>AgeStructuredObs</code>) and <code>DomeExFleet</code> (with <code>CommercialFleetObs</code>); <code>ButterfishExStock</code> is fished by the same two fleets but monitored with <code>CatchAndSurveyObs</code> and <code>LengthStructuredObs</code> respectively.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">MultiStockOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">MultiStockOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
 <span>  Name   <span class="op">=</span> <span class="st">"Multi Stock - Multi Fleet"</span>,</span>
 <span>  nSim   <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  nYear  <span class="op">=</span> <span class="fl">20</span>,</span>
@@ -1366,7 +1360,8 @@ Note
 <span>  Obs    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AgeStructuredObs</span>, <span class="va">CommercialFleetObs</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">CatchAndSurveyObs</span>, <span class="va">LengthStructuredObs</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  Imp    <span class="op">=</span> <span class="va">FullComplianceImp</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>Fleet</code> and <code>Obs</code> are both indexed <code>[[stock]][[fleet]]</code>. All stocks must have the same number of fleets.</p>
@@ -1377,7 +1372,7 @@ Note
 <p>Two stocks managed as a single stock complex, fished by one fleet with one shared observation programme.</p>
 <p>The <code>Complexes</code> argument groups both stocks into a single complex named <code>StockComplex</code>, meaning fishery data are reported, and management advice is implemented, at the complex level rather than per stock.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ComplexOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ComplexOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
 <span>  Name      <span class="op">=</span> <span class="st">"Stock Complex - Single Fleet"</span>,</span>
 <span>  nSim      <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  nYear     <span class="op">=</span> <span class="fl">20</span>,</span>
@@ -1385,26 +1380,28 @@ Note
 <span>  Stock     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">AlbacoreExStock</span>, <span class="va">ButterfishExStock</span><span class="op">)</span>,</span>
 <span>  Fleet     <span class="op">=</span> <span class="va">AsympExFleet</span>,</span>
 <span>  Obs       <span class="op">=</span> <span class="va">AgeStructuredObs</span>,</span>
+<span>  Imp       <span class="op">=</span> <span class="va">FullComplianceImp</span>,</span>
 <span>  Complexes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>StockComplex <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>When stocks are grouped into complexes, <code>Obs</code> must be indexed by complex rather than by stock (<code>length(Obs) == nComplex</code>). Here a single <code>AgeStructuredObs</code> object is assigned and applied to the whole complex. The fleet operates on both stocks simultaneously; the relative contribution of each stock to the complex catch is determined by their relative abundance and the shared selectivity schedule.</p>
 <p>As with <code>MultiStockOM</code> above, in practice the fleet properties would typically vary over stocks.</p>
-<p>See <a href="concept-complexes.html" class="quarto-xref"><span>Chapter 19</span></a> for more details on stock complexes.</p>
+<p>See <a href="concept-complexes.html" class="quarto-xref"><span>Chapter 20</span></a> for more details on stock complexes.</p>
 </section><section id="seasonalspatialom" class="level3" data-number="12.5.5"><h3 data-number="12.5.5" class="anchored" data-anchor-id="seasonalspatialom">
 <span class="header-section-number">12.5.5</span> <code>SeasonalSpatialOM</code>
 </h3>
 <p><code>SeasonalSpatialOM</code> pairs <code>SeasonalSpatialExStock</code> with <code>DomeExFleet</code> and <code>CommercialFleetObs</code>. It is the only example OM with sub-annual time steps (<code>Seasons = 12</code>) and a multi-area spatial model. In all other respects it follows the same single-stock, single-fleet structure as <code>SingleStockOM</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SeasonalSpatialOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SeasonalSpatialOM</span> <span class="op">&lt;-</span> <span class="fu">OM</span><span class="op">(</span></span>
 <span>  Name    <span class="op">=</span> <span class="st">"Seasonal Spatial - Single Fleet"</span>,</span>
 <span>  nSim    <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  nYear   <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>  pYear   <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  pYear   <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  Seasons <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>  Stock   <span class="op">=</span> <span class="va">SeasonalSpatialExStock</span>,</span>
 <span>  Fleet   <span class="op">=</span> <span class="va">DomeExFleet</span>,</span>
-<span>  Obs     <span class="op">=</span> <span class="va">CommercialFleetObs</span></span>
+<span>  Obs     <span class="op">=</span> <span class="va">CommercialFleetObs</span>,</span>
+<span>  Imp     <span class="op">=</span> <span class="va">FullComplianceImp</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 

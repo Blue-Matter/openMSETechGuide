@@ -82,15 +82,19 @@ $$R_{eq}(F) = R_0 \cdot \text{RelRec}\!\bigl(\text{SPR}(F)\bigr)$$
 
 where $\text{RelRec}(\text{SPR}) = R_{eq}/R_0$ is a dimensionless function of SPR only. By construction $\text{RelRec}(1) = 1$ (unfished) and $\text{RelRec}(0) = 0$ (recruitment collapses when spawning production is eliminated). The shape of $\text{RelRec}$ between these limits is determined by the SRR steepness and functional form.
 
-For the **Beverton-Holt** SRR with steepness $h$:
+Both models express $\text{RelRec}$ in terms of the compensation ratio $CR$ (recruits per spawner at the origin implied by steepness), floored at zero to rule out negative recruitment:
 
-$$\text{RelRec}(\rho) = \frac{4h\rho - (1-h)}{(5h-1)\rho}, \qquad \rho = \frac{\Phi_F}{\Phi_0}$$
+For the Beverton-Holt SRR with steepness $h$:
 
-For the **Ricker** SRR with steepness $h$:
+$$\text{RelRec}(\rho) = \max\!\left(0,\; \frac{CR\cdot\rho - 1}{(CR-1)\,\rho}\right), \qquad CR = \frac{4h}{1-h}, \qquad \rho = \frac{\Phi_F}{\Phi_0}$$
 
-$$\text{RelRec}(\rho) = \rho \cdot \exp\!\Bigl(\kappa \bigl(1 - \rho\bigr)\Bigr)$$
+For the Ricker SRR with steepness $h$:
 
-where $\kappa = \log(5h)/(1 - 0.2^{\kappa})$ ... [exact steepness parameterisation to be confirmed against the MSEtool SRR implementations and documented here].
+$$\text{RelRec}(\rho) = \max\!\left(0,\; \frac{\log(CR\cdot\rho)}{\log(CR)}\right), \qquad CR = (5h)^{1.25}$$
+
+For the Hockey-Stick SRR with hinge point $S_\text{hinge}$ (a fraction of $S_0$, `Shinge`), equilibrium recruitment is a step function of SPR rather than a smooth curve:
+
+$$\text{RelRec}(\rho) = \begin{cases} 1 & \rho \geq S_\text{hinge} \\ 0 & \rho < S_\text{hinge} \end{cases}$$
 
 Equilibrium abundance, biomass, and yield follow by multiplying the per-recruit quantities by $R_{eq}(F)$. Absolute equilibrium quantities across a grid of apical $F$ values are returned by `CalcEquilibrium()`.
 
@@ -122,61 +126,65 @@ All slots have dimensions `Sim × Stock × Year`. Reference points can be recalc
 
 For complexes with more than one stock, the optimisation finds the single apical $F$ maximising total yield across all stocks, with fleet allocation as above. Stock-level quantities (BMSY, SBMSY, etc.) are then evaluated at the complex-level $F_{\text{MSY}}$, which will generally differ from the single-stock optimum for any individual stock.
 
-## Yield-Per-Recruit Reference Points {#sec-tech-refpoints-ypr}
+## Per-Recruit and Replacement-Line Reference Points {#sec-tech-refpoints-ypr}
 
-::: {.callout-note}
-$F_\text{Max}$ and $F_{0.1}$ are not yet calculated automatically. Code to compute and store these reference points is under development.
-:::
+`CalcRefPoints()` computes $F_{0.1}$, $F_\text{Max}$, $F_{x\%\text{SPR}}$, $F_\text{Med}$, $F_\text{crash}$, and $\text{SPR}_\text{crash}$, storing them in `Hist@Reference@F01`, `@FMax`, `@FSPR`, `@FMed`, `@FCrash`, and `@SPRcrash`. It is called automatically by `Simulate()` (`SimControl(RefPoints = TRUE)`, the default).
 
-$F_\text{Max}$ is the apical fishing mortality that maximises yield per recruit:
+All six quantities are evaluated on a common log-spaced grid of `nF` apical $F$ values (default 100) spanning approximately 0 to `OM@maxF`, using a single call to `CalcPerRecruit()` over the grid rather than re-optimising per reference point.
 
-$$F_\text{Max} = \arg\max_{F > 0} \; \sum_f Y_f^{PR}(F)$$
+### $F_\text{Max}$ and $F_{0.1}$
 
-$F_{0.1}$ is the apical $F$ at which the slope of the YPR curve is 10% of its value at $F = 0$:
+$F_\text{Max}$ is the grid point maximising yield per recruit:
 
-$$\left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F = F_{0.1}} = 0.1 \cdot \left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F = 0}$$
+$$F_\text{Max} = \arg\max_{F \in \text{grid}} \; \sum_f Y_f^{PR}(F)$$
 
-Neither reference point requires a stock-recruitment relationship.
+For asymptotic selectivity, yield per recruit has no interior maximum and increases monotonically with $F$; in that case $F_\text{Max}$ is reported as the upper end of the grid (`OM@maxF`) rather than left undefined.
+
+$F_{0.1}$ is the apical $F$ at which the slope of the YPR curve is 10% of the slope at the first grid interval:
+
+$$\left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F = F_{0.1}} = 0.1 \cdot \left.\frac{d}{dF}\sum_f Y_f^{PR}(F)\right|_{F \to 0}$$
+
+found by computing the discrete slope between consecutive grid points and linearly interpolating to the target slope. Neither $F_\text{Max}$ nor $F_{0.1}$ requires a stock-recruitment relationship.
+
+### $F_{x\%\text{SPR}}$
+
+For each target in `SPRTarget` (default `c(0.3, 0.4, 0.5)`), $F_{x\%\text{SPR}}$ is the apical $F$ at which $\text{SPR}(F)$ equals that target, found by linear interpolation of $\text{SPR}(F)$ over the grid. Results are stored with an additional `Target` dimension, one value per requested target.
+
+### $F_\text{Med}$
+
+$F_\text{Med}$ is the apical $F$ at which the per-recruit replacement line equals the median historical recruits-per-spawner ratio. For each stock, the historical ratio of recruits (numbers at the first age class) to spawning biomass is computed for every historical year, and its median across years gives the target. $F_\text{Med}$ is then the $F$ at which $1/\Phi_F$ equals that target, found by interpolation over the grid.
 
 ## SPR-Based Reference Points {#sec-tech-refpoints-spr}
 
-::: {.callout-note}
-$F_\text{crash}$ and $\text{SPR}_\text{crash}$ are not yet calculated automatically. Code to compute and store these reference points is under development.
-:::
+$F_\text{crash}$ and $\text{SPR}_\text{crash} = \text{SPR}(F_\text{crash})$ are the apical $F$ (and corresponding SPR) at which the per-recruit replacement line $1/\Phi_F$ crosses a compensation-ratio threshold $\alpha$ derived from stock-recruitment steepness. They are only defined for Beverton Holt and Ricker stock-recruitment models; other models return `NA`.
 
-$F_\text{crash}$ is the fishing mortality at which equilibrium recruitment falls to zero, and $\text{SPR}_\text{crash} = \text{SPR}(F_\text{crash})$ is the corresponding spawning potential ratio. The existence and value of $F_\text{crash}$ depend on the SRR.
+$\alpha$ is the compensation ratio $CR$ divided by a fixed reference unfished spawning-per-recruit $\Phi_0^{\text{ref}}$, evaluated at the first historical year rather than the reference year used elsewhere, matching how the SRR's fixed $\alpha$/$\beta$ parameters were originally calibrated:
 
-For the **Beverton-Holt** SRR, equilibrium recruitment approaches zero asymptotically as $F \to \infty$. There is no finite $F_\text{crash}$; by convention $\text{SPR}_\text{crash} = 0$.
+$$\alpha = \frac{CR}{\Phi_0^{\text{ref}}}, \qquad CR = \begin{cases} \dfrac{4h}{1-h} & \text{BevertonHolt} \\[4pt] (5h)^{1.25} & \text{Ricker} \end{cases}$$
 
-For the **Ricker** SRR, the critical condition is that each unit of spawning production produces exactly one recruit, i.e. the per-capita productivity at low density $\alpha$ satisfies $\alpha \cdot \Phi_F = 1$. The analytical result is:
+$F_\text{crash}$ is found by interpolating $1/\Phi_F$ against $\alpha$ over the same $F$ grid used for $F_\text{Max}$ and $F_{0.1}$:
 
-$$\Phi_{F_\text{crash}} = \frac{1}{\alpha} \qquad \Longrightarrow \qquad \text{SPR}_\text{crash} = \frac{1}{\alpha \cdot \Phi_0}$$
-
-where $\alpha$ is recoverable from the steepness $h$ and $\Phi_0$ via the standard Ricker steepness parameterisation.
-
-For the **hockey-stick** SRR, $F_\text{crash}$ corresponds to the SPR at which the linear segment of the SRR intersects zero recruitment; the exact value follows from the slope and breakpoint parameters.
+- If $1/\Phi_F \geq \alpha$ across the entire grid (the stock is already unable to replace itself even at the lowest grid $F$), $F_\text{crash} = 0$ and $\text{SPR}_\text{crash} = 1$.
+- If $1/\Phi_F \leq \alpha$ across the entire grid (replacement is never exceeded within the searched range), $F_\text{crash}$ is reported at the upper grid bound and $\text{SPR}_\text{crash}$ is extrapolated (floored at 0.01).
+- Otherwise, both are found by linear interpolation at the point where $1/\Phi_F$ crosses $\alpha$.
 
 ## Reference Yield {#sec-tech-refpoints-refyield}
 
-The reference yield is a simulation-based yield benchmark: the highest yield achievable under a fixed effort policy over the projection period. It is calculated separately for landings and removals by `CalcRefYield()` and stored in `Hist@Reference@Landings` and `Hist@Reference@Removals`. It is not calculated by default; enable it via `Simulate(DoRefLandings = TRUE)`.
+The reference yield is a simulation-based yield benchmark: the highest yield achievable under a fixed effort policy over the projection period. 
 
 For each simulation, a log-scalar $\lambda$ is applied uniformly to the effort from the last complete historical year:
 
 $$E_{f,t}^{\text{proj}} = E_{f,t_0} \cdot e^{\lambda}$$
 
-The scaled effort is held constant across the projection period and the population is projected forward using the standard population dynamics equations. The mean yield over the last $n_\text{avg}$ calendar years of the projection is recorded (default $n_\text{avg} = 5$). The $\lambda$ that maximises this mean yield is found by one-dimensional optimisation:
+The scaled effort is held constant across the projection period and the population is projected forward using the standard population dynamics equations. The mean yield over the last $n_\text{avg}$ calendar years of the projection is recorded (default $n_\text{avg} = 5$, `OM@Control$RefYield$lastnTS`; internally converted to time steps via `OM@Seasons` so seasonal models average whole years). The $\lambda$ that maximises this mean yield is found by one-dimensional optimisation:
 
 $$\lambda^* = \arg\max_\lambda \; \overline{Y}(\lambda)$$
 
-and the resulting maximum mean yield is the reference yield. For seasonal models, effort is extracted for all $S$ seasons of the last historical year and tiled across the projection, preserving the seasonal effort distribution (see @sec-tech-refpoints-seasonal-refyield).
+and the resulting maximum mean yield is the reference yield. For seasonal models, effort is extracted for all $S$ seasons of the last historical year and tiled across the projection, preserving the seasonal effort distribution (see @sec-tech-refpoints-seasonal).
 
 ## Mean Generation Time {#sec-tech-refpoints-mgt}
 
-::: {.callout-note}
-`CalcMGT()` exists but is not yet called automatically during `Simulate()`. It should be added to the default computation sequence.
-:::
-
-MGT is computed by `CalcMGT()` and stored in `Hist@Reference@MGT`:
+MGT is computed by `CalcMGT()` and stored in `Hist@Reference@MGT`. It is calculated automatically by `Simulate()` (`SimControl(MGT = TRUE)`, the default):
 
 $$\text{MGT} = \frac{\sum_a a \cdot l_a \cdot m_a}{\sum_a l_a \cdot m_a}$$
 
@@ -184,23 +192,17 @@ where $l_a$ is survivorship to age $a$ under natural mortality only, with $l_1 =
 
 ## $B_\text{Low}$ {#sec-tech-refpoints-blow}
 
-::: {.callout-note}
-$B_\text{Low}$ is not calculated by default due to its computational cost. It must be enabled as an argument to `Simulate()`. Code for this is under development.
-:::
+$B_\text{Low}$ is a rebuilding-based limit reference point used in DFO Canada's Precautionary Approach framework, computed by `CalcBLow()` and stored in `Hist@Reference@BLow`. For each simulation and stock, numbers-at-age in the last historical year are scaled by a factor $k$ and projected forward under zero fishing effort (a fixed zero-effort MP passed to `Project()`) for $\text{round}(\text{HZN} \times \text{MGT})$ years. $k$ is found by one-dimensional optimisation so that the projected spawning biomass at the end of that horizon equals the target:
 
-$B_\text{Low}$ is a rebuilding-based limit reference point used in DFO Canada's Precautionary Approach framework. It is the largest current spawning biomass $SB_{\text{now}}$ from which the population, projected forward under zero fishing, fails to reach $B_\text{frac} \times SB_\text{MSY}$ within $\text{HZN} \times \text{MGT}$ years:
+$$k^* = \arg\min_{k} \; \Bigl(\log SB_{\text{HZN}\times\text{MGT}}(k) - \log(B_\text{frac} \cdot SB_\text{MSY})\Bigr)^2$$
 
-$$B_\text{Low} = \sup\Bigl\{SB_{\text{now}} : \max_{t \leq \text{HZN} \times \text{MGT}} SB_t\bigl(SB_{\text{now}},\, F=0\bigr) < B_\text{frac} \cdot SB_\text{MSY}\Bigr\}$$
+$$B_\text{Low} = k^* \cdot SB_{\text{now}}$$
 
-Default values are $B_\text{frac} = 0.5$ and $\text{HZN} = 2$. The projection uses the operating model's stock-recruitment relationship and biological parameters from the terminal historical year. $B_\text{Low}$ is stored in `Hist@Reference@BLow`.
+Default values are $B_\text{frac} = 0.5$ and $\text{HZN} = 2$. `SB_MSY` is taken from `Hist@Reference@MSY` (computed via `CalcMSY()` if not already present) and `MGT` from `CalcMGT()`. The rebuilding horizon is capped at the number of available projection years, with a warning, if it would otherwise exceed them.
 
 ## Depletion and Stock Status {#sec-tech-refpoints-depletion}
 
 Current stock status relative to unfished and MSY reference levels is expressed as ratios of historical biomass, spawning biomass, spawning production, or fishing mortality to their respective reference values. These ratios have dimensions `Sim × Stock × Year` and are accessible via the helper functions listed in @sec-refpoints. Unfished reference values ($B_0$, $SB_0$, $SP_0$) come from `Hist@Unfished`; MSY-based reference values ($B_\text{MSY}$, $SB_\text{MSY}$, $SP_\text{MSY}$, $F_\text{MSY}$) come from `Hist@Reference@MSY`.
-
-::: {.callout-note}
-For seasonal models, the depletion accessor functions (`B_BMSY()`, `SB_SBMSY()`, `SP_SPMSY()`, etc.) return ratios where the numerator is historical biomass at seasonal time-step resolution while the denominator ($B_\text{MSY}$ etc.) is a mean-seasonal-snapshot annual quantity. This temporal mismatch means the ratios fluctuate within a year at seasonal frequency rather than varying only between years. The accessor functions should aggregate historical biomass to calendar-year means before computing the ratio. This is not yet implemented.
-:::
 
 ## Seasonal Models {#sec-tech-refpoints-seasonal}
 
@@ -240,10 +242,6 @@ For the plus group, the current implementation applies a single-season correctio
 
 $$N_{n_\text{age},s_0}^{PR} \;\leftarrow\; \frac{N_{n_\text{age},s_0}^{PR}}{1 - \exp(-Z_{n_\text{age},\,\sigma(n_\text{age},s_0)})}$$
 
-::: {.callout-note}
-This is an approximation. The correct denominator for a seasonal model should use the annual mortality of the plus-group cohort cycling through all $S$ seasons: $1 - \exp(-\sum_{s=1}^{S} Z_{n_\text{age},s})$. The current single-season correction underestimates the denominator by a factor of approximately $S$, leading to overestimation of plus-group abundance. This will be addressed in a future update.
-:::
-
 Spawning-time numbers $N_{a,s_0}^{PR,SP}$ are computed with the same recurrence but using $Z^{\text{SP}}_{a,s} = Z_{a,s}\cdot\omega$ for the initial step and $Z_{a-1,s}(1-\omega) + Z_{a,s}\,\omega$ for subsequent steps, as in @sec-tech-refpoints-perrecruit.
 
 ### Annual per-recruit aggregation {#sec-tech-refpoints-seasonal-agg}
@@ -258,11 +256,11 @@ $$\text{SPR}(F) = \frac{\Phi_F}{\Phi_0}$$
 
 `AdjustSeasonalFecundity()` scales $\psi_{a,s}$ by season in proportion to the seasonal recruitment pattern $\pi_{s_0}$, so that $\Phi_0$ and $\Phi_F$ measure annual spawning production per recruit weighted by the timing and magnitude of spawning. Seasons where $\pi_{s_0} = 0$ have $\psi_{a,s} = 0$; otherwise fecundity is scaled toward seasons of higher recruitment.
 
-Annual biomass per recruit is:
+Unlike $\Phi_0$, $\Phi_F$, and yield, which are flow quantities summed over a cohort's full lifetime, biomass and spawning biomass are stock quantities reported as a snapshot at one point in the year. Rather than averaging over all $S$ within-year snapshots, $B^{PR}$ and $SB^{PR}$ are a cross-sectional snapshot at one or more reference season(s) `OM@RefSeason`: for each reference season $s_\text{ref}$, the age classes that each birth-season cohort currently occupies at $s_\text{ref}$ are summed, weighted by that cohort's recruitment fraction $\pi_{s_0}$:
 
-$$B^{PR} = \frac{1}{S}\sum_{s_0=1}^{S} \pi_{s_0} \sum_a N_{a,s_0}^{PR,F} \cdot \bar{w}_{a,\,\sigma(a,s_0)}$$
+$$B^{PR} = \sum_{s_0=1}^{S} \pi_{s_0} \sum_{a:\, \sigma(a,s_0) = s_\text{ref}} N_{a,s_0}^{PR,F} \cdot \bar{w}_{a,s_\text{ref}}$$
 
-The $1/S$ factor converts the cohort-weighted sum to a mean seasonal snapshot biomass, directly comparable to start-of-year biomass in an annual model. The same correction applies to spawning biomass per recruit $SB^{PR}$ (using $\bar{w}_{a,s} \cdot \text{mat}_{a,s}$). Annual spawning production $\Phi_F$ and yield $Y^{PR}$ are flow quantities that sum correctly over seasons without this correction.
+with $SB^{PR}$ computed identically but weighting by $\bar{w}_{a,s_\text{ref}} \cdot \text{mat}_{a,s_\text{ref}}$ instead. When `RefSeason` is `NULL` (the default), the reference season(s) are auto-detected per simulation as the season(s) in which fecundity (or maturity, if fecundity isn't set) is nonzero (i.e. the spawning season(s)) falling back to an equal weighting across all seasons if none is detected. If more than one reference season applies, $B^{PR}$ and $SB^{PR}$ are averaged equally across them. 
 
 ### Annual yield per recruit {#sec-tech-refpoints-seasonal-yield}
 
@@ -288,20 +286,8 @@ The internal optimisation scalar therefore corresponds to the peak-season apical
 
 The optimisation and equilibrium recruitment steps are identical to the annual case (@sec-tech-refpoints-msy, @sec-tech-refpoints-rec), operating on the annually-aggregated per-recruit quantities above. The optimisation searches over the peak-season scalar; $F_\text{MSY}$ is then expressed as the annual apical fishing mortality (sum of seasonal instantaneous rates at the apical age), directly comparable to $F_\text{MSY}$ from an annual model.
 
-Reported quantities at $F_\text{MSY}$:
+The same peak-season-scalar optimisation and annual-apical-$F$ reporting applies to $F_{0.1}$, $F_\text{Max}$, $F_{x\%\text{SPR}}$, and $F_\text{crash}$ (@sec-tech-refpoints-ypr, @sec-tech-refpoints-spr), since all four are evaluated over the same annually-aggregated per-recruit grid used for $F_\text{MSY}$.
 
-| Quantity | Definition |
-|----------|-----------|
-| $F_\text{MSY}$ | Annual apical $F$; sum of instantaneous rates at the apical age across all seasons |
-| $B_\text{MSY}$ | Mean seasonal snapshot total biomass at MSY $= R_{eq} \cdot B^{PR}$ |
-| $SB_\text{MSY}$ | Mean seasonal snapshot spawning biomass at MSY $= R_{eq} \cdot SB^{PR}$ |
-| $SP_\text{MSY}$ | Annual spawning production at MSY $= R_{eq} \cdot \Phi_{F_\text{MSY}}$ |
-| MSY | Annual yield $= R_{eq} \cdot Y^{PR}$ |
-| $\text{SPR}_\text{MSY}$ | $\Phi_{F_\text{MSY}} / \Phi_0$ |
-
-### Reference yield in seasonal models {#sec-tech-refpoints-seasonal-refyield}
-
-`CalcRefYield()` extracts the full effort pattern from the last complete historical year (all $S$ seasons) as the baseline. The scalar $e^\lambda$ is applied to all fleets and seasons simultaneously, preserving the relative seasonal effort distribution. The scaled pattern is then tiled across the projection period so the seasonal effort cycle repeats each year.
 
 ## Spatial Structure {#sec-tech-refpoints-spatial}
 
@@ -309,4 +295,4 @@ The per-recruit framework tracks a single cohort through time without spatial st
 
 In the current implementation, parameters used for reference point calculations (M, selectivity, weight, catchability) do not vary spatially. Reference points for spatially structured models should therefore be interpreted as population-level averages and used cautiously when effort or closures are strongly area-specific.
 
-A spatially-explicit equilibrium approach — iterating the full spatial dynamics to equilibrium at each candidate $F$ — is planned as a user-controlled option via `OM@Control`.
+A spatially-explicit equilibrium approach, iterating the full spatial dynamics to equilibrium at each candidate $F$, is planned as a user-controlled option via `OM@Control`.

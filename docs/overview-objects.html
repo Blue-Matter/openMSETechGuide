@@ -257,7 +257,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./concept-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operating Model Concepts</span></a>
+ <span class="menu-text">Conceptual Details</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -283,20 +283,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./concept-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./concept-complexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Stock Complexes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Spatial Structure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./concept-ref-points.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reference Points</span></span></a>
   </div>
 </li>
       </ul>
@@ -311,12 +317,6 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tech-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Notation and Indices</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tech-populate-om.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Populating the Operating Model</span></span></a>
@@ -360,8 +360,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tech-projection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  <a href="./tech-advice-implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Implementing Management Advice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-singlestock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, One Fleet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-advice-multifleet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Implementing Advice: One Complex, Multiple Fleets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech-stock-targeting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stock Targeting</span></span></a>
   </div>
 </li>
       </ul>
@@ -402,7 +420,7 @@ window.Quarto = {
 <a href="#stock" id="toc-stock" class="nav-link" data-scroll-target="#stock"><span class="header-section-number">3.2</span> <code>Stock</code></a>
   <ul class="collapse">
 <li><a href="#ages" id="toc-ages" class="nav-link" data-scroll-target="#ages"><span class="header-section-number">3.2.1</span> <code>Ages</code></a></li>
-  <li><a href="#length" id="toc-length" class="nav-link" data-scroll-target="#length"><span class="header-section-number">3.2.2</span> <code>Length</code></a></li>
+  <li><a href="#length-technically-optional" id="toc-length-technically-optional" class="nav-link" data-scroll-target="#length-technically-optional"><span class="header-section-number">3.2.2</span> <code>Length</code> <em>(technically optional)</em></a></li>
   <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">3.2.3</span> <code>Weight</code></a></li>
   <li><a href="#naturalmortality" id="toc-naturalmortality" class="nav-link" data-scroll-target="#naturalmortality"><span class="header-section-number">3.2.4</span> <code>NaturalMortality</code></a></li>
   <li><a href="#maturity" id="toc-maturity" class="nav-link" data-scroll-target="#maturity"><span class="header-section-number">3.2.5</span> <code>Maturity</code></a></li>
@@ -417,22 +435,44 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#effort" id="toc-effort" class="nav-link" data-scroll-target="#effort"><span class="header-section-number">3.3.1</span> <code>Effort</code></a></li>
   <li><a href="#catchability" id="toc-catchability" class="nav-link" data-scroll-target="#catchability"><span class="header-section-number">3.3.2</span> <code>Catchability</code></a></li>
-  <li><a href="#selectivity-required" id="toc-selectivity-required" class="nav-link" data-scroll-target="#selectivity-required"><span class="header-section-number">3.3.3</span> <code>Selectivity</code> <em>(required)</em></a></li>
+  <li><a href="#selectivity" id="toc-selectivity" class="nav-link" data-scroll-target="#selectivity"><span class="header-section-number">3.3.3</span> <code>Selectivity</code></a></li>
   <li><a href="#retention-optional" id="toc-retention-optional" class="nav-link" data-scroll-target="#retention-optional"><span class="header-section-number">3.3.4</span> <code>Retention</code> <em>(optional)</em></a></li>
   <li><a href="#discardmortality-optional" id="toc-discardmortality-optional" class="nav-link" data-scroll-target="#discardmortality-optional"><span class="header-section-number">3.3.5</span> <code>DiscardMortality</code> <em>(optional)</em></a></li>
-  <li><a href="#weightfleet-optional" id="toc-weightfleet-optional" class="nav-link" data-scroll-target="#weightfleet-optional"><span class="header-section-number">3.3.6</span> <code>WeightFleet</code> <em>(optional)</em></a></li>
+  <li><a href="#weightfleetretained-and-weightfleetselected-optional" id="toc-weightfleetretained-and-weightfleetselected-optional" class="nav-link" data-scroll-target="#weightfleetretained-and-weightfleetselected-optional"><span class="header-section-number">3.3.6</span> <code>WeightFleetRetained</code> and <code>WeightFleetSelected</code> <em>(optional)</em></a></li>
+  <li><a href="#closure-optional" id="toc-closure-optional" class="nav-link" data-scroll-target="#closure-optional"><span class="header-section-number">3.3.7</span> <code>Closure</code> <em>(optional)</em></a></li>
   </ul>
 </li>
   <li>
-<a href="#obs" id="toc-obs" class="nav-link" data-scroll-target="#obs"><span class="header-section-number">3.4</span> <code>Obs</code></a>
+<a href="#obs-technically-optional" id="toc-obs-technically-optional" class="nav-link" data-scroll-target="#obs-technically-optional"><span class="header-section-number">3.4</span> <code>Obs</code> <em>(technically optional)</em></a>
   <ul class="collapse">
-<li><a href="#catchobs" id="toc-catchobs" class="nav-link" data-scroll-target="#catchobs"><span class="header-section-number">3.4.1</span> <code>CatchObs</code></a></li>
-  <li><a href="#effortobs" id="toc-effortobs" class="nav-link" data-scroll-target="#effortobs"><span class="header-section-number">3.4.2</span> <code>EffortObs</code></a></li>
-  <li><a href="#indicesobs" id="toc-indicesobs" class="nav-link" data-scroll-target="#indicesobs"><span class="header-section-number">3.4.3</span> <code>IndicesObs</code></a></li>
-  <li><a href="#compobs" id="toc-compobs" class="nav-link" data-scroll-target="#compobs"><span class="header-section-number">3.4.4</span> <code>CompObs</code></a></li>
+<li><a href="#lifehistory-not-yet-implemented" id="toc-lifehistory-not-yet-implemented" class="nav-link" data-scroll-target="#lifehistory-not-yet-implemented"><span class="header-section-number">3.4.1</span> <code>LifeHistory</code> <em>(not yet implemented)</em></a></li>
+  <li><a href="#exploitation-not-yet-implemented" id="toc-exploitation-not-yet-implemented" class="nav-link" data-scroll-target="#exploitation-not-yet-implemented"><span class="header-section-number">3.4.2</span> <code>Exploitation</code> <em>(not yet implemented)</em></a></li>
+  <li><a href="#catchobs" id="toc-catchobs" class="nav-link" data-scroll-target="#catchobs"><span class="header-section-number">3.4.3</span> <code>CatchObs</code></a></li>
+  <li><a href="#effortobs" id="toc-effortobs" class="nav-link" data-scroll-target="#effortobs"><span class="header-section-number">3.4.4</span> <code>EffortObs</code></a></li>
+  <li><a href="#indicesobs" id="toc-indicesobs" class="nav-link" data-scroll-target="#indicesobs"><span class="header-section-number">3.4.5</span> <code>IndicesObs</code></a></li>
+  <li><a href="#compobs" id="toc-compobs" class="nav-link" data-scroll-target="#compobs"><span class="header-section-number">3.4.6</span> <code>CompObs</code></a></li>
   </ul>
 </li>
-  <li><a href="#imp-optional" id="toc-imp-optional" class="nav-link" data-scroll-target="#imp-optional"><span class="header-section-number">3.5</span> <code>Imp</code> <em>(optional)</em></a></li>
+  <li>
+<a href="#imp-optional" id="toc-imp-optional" class="nav-link" data-scroll-target="#imp-optional"><span class="header-section-number">3.5</span> <code>Imp</code> <em>(optional)</em></a>
+  <ul class="collapse">
+<li><a href="#tac" id="toc-tac" class="nav-link" data-scroll-target="#tac"><span class="header-section-number">3.5.1</span> <code>TAC</code></a></li>
+  <li><a href="#effort-1" id="toc-effort-1" class="nav-link" data-scroll-target="#effort-1"><span class="header-section-number">3.5.2</span> <code>Effort</code></a></li>
+  <li><a href="#size" id="toc-size" class="nav-link" data-scroll-target="#size"><span class="header-section-number">3.5.3</span> <code>Size</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-primaryobjects-data" id="toc-sec-primaryobjects-data" class="nav-link" data-scroll-target="#sec-primaryobjects-data"><span class="header-section-number">3.6</span> <code>Data</code></a>
+  <ul class="collapse">
+<li><a href="#lifehistory-not-yet-implemented-1" id="toc-lifehistory-not-yet-implemented-1" class="nav-link" data-scroll-target="#lifehistory-not-yet-implemented-1"><span class="header-section-number">3.6.1</span> <code>LifeHistory</code> <em>(not yet implemented)</em></a></li>
+  <li><a href="#exploitation-not-yet-implemented-1" id="toc-exploitation-not-yet-implemented-1" class="nav-link" data-scroll-target="#exploitation-not-yet-implemented-1"><span class="header-section-number">3.6.2</span> <code>Exploitation</code> <em>(not yet implemented)</em></a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">3.6.3</span> <code>Reference</code></a></li>
+  <li><a href="#effort-2" id="toc-effort-2" class="nav-link" data-scroll-target="#effort-2"><span class="header-section-number">3.6.4</span> <code>Effort</code></a></li>
+  <li><a href="#landings-and-discards" id="toc-landings-and-discards" class="nav-link" data-scroll-target="#landings-and-discards"><span class="header-section-number">3.6.5</span> <code>Landings</code> and <code>Discards</code></a></li>
+  <li><a href="#cpue-and-survey" id="toc-cpue-and-survey" class="nav-link" data-scroll-target="#cpue-and-survey"><span class="header-section-number">3.6.6</span> <code>CPUE</code> and <code>Survey</code></a></li>
+  <li><a href="#composition-data" id="toc-composition-data" class="nav-link" data-scroll-target="#composition-data"><span class="header-section-number">3.6.7</span> Composition data</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/blue-matter/openMSETechGuide/edit/main/overview-objects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -452,20 +492,33 @@ window.Quarto = {
 
 
 </header><p><code>openMSE</code> organises all inputs in an <code>OM</code> object, the top-level container that holds all the components needed to run a simulation. The <code>OM</code> object is itself built from a hierarchy of S4 subcomponent objects, each responsible for a distinct aspect of the model.</p>
-<p>Understanding this hierarchy — what each subcomponent represents, what it contains, and how the pieces fit together — is important for building, modifying, and interpreting operating models.</p>
+<p>Understanding this hierarchy is important for building, modifying, and interpreting operating models: what each subcomponent represents, what it contains, and how the pieces fit together.</p>
 <p>The primary subcomponents of an <code>OM</code> object are <code>Stock</code>, <code>Fleet</code>, <code>Obs</code>, and <code>Imp</code>. Each of these is in turn a container for a set of lower-level subcomponent objects that carry the actual parameter values, described in detail in the sections below (<a href="#fig-om-hierarchy" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter describes all of these classes and their contents and contains a lot of detail.</p>
+<p>Readers may find it useful to skim through once to get a sense of the overall structure, then return here as a reference when they need details about a specific object or slot.</p>
+</div>
+</div>
 <div class="cell">
 <div id="fig-om-hierarchy" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-om-hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-2d9b8b79d3f172d6281c" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-2d9b8b79d3f172d6281c">{"x":{"diagram":"\ndigraph OM_components {\n\n  graph [layout = dot, rankdir = TB, bgcolor = white, splines = polyline, nodesep = 0.8, ranksep = 0.8]\n\n  node [fontname = Arial, fontsize = 14, style = filled, shape = rectangle]\n\n  subgraph cluster_om_components {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    stock [label = \"Stock\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    fleet [label = \"Fleet\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    obs   [label = \"Obs\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    imp   [label = \"Imp\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    data  [label = \"Data\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n    stock -> fleet -> obs -> imp -> data [style = invis]\n    { rank = same; stock; fleet; obs; imp; data }\n  }\n\n  om [label = \"OM\", fillcolor = \"#21b0fe\", fontcolor = white]\n\n  stock -> om\n  fleet -> om\n  obs   -> om\n  imp   -> om [style = dashed]\n  data  -> om [style = dashed]\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b154a1c2e1097826354e" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b154a1c2e1097826354e">{"x":{"diagram":"\ndigraph OM_components {\n\n  graph [layout = dot, rankdir = TB, bgcolor = white, splines = polyline, nodesep = 0.3, ranksep = 0.25, margin = 0, pad = 0]\n\n  node [fontname = Arial, fontsize = 14, style = filled, shape = rectangle, margin = \"0.1,0.05\"]\n\n  subgraph cluster_om_components {\n    style = filled\n    fillcolor = lightyellow\n    color = lightyellow\n    margin = 4\n    stock [label = \"Stock\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    fleet [label = \"Fleet\",  fillcolor = \"#21b0fe\", fontcolor = white]\n    obs   [label = \"Obs\",    fillcolor = \"#21b0fe\", fontcolor = white] \n    imp   [label = \"Imp\",    fillcolor = \"#21b0fe\", fontcolor = white]\n    data  [label = \"Data\",   fillcolor = \"#21b0fe\", fontcolor = white]\n\n    stock -> fleet -> obs -> imp -> data [style = invis]\n    { rank = same; stock; fleet; obs; imp; data }\n  }\n\n  om [label = \"OM\", fillcolor = \"#21b0fe\", fontcolor = white]\n\n  stock -> om\n  fleet -> om\n  obs   -> om\n  imp   -> om [style = dashed]\n  data  -> om [style = dashed]\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-om-hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arrows indicate required components; dashed arrows indicate optional components.
 </figcaption></figure>
 </div>
 </div>
-<p>This chapter describes all of these classes and their contents. It contains a lot of detail; readers may find it useful to skim through once to get a sense of the overall structure, then return here as a reference when they need details about a specific object or slot.</p>
 <section id="om" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="om">
 <span class="header-section-number">3.1</span> <code>OM</code>
 </h2>
@@ -495,7 +548,7 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <li>
 <code>Interval</code>: management update interval in projection years. How frequently the management procedure is called to update advice. Default 1 (annual).</li>
 <li>
-<code>Data</code>: a <code>data-class</code> object or named list of <code>data-class</code> objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See <span class="quarto-unresolved-ref">?sec-object_data</span> for more details on the <code>Data</code> object and how it interacts with <code>Obs</code> objects.</li>
+<code>Data</code>: a <code>data-class</code> object or named list of <code>data-class</code> objects, one per stock complex, containing the observed fishery data used to condition the operating model or inform management procedures. See <a href="#sec-primaryobjects-data" class="quarto-xref"><span>Section 3.6</span></a> below for a summary of its structure, <a href="object-data.html" class="quarto-xref"><span>Chapter 6</span></a> for full details, and <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a> for how it interacts with <code>Obs</code> objects.</li>
 </ul></section><section id="stock" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="stock">
 <span class="header-section-number">3.2</span> <code>Stock</code>
 </h2>
@@ -516,8 +569,8 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <code>PlusGroup</code>: logical; if <code>TRUE</code>, all fish at or beyond <code>MaxAge</code> are aggregated into a plus-group. (default <code>TRUE</code>).</li>
 <li>
 <code>Classes</code>: vector of age classes, derived automatically from the above. Always in units of <code>year</code>.</li>
-</ul></section><section id="length" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="length">
-<span class="header-section-number">3.2.2</span> <code>Length</code>
+</ul></section><section id="length-technically-optional" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="length-technically-optional">
+<span class="header-section-number">3.2.2</span> <code>Length</code> <em>(technically optional)</em>
 </h3>
 <p>Defines the mean length-at-age schedule.</p>
 <p>Key slots:</p>
@@ -536,6 +589,19 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <code>Classes</code>: numeric vector of lower bounds of the length bins. If not supplied, bin boundaries are derived automatically from <code>MeanAtAge</code> and <code>CVatAge</code> to span the plausible range of lengths in the population.</li>
 </ul>
 <p>See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for more details on populating <code>Pars</code>, <code>MeanAt*</code>, and <code>CVatAge</code> arrays.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Technically Optional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Length</code> is required in most operating models, but is technically optional: if <code>Weight</code> and other at-age schedules are populated directly via <code>MeanAtAge</code> (rather than derived from <code>MeanAtLength</code>), no <code>ALK</code> is needed for internal conversions, and neither <code>OM@Data</code> nor <code>Obs</code> specify any catch-at-length data, the model can run without a <code>Length</code> object.</p>
+</div>
+</div>
 </section><section id="weight" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="weight">
 <span class="header-section-number">3.2.3</span> <code>Weight</code>
 </h3>
@@ -554,10 +620,22 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><code>Pars</code>/<code>Model</code>/<code>MeanAt*</code>: a common pattern
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The <code>AtAge</code> and <code>AtLength</code> schedules are specified either by supplying <code>Pars</code> and <code>Model</code>, or by providing <code>MeanAtAge</code> and/or <code>MeanAtLength</code> directly when <code>Pars</code> is an empty list.</p>
 <p>When model-based, the model function populates either <code>MeanAtAge</code> or <code>MeanAtLength</code> depending on whether the model is age- or length-based. The other array is then back-calculated automatically using the age-length key (<code>ALK</code>) from the <code>Length</code> subcomponent.</p>
-<p>When supplying arrays directly, either or both may be provided, if only one is given, the other is derived from the <code>ALK</code> in the same way.</p>
-<p>This same pattern applies to all subcomponent objects that have <code>MeanAtAge</code> and <code>MeanAtLength</code> slots. See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for full details on input formats and array dimension conventions.</p>
+<p>When supplying arrays directly, either or both may be provided; if only one is given, the other is derived from the <code>ALK</code> in the same way.</p>
+<p>This same pattern, supply <code>Pars</code>/<code>Model</code> or supply the array(s) directly, applies to all subcomponent objects that have <code>MeanAtAge</code> and/or <code>MeanAtLength</code> slots (e.g., <code>NaturalMortality</code>, <code>Maturity</code>, <code>Fecundity</code>, <code>Selectivity</code>, <code>Retention</code>). See <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a> for full details on input formats and array dimension conventions.</p>
+</div>
+</div>
 </section><section id="naturalmortality" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="naturalmortality">
 <span class="header-section-number">3.2.4</span> <code>NaturalMortality</code>
 </h3>
@@ -578,7 +656,7 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 </ul></section><section id="maturity" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="maturity">
 <span class="header-section-number">3.2.5</span> <code>Maturity</code>
 </h3>
-<p>Defines the maturity ogive, which may be expressed as a function of age, length, or weight.</p>
+<p>Defines the maturity ogive, which may be expressed as a function of age or length.</p>
 <p>Key slots:</p>
 <ul>
 <li>
@@ -591,17 +669,28 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <li>
 <code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of maturity-at-length (0–1)</li>
 <li>
-<code>Semelparous</code>: controls post-spawning mortality. Accepts a logical <code>TRUE</code> or a <code>Sim × Age × Year</code> array. Default <code>Semelparous</code> is <code>FALSE</code>, meaning no post-spawning mortality. See below.</li>
+<code>Semelparous</code>: controls post-spawning mortality. See tip below.</li>
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the <code>Length</code> component are used.</li>
 </ul>
-<p><strong>Semelparity</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Semelparity
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Setting <code>Semelparous</code> to <code>TRUE</code> sets post-spawning mortality equal to the maturity ogive; fully mature fish die after spawning with probability 1, fish on the ascending limb of the ogive die proportionally, and immature fish are unaffected.</p>
 <p>A numeric array may also be supplied directly, allowing post-spawning mortality to be specified independently of the maturity schedule (e.g., to represent a species where only the oldest mature fish are semelparous or there is a lag between spawning and post-spawning mortality).</p>
+</div>
+</div>
 </section><section id="fecundity-optional" class="level3" data-number="3.2.6"><h3 data-number="3.2.6" class="anchored" data-anchor-id="fecundity-optional">
 <span class="header-section-number">3.2.6</span> <code>Fecundity</code> <em>(optional)</em>
 </h3>
-<p>Defines egg production per individual as a function of age or length. When omitted, spawning production is set equal to spawning biomass.</p>
+<p>Defines egg production per individual as a function of age or length, and used to calculate the spawning production that is used by the stock-recruit relationship. When omitted, spawning production is set equal to spawning biomass.</p>
 <p>Key slots:</p>
 <ul>
 <li>
@@ -617,7 +706,7 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 </ul></section><section id="srr" class="level3" data-number="3.2.7"><h3 data-number="3.2.7" class="anchored" data-anchor-id="srr">
 <span class="header-section-number">3.2.7</span> <code>SRR</code>
 </h3>
-<p>Defines the stock-recruitment relationship and recruitment variability.</p>
+<p>Defines the stock-recruitment relationship and recruitment process error.</p>
 <p>Key slots:</p>
 <ul>
 <li>
@@ -630,6 +719,10 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <code>SD</code>: log-space standard deviation of recruitment deviations.</li>
 <li>
 <code>AC</code>: lag-1 autocorrelation of recruitment deviations.</li>
+<li>
+<code>TruncSD</code>: number of standard deviations at which the recruitment deviation distribution is truncated. Default <code>2</code>.</li>
+<li>
+<code>RecDevInit</code>, <code>RecDevHist</code>, <code>RecDevProj</code>: recruitment deviations for the age-structure initialisation, historical, and projection periods, respectively. Generated automatically from <code>SD</code> and <code>AC</code> if not supplied; may be set directly to condition the model on known or estimated recruitment.</li>
 <li>
 <code>SpawnTimeFrac</code>: fraction of the time step elapsed before spawning (0 = start, 1 = end).</li>
 </ul></section><section id="spatial-optional" class="level3" data-number="3.2.8"><h3 data-number="3.2.8" class="anchored" data-anchor-id="spatial-optional">
@@ -647,7 +740,7 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <li>
 <code>Movement</code>: <code>Sim × FromArea × ToArea × Age × Year</code> movement probability matrix, with rows summing to 1. Normally derived automatically during <code>Populate()</code> from <code>UnfishedDist</code> and <code>ProbStaying</code>. Can be supplied directly.</li>
 </ul>
-<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 20</span></a> for more details on spatial structure.</p>
+<p>See <a href="concept-spatial.html" class="quarto-xref"><span>Chapter 21</span></a> for more details on spatial structure.</p>
 </section><section id="depletion-optional" class="level3" data-number="3.2.9"><h3 data-number="3.2.9" class="anchored" data-anchor-id="depletion-optional">
 <span class="header-section-number">3.2.9</span> <code>Depletion</code> <em>(optional)</em>
 </h3>
@@ -686,10 +779,10 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <ul>
 <li>
 <code>Efficiency</code>: gear efficiency <span class="math inline">\(q\)</span>, which converts effort to instantaneous fishing mortality via <span class="math inline">\(F = q \cdot E\)</span>. May be left empty when <code>Depletion@Final</code> is specified, in which case it is back-calculated internally to match the specified depletion level.</li>
-</ul></section><section id="selectivity-required" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="selectivity-required">
-<span class="header-section-number">3.3.3</span> <code>Selectivity</code> <em>(required)</em>
+</ul></section><section id="selectivity" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="selectivity">
+<span class="header-section-number">3.3.3</span> <code>Selectivity</code>
 </h3>
-<p>Defines the probability of capture as a function of age, length, or weight.</p>
+<p>Defines the probability of capture as a function of age or length.</p>
 <p>Key slots:</p>
 <ul>
 <li>
@@ -697,8 +790,6 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <li>
 <code>Model</code>: selectivity model function, inferred automatically from <code>Pars</code>; see <code>?SelectivityModels</code>
 </li>
-<li>
-<code>isRel</code>: logical. Default <code>FALSE</code>. If <code>TRUE</code>, length-based parameters are interpreted as multiples of <span class="math inline">\(L_{50}\)</span> of the paired stock. Typically only required for example stock and fleet objects (see <a href="example-objects.html" class="quarto-xref"><span>Chapter 4</span></a>).</li>
 <li>
 <code>MeanAtAge</code>: <code>Sim × Age × Year</code> array of selectivity at age (0–1).</li>
 <li>
@@ -710,9 +801,8 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 </section><section id="retention-optional" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="retention-optional">
 <span class="header-section-number">3.3.4</span> <code>Retention</code> <em>(optional)</em>
 </h3>
-<p>Defines the probability of retention given capture, as a function of age, length, or weight. When omitted, all fish are assumed fully retained. Fish that are selected but not retained are treated as discards, and their fate is determined by <code>DiscardMortality</code>.</p>
-<p>Has the same slot structure as <code>Selectivity</code> (<code>Pars</code>, <code>Model</code>, <code>isRel</code>, <code>MeanAtAge</code>, <code>MeanAtLength</code>, <code>MeanAtWeight</code>); see <code>?RetentionModels</code>.</p>
-<p>Unlike <code>Selectivity</code>, the <code>MeanAtAge</code> array is not required to reach a maximum of 1. Retention models support an optional <code>MaxRet</code> parameter that caps the asymptote below 1, representing situations where even fully-selected fish are not always retained, for example, under a maximum size limit, a trip-level bag limit, or where a proportion of catch is systematically discarded regardless of size.</p>
+<p>Defines the probability of retention given capture, as a function of age or length. When omitted, all fish are assumed fully retained. Fish that are selected but not retained are treated as discards, and their fate is determined by <code>DiscardMortality</code>.</p>
+<p>Has the same slot structure as <code>Selectivity</code> (<code>Pars</code>, <code>Model</code>, <code>MeanAtAge</code>, <code>MeanAtLength</code>, <code>Classes</code>).</p>
 </section><section id="discardmortality-optional" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="discardmortality-optional">
 <span class="header-section-number">3.3.5</span> <code>DiscardMortality</code> <em>(optional)</em>
 </h3>
@@ -725,20 +815,38 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <code>MeanAtLength</code>: <code>Sim × Class × Year</code> array of discard mortality at length.</li>
 <li>
 <code>Classes</code>: numeric vector of lower bounds of the length bins corresponding with <code>MeanAtLength</code>. If not supplied, <code>Classes</code> from the corresponding stock’s <code>Length</code> component are used.</li>
-</ul></section><section id="weightfleet-optional" class="level3" data-number="3.3.6"><h3 data-number="3.3.6" class="anchored" data-anchor-id="weightfleet-optional">
-<span class="header-section-number">3.3.6</span> <code>WeightFleet</code> <em>(optional)</em>
+</ul></section><section id="weightfleetretained-and-weightfleetselected-optional" class="level3" data-number="3.3.6"><h3 data-number="3.3.6" class="anchored" data-anchor-id="weightfleetretained-and-weightfleetselected-optional">
+<span class="header-section-number">3.3.6</span> <code>WeightFleetRetained</code> and <code>WeightFleetSelected</code> <em>(optional)</em>
 </h3>
-<p>A <code>Sim × Age × Year</code> array of fleet-specific weight-at-age, used in fleet-level biomass calculations. This slot is relevant when the fleet’s catch has a different weight-at-age schedule from the overall stock.</p>
-<p>When omitted (the default), <code>WeightFleet</code> is set equal to the corresponding stock’s weight-at-age array.</p>
-</section></section><section id="obs" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="obs">
-<span class="header-section-number">3.4</span> <code>Obs</code>
+<p><code>Sim × Age × Year</code> arrays of fleet-specific weight-at-age, used in fleet-level biomass calculations:</p>
+<ul>
+<li>
+<code>WeightFleetRetained</code> for landed fish;</li>
+<li>
+<code>WeightFleetSelected</code> for all fish encountered by the gear (retained and discarded).</li>
+</ul>
+<p>These are relevant when the fleet’s catch has a different weight-at-age schedule from the overall stock.</p>
+<p>When omitted (the default), both are computed automatically from the fleet’s <code>Selectivity</code>, <code>Retention</code>, and the stock’s weight-at-length schedule.</p>
+</section><section id="closure-optional" class="level3" data-number="3.3.7"><h3 data-number="3.3.7" class="anchored" data-anchor-id="closure-optional">
+<span class="header-section-number">3.3.7</span> <code>Closure</code> <em>(optional)</em>
+</h3>
+<p>A <code>Sim × Year × Area</code> array of spatio-temporal area closures, with <code>1</code> indicating an open area and <code>0</code> a closed area for that simulation and year. When omitted, all areas are open in all years.</p>
+</section></section><section id="obs-technically-optional" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="obs-technically-optional">
+<span class="header-section-number">3.4</span> <code>Obs</code> <em>(technically optional)</em>
 </h2>
-<p>An <code>Obs</code> object defines the observation model for a fleet, describing how each data type is collected and the magnitude of sampling error and systematic bias. Each fleet has its own <code>Obs</code> object.</p>
-<p>Each slot of <code>Obs</code> is itself a subcomponent object: <code>CatchObs</code>, <code>EffortObs</code>, <code>IndicesObs</code>, or <code>CompObs</code>, that each specify the error structure for that data type.</p>
-<p>All sub-components of an <code>Obs</code> object are optional. If a sub-component (e.g., <code>CatchObs</code>) is not populated, no data of that type will be generated in the model.</p>
-<p>The <code>Obs</code> object interacts closely with <code>Data</code> objects. See <span class="quarto-unresolved-ref">?sec-object_data</span> for more details.</p>
-<section id="catchobs" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="catchobs">
-<span class="header-section-number">3.4.1</span> <code>CatchObs</code>
+<p>An <code>Obs</code> object defines the observation model for a single fleet: how each type of fishery data is collected, and the magnitude of sampling error and systematic bias applied to it. Each fleet has its own <code>Obs</code> object, itself a container of subcomponent objects: <code>CatchObs</code>, <code>EffortObs</code>, <code>IndicesObs</code>, and <code>CompObs</code>, each defining the error structure for one data type.</p>
+<p>All sub-components are optional: if one (e.g., <code>CatchObs</code>) is left unpopulated, no data of that type is generated. <code>Obs</code> itself is optional at the <code>OM</code> level, but without it, and without a conditioning <code>Data</code> object, no data will be available to MPs (see the note in <a href="overview-openMSE.html" class="quarto-xref"><span>Chapter 2</span></a>).</p>
+<p><code>Obs</code> interacts closely with <code>Data</code> objects: see <a href="#sec-primaryobjects-data" class="quarto-xref"><span>Section 3.6</span></a> and <a href="object-data.html" class="quarto-xref"><span>Chapter 6</span></a> for the <code>Data</code> structure, and <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a> for how <code>Obs</code> is conditioned from real data.</p>
+<section id="lifehistory-not-yet-implemented" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="lifehistory-not-yet-implemented">
+<span class="header-section-number">3.4.1</span> <code>LifeHistory</code> <em>(not yet implemented)</em>
+</h3>
+<p>Intended to define observation error for life-history parameters (growth, maturity, natural mortality, etc.), mirroring <code>Data@LifeHistory</code>. Not yet implemented.</p>
+</section><section id="exploitation-not-yet-implemented" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="exploitation-not-yet-implemented">
+<span class="header-section-number">3.4.2</span> <code>Exploitation</code> <em>(not yet implemented)</em>
+</h3>
+<p>Intended to define observation error for exploitation processes (selectivity, retention, discard mortality), mirroring <code>Data@Exploitation</code>. Not yet implemented.</p>
+</section><section id="catchobs" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="catchobs">
+<span class="header-section-number">3.4.3</span> <code>CatchObs</code>
 </h3>
 <p>Used for <code>Obs@Landings</code> and <code>Obs@Discards</code>. Defines lognormal observation error and multiplicative bias applied to simulated catch.</p>
 <p>Key slots:</p>
@@ -765,13 +873,14 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <p>After population, <code>@Bias</code> is a named <code>[nSim]</code> array of positive multipliers. The error applied to simulated catch in each simulation and year is <code>Bias[sim] × Error[sim, year]</code>.</p>
 </li>
 <li><p><code>Error</code>: optional pre-specified <code>[nSim × nYear]</code> lognormal multiplier array. When supplied, <code>Error</code> is used directly and <code>CV</code> is ignored.</p></li>
-<li><p><code>Units</code>: <code>"Biomass"</code> or <code>"Number"</code>. Determines the units of the simulated catch data. Default <code>NULL</code> (treated as <code>"Biomass"</code>). <code>Biomass</code> uses <code>WeightFleet</code> (see above). <code>Number</code> is catch in numbers (same units as the stock’s <code>R0</code>).</p></li>
-</ul></section><section id="effortobs" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="effortobs">
-<span class="header-section-number">3.4.2</span> <code>EffortObs</code>
+<li><p><code>Units</code>: <code>"Biomass"</code> or <code>"Number"</code>. Determines the units of the simulated catch data. Default <code>NULL</code> (treated as <code>"Biomass"</code>). <code>Biomass</code> uses <code>WeightFleetRetained</code> (see above). <code>Number</code> is catch in numbers (same units as the stock’s <code>R0</code>).</p></li>
+<li><p><code>Years</code>: calendar years of observed catch used when conditioning <code>CV</code>, <code>Bias</code>, and <code>Error</code> from real data. <code>NULL</code> (default) uses all available historical years. See <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a>.</p></li>
+</ul></section><section id="effortobs" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="effortobs">
+<span class="header-section-number">3.4.4</span> <code>EffortObs</code>
 </h3>
-<p>Used for <code>Obs@Effort</code>. Has the same <code>CV</code>, <code>Bias</code>, and <code>Error</code> slots as <code>CatchObs</code>, applied to simulated fishing effort. See <code>?EffortObs</code>.</p>
-</section><section id="indicesobs" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="indicesobs">
-<span class="header-section-number">3.4.3</span> <code>IndicesObs</code>
+<p>Used for <code>Obs@Effort</code>. Has the same <code>CV</code>, <code>Bias</code>, <code>Error</code>, and <code>Years</code> slots as <code>CatchObs</code>, applied to simulated fishing effort. See <code>?EffortObs</code>.</p>
+</section><section id="indicesobs" class="level3" data-number="3.4.5"><h3 data-number="3.4.5" class="anchored" data-anchor-id="indicesobs">
+<span class="header-section-number">3.4.5</span> <code>IndicesObs</code>
 </h3>
 <p>Used for <code>Obs@CPUE</code> and <code>Obs@Survey</code>. Defines lognormal observation error on abundance indices, with optional autocorrelation.</p>
 <p>Key slots:</p>
@@ -786,7 +895,6 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <li>Length-2 vector <code>c(lower, upper)</code>: a unique AC per simulation drawn from <code>Uniform(lower, upper)</code>.</li>
 <li>Length-<code>nSim</code> array: used directly.</li>
 </ul>
-<p>All values must lie in <span class="math inline">\([-1, 1]\)</span>. Autocorrelation is applied on the log scale using a variance-preserving AR(1) formulation.</p>
 </li>
 <li>
 <p><code>Selectivity</code>: controls how the simulated population is aggregated to produce the index:</p>
@@ -797,48 +905,168 @@ Figure&nbsp;3.1: The primary components of an <code>OM</code> object. Solid arro
 <code>"Biomass"</code>: flat selectivity across all ages (total biomass index).</li>
 <li>
 <code>"SBiomass"</code>: weights by maturity-at-age (spawning biomass index).</li>
+<li>A custom <code>Sim × Age × Year</code> array may also be supplied for other selectivity schemes (e.g., surveys).</li>
 </ul>
-<p>A custom <code>Sim × Age × Year</code> array may also be supplied for other selectivity schemes (e.g., surveys).</p>
 </li>
-</ul></section><section id="compobs" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="compobs">
-<span class="header-section-number">3.4.4</span> <code>CompObs</code>
+<li><p><code>Units</code>: <code>"Biomass"</code>, <code>"Number"</code>, or <code>"Recruitment"</code>. Determines the units of the simulated index.</p></li>
+<li><p><code>TruncSD</code>: number of standard deviations at which the lognormal residual distribution is truncated when generating projection errors. Default <code>2</code>.</p></li>
+<li><p><code>Years</code>: calendar years of observed index data used when conditioning <code>CV</code>, <code>AC</code>, and <code>Error</code> from real data. <code>NULL</code> (default) uses all available historical years. See <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a>.</p></li>
+<li><p><code>Ref</code>: reference index value, one per simulation. Used (together with <code>Efficiency</code>) when generating the reference index value in the corresponding <code>Data</code> object. Optional.</p></li>
+</ul></section><section id="compobs" class="level3" data-number="3.4.6"><h3 data-number="3.4.6" class="anchored" data-anchor-id="compobs">
+<span class="header-section-number">3.4.6</span> <code>CompObs</code>
 </h3>
 <p>Used for <code>Obs@LandingsAtAge</code>, <code>Obs@DiscardsAtAge</code>, <code>Obs@LandingsAtSize</code>, and <code>Obs@DiscardsAtSize</code>. Defines the sampling structure for age or length composition data via a Dirichlet-Multinomial model.</p>
 <p>Key slots:</p>
 <ul>
-<li><p><code>SampleSize</code>: nominal number of fish aged or measured per year. Accepts a scalar (constant across all simulations and years), a length-2 vector <code>c(lower, upper)</code> (one value per simulation drawn from <code>Uniform(lower, upper)</code>, held constant across years), or a change-point matrix (see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>). After population, <code>@SampleSize</code> is a named <code>[nSim × nYear]</code> array. Setting <code>SampleSize = NULL</code> suppresses generation of that composition data type entirely.</p></li>
-<li><p><code>ESS</code>: effective sample size. Controls the stochastic variability of the composition draw independently of the nominal <code>SampleSize</code>. Accepts the same input forms as <code>SampleSize</code>; after population it is a named <code>[nSim × nYear]</code> array. Defaults to <code>SampleSize</code> when not specified. Values of <code>ESS &lt; SampleSize</code> produce overdispersion relative to a pure multinomial.</p></li>
-<li><p><code>Theta</code>: Dirichlet-Multinomial dispersion parameter, in <span class="math inline">\((0, 1]\)</span>. Accepts the same input forms as <code>SampleSize</code>; after population it is a named <code>[nSim × nYear]</code> array. <code>Theta = 1</code> (default) recovers a standard multinomial draw. Values approaching 0 produce maximum overdispersion.</p></li>
+<li>
+<p><code>SampleSize</code>: nominal number of fish aged or measured per year. Accepts:</p>
+<ul>
+<li>
+<code>NULL</code>: suppresses generation of that composition data type entirely.</li>
+<li>Scalar: constant across all simulations and years.</li>
+<li>Length-2 vector <code>c(lower, upper)</code>: a unique value per simulation drawn from <code>Uniform(lower, upper)</code>, held constant across years.</li>
+<li>Change-point matrix: see <a href="concept-schedules.html" class="quarto-xref"><span>Chapter 16</span></a>.</li>
+</ul>
+</li>
+<li><p><code>ESS</code>: effective sample size. Controls the stochastic variability of the composition draw independently of the nominal <code>SampleSize</code>. Accepts the same input forms as <code>SampleSize</code>. Defaults to <code>SampleSize</code> when not specified. Values of <code>ESS &lt; SampleSize</code> produce overdispersion relative to a pure multinomial.</p></li>
+<li><p><code>Theta</code>: Dirichlet-Multinomial dispersion parameter, in <span class="math inline">\((0, 1]\)</span>. Accepts the same input forms as <code>SampleSize</code>. <code>Theta = 1</code> (default) recovers a standard multinomial draw. Values approaching 0 produce maximum overdispersion.</p></li>
 <li><p><code>Shift</code>: optional per-bin log-concentration offset, capturing systematic directional bias between observed and predicted compositions. <code>NULL</code> (default) applies no shift. See <code>?CompObs</code> for details.</p></li>
+<li><p><code>Years</code>: calendar years of observed composition data used when conditioning <code>SampleSize</code>, <code>ESS</code>, <code>Theta</code>, and <code>Shift</code> from real data. <code>NULL</code> (default) uses all available historical years. See <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a>.</p></li>
 </ul></section></section><section id="imp-optional" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="imp-optional">
 <span class="header-section-number">3.5</span> <code>Imp</code> <em>(optional)</em>
 </h2>
-<p>An <code>Imp</code> object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model. When omitted, 100% compliance with management advice is assumed.</p>
+<p>An <code>Imp</code> object defines the implementation error model, controlling how management recommendations are imperfectly applied in the operating model. When omitted, 100% compliance with management advice is assumed. Each of its subcomponents is an <code>impslot</code> object.</p>
+<section id="tac" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="tac">
+<span class="header-section-number">3.5.1</span> <code>TAC</code>
+</h3>
+<p>Implementation error for total allowable catch recommendations.</p>
 <p>Key slots:</p>
 <ul>
 <li>
-<code>TAC</code>: implementation error for total allowable catch recommendations</li>
+<code>Mean</code>: mean implemented fraction of the advised TAC.</li>
 <li>
-<code>Effort</code>: implementation error for effort-based controls</li>
+<code>SD</code>: standard deviation of implementation error around <code>Mean</code>.</li>
 <li>
-<code>Size</code>: implementation error for size-based regulations</li>
+<code>Error</code>: realised implementation error, typically derived from <code>Mean</code> and <code>SD</code> during simulation.</li>
+<li>
+<code>Compliance</code>: for multi-stock models, governs reconciliation of implementation error across stocks. Not otherwise used for single-stock models.</li>
+</ul></section><section id="effort-1" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="effort-1">
+<span class="header-section-number">3.5.2</span> <code>Effort</code>
+</h3>
+<p>Implementation error for effort-based controls. Same slot structure as <code>TAC</code> (<code>Mean</code>, <code>SD</code>, <code>Error</code>, <code>Compliance</code>), applied to advised effort instead of TAC.</p>
+</section><section id="size" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="size">
+<span class="header-section-number">3.5.3</span> <code>Size</code>
+</h3>
+<p>Implementation error for size-based regulations (e.g., a minimum legal size).</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Compliance</code>: the fraction of the fleet that adopts a newly-advised size-based regulation (a change to <code>Advice@Retention</code> and/or <code>Advice@Selectivity</code>) in the year it changes, with the remainder of the fleet continuing under the prior (status-quo) schedule.</li>
+<li>
+<code>Mean</code>, <code>SD</code>, <code>Error</code>: present in the <code>impslot</code> structure but not used for <code>Size</code>.</li>
+</ul></section></section><section id="sec-primaryobjects-data" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="sec-primaryobjects-data">
+<span class="header-section-number">3.6</span> <code>Data</code>
+</h2>
+<p>A <code>Data</code> object stores observed or simulated fishery data: the real historical data optionally supplied to the <code>OM</code> (<a href="overview-openMSE.html" class="quarto-xref"><span>Chapter 2</span></a>), and the data generated and accumulated by the <code>Obs</code> model over the course of a simulation. It is also the object passed to MP functions during the projection period. It is composed of the following subcomponents:</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Name</code>, <code>CommonName</code>, <code>Species</code>, <code>Agency</code>, <code>Author</code>, <code>Email</code>, <code>Region</code>, <code>Latitude</code>, <code>Longitude</code>: optional metadata identifying the stock and data source.</li>
+<li>
+<code>Years</code>, <code>YearLH</code>, <code>Seasons</code>, <code>nArea</code>: the calendar years covered by the data, the last historical year (separating the historical from the projection period), the number of seasons per year, and the number of spatial areas.</li>
+<li>
+<code>Misc</code>, <code>Log</code>: a named list for user-defined data, and an internal list used for diagnostic and audit logging.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>Imp</code> class is currently a placeholder and is not currently implemented. The interface is subject to change.</p>
-</div>
-</div>
+<p>Each of the data sub-object classes below (<code>catchdata</code>, <code>effortdata</code>, <code>indicesdata</code>, <code>compdata</code>) shares a similar <code>Value</code>/<code>CV</code>/<code>Units</code> pattern. See <a href="object-data.html" class="quarto-xref"><span>Chapter 6</span></a> for full slot-level documentation and <a href="conditioning-obs.html" class="quarto-xref"><span>Chapter 7</span></a> for how <code>Data</code> and <code>Obs</code> interact.</p>
+<section id="lifehistory-not-yet-implemented-1" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="lifehistory-not-yet-implemented-1">
+<span class="header-section-number">3.6.1</span> <code>LifeHistory</code> <em>(not yet implemented)</em>
+</h3>
+<p>A <code>lifehistorydata</code> object intended to hold observed/assumed biological parameters for the stock, generated via <code>Obs@LifeHistory</code> in the same way as the other <code>Data</code> slots are generated via their corresponding <code>Obs</code> sub-components.</p>
+<p>Not yet implemented.</p>
+</section><section id="exploitation-not-yet-implemented-1" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="exploitation-not-yet-implemented-1">
+<span class="header-section-number">3.6.2</span> <code>Exploitation</code> <em>(not yet implemented)</em>
+</h3>
+<p>An <code>exploitationdata</code> object intended to hold observed/assumed exploitation processes for the fleet, generated via <code>Obs@Exploitation</code> in the same way as the other <code>Data</code> slots are generated via their corresponding <code>Obs</code> sub-components.</p>
+<p>Not yet implemented.</p>
+</section><section id="reference" class="level3" data-number="3.6.3"><h3 data-number="3.6.3" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">3.6.3</span> <code>Reference</code>
+</h3>
+<p>A <code>referencedata</code> object holding MSY-based biological reference points, extending <code>refpointsMSY</code>.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>FMSY</code>, <code>BMSY</code>, <code>SBMSY</code>: fishing mortality, total biomass, and spawning biomass at MSY (<code>Sim × Stock × Year</code>).</li>
+<li>
+<code>SPMSY</code>, <code>SPRMSY</code>: spawning production and spawning potential ratio at MSY (<code>Sim × Stock × Year</code>).</li>
+<li>
+<code>MSYLandings</code>, <code>MSYDiscards</code>: landed catch and dead discards at MSY (<code>Sim × Stock × Year</code>).</li>
+</ul></section><section id="effort-2" class="level3" data-number="3.6.4"><h3 data-number="3.6.4" class="anchored" data-anchor-id="effort-2">
+<span class="header-section-number">3.6.4</span> <code>Effort</code>
+</h3>
+<p>An <code>effortdata</code> object with the observed fishing effort time series.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Name</code>: fleet names, length <code>nFleet</code>.</li>
+<li>
+<code>Value</code>: observed effort values, <code>[nYear × nFleet]</code>.</li>
+<li>
+<code>CV</code>: coefficients of variation matching the dimensions of <code>Value</code>.</li>
+<li>
+<code>Units</code>: units of effort measurement per fleet (e.g., <code>"hours"</code>, <code>"trips"</code>).</li>
+</ul></section><section id="landings-and-discards" class="level3" data-number="3.6.5"><h3 data-number="3.6.5" class="anchored" data-anchor-id="landings-and-discards">
+<span class="header-section-number">3.6.5</span> <code>Landings</code> and <code>Discards</code>
+</h3>
+<p><code>catchdata</code> objects with landed and discarded catch time series, respectively.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Name</code>: fleet names, length <code>nFleet</code>.</li>
+<li>
+<code>Value</code>: observed catch values, <code>[nYear × nFleet]</code>.</li>
+<li>
+<code>CV</code>: coefficients of variation matching the dimensions of <code>Value</code>.</li>
+<li>
+<code>Units</code>: <code>"Biomass"</code> or <code>"Number"</code> per fleet, matching <code>CatchObs@Units</code> (see above).</li>
+<li>
+<code>Ref</code>, <code>RefCV</code>: a reference catch value (e.g., a historical baseline) and its CV, matching the dimensions of <code>Value</code>.</li>
+</ul></section><section id="cpue-and-survey" class="level3" data-number="3.6.6"><h3 data-number="3.6.6" class="anchored" data-anchor-id="cpue-and-survey">
+<span class="header-section-number">3.6.6</span> <code>CPUE</code> and <code>Survey</code>
+</h3>
+<p><code>indicesdata</code> objects with fishery-dependent and fishery-independent abundance indices, respectively.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Name</code>: name of the index.</li>
+<li>
+<code>Value</code>: observed index values, <code>[nYear × nIndex]</code>.</li>
+<li>
+<code>CV</code>: coefficients of variation for the index observations, matching the dimensions of <code>Value</code>.</li>
+<li>
+<code>Units</code>: <code>"Biomass"</code>, <code>"Number"</code>, or <code>"Recruitment"</code> per index, matching <code>IndicesObs@Units</code> (see above).</li>
+<li>
+<code>Ref</code>, <code>RefCV</code>: a reference value for each index (e.g., a historical mean or target level) and its CV.</li>
+<li>
+<code>Timing</code>: within-year timing of each observation, as a fraction of the year (0-1).</li>
+<li>
+<code>Selectivity</code>: an array or character specification mapping each index to a fleet selectivity, or defining an independent selectivity curve.</li>
+</ul></section><section id="composition-data" class="level3" data-number="3.6.7"><h3 data-number="3.6.7" class="anchored" data-anchor-id="composition-data">
+<span class="header-section-number">3.6.7</span> Composition data</h3>
+<p><code>compdata</code> objects with age or size composition data, used for <code>LandingsAtAge</code>, <code>DiscardsAtAge</code>, <code>LandingsAtSize</code>, and <code>DiscardsAtSize</code>.</p>
+<p>Key slots:</p>
+<ul>
+<li>
+<code>Name</code>: fleet names, length <code>nFleet</code>.</li>
+<li>
+<code>Value</code>: composition counts, <code>[nYear × nFleet × nClass]</code>.</li>
+<li>
+<code>Classes</code>: for age compositions, a numeric vector of class values (ages in years) shared by every fleet. For size compositions, a list of numeric vectors, one per fleet, giving that fleet’s own lower bounds of size bins.</li>
+<li>
+<code>Units</code>: units of the class variable (e.g., <code>"years"</code>, <code>"cm"</code>, <code>"mm"</code>), shared by every fleet.</li>
+</ul>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
